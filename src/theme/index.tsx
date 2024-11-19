@@ -12,6 +12,7 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
           fontFamily: "Inter",
           colorError: "#f34141",
           fontWeightStrong: 500,
+          colorPrimary: "rgb(74, 58, 225)",
         },
 
         components: {
