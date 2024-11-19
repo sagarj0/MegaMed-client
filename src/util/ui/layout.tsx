@@ -24,8 +24,8 @@ const MainLayout: React.FC = () => {
       <Col
         xs={{ span: 24 }}
         sm={{ span: 24 }}
-        lg={{ span: 16, offset: 4 }}
-        xxl={{ span: 10, offset: 7 }}
+        lg={{ span: 18, offset: 3 }}
+        xxl={{ span: 12, offset: 6 }}
         style={{
           padding: 4,
         }}
@@ -39,17 +39,45 @@ const MainLayout: React.FC = () => {
         >
           <Content
             style={{
+              position: "relative", // For positioning the video
               padding: 20,
               width: "100%",
               height: "calc(100dvh - 64px - 8px)",
-              overflowY: "auto",
+              overflow: "hidden", // Ensures video does not overflow
               background: colorBgContainer,
               borderRadius,
               scrollbarColor: "#f0f0f0",
               scrollbarWidth: "thin",
             }}
           >
-            <Outlet />
+            {/* Video as Background */}
+            <video
+              autoPlay
+              muted
+              loop
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                zIndex: 1,
+                backdropFilter: "blur(5px)",
+              }}
+            >
+              <source src="/background.mp4" type="video/mp4" />
+              Your browser does not support HTML video.
+            </video>
+
+            <div
+              style={{
+                position: "relative",
+                zIndex: 2, // Ensures this content is above the video
+              }}
+            >
+              <Outlet />
+            </div>
           </Content>
         </Layout>
       </Col>
