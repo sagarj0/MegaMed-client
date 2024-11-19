@@ -23,3 +23,7 @@
   background: var(--scrollbar-color);
 }
 /* Scrollbar */
+
+.menu-no-underline.ant-menu-item::after {
+  display: none !important;
+}

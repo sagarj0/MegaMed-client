@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Layout, theme } from "antd";
 import { Outlet } from "react-router-dom";
+import { Navbar } from "@/component/navbar";
 // import { Navbar } from "../../component/navbar";
 
 const { Header, Content } = Layout;
@@ -17,13 +18,13 @@ const MainLayout: React.FC = () => {
           padding: 0,
         }}
       >
-        {/* <Navbar /> */}
+        <Navbar />
       </Header>
 
       <Col
         xs={{ span: 24 }}
         sm={{ span: 24 }}
-        lg={{ span: 12, offset: 6 }}
+        lg={{ span: 16, offset: 4 }}
         xxl={{ span: 10, offset: 7 }}
         style={{
           padding: 4,

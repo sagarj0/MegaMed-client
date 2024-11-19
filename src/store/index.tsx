@@ -1,21 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
-  persistReducer,
-  persistStore,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
-} from "redux-persist";
+import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-// import * as AuthRepo from "../module/auth/service/";
-// import * as QuestionReducers from "../module/questions/service/";
+import * as AuthRepo from "../module/auth/service/";
 
 const rootReducer = combineReducers({
-  // ...AuthRepo,
-  // ...QuestionReducers,
+  ...AuthRepo,
 });
 
 const persistConfig = {
