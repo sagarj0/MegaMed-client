@@ -110,7 +110,14 @@ export const Navbar: React.FC = () => {
         defaultSelectedKeys={[AllUrls.home.home]}
         selectedKeys={[location.pathname]}
         onSelect={(item) => onTabChange(item.key)}
-        style={{ width: "100%", justifyContent: "center", gap: 48 }}
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          gap: 48,
+          background: "rgba(255, 255, 255, 0.2)", // Glass effect
+          backdropFilter: "blur(10px)", // Glass blur
+          boxShadow: "0 5px 6px rgba(74, 58, 225, 0.3)", // Slight
+        }}
       />
     </>
   );
