@@ -32,7 +32,7 @@ export const Navbar: React.FC = () => {
     {
       key: "/",
       title: undefined,
-      label: <Logo height={40} style={{ marginBlock: 0 }} />,
+      label: <Logo height={40} style={{ marginBlock: 0, marginRight: "20em" }} />,
       className: "menu-no-underline",
     },
     {
@@ -113,7 +113,7 @@ export const Navbar: React.FC = () => {
         style={{
           width: "100%",
           justifyContent: "center",
-          gap: 48,
+          gap: 32,
           background: "rgba(255, 255, 255, 0.2)", // Glass effect
           backdropFilter: "blur(10px)", // Glass blur
           boxShadow: "0 5px 6px rgba(74, 58, 225, 0.3)", // Slight

@@ -36,8 +36,8 @@ const MainLayout: React.FC = () => {
       <Col
         xs={{ span: 24 }}
         sm={{ span: 24 }}
-        lg={{ span: 20, offset: 2 }}
-        xxl={{ span: 12, offset: 6 }}
+        lg={{ span: 22, offset: 1 }}
+        xxl={{ span: 16, offset: 4 }}
         style={{
           padding: 4,
         }}
@@ -48,7 +48,7 @@ const MainLayout: React.FC = () => {
             marginInline: "auto",
             height: "100%",
             background: "rgba(255, 255, 255, 0.3)", // Glass effect
-            backdropFilter: "blur(10px)", // Glass blur
+            backdropFilter: "blur(8px)", // Glass blur
             borderRadius, // Matches theme's border radius
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Adds a subtle shadow
             overflow: "auto",
@@ -57,13 +57,12 @@ const MainLayout: React.FC = () => {
           <Content
             style={{
               position: "relative",
-              padding: 20,
+              padding: 32,
               width: "100%",
-              height: "calc(100dvh - 64px - 8px)", // Adjust for header height
+              height: "calc(100dvh - 64px - 8px)",
               borderRadius,
             }}
           >
-            {/* Main Content */}
             <Outlet />
           </Content>
         </Layout>
