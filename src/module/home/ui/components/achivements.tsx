@@ -1,7 +1,8 @@
 import React from "react";
-import { Row, Col, Typography, Avatar } from "antd";
+import { Row, Col, Typography, Avatar, Button } from "antd";
 import { Ribbon } from "@/component/icons/ribbon";
 import { Medal } from "@/component/icons/medal";
+// import { useNavigate } from "react-router-dom";
 
 // Sample Data
 const achievements: {
@@ -76,6 +77,8 @@ const achievements: {
 ].sort((a, b) => (a.mbbsRank || 0) - (b.mbbsRank || 0));
 
 export const AchievementSection: React.FC = () => {
+  // const navigate = useNavigate();
+
   return (
     <Row style={{ width: "100%", paddingBlock: 24 }}>
       <Typography.Title level={2} style={{ color: "var(--primary-color)" }}>
@@ -84,9 +87,11 @@ export const AchievementSection: React.FC = () => {
       <Row justify="center" align={"middle"} gutter={[16, 16]} style={{ width: "100%", paddingBlock: 30 }}>
         {achievements.map((student, index) => (
           <Col key={index} span={6}>
-            <Row justify={"center"} style={{ position: "relative" }}>
-              <Avatar size={120} src={student.photo} alt={student.name} />
-              <Ribbon style={{ position: "absolute", bottom: -35, left: 83 }} />
+            <Row justify={"center"}>
+              <div style={{ position: "relative", width: "fit-content" }}>
+                <Avatar size={120} src={student.photo} alt={student.name} />
+                <Ribbon style={{ position: "absolute", bottom: -35, left: -15 }} />
+              </div>
             </Row>
             <Row align={"middle"} justify={"center"} style={{ position: "relative" }}>
               <Medal style={{ position: "absolute", top: 8, left: 70 }} />
@@ -113,6 +118,11 @@ export const AchievementSection: React.FC = () => {
             </Row>
           </Col>
         ))}
+      </Row>
+      <Row justify={"center"} style={{ width: "100%" }}>
+        <Button type="default" style={{ marginTop: 30, color: "var(--primary-color)", borderColor: "var(--primary-color)" }}>
+          Explore About Our Legacy
+        </Button>
       </Row>
     </Row>
   );
