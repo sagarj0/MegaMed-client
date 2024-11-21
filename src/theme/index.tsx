@@ -33,6 +33,7 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
 
           Typography: {
             fontSizeHeading5: 14,
+            fontSize: 13,
             colorTextHeading: "#2B2B2B",
             colorText: "#575F6E",
           },

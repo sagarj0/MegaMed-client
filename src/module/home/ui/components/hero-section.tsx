@@ -7,7 +7,7 @@ export const HeroSection: React.FC = () => {
         <Typography.Title
           level={1}
           style={{ color: "var(--primary-color)", fontWeight: 600, marginBlock: 20 }}
-          children="The Smart Choice For Prepration"
+          children="The Smart Choice For Entrance Prepration"
         />
         <Typography.Paragraph>
           Welcome to Mega-Med: Improve your medical entrance exams Prepare for your medical entrance exams with Mega-Med. Take

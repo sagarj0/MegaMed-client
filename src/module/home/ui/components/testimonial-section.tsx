@@ -41,9 +41,12 @@ export const TestimonialCarousel: React.FC = () => {
   return (
     <Row justify="center" style={{ width: "100%" }}>
       <Col>
-        <Typography.Title level={2} style={{ marginBottom: 20, color: "var(--primary-color)" }}>
-          Hear from Our Stars{" "}
+        <Typography.Title level={2} style={{ marginBottom: 20, color: "var(--primary-color)", textAlign: "center" }}>
+          Hear from Our Stars
         </Typography.Title>
+        <Typography.Paragraph style={{ textAlign: "center", marginBottom: 30 }}>
+          What our students and alumni have to say about their experience with us. We are proud to have been a part of their
+        </Typography.Paragraph>
         <Carousel
           autoplay
           arrows
@@ -98,7 +101,7 @@ export const TestimonialCarousel: React.FC = () => {
         </Carousel>
 
         <Row justify={"center"}>
-          <Button type="default" style={{ marginTop: 30, color: "var(--primary-color)", borderColor: "var(--primary-color)" }}>
+          <Button type="primary" style={{ marginTop: 30 }}>
             View More Success Stories
           </Button>
         </Row>

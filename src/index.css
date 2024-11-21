@@ -67,3 +67,16 @@
     }
   }
 }
+
+.footer-white-color a {
+  color: var(--white-color) !important;
+}
+
+.footer-white-color .ant-typography,
+.footer-white-color .ant-col {
+  color: var(--white-color) !important;
+}
+
+.footer-white-color .ant-btn {
+  color: var(--white-color) !important;
+}

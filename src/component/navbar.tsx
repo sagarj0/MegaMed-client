@@ -114,9 +114,9 @@ export const Navbar: React.FC = () => {
           width: "100%",
           justifyContent: "center",
           gap: 32,
-          background: "rgba(255, 255, 255, 0.2)", // Glass effect
+          background: "rgba(255, 255, 255, 0.5)", // Glass effect
           backdropFilter: "blur(10px)", // Glass blur
-          boxShadow: "0 5px 6px rgba(74, 58, 225, 0.3)", // Slight
+          boxShadow: "0 5px 6px rgba(74, 58, 225, 0.5)", // Slight
         }}
       />
     </>

@@ -81,9 +81,13 @@ export const AchievementSection: React.FC = () => {
 
   return (
     <Row style={{ width: "100%", paddingBlock: 24 }}>
-      <Typography.Title level={2} style={{ color: "var(--primary-color)" }}>
+      <Typography.Title level={2} style={{ marginBottom: 20, color: "var(--primary-color)", textAlign: "center", width: "100%" }}>
         Making Dreams Come True
       </Typography.Title>
+      <Typography.Paragraph style={{ textAlign: "center", width: "100%", marginBottom: 30 }}>
+        Our students have been making us proud with their achievements. We are proud to have been a part of their journey to
+        success.
+      </Typography.Paragraph>
       <Row justify="center" align={"middle"} gutter={[16, 16]} style={{ width: "100%", paddingBlock: 30 }}>
         {achievements.map((student, index) => (
           <Col key={index} span={6}>
@@ -93,34 +97,36 @@ export const AchievementSection: React.FC = () => {
                 <Ribbon style={{ position: "absolute", bottom: -35, left: -15 }} />
               </div>
             </Row>
-            <Row align={"middle"} justify={"center"} style={{ position: "relative" }}>
-              <Medal style={{ position: "absolute", top: 8, left: 70 }} />
-              <Col>
-                {student.mbbsRank ? (
-                  <Typography.Title level={5} style={{ marginTop: 10, marginBottom: 2, textAlign: "center" }}>
-                    MBBS Rank {student.mbbsRank}
-                  </Typography.Title>
-                ) : null}
-                {student.bdsRank ? (
-                  <Typography.Title level={5} style={{ marginBlock: 0, textAlign: "center" }}>
-                    BDS Rank {student.bdsRank}
-                  </Typography.Title>
-                ) : null}
-                {student.bscNursinRank ? (
-                  <Typography.Title level={5} style={{ marginBlock: 0, textAlign: "center" }}>
-                    BSc Nursing Rank {student.bscNursinRank}
-                  </Typography.Title>
-                ) : null}
-                <Typography.Text strong style={{ textAlign: "center", display: "inline-block", marginTop: 10, width: "100%" }}>
-                  {student.name}
-                </Typography.Text>
-              </Col>
+            <Row align={"middle"} justify={"center"}>
+              <div style={{ position: "relative", width: "fit-content" }}>
+                <Medal style={{ position: "absolute", top: 10, left: -35 }} />
+                <Col>
+                  {student.mbbsRank ? (
+                    <Typography.Title level={5} style={{ marginTop: 10, marginBottom: 2, textAlign: "center" }}>
+                      MBBS Rank {student.mbbsRank}
+                    </Typography.Title>
+                  ) : null}
+                  {student.bdsRank ? (
+                    <Typography.Title level={5} style={{ marginBlock: 0, textAlign: "center" }}>
+                      BDS Rank {student.bdsRank}
+                    </Typography.Title>
+                  ) : null}
+                  {student.bscNursinRank ? (
+                    <Typography.Title level={5} style={{ marginBlock: 0, textAlign: "center" }}>
+                      BSc Nursing Rank {student.bscNursinRank}
+                    </Typography.Title>
+                  ) : null}
+                  <Typography.Text strong style={{ textAlign: "center", display: "inline-block", marginTop: 10, width: "100%" }}>
+                    {student.name}
+                  </Typography.Text>
+                </Col>
+              </div>
             </Row>
           </Col>
         ))}
       </Row>
       <Row justify={"center"} style={{ width: "100%" }}>
-        <Button type="default" style={{ marginTop: 30, color: "var(--primary-color)", borderColor: "var(--primary-color)" }}>
+        <Button type="primary" style={{ marginTop: 30 }}>
           Explore About Our Legacy
         </Button>
       </Row>

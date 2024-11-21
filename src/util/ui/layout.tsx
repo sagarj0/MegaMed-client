@@ -2,8 +2,9 @@ import React from "react";
 import { Col, Layout, theme } from "antd";
 import { Outlet } from "react-router-dom";
 import { Navbar } from "@/component/navbar";
+import { FooterComponent } from "@/component/footer";
 
-const { Header, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 
 const MainLayout: React.FC = () => {
   const {
@@ -12,6 +13,7 @@ const MainLayout: React.FC = () => {
 
   return (
     <Layout style={{ minHeight: "100dvh", width: "100%", position: "relative" }}>
+      {/* Video Background */}
       <video
         autoPlay
         muted
@@ -23,22 +25,36 @@ const MainLayout: React.FC = () => {
           width: "100%",
           height: "100%",
           objectFit: "cover",
+          zIndex: 0, // Keep video behind content
         }}
       >
         <source src="/background.mp4" type="video/mp4" />
         Your browser does not support HTML video.
       </video>
 
-      <Header style={{ padding: 0 }}>
+      {/* Fixed Navbar */}
+      <Header
+        style={{
+          position: "fixed", // Fix the navbar at the top
+          top: 0,
+          left: 0,
+          width: "100%",
+          zIndex: 10, // Ensure it stays above other content
+          padding: 0,
+          background: "transparent", // Slightly transparent background
+          backdropFilter: "blur(8px)", // Glass effect for the header
+        }}
+      >
         <Navbar />
       </Header>
 
+      {/* Main Content */}
       <Col
         xs={{ span: 24 }}
         sm={{ span: 24 }}
-        lg={{ span: 22, offset: 1 }}
-        xxl={{ span: 16, offset: 4 }}
         style={{
+          position: "absolute",
+          top: 64,
           padding: 4,
         }}
       >
@@ -56,15 +72,29 @@ const MainLayout: React.FC = () => {
         >
           <Content
             style={{
-              position: "relative",
-              paddingBlock: 32,
-              paddingInline: 40,
+              display: "flex",
+              flexDirection: "column", // Stack Outlet and Footer vertically
+              paddingTop: 32,
               width: "100%",
-              height: "calc(100dvh - 64px - 8px)",
+              minHeight: "calc(100vh - 64px)", // Deduct navbar height
               borderRadius,
+              position: "relative",
             }}
           >
-            <Outlet />
+            {/* Outlet Content */}
+            <div style={{ flex: 1 }}>
+              <Outlet />
+            </div>
+
+            {/* Footer */}
+            <Footer
+              style={{
+                width: "100%", // Ensure full width
+                background: "var(--primary-color)", // Customize background color
+              }}
+            >
+              <FooterComponent />
+            </Footer>
           </Content>
         </Layout>
       </Col>
