@@ -5,10 +5,14 @@
 }
 
 :root {
-  --scrollbar-color: #aaa;
-  --scrollbar-bg: #f4f4f4;
+  --primary-color: #4a3ae1;
+  --secondary-color: #4a3ae1b3;
+  --danger-color: #ff4d4f;
+  --white-color: #fff;
+  --black-color: #000;
+  --gray-primary: #aaa;
+  --gray-secondary: #f4f4f4;
   --scrollbar-width: 4px;
-  --primary-color: rgb(74, 58, 225);
 }
 
 /* Scrollbar */
@@ -17,14 +21,49 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--scrollbar-bg);
+  background: var(--gray-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-color);
+  background: var(--gray-primary);
 }
 /* Scrollbar */
 
 .menu-no-underline.ant-menu-item::after {
   display: none !important;
+}
+
+/* for carousel */
+.ant-carousel {
+  .slick-slide {
+    padding-inline: 10px;
+  }
+
+  .slick-dots li {
+    background: var(--gray-primary);
+
+    &:hover:not(.slick-active) {
+      background: var(--secondary-color);
+      button {
+        background: transparent;
+      }
+    }
+
+    &.slick-active {
+      background: var(--primary-color);
+      button {
+        background: transparent;
+      }
+    }
+  }
+
+  .slick-arrow {
+    color: var(--black-color);
+    &.slick-prev {
+      inset-inline-start: 0;
+    }
+    &.slick-next {
+      inset-inline-end: 0;
+    }
+  }
 }

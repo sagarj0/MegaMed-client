@@ -43,6 +43,10 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
             defaultShadow: "none",
             primaryShadow: "none",
             dangerShadow: "none",
+            borderRadius: 16,
+            borderRadiusLG: 16,
+            borderRadiusSM: 16,
+            defaultHoverBg: "transparent",
           },
           Card: {
             padding: 20,

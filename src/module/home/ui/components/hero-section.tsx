@@ -19,7 +19,9 @@ export const HeroSection: React.FC = () => {
         </Button>
       </Col>
       <Col span={14}>
-        <Image src="/hero.png" alt="Hero picture" width={600} height={400} preview={false} />
+        <Row justify={"center"} align={"middle"} style={{ height: "100%" }}>
+          <Image src="/hero.png" alt="Hero picture" width={600} height={400} preview={false} />
+        </Row>
       </Col>
     </Row>
   );

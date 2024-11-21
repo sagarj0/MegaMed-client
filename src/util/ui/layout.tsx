@@ -57,7 +57,8 @@ const MainLayout: React.FC = () => {
           <Content
             style={{
               position: "relative",
-              padding: 32,
+              paddingBlock: 32,
+              paddingInline: 40,
               width: "100%",
               height: "calc(100dvh - 64px - 8px)",
               borderRadius,
