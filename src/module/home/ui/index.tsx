@@ -8,6 +8,7 @@ import { AchievementSection } from "./components/achivements";
 import { NewsLetter } from "./components/newsletter";
 import { MentorsSection } from "./components/mentors-carousel";
 import { ReadySection } from "./components/ready-section";
+import TimeDisplay from "@/component/clock";
 
 const Home: React.FC = () => {
   const { user } = useAppSelector((root) => root.AuthRepo);
@@ -19,11 +20,13 @@ const Home: React.FC = () => {
       }}
     >
       {user.id ? (
-        <Typography.Title level={5} children={`Welcome, ${user.name}!!`} />
+        <Typography.Title level={5} style={{ marginBlock: 0 }} children={`Welcome, ${user.name}!!`} />
       ) : (
-        <Typography.Title level={5} children="Welcome to Mega-Med" />
+        <Typography.Title level={5} style={{ marginBlock: 0 }} children="Welcome to Mega-Med" />
       )}
-
+      <Typography.Title level={5} style={{ marginBlock: 0 }} />
+      Time is Tickking for CEE 2025 <TimeDisplay />
+      <Typography.Title level={5} />
       <Flex vertical align="stretch" style={{ width: "100%", paddingBottom: 150 }} gap={150}>
         <HeroSection />
         <Section2 />
