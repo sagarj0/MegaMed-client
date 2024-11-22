@@ -1,19 +1,17 @@
 import { parseError } from "@/helper/parse-error";
-import { getMe, mockgetMe } from "./api";
+import { login } from "./api";
 import { AppDispatch } from "@/store";
-import { config } from "@/util/config";
 import { setLoading, resetLoading, setSuccess, setError } from "./reducer";
-import { changeUser } from "../repo/reducer";
+import { ForgetPasswordRequest } from "./type";
 
-export const fetchMe = () => async (dispatch: AppDispatch) => {
+export const forgetPassword = (props: ForgetPasswordRequest) => async (dispatch: AppDispatch) => {
   try {
     dispatch(setLoading());
 
-    const response = config.database === "MOCK" ? await mockgetMe() : await getMe();
+    const response = await login(props);
 
-    const { data, message } = response.data;
+    const { message } = response.data;
 
-    dispatch(changeUser(data));
     dispatch(setSuccess(message));
   } catch (error) {
     dispatch(setError(parseError(error)));

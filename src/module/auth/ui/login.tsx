@@ -65,7 +65,12 @@ export const Login: React.FC = () => {
             <Form.Item {...item} key={item.name} />
           ))}
 
-          <Button type="link" children="Forgot Password?" style={{ padding: 0, ...style }} />
+          <Button
+            type="link"
+            children="Forgot Password?"
+            style={{ padding: 0, ...style }}
+            onClick={() => navigate(AllUrls.authUrls.forgotPassword)}
+          />
 
           <Button
             type="primary"

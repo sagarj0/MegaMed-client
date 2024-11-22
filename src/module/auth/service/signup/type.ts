@@ -9,8 +9,8 @@ export type SignupRequest = {
 
 export type SignupResponse = {
   data: {
-    data: User;
-    token: string;
+    data?: User;
+    token?: string;
     message?: string;
   };
 };

@@ -1,6 +1,6 @@
 import { Button, Divider, Form, FormItemProps, Input, Row, Space, Typography } from "antd";
 import FormDebug from "@/helper/form/form-debug";
-import { SignupFormKey, SignupFormProps } from "./type";
+import { ForgetPasswordFormKey, ResetFormKey, ResetPasswordFormProps } from "./type";
 import { Rules } from "@/helper/form/form-rules";
 import { FacebookOutlined, GoogleOutlined, LinkedinOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
@@ -8,49 +8,46 @@ import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "../service/login/reducer";
 import { config } from "@/util/config";
 import { AuthEndpoint } from "../util/endpoint";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { AllUrls } from "@/router/urls";
-import { signUpWithCrednetial } from "../service/signup/action";
+import { resetPassword } from "../service/reset-password/action";
+import { useEffect } from "react";
 
 const style: React.CSSProperties = { height: 45 };
 
-export const Signup: React.FC = () => {
-  const [form] = Form.useForm<SignupFormProps>();
-  const navigate = useNavigate();
+export const ResetPassword: React.FC = () => {
+  const [form] = Form.useForm<ResetPasswordFormProps>();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
 
-  const submitForm = async (values: SignupFormProps) => await dispatch(signUpWithCrednetial(values));
+  useEffect(() => {
+    form.setFieldValue(ResetFormKey.token, token);
+  }, [token]);
+
+  const submitForm = async (values: ResetPasswordFormProps) => await dispatch(resetPassword(values));
   const handleGoogleLogin = () => window.open(config.apiUrl + AuthEndpoint.googleLogin, "_self");
 
-  const { isLoading, success, error } = useAppSelector((root) => root.AuthSignup);
-  // const onSignUpSuccess = () => navigate(AllUrls.authUrls.verifyEmail);
-  useStatusMessage({
-    isNotification: true,
-    success,
-    error,
-    resetSuccess,
-    resetError,
-    //  onSuccessReset: onSignUpSuccess
-  });
+  const { isLoading, success, error } = useAppSelector((root) => root.ResetPassword);
+  const onSuccessReset = () => navigate(AllUrls.authUrls.login);
+  useStatusMessage({ success, error, resetSuccess, resetError, onSuccessReset });
 
-  const formItem: FormItemProps[] = [
-    {
-      label: "Full Name",
-      name: SignupFormKey.name,
-      rules: [Rules.required],
-      children: <Input style={style} placeholder="Enter Your Full Name" />,
-    },
+  const formItem: FormItemProps<ResetPasswordFormProps>[] = [
     {
       label: "Email",
-      name: SignupFormKey.email,
+      name: ForgetPasswordFormKey.email,
       rules: [Rules.required],
       children: <Input type="email" style={style} prefix={<MailOutlined />} placeholder="Enter Your Email" />,
     },
     {
-      label: "Password",
-      name: SignupFormKey.password,
-      rules: [Rules.required],
+      label: "New Password",
+      name: "newPassword",
       children: <Input.Password style={style} prefix={<LockOutlined />} placeholder="********" />,
+    },
+    {
+      name: "token",
+      hidden: true,
     },
   ];
 
@@ -71,11 +68,11 @@ export const Signup: React.FC = () => {
           <Button size="large" style={{ width: 160, ...style }} children="Facebook" icon={<FacebookOutlined />} />
         </Row>
 
-        <Divider children={"or Continue Signing up with Email"} style={{ marginBottom: 0 }} />
+        <Divider children={"or conitnue resetting your password "} style={{ marginBottom: 0 }} />
 
         <Form layout="vertical" name="login" colon={false} onFinish={submitForm} form={form}>
           {formItem.map((item) => (
-            <Form.Item {...item} key={item.name} />
+            <Form.Item {...item} key={item.name as string} />
           ))}
 
           <Button
@@ -83,7 +80,7 @@ export const Signup: React.FC = () => {
             htmlType="submit"
             size="large"
             style={{ width: "100%", ...style }}
-            children="Sign Up"
+            children="Submit"
             loading={isLoading}
           />
           <FormDebug />
@@ -91,12 +88,12 @@ export const Signup: React.FC = () => {
       </Space>
 
       <Typography.Text style={{ textAlign: "center", width: "100%", display: "block", padding: 12 }}>
-        Already have an account?{" "}
+        Don't have an account?{" "}
         <Button
           type="link"
-          onClick={() => navigate(AllUrls.authUrls.login)}
+          onClick={() => navigate(AllUrls.authUrls.signUp)}
           style={{ padding: 0 }}
-          children="Continue to login"
+          children="Create new account "
         />
       </Typography.Text>
     </>

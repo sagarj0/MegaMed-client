@@ -1,3 +1,3 @@
 import { User } from "../login/type";
 
-export type GetMeResponse = { data: { user: User; message: string } };
+export type GetMeResponse = { data: { data: User; message: string } };

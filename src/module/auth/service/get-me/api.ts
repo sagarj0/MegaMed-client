@@ -10,7 +10,7 @@ export const getMe = (): Promise<GetMeResponse> => {
 export const mockgetMe = (): Promise<GetMeResponse> => {
   const res = {
     data: {
-      user: {
+      data: {
         id: "mock-id",
         email: "mock-email",
         name: "mock-name",

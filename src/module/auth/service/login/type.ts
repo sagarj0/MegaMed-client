@@ -17,7 +17,7 @@ export type User = {
   name: string;
   email: string;
   number?: string;
-  password?: string;
+  // password?: string;
   photo?: string;
   role: UserRole;
   pictureUrl?: string;

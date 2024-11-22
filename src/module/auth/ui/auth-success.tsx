@@ -8,7 +8,9 @@ import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "../service/get-me/reducer";
 import { Spin, Typography } from "antd";
 
-export const SuccessGoogleLogin: React.FC = () => {
+//backend is redirected to this page if authentication succeeds, in oauth and in email verification
+
+export const SuccessAuth: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();

@@ -19,8 +19,8 @@ const Home: React.FC = () => {
         paddingInline: 40,
       }}
     >
-      {user.id ? (
-        <Typography.Title level={5} style={{ marginBlock: 0 }} children={`Welcome, ${user.name}!!`} />
+      {user?.id ? (
+        <Typography.Title level={5} style={{ marginBlock: 0 }} children={`Welcome, ${user?.name}!!`} />
       ) : (
         <Typography.Title level={5} style={{ marginBlock: 0 }} children="Welcome to Mega-Med" />
       )}

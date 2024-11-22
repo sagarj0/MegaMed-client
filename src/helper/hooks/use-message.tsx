@@ -1,9 +1,10 @@
-import { message } from "antd";
+import { message, notification } from "antd";
 import React, { useEffect } from "react";
 import { Action } from "redux";
 import { useAppDispatch } from "@/store/hook";
 
 export type StatusMessageType = {
+  isNotification?: boolean;
   success?: string | null;
   error?: string | null;
   resetSuccess?: () => Action;
@@ -12,17 +13,25 @@ export type StatusMessageType = {
   onErrorReset?: () => void;
 };
 
-const useStatusMessage: React.FC<StatusMessageType> = ({ success, error, resetSuccess, resetError, onSuccessReset, onErrorReset }) => {
+const useStatusMessage: React.FC<StatusMessageType> = ({
+  isNotification,
+  success,
+  error,
+  resetSuccess,
+  resetError,
+  onSuccessReset,
+  onErrorReset,
+}) => {
   const dispatch = useAppDispatch();
 
   message.config({
     maxCount: 1,
-    // prefixCls: "no-print",
   });
 
   useEffect(() => {
     if (success) {
-      message.success(success);
+      isNotification || message.success(success);
+      isNotification && notification.success({ message: success, placement: "top", duration: 0 });
       resetSuccess && dispatch(resetSuccess());
       onSuccessReset?.();
     }

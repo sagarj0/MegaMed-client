@@ -1,8 +1,8 @@
 import { Button, Divider, Form, FormItemProps, Input, Row, Space, Typography } from "antd";
 import FormDebug from "@/helper/form/form-debug";
-import { SignupFormKey, SignupFormProps } from "./type";
+import { ForgetPasswordFormKey, ForgetPasswordFormProps } from "./type";
 import { Rules } from "@/helper/form/form-rules";
-import { FacebookOutlined, GoogleOutlined, LinkedinOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
+import { FacebookOutlined, GoogleOutlined, LinkedinOutlined, MailOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "../service/login/reducer";
@@ -10,47 +10,27 @@ import { config } from "@/util/config";
 import { AuthEndpoint } from "../util/endpoint";
 import { useNavigate } from "react-router-dom";
 import { AllUrls } from "@/router/urls";
-import { signUpWithCrednetial } from "../service/signup/action";
+import { forgetPassword } from "../service/forget-password/action";
 
 const style: React.CSSProperties = { height: 45 };
 
-export const Signup: React.FC = () => {
-  const [form] = Form.useForm<SignupFormProps>();
-  const navigate = useNavigate();
+export const ForgetPassword: React.FC = () => {
+  const [form] = Form.useForm<ForgetPasswordFormProps>();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const submitForm = async (values: SignupFormProps) => await dispatch(signUpWithCrednetial(values));
+  const submitForm = async (values: ForgetPasswordFormProps) => await dispatch(forgetPassword(values));
   const handleGoogleLogin = () => window.open(config.apiUrl + AuthEndpoint.googleLogin, "_self");
 
-  const { isLoading, success, error } = useAppSelector((root) => root.AuthSignup);
-  // const onSignUpSuccess = () => navigate(AllUrls.authUrls.verifyEmail);
-  useStatusMessage({
-    isNotification: true,
-    success,
-    error,
-    resetSuccess,
-    resetError,
-    //  onSuccessReset: onSignUpSuccess
-  });
+  const { isLoading, success, error } = useAppSelector((root) => root.ForgetPassword);
+  useStatusMessage({ isNotification: true, success, error, resetSuccess, resetError });
 
   const formItem: FormItemProps[] = [
     {
-      label: "Full Name",
-      name: SignupFormKey.name,
-      rules: [Rules.required],
-      children: <Input style={style} placeholder="Enter Your Full Name" />,
-    },
-    {
       label: "Email",
-      name: SignupFormKey.email,
+      name: ForgetPasswordFormKey.email,
       rules: [Rules.required],
       children: <Input type="email" style={style} prefix={<MailOutlined />} placeholder="Enter Your Email" />,
-    },
-    {
-      label: "Password",
-      name: SignupFormKey.password,
-      rules: [Rules.required],
-      children: <Input.Password style={style} prefix={<LockOutlined />} placeholder="********" />,
     },
   ];
 
@@ -71,7 +51,7 @@ export const Signup: React.FC = () => {
           <Button size="large" style={{ width: 160, ...style }} children="Facebook" icon={<FacebookOutlined />} />
         </Row>
 
-        <Divider children={"or Continue Signing up with Email"} style={{ marginBottom: 0 }} />
+        <Divider children={"or conitnue resetting your password "} style={{ marginBottom: 0 }} />
 
         <Form layout="vertical" name="login" colon={false} onFinish={submitForm} form={form}>
           {formItem.map((item) => (
@@ -83,7 +63,7 @@ export const Signup: React.FC = () => {
             htmlType="submit"
             size="large"
             style={{ width: "100%", ...style }}
-            children="Sign Up"
+            children="Submit"
             loading={isLoading}
           />
           <FormDebug />
@@ -91,12 +71,12 @@ export const Signup: React.FC = () => {
       </Space>
 
       <Typography.Text style={{ textAlign: "center", width: "100%", display: "block", padding: 12 }}>
-        Already have an account?{" "}
+        Don't have an account?{" "}
         <Button
           type="link"
-          onClick={() => navigate(AllUrls.authUrls.login)}
+          onClick={() => navigate(AllUrls.authUrls.signUp)}
           style={{ padding: 0 }}
-          children="Continue to login"
+          children="Create new account "
         />
       </Typography.Text>
     </>
