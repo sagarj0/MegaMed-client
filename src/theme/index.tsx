@@ -65,7 +65,7 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
 
           Table: {
             headerBg: "white",
-            // fontSize: 12,
+            fontSize: 12,
             headerColor: "#757383",
             footerBg: "white",
             controlItemBgActive: "#e5e5f9",
@@ -93,6 +93,10 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
             itemColor: "rgb(164, 164, 164)",
             cardBg: "rgb(255, 255, 255)",
             itemSelectedColor: "rgb(41, 41, 41)",
+            fontWeightStrong: 500,
+            fontSize: 14,
+            fontSizeLG: 14,
+            fontSizeSM: 14,
           },
         },
       }}

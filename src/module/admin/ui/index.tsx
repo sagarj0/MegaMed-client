@@ -1,7 +1,14 @@
 import React from "react";
-import { BarChartOutlined, FormOutlined, KeyOutlined, UsergroupAddOutlined, UserOutlined } from "@ant-design/icons";
-import { Avatar, Layout, Menu, Row, theme, MenuProps, Typography } from "antd";
-import { useNavigate, useLocation } from "react-router-dom";
+import {
+  BarChartOutlined,
+  FormOutlined,
+  KeyOutlined,
+  PoweroffOutlined,
+  UsergroupAddOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Avatar, Layout, Menu, Row, theme, MenuProps, Typography, Button } from "antd";
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import { AdminUrls } from "../util/urls";
 import Logo from "@/component/logo";
 import { properCase } from "@/helper/proper-case";
@@ -71,6 +78,13 @@ const AdminLayout: React.FC = () => {
       <Sider style={siderStyle} theme="light">
         <Logo />
         <Menu theme="light" items={items} style={{ border: "none" }} selectedKeys={[selectedKey || "dashboard"]} />
+        <Button
+          type="text"
+          icon={<PoweroffOutlined />}
+          style={{ position: "absolute", bottom: 20, left: 5, width: "100%", justifyContent: "left" }}
+        >
+          Log Out
+        </Button>
       </Sider>
       <Layout
         style={{
@@ -108,7 +122,7 @@ const AdminLayout: React.FC = () => {
         >
           <div
             style={{
-              padding: 24,
+              padding: 8,
               width: "100%",
               height: "100%",
               textAlign: "center",
@@ -117,7 +131,7 @@ const AdminLayout: React.FC = () => {
               overflow: "auto",
             }}
           >
-            <p>long content</p>
+            <Outlet />
           </div>
         </Content>
       </Layout>
