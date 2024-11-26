@@ -1,6 +1,12 @@
+import useFetchAllQuestion from "@/module/admin/hooks/useFetchAllQuestion";
+import { AdminUrls } from "@/module/admin/util/urls";
 import { Button, Card, CardProps, Table, TableProps } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export const ViewAllQuestion: React.FC = () => {
+  const navigate = useNavigate();
+  const handleAddQuestion = () => navigate(AdminUrls.adminquestions.add);
+
   const tablist: CardProps["tabList"] = [
     {
       key: "physics",
@@ -57,26 +63,8 @@ export const ViewAllQuestion: React.FC = () => {
     },
   ];
 
-  const data = [
-    {
-      key: "1",
-      question: "What is the capital of India?",
-      optionA: "Delhi",
-      optionB: "Mumbai",
-      optionC: "Kolkata",
-      optionD: "Chennai",
-      answer: "Delhi",
-    },
-    {
-      key: "2",
-      question: "What is the capital of USA?",
-      optionA: "New York",
-      optionB: "Washington DC",
-      optionC: "Los Angeles",
-      optionD: "Chicago",
-      answer: "Washington",
-    },
-  ];
+  const { data } = useFetchAllQuestion({ filter: {} });
+
   return (
     <Card
       bordered={false}
@@ -84,7 +72,11 @@ export const ViewAllQuestion: React.FC = () => {
       styles={{ header: { border: "none" } }}
       tabList={tablist}
       tabProps={{ destroyInactiveTabPane: true }}
-      tabBarExtraContent={<Button type="primary">Add Question</Button>}
+      tabBarExtraContent={
+        <Button type="primary" onClick={handleAddQuestion}>
+          Add Question
+        </Button>
+      }
       defaultActiveTabKey="physics"
     >
       <Table columns={columns} dataSource={data} />

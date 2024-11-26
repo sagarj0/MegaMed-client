@@ -42,11 +42,11 @@ export const ResetPassword: React.FC = () => {
     },
     {
       label: "New Password",
-      name: "newPassword",
+      name: ResetFormKey.newPassword,
       children: <Input.Password style={style} prefix={<LockOutlined />} placeholder="********" />,
     },
     {
-      name: "token",
+      name: ResetFormKey.token,
       hidden: true,
     },
   ];

@@ -68,6 +68,7 @@
   }
 }
 
+/* footer  */
 .footer-white-color a {
   color: var(--white-color) !important;
 }
@@ -79,4 +80,11 @@
 
 .footer-white-color .ant-btn {
   color: var(--white-color) !important;
+}
+
+/* ant menu selected item color */
+.ant-menu {
+  .ant-menu-item.ant-menu-item-selected {
+    color: var(--primary-color);
+  }
 }

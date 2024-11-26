@@ -12,6 +12,7 @@ import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import { AdminUrls } from "../util/urls";
 import Logo from "@/component/logo";
 import { properCase } from "@/helper/proper-case";
+import { getKeyFromUrl } from "@/helper/key-from-url";
 
 const { Header, Content, Sider } = Layout;
 const { Title } = Typography;
@@ -36,7 +37,7 @@ const AdminLayout: React.FC = () => {
   } = theme.useToken();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const selectedKey = pathname.split("/").pop();
+  const selectedKey = getKeyFromUrl(pathname, 3);
 
   const title = properCase(selectedKey ? `manage ${selectedKey}` : "dashboard");
 
@@ -51,25 +52,25 @@ const AdminLayout: React.FC = () => {
       key: "admins",
       icon: <KeyOutlined />,
       label: "Admins",
-      onClick: () => navigate(AdminUrls.adminAdmin),
+      onClick: () => navigate(AdminUrls.adminAdmin.viewAll),
     },
     {
       key: "mentors",
       icon: <UsergroupAddOutlined />,
       label: "Mentors",
-      onClick: () => navigate(AdminUrls.adminMentor),
+      onClick: () => navigate(AdminUrls.adminMentor.viewAll),
     },
     {
       key: "students",
       icon: <UserOutlined />,
       label: "Students",
-      onClick: () => navigate(AdminUrls.adminStudent),
+      onClick: () => navigate(AdminUrls.adminStudent.viewAll),
     },
     {
       key: "questions",
       icon: <FormOutlined />,
       label: "Questions",
-      onClick: () => navigate(AdminUrls.adminquestions),
+      onClick: () => navigate(AdminUrls.adminquestions.viewAll),
     },
   ];
 
@@ -77,7 +78,7 @@ const AdminLayout: React.FC = () => {
     <Layout hasSider>
       <Sider style={siderStyle} theme="light">
         <Logo />
-        <Menu theme="light" items={items} style={{ border: "none" }} selectedKeys={[selectedKey || "dashboard"]} />
+        <Menu items={items} style={{ border: "none" }} selectedKeys={[selectedKey || "dashboard"]} />
         <Button
           type="text"
           icon={<PoweroffOutlined />}
