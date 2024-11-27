@@ -1,39 +1,39 @@
 import React, { useEffect } from "react";
 import { Button, Form, FormProps } from "antd";
 import FormDebug from "@/helper/form/form-debug";
-import { AddQuestionsProps } from "./type";
-import { BasicSection } from "./basic-section";
+import { AddAdminProps } from "./type";
 import { customRequiredMark } from "@/helper/form/custom-required-mark";
 import { FormLayout } from "@/helper/form/form-layout";
-import { addQuestionAction } from "@/module/admin/service/Questions/add/action";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "@/module/admin/service/Questions/add/reducer";
 import { resetError as resetEditError, resetSuccess as resetEditSuccess } from "@/module/admin/service/Questions/edit/reducer";
 import { useParams } from "react-router-dom";
-import useFetchQuestion from "@/module/admin/hooks/useFetchQuestion";
+import { addAdmin } from "@/module/admin/service/Admins/add/action";
+import { editAdminAction } from "@/module/admin/service/Admins/edit/action";
 import { mapToForm } from "./helper";
-import { editQuestionAction } from "@/module/admin/service/Questions/edit/action";
+import useFetchAdmin from "@/module/admin/hooks/useFetchAdmin";
+import { BasicSection } from "./basic-section";
 
 interface Props {
   mode: "New" | "Edit";
 }
 
-export const AddQuestions: React.FC<Props> = ({ mode }) => {
-  const [form] = Form.useForm<AddQuestionsProps>();
+export const AddAdmin: React.FC<Props> = ({ mode }) => {
+  const [form] = Form.useForm<AddAdminProps>();
   const dispatch = useAppDispatch();
   const title = "Question";
 
   const { id } = useParams();
-  const { data: editData } = useFetchQuestion(id);
+  const { data: editData } = useFetchAdmin(id);
 
   useEffect(() => {
     if (mode === "Edit" && editData && id) form.setFieldsValue(mapToForm(editData));
   }, [editData, form]);
 
-  const submitForm: FormProps<AddQuestionsProps>["onFinish"] = (values) => {
-    if (mode === "New") dispatch(addQuestionAction(values));
-    if (mode === "Edit" && id) dispatch(editQuestionAction({ id, oldData: mapToForm(editData), newData: values }));
+  const submitForm: FormProps<AddAdminProps>["onFinish"] = (values) => {
+    if (mode === "New") dispatch(addAdmin(values));
+    if (mode === "Edit" && id) dispatch(editAdminAction({ oldData: mapToForm(editData), newData: values }));
   };
 
   const { success, error, isLoading } = useAppSelector((root) => root.AddQuestion);
@@ -54,14 +54,7 @@ export const AddQuestions: React.FC<Props> = ({ mode }) => {
         </Button>
       }
     >
-      <Form
-        onFinish={submitForm}
-        form={form}
-        name="AddQuestion"
-        labelAlign="left"
-        colon={false}
-        requiredMark={customRequiredMark}
-      >
+      <Form onFinish={submitForm} form={form} name="AddAdmin" labelAlign="left" colon={false} requiredMark={customRequiredMark}>
         <BasicSection />
         <FormDebug />
       </Form>

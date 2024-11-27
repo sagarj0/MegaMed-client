@@ -28,7 +28,7 @@ export const BasicSection: React.FC = () => {
     {
       label: "Question",
       name: AddQuestionKeys.question,
-      children: <Input type="text" />,
+      children: <Input.TextArea autoSize={{ maxRows: 4, minRows: 2 }} />,
       rules: [Rules.required],
     },
     {
@@ -59,12 +59,14 @@ export const BasicSection: React.FC = () => {
       label: "Correct Answer",
       name: AddQuestionKeys.correctAnswer,
       children: (
-        <Radio.Group>
-          <Radio value="a">A</Radio>
-          <Radio value="b">B</Radio>
-          <Radio value="c">C</Radio>
-          <Radio value="d">D</Radio>
-        </Radio.Group>
+        <Radio.Group
+          options={[
+            { label: "A", value: "a" },
+            { label: "B", value: "b" },
+            { label: "C", value: "c" },
+            { label: "D", value: "d" },
+          ]}
+        />
       ),
     },
     {

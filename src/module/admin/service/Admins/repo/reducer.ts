@@ -1,8 +1,8 @@
 import { createRepoReducer } from "@/store/tempelate/repo-reducer";
-import { DetailedQuestion } from "../fetch/type";
-import { FetchAllQuestionRequest } from "../fetch-all/type";
+import { DetailedAdmin } from "../fetch/type";
+import { FetchAllAdminReq } from "../fetch-all/type";
 
-const slice = createRepoReducer<DetailedQuestion, FetchAllQuestionRequest>("invoice/repo");
+const slice = createRepoReducer<DetailedAdmin, FetchAllAdminReq>("admin/repo");
 export const {
   setData,
   setIsFetched,

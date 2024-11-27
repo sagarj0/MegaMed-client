@@ -1,18 +1,18 @@
 import { parseError } from "@/helper/parse-error";
-import { fetchQuestion } from "./api";
+import { fetchAdmin } from "./api";
 import { AppDispatch } from "@/store";
 import { setLoading, resetLoading, setError } from "./reducer";
-import { FetchAllQuestionRequest } from "./type";
+import { FetchAllAdminReq } from "./type";
 import { parseRequest } from "@/helper/convert-to-urlquery";
 import { setData } from "../repo/reducer";
 
-export const fetchAllQuestionAciton = (props: FetchAllQuestionRequest) => async (dispatch: AppDispatch) => {
+export const fetchAllAdminAction = (props: FetchAllAdminReq) => async (dispatch: AppDispatch) => {
   try {
     dispatch(setLoading());
 
     const request = parseRequest(props);
 
-    const response = await fetchQuestion(request);
+    const response = await fetchAdmin(request);
 
     const { data } = response.data;
 

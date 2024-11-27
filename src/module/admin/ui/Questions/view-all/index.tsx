@@ -1,69 +1,16 @@
 import useFetchAllQuestion from "@/module/admin/hooks/useFetchAllQuestion";
 import { AdminUrls } from "@/module/admin/util/urls";
-import { Button, Card, CardProps, Table, TableProps } from "antd";
+import { Button, Card, Table } from "antd";
 import { useNavigate } from "react-router-dom";
+import { columns, tablist } from "./helper";
+import { subject } from "@/module/admin/service/Questions/fetch-all/type";
 
 export const ViewAllQuestion: React.FC = () => {
   const navigate = useNavigate();
+  const defaultActiveTab = "physics";
   const handleAddQuestion = () => navigate(AdminUrls.adminquestions.add);
-
-  const tablist: CardProps["tabList"] = [
-    {
-      key: "physics",
-      tab: "Physics",
-    },
-    {
-      key: "chemistry",
-      tab: "Chemistry",
-    },
-    {
-      key: "zoology",
-      tab: "Zoology",
-    },
-    {
-      key: "botany",
-      tab: "Botany",
-    },
-    {
-      key: "mat",
-      tab: "MAT",
-    },
-  ];
-
-  const columns: TableProps["columns"] = [
-    {
-      title: "Question",
-      dataIndex: "question",
-      key: "question",
-    },
-    {
-      title: "Option A",
-      dataIndex: "optionA",
-      key: "optionA",
-    },
-    {
-      title: "Option B",
-      dataIndex: "optionB",
-      key: "optionB",
-    },
-    {
-      title: "Option C",
-      dataIndex: "optionC",
-      key: "optionC",
-    },
-    {
-      title: "Option D",
-      dataIndex: "optionD",
-      key: "optionD",
-    },
-    {
-      title: "Answer",
-      dataIndex: "answer",
-      key: "answer",
-    },
-  ];
-
-  const { data } = useFetchAllQuestion({ filter: {} });
+  const { data, handleQueryChange } = useFetchAllQuestion({ filter: { subject: defaultActiveTab as subject } });
+  const onTabChange = (key: string) => handleQueryChange(undefined, { subject: key }, undefined);
 
   return (
     <Card
@@ -72,14 +19,15 @@ export const ViewAllQuestion: React.FC = () => {
       styles={{ header: { border: "none" } }}
       tabList={tablist}
       tabProps={{ destroyInactiveTabPane: true }}
+      onTabChange={onTabChange}
       tabBarExtraContent={
         <Button type="primary" onClick={handleAddQuestion}>
           Add Question
         </Button>
       }
-      defaultActiveTabKey="physics"
+      defaultActiveTabKey={defaultActiveTab}
     >
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={data} onChange={handleQueryChange} />
     </Card>
   );
 };

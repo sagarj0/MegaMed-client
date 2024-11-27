@@ -1,6 +1,17 @@
 import { DetailedQuestion } from "../fetch/type";
 
-export type FetchAllQuestionRequest = {};
+export type subject = "physics" | "chemistry" | "zoology" | "botany" | "MAT";
+
+export type FetchAllQuestionRequest = {
+  [key in keyof Partial<DetailedQuestion>]: any;
+} & {
+  subject?: subject;
+  search?: string;
+  current?: number;
+  pageSize?: number;
+  sortField?: string;
+  sortOrder?: "ASC" | "DESC";
+};
 
 export type GetAllQuestionRequest = { query: URLSearchParams };
 

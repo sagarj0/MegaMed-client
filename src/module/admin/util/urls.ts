@@ -13,6 +13,7 @@ export const AdminUrls = {
   adminAdmin: {
     view: "/admin/mange/admins/view",
     add: "/admin/manage/admins/add",
+    edit: "/admin/manage/admins/edit",
     viewAll: "/admin/manage/admins",
   },
   adminquestions: {

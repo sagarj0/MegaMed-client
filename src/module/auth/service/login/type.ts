@@ -12,7 +12,7 @@ export enum UserRoleEnum {
 }
 
 export type User = {
-  id?: string;
+  id: string;
   googleId?: string;
   name: string;
   email: string;
