@@ -1,7 +1,9 @@
+import useFetchAllMentor from "@/module/admin/hooks/usefetchAllMentor";
+import { DetailedMentor } from "@/module/admin/service/Mentor/fetch/type";
 import { Button, Card, Table, TableProps, Tag } from "antd";
 
 export const ViewAllMentors: React.FC = () => {
-  const columns: TableProps["columns"] = [
+  const columns: TableProps<DetailedMentor>["columns"] = [
     {
       title: "Name",
       dataIndex: "name",
@@ -23,35 +25,13 @@ export const ViewAllMentors: React.FC = () => {
       key: "status",
       render: (status: string) => <Tag color={status === "Active" ? "blue" : "gray"} children={status} />,
     },
-    {
-      title: "Action",
-      dataIndex: "action",
-      key: "action",
-    },
   ];
 
-  const data = [
-    {
-      key: "1",
-      name: "John Brown",
-      email: "john@gmail.com",
-      phone: "1234567890",
-      status: "Active",
-      action: "Edit",
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      email: "jim@gmail.com",
-      phone: "1234567890",
-      status: "Inactive",
-      action: "Edit",
-    },
-  ];
+  const { data, handleQueryChange } = useFetchAllMentor({ filter: {} });
 
   return (
     <Card bordered={false} style={{ boxShadow: "none" }} extra={<Button type="primary">Add Mentor</Button>}>
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={data} onChange={handleQueryChange} />
     </Card>
   );
 };

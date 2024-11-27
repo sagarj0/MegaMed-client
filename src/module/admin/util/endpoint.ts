@@ -5,4 +5,5 @@ export const AdminEndpoints = {
   revokeAdmin: "/user/revoke-admin",
   addmentor: "/user/add-mentor",
   revokemonitor: "/user/revoke-mentor",
+  manageStudent: "/user/manage-student",
 };
