@@ -1,13 +1,33 @@
-import { Typography } from "antd";
+import { mockMCQs } from "@/util/data/mock-question";
+import { Form } from "antd";
 import { useParams } from "react-router-dom";
+import { InteractiveMCQ } from "../components/interactive-mcq";
+import FormDebug from "@/helper/form/form-debug";
 
 export const SubjectWiseTestPage: React.FC = () => {
   const { subject } = useParams();
+  const [form] = Form.useForm();
+  const questionData = Form.useWatch("questionData", form);
+
+  const handleSubmit = (vals: any) => {
+    console.log(vals);
+
+    const firstUnansweredIndex = mockMCQs.findIndex((_, index) => !questionData?.[index]?.answer);
+
+    if (firstUnansweredIndex !== -1) {
+      const timelineItem = document.querySelectorAll(".ant-timeline-item")[firstUnansweredIndex] as HTMLElement;
+      if (timelineItem) {
+        timelineItem.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  };
+
+  const time = 1000 * 60 * 40; // 40 minutes
 
   return (
-    <>
-      <Typography.Title level={4}>Subject: {subject}</Typography.Title>
-      <Typography.Title level={3}>Subject Wise Test Page</Typography.Title>
-    </>
+    <Form form={form} onFinish={handleSubmit}>
+      <InteractiveMCQ MCQs={mockMCQs} title={subject!} time={time} />
+      <FormDebug />
+    </Form>
   );
 };
