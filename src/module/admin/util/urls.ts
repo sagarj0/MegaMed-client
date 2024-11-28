@@ -3,11 +3,13 @@ export const AdminUrls = {
   adminStudent: {
     view: "/admin/manage/students/view",
     add: "/admin/manage/students/add",
+    edit: "/admin/manage/students/edit",
     viewAll: "/admin/manage/students",
   },
   adminMentor: {
     view: "/admin/manage/mentors/view",
     add: "/admin/manage/mentors/add",
+    edit: "/admin/manage/mentors/edit",
     viewAll: "/admin/manage/mentors",
   },
   adminAdmin: {

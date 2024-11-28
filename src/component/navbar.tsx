@@ -30,7 +30,7 @@ export const Navbar: React.FC = () => {
 
   const items: MenuProps["items"] = [
     {
-      key: "/",
+      key: AllUrls.home.home,
       title: undefined,
       label: <Logo height={40} style={{ marginBlock: 0, marginRight: "20em" }} />,
       className: "menu-no-underline",
@@ -48,7 +48,7 @@ export const Navbar: React.FC = () => {
       icon: <AccountBookOutlined />,
     },
     {
-      key: AllUrls.home.tests,
+      key: AllUrls.home.quiz.quiz,
       title: "Tests",
       label: "Tests",
       icon: <FormOutlined />,
@@ -97,7 +97,7 @@ export const Navbar: React.FC = () => {
       });
 
   const onTabChange = (key: string) => {
-    if (key !== "/" && key !== "logout") {
+    if (key !== "logout") {
       navigate(key);
     }
   };

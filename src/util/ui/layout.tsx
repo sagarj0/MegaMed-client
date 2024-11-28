@@ -32,23 +32,21 @@ const MainLayout: React.FC = () => {
         Your browser does not support HTML video.
       </video>
 
-      {/* Fixed Navbar */}
       <Header
         style={{
-          position: "fixed", // Fix the navbar at the top
+          position: "fixed",
           top: 0,
           left: 0,
           width: "100%",
-          zIndex: 10, // Ensure it stays above other content
+          zIndex: 10,
           padding: 0,
-          background: "transparent", // Slightly transparent background
-          backdropFilter: "blur(8px)", // Glass effect for the header
+          background: "transparent",
+          backdropFilter: "blur(8px)",
         }}
       >
         <Navbar />
       </Header>
 
-      {/* Main Content */}
       <Col
         xs={{ span: 24 }}
         sm={{ span: 24 }}
@@ -63,6 +61,7 @@ const MainLayout: React.FC = () => {
             gap: 4,
             marginInline: "auto",
             height: "100%",
+            width: "100%",
             background: "rgba(255, 255, 255, 0.5)", // Glass effect
             backdropFilter: "blur(8px)", // Glass blur
             borderRadius, // Matches theme's border radius
@@ -73,24 +72,22 @@ const MainLayout: React.FC = () => {
           <Content
             style={{
               display: "flex",
-              flexDirection: "column", // Stack Outlet and Footer vertically
+              flexDirection: "column",
               paddingTop: 32,
               width: "100%",
-              minHeight: "calc(100vh - 64px)", // Deduct navbar height
+              minHeight: "calc(100vh - 64px)",
               borderRadius,
               position: "relative",
             }}
           >
-            {/* Outlet Content */}
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, width: "100%", paddingInline: 80, paddingBlock: 40 }}>
               <Outlet />
             </div>
 
-            {/* Footer */}
             <Footer
               style={{
-                width: "100%", // Ensure full width
-                background: "var(--primary-color)", // Customize background color
+                minWidth: "calc(100vw - 8px - var(--scrollbar-width))", //col padding and scrollbar width
+                background: "var(--primary-color)",
               }}
             >
               <FooterComponent />

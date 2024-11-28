@@ -11,9 +11,9 @@ import { resetError as resetEditError, resetSuccess as resetEditSuccess } from "
 import { useParams } from "react-router-dom";
 import { mapToForm } from "./helper";
 import { BasicSection } from "./basic-section";
-import useFetchMentor from "@/module/admin/hooks/useFetchmentor";
 import { addMentor } from "@/module/admin/service/Mentor/add/action";
 import { editMentorAction } from "@/module/admin/service/Mentor/edit/action";
+import useFetchMentor from "@/module/admin/hooks/useFetchMentor";
 
 interface Props {
   mode: "New" | "Edit";

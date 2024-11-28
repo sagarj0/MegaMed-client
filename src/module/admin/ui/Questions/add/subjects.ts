@@ -1,3 +1,5 @@
+import { GroupType } from "@/component/grouped-select";
+
 export type SubjectData = {
   [key: string]: string[];
 };
@@ -205,6 +207,50 @@ export const subjectData: SubjectData = {
   ],
 
   MAT: ["Verbal reasoning", "Numerical reasoning", "Logical reasoning", "Abstract|Spatial reasoning"],
+};
+
+export const getSubjects = () => {
+  const uniqueSubjects = Array.from(new Set(subjects.map((subject) => subject.split("/")[0])));
+  return uniqueSubjects.map((label) => ({
+    label,
+    value: label.toLowerCase().replace(/\s+/g, "-"),
+  }));
+};
+
+export const getUnitGroups = (): GroupType[] => {
+  const groupedSubjects: { [key: string]: string[] } = {};
+
+  subjects.forEach((subject) => {
+    const [label, option] = subject.split("/");
+
+    if (!groupedSubjects[label]) {
+      groupedSubjects[label] = [];
+    }
+
+    if (option) {
+      groupedSubjects[label].push(option);
+    } else {
+      groupedSubjects[label].push(label);
+    }
+  });
+
+  return Object.keys(groupedSubjects).map((label) => ({
+    label,
+    options: groupedSubjects[label].map((option) => ({
+      label: option,
+      value: option.toLowerCase().replace(/\s+/g, "-"), // Option value (unit name in lowercase with spaces replaced by dashes)
+    })),
+  }));
+};
+
+export const getChapterGroups = (): GroupType[] => {
+  return Object.keys(subjectData).map((label) => ({
+    label,
+    options: subjectData[label].map((option) => ({
+      label: option,
+      value: option,
+    })),
+  }));
 };
 
 export const buildCascaderOptions = (subjects: string[], subjectData: SubjectData) => {

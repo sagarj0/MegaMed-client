@@ -1,7 +1,9 @@
+import { QuizUrls } from "@/module/quizes/util/url";
+
 export const HomeUrl = {
   home: "/",
   about: "/about",
-  tests: "/tests",
+  quiz: QuizUrls,
   mentors: "/mentors",
   contact: "/contact",
 };

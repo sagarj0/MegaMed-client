@@ -14,11 +14,7 @@ const Home: React.FC = () => {
   const { user } = useAppSelector((root) => root.AuthRepo);
 
   return (
-    <div
-      style={{
-        paddingInline: 40,
-      }}
-    >
+    <div>
       {user?.id ? (
         <Typography.Title level={5} style={{ marginBlock: 0 }} children={`Welcome, ${user?.name}!!`} />
       ) : (

@@ -17,6 +17,11 @@ export const AdminRoutes = (
     <Route path={AdminUrls.adminAdmin.edit + ":id"} element={<AddAdmin mode="Edit" />} />
 
     <Route path={AdminUrls.adminMentor.viewAll} element={<ViewAllMentors />} />
+    <Route path={AdminUrls.adminMentor.add} element={<AddAdmin mode="New" />} />
+    <Route path={AdminUrls.adminMentor.edit + ":id"} element={<AddAdmin mode="Edit" />} />
+
+    <Route path={AdminUrls.adminStudent.add} element={<AddAdmin mode="New" />} />
+    <Route path={AdminUrls.adminStudent.edit + ":id"} element={<AddAdmin mode="Edit" />} />
     <Route path={AdminUrls.adminStudent.viewAll} element={<ViewAllStudents />} />
 
     <Route path={AdminUrls.adminquestions.viewAll} element={<ViewAllQuestion />} />
