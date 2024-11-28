@@ -26,7 +26,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
           </Typography.Title>
         </Form.Item>
 
-        <Form.Item name={["questionData", index, "answer"]} rules={[{ required: true }]}>
+        <Form.Item name={["questionData", index, "answer"]}>
           <Radio.Group>
             <Space direction="vertical">
               <Radio value="a">a. {question.optionA}</Radio>

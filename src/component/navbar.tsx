@@ -5,7 +5,7 @@ import {
   HomeOutlined,
   PoweroffOutlined,
   SettingOutlined,
-  UserAddOutlined,
+  // UserAddOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Avatar, Button, Menu, MenuProps } from "antd";
@@ -53,12 +53,12 @@ export const Navbar: React.FC = () => {
       label: "Tests",
       icon: <FormOutlined />,
     },
-    {
-      key: AllUrls.home.mentors,
-      title: "Mentors",
-      label: "Mentors",
-      icon: <UserAddOutlined />,
-    },
+    // {
+    //   key: AllUrls.home.mentors,
+    //   title: "Mentors",
+    //   label: "Mentors",
+    //   icon: <UserAddOutlined />,
+    // },
     {
       key: AllUrls.home.contact,
       label: "Contact",

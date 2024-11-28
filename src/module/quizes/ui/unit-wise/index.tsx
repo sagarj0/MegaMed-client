@@ -12,7 +12,7 @@ export const UnitWiseTestPage: React.FC = () => {
   const handleSubmit = (vals: any) => {
     console.log(vals);
 
-    const firstUnansweredIndex = mockMCQs.findIndex((_, index) => !questionData?.[index]?.answer);
+    const firstUnansweredIndex = questionData.findIndex((question: any) => !question.answer);
 
     if (firstUnansweredIndex !== -1) {
       const timelineItem = document.querySelectorAll(".ant-timeline-item")[firstUnansweredIndex] as HTMLElement;
