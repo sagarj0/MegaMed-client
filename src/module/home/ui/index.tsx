@@ -16,13 +16,13 @@ const Home: React.FC = () => {
   return (
     <div>
       {user?.id ? (
-        <Typography.Title level={5} style={{ marginBlock: 0 }} children={`Welcome, ${user?.name}!!`} />
-      ) : (
-        <Typography.Title level={5} style={{ marginBlock: 0 }} children="Welcome to Mega-Med" />
-      )}
-      <Typography.Title level={5} style={{ marginBlock: 0 }} />
-      Time is Tickking for CEE 2025 <TimeDisplay />
-      <Typography.Title level={5} />
+        <>
+          <Typography.Title level={5} style={{ marginBlock: 0 }} children={`Welcome, ${user?.name}!!`} />
+          <Typography.Title level={5} style={{ marginBlock: 0 }} />
+          Time is Tickking for CEE 2025 <TimeDisplay />
+          <Typography.Title level={5} />
+        </>
+      ) : null}
       <Flex vertical align="stretch" style={{ width: "100%", paddingBottom: 150 }} gap={150}>
         <HeroSection />
         <Section2 />

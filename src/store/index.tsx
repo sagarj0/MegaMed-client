@@ -3,10 +3,12 @@ import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, R
 import storage from "redux-persist/lib/storage";
 import * as AuthRepo from "../module/auth/service/";
 import * as AdminModuleReducers from "../module/admin/service/";
+import * as QuizModuleReducers from "../module/quizes/services/";
 
 const rootReducer = combineReducers({
   ...AuthRepo,
   ...AdminModuleReducers,
+  ...QuizModuleReducers,
 });
 
 const persistConfig = {

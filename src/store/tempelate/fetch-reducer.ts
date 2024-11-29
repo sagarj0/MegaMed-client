@@ -4,6 +4,7 @@ export const createFetchReducer = <T>(name: string, data: T) => {
   const initialState = {
     isLoading: false,
     error: null,
+    success: null,
     data: data,
   };
 
@@ -25,6 +26,12 @@ export const createFetchReducer = <T>(name: string, data: T) => {
       },
       resetError(state) {
         state.error = null;
+      },
+      setSuccess(state, action) {
+        state.success = action.payload;
+      },
+      resetSuccess(state) {
+        state.success = null;
       },
     },
   });

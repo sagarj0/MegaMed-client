@@ -1,11 +1,14 @@
 import { Form } from "antd";
 import { useParams } from "react-router-dom";
 import { InteractiveMCQ } from "../components/interactive-mcq";
-import { mockMCQs } from "@/util/data/mock-question";
 import FormDebug from "@/helper/form/form-debug";
+import useFetchQuiz from "../../hooks/useFetchQuiz";
 
 export const UnitWiseTestPage: React.FC = () => {
   const { unit } = useParams();
+
+  const { data, isLoading } = useFetchQuiz({ type: "unitWise", value: unit, current: 1, pageSize: 10 });
+
   const [form] = Form.useForm();
   const questionData = Form.useWatch("questionData", form);
 
@@ -26,7 +29,7 @@ export const UnitWiseTestPage: React.FC = () => {
 
   return (
     <Form form={form} onFinish={handleSubmit}>
-      <InteractiveMCQ MCQs={mockMCQs} title={unit!} time={time} />
+      <InteractiveMCQ MCQs={data} isLoading={isLoading} title={unit!} time={time} />
       <FormDebug />
     </Form>
   );

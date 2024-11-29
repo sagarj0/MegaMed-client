@@ -1,9 +1,11 @@
-import { mockMCQs } from "@/util/data/mock-question";
 import { Form } from "antd";
 import { InteractiveMCQ } from "../components/interactive-mcq";
 import FormDebug from "@/helper/form/form-debug";
+import useFetchQuiz from "../../hooks/useFetchQuiz";
 
 export const MockTestPage: React.FC = () => {
+  const { data, isLoading } = useFetchQuiz({ type: "mockTest", current: 1, pageSize: 10 });
+
   const [form] = Form.useForm();
   const questionData = Form.useWatch("questionData", form);
 
@@ -25,7 +27,7 @@ export const MockTestPage: React.FC = () => {
 
   return (
     <Form form={form} onFinish={handleSubmit}>
-      <InteractiveMCQ MCQs={mockMCQs} title={"Mock Test"} time={time} timeFormat={"HH:mm:ss"} />
+      <InteractiveMCQ MCQs={data} isLoading={isLoading} title={"Mock Test"} time={time} timeFormat={"HH:mm:ss"} />
       <FormDebug />
     </Form>
   );
