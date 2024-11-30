@@ -21,8 +21,9 @@ export const QuizPage: React.FC = () => {
         </Col>
       </Row>
       <Row gutter={[32, 32]} justify={"space-between"} align={"stretch"}>
-        <Col span={8}>
+        <Col md={12} lg={8}>
           <Card
+            style={{ height: "100%", width: "100%" }}
             title="Subject Wise"
             bordered={false}
             actions={[
@@ -45,8 +46,9 @@ export const QuizPage: React.FC = () => {
             Give a test on specific subject, to check your understandig on Physics, Chemistry, Botany, Zoology and Mat.
           </Card>
         </Col>
-        <Col span={8}>
+        <Col md={12} lg={8}>
           <Card
+            style={{ height: "100%", width: "100%" }}
             title="Unit Wise"
             bordered={false}
             actions={[
@@ -66,12 +68,12 @@ export const QuizPage: React.FC = () => {
               />,
             ]}
           >
-            Give a test on specific unit, to check your understanding on specific unit of Physics, Chemistry, Botany, Zoology and
-            Mat.
+            Give a test on specific unit, to check your understanding on specific units of Physics, Chemistry, Botany, Zoology and Mat.
           </Card>
         </Col>
-        <Col span={8}>
+        <Col md={12} lg={8}>
           <Card
+            style={{ height: "100%", width: "100%" }}
             title="Chapter Wise"
             bordered={false}
             actions={[
@@ -91,12 +93,12 @@ export const QuizPage: React.FC = () => {
               />,
             ]}
           >
-            Give a test on specific chapter, to check your understanding on specific chapter of Physics, Chemistry, Botany,
-            Zoology and Mat.
+            Give a test on specific chapter, to check your understanding on specific chapter of Physics, Chemistry, Botany, Zoology and Mat.
           </Card>
         </Col>
-        <Col span={8}>
+        <Col md={12} lg={8}>
           <Card
+            style={{ height: "100%", width: "100%" }}
             title="Mock test"
             bordered={false}
             actions={[
@@ -111,8 +113,7 @@ export const QuizPage: React.FC = () => {
               </Typography.Link>,
             ]}
           >
-            Give a mock test to check your preparation, it will improve your speed and accuracy. It will help you to know your
-            weak points.
+            Give a mock test to check your preparation, it will improve your speed and accuracy. It will help you to know your weak points.
           </Card>
         </Col>
       </Row>

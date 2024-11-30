@@ -1,9 +1,10 @@
 import { Button, Col, Divider, Flex, Row, Space, Typography } from "antd";
 import { ArrowUpOutlined } from "@ant-design/icons";
 import Logo from "./logo";
+import useResponsiveDevice from "@/helper/hooks/use-responsive";
 
 const SectionLinks = ({ title, links }: { title: string; links: string[] }) => (
-  <Col span={4}>
+  <Col sm={12} md={4}>
     <Typography.Title level={5}>{title}</Typography.Title>
     <Space direction="vertical">
       {links.map((link, index) => (
@@ -17,6 +18,7 @@ const SectionLinks = ({ title, links }: { title: string; links: string[] }) => (
 
 export const FooterComponent = () => {
   const handleBackToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const { md } = useResponsiveDevice();
 
   const aboutLinks = ["Our Mission", "Our Story", "Our Team", "Careers"];
   const serviceLinks = ["Tutoring", "Test Preparations"];
@@ -24,11 +26,11 @@ export const FooterComponent = () => {
   const connectLinks = ["Facebook", "Instagram", "Twitter"];
 
   return (
-    <Flex vertical gap={280} className="footer-white-color" style={{ padding: 32 }}>
-      <Row justify={"space-between"}>
-        <Col span={6}>
+    <Flex vertical gap={280} className="footer-white-color" style={{ padding: md ? "32px 16px" : 32, width: "100%" }}>
+      <Row justify={"space-between"} style={{ width: "100%" }} gutter={[12, 24]}>
+        <Col xs={24} sm={12} md={8} lg={6}>
           <Logo style={{ width: "auto", marginTop: 0, display: "inline-block" }} />
-          <Typography.Paragraph style={{ fontWeight: 200, width: 250 }}>
+          <Typography.Paragraph style={{ fontWeight: 200, width: 200 }}>
             Mega Med is a platform that mentors students by reshaping their study style to help them achieve their goals.
           </Typography.Paragraph>
         </Col>
@@ -37,7 +39,7 @@ export const FooterComponent = () => {
         <SectionLinks title="Services" links={serviceLinks} />
         <SectionLinks title="Support" links={supportLinks} />
 
-        <Col span={5}>
+        <Col xs={24} sm={12} md={5}>
           <Typography.Title level={5}>Contact Us</Typography.Title>
           <Space>
             <Typography.Text style={{ fontWeight: 200 }}>Thapagau, Baneswor, Kathmandu, Nepal +977 9809446325</Typography.Text>
@@ -47,7 +49,7 @@ export const FooterComponent = () => {
 
       <div>
         <Row justify={"space-between"}>
-          <Space>
+          <Space wrap>
             <Typography.Title level={5} style={{ marginBlock: 0 }}>
               Connect with us:
             </Typography.Title>
@@ -66,9 +68,7 @@ export const FooterComponent = () => {
         <Divider style={{ borderColor: "black", marginTop: 8 }} />
 
         <Row justify={"space-between"}>
-          <Typography.Text style={{ fontWeight: 100, color: "var(--gray-primary)" }}>
-            © 2024 Mega-Med. All rights reserved.
-          </Typography.Text>
+          <Typography.Text style={{ fontWeight: 100, color: "var(--gray-primary)" }}>© 2024 Mega-Med. All rights reserved.</Typography.Text>
           <Space>
             <Typography.Link href="" style={{ fontWeight: 200 }}>
               Privacy Policy

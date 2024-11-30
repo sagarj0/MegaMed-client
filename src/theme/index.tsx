@@ -34,6 +34,7 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
           Typography: {
             fontSizeHeading5: 14,
             fontSize: 13,
+            fontSizeSM: 11,
             colorTextHeading: "#2B2B2B",
             colorText: "#575F6E",
           },
@@ -46,7 +47,7 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
             dangerShadow: "none",
             borderRadius: 16,
             borderRadiusLG: 16,
-            borderRadiusSM: 16,
+            borderRadiusSM: 14,
             defaultHoverBg: "transparent",
           },
           Card: {

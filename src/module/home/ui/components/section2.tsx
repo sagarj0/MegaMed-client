@@ -23,8 +23,8 @@ const features = [
 export const Section2: React.FC = () => {
   return (
     <Col
-      span={20}
-      offset={2}
+      sm={{ span: 24 }}
+      md={{ span: 22, offset: 2 }}
       style={{
         background: "rgba(74, 58, 225, 0.9)",
         padding: 20,
@@ -35,7 +35,7 @@ export const Section2: React.FC = () => {
     >
       <Row align="middle" justify="space-between" gutter={10} style={{ height: "100%" }}>
         {features.map((feature, index) => (
-          <Col span={7} key={index}>
+          <Col span={24} lg={7} key={index}>
             <Row align="middle">
               <Col span={8}>
                 <Image src={feature.imageSrc} alt={`${feature.title} icon`} width={50} height={50} preview={false} />

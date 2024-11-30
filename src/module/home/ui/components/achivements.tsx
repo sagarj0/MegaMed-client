@@ -85,12 +85,11 @@ export const AchievementSection: React.FC = () => {
         Making Dreams Come True
       </Typography.Title>
       <Typography.Paragraph style={{ textAlign: "center", width: "100%", marginBottom: 30 }}>
-        Our students have been making us proud with their achievements. We are proud to have been a part of their journey to
-        success.
+        Our students have been making us proud with their achievements. We are proud to have been a part of their journey to success.
       </Typography.Paragraph>
       <Row justify="center" align={"middle"} gutter={[16, 16]} style={{ width: "100%", paddingBlock: 30 }}>
         {achievements.map((student, index) => (
-          <Col key={index} span={6}>
+          <Col key={index} xs={24} sm={12} md={8} lg={6}>
             <Row justify={"center"}>
               <div style={{ position: "relative", width: "fit-content" }}>
                 <Avatar size={120} src={student.photo} alt={student.name} />

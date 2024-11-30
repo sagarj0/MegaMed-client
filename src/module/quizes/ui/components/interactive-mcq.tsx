@@ -1,5 +1,5 @@
-import React from "react";
-import { Timeline, Radio, Typography, Space, Form, TimelineProps, Button, Statistic, Col, Card, Skeleton, FloatButton } from "antd";
+import React, { useEffect } from "react";
+import { Timeline, Radio, Typography, Space, Form, TimelineProps, Button, Statistic, Col, Card, Skeleton, FloatButton, Row } from "antd";
 import { CheckCircleFilled, CloseCircleFilled, FieldTimeOutlined, FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
 import useFullScreen from "@/helper/hooks/useFullScreen";
 import { SaveQuizProps, QuizTypeKeys, SaveQuizKeys } from "../type";
@@ -14,6 +14,8 @@ import {
 } from "@/store/reducers/quiz-helper/reducer";
 import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
 import { config } from "@/util/config";
+import useResponsiveDevice from "@/helper/hooks/use-responsive";
+import useBeforeUnload from "@/helper/hooks/useBeforeUnload";
 
 interface InteractiveMCQProps {
   MCQs: DetailedQuestion[];
@@ -25,11 +27,22 @@ interface InteractiveMCQProps {
 
 export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, time, timeFormat = "mm:ss", isLoading }) => {
   const dispatch = useAppDispatch();
+  const { md, sm, xs } = useResponsiveDevice();
   const { timeCompleted, started, startedTime, isScoreChecked, score } = useAppSelector((state) => state.QuizHelper);
 
   const form = Form.useFormInstance<SaveQuizProps>();
   const questionData = Form.useWatch(SaveQuizKeys.questionData, form);
   const { toogleFullScreen, isFullScreen } = useFullScreen();
+
+  useBeforeUnload({ isActive: started && !isScoreChecked });
+  useEffect(() => {
+    return () => {
+      if (started && !isScoreChecked) {
+        console.log("cleanup");
+        dispatch(resetQuizReducer());
+      }
+    };
+  }, [dispatch, started, isScoreChecked]);
 
   const checkScore = () => {
     const firstUnansweredIndex = questionData?.findIndex((question: any) => !question.answer);
@@ -92,13 +105,13 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
   }));
 
   const renderExtra = () => (
-    <Space size="small">
+    <Space size="small" wrap>
       {config.appMode === "LOCAL" && <Button onClick={() => dispatch(resetQuizReducer())}>Reset</Button>}
       <Button type="primary" disabled={started} onClick={() => dispatch(setStarted(true))}>
         Start Quiz
       </Button>
       <Button type="default" onClick={toogleFullScreen} icon={isFullScreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}>
-        {isFullScreen ? "Exit Full Screen" : "0 Distraction Mode"}
+        {isFullScreen ? "Exit Full" : "0 Distraction"}
       </Button>
     </Space>
   );
@@ -119,13 +132,19 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
       <Card
         loading={isLoading}
         title={
-          <Space size="large">
-            <Typography.Title level={4}>{title}</Typography.Title>
-            {isScoreChecked && <Statistic title="Score" value={score} suffix={`/ ${MCQs.length}`} />}
-            {isFullScreen ? <FloatButton style={{ width: 80, height: 80 }} description={renderTimer()} /> : renderTimer()}
-          </Space>
+          <Row>
+            <Col lg={15}>
+              <Space size="large" wrap>
+                <Typography.Title level={4} style={{ whiteSpace: "break-spaces" }}>
+                  {title}
+                </Typography.Title>
+                {isScoreChecked && <Statistic title="Score" value={score} suffix={`/ ${MCQs.length}`} />}
+                {isFullScreen ? <FloatButton style={{ width: 80, height: 80 }} description={renderTimer()} /> : renderTimer()}
+              </Space>
+            </Col>
+            <Col lg={9}>{renderExtra()}</Col>
+          </Row>
         }
-        extra={renderExtra()}
         actions={[
           <Button type="default" disabled={!started || isScoreChecked} onClick={checkScore}>
             Check the score
@@ -134,9 +153,10 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
             Save Quiz
           </Button>,
         ]}
+        styles={{ header: { flexWrap: "wrap" } }}
         style={{
-          padding: isFullScreen ? 0 : 8,
-          paddingInline: isFullScreen ? 100 : 8,
+          padding: isFullScreen || md ? 0 : 8,
+          paddingInline: isFullScreen && !md && !sm && !xs ? 100 : 8,
           position: isFullScreen ? "fixed" : "static",
           width: isFullScreen ? "100vw" : "auto",
           height: isFullScreen ? "100vh" : "auto",

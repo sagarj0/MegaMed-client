@@ -32,7 +32,7 @@ export const Navbar: React.FC = () => {
     {
       key: AllUrls.home,
       title: undefined,
-      label: <Logo height={40} style={{ marginBlock: 0, marginRight: "20em" }} />,
+      label: <Logo height={40} style={{ marginBlock: 0 }} />,
       className: "menu-no-underline",
     },
     {
@@ -112,8 +112,7 @@ export const Navbar: React.FC = () => {
         onSelect={(item) => onTabChange(item.key)}
         style={{
           width: "100%",
-          justifyContent: "center",
-          gap: 32,
+          justifyContent: "space-between",
           background: "rgba(255, 255, 255, 0.5)", // Glass effect
           backdropFilter: "blur(10px)", // Glass blur
           boxShadow: "0 5px 6px rgba(74, 58, 225, 0.5)", // Slight

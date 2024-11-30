@@ -1,4 +1,4 @@
-import { Button, Col, Input, Row, Typography } from "antd";
+import { Button, Col, Input, Row, Space, Typography } from "antd";
 import { useEffect, useRef } from "react";
 
 export const NewsLetter: React.FC = () => {
@@ -12,8 +12,7 @@ export const NewsLetter: React.FC = () => {
 
   return (
     <Col
-      span={20}
-      offset={2}
+      md={{ span: 20, offset: 2 }}
       style={{
         position: "relative",
         minHeight: "200px", // Limit height
@@ -62,12 +61,24 @@ export const NewsLetter: React.FC = () => {
           Stay updated with the latest news and updates.
         </Typography.Text>
         <Row justify={"center"}>
-          <Input
-            size="large"
-            placeholder="Enter your email"
-            style={{ width: 400, marginTop: 50, background: "var(--gray-secondary)", borderColor: "var(--primary-color)" }}
-            suffix={<Button type="primary">Subscribe</Button>}
-          />
+          <Col xs={0} md={{ span: 20 }} xl={{ span: 12 }}>
+            <Input
+              size="large"
+              placeholder="Enter your email"
+              style={{ marginTop: 50, background: "var(--gray-secondary)", borderColor: "var(--primary-color)" }}
+              suffix={<Button type="primary">Subscribe</Button>}
+            />
+          </Col>
+          <Col xs={24} md={0}>
+            <Space direction="vertical" align="center" style={{ width: "100%" }}>
+              <Input
+                size="large"
+                placeholder="Enter your email"
+                style={{ marginTop: 50, background: "var(--gray-secondary)", borderColor: "var(--primary-color)" }}
+              />
+              <Button type="default">Subscribe</Button>
+            </Space>
+          </Col>
         </Row>
       </div>
     </Col>

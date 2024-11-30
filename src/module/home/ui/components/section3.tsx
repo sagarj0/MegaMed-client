@@ -16,18 +16,19 @@ const features = [
   {
     icon: <RiseOutlined style={{ color: "var(--primary-color)", fontSize: 50 }} />,
     title: "Progress Tracking",
-    description:
-      "Track your progress with our detailed reports. Identify your strengths and weaknesses and improve your performance.",
+    description: "Track your progress with our detailed reports. Identify your strengths and weaknesses and improve your performance.",
   },
 ];
 
 export const Section3: React.FC = () => {
   return (
     <Row align="middle" justify="space-between" style={{ width: "100%" }}>
-      <Col span={10}>
-        <Image src="/hero2.png" alt="Hero picture" width={350} height={500} preview={false} />
+      <Col md={10}>
+        <Row style={{ width: "100%" }}>
+          <Image src="/hero2.png" alt="Hero picture" width={350} height={500} preview={false} />
+        </Row>
       </Col>
-      <Col span={13}>
+      <Col md={13}>
         <Typography.Title level={2}>Premium Learning Experience</Typography.Title>
         {features.map((feature, index) => (
           <Row align="middle" key={index} justify={"space-between"}>

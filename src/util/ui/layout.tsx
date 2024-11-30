@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import { Navbar } from "@/component/navbar";
 import { FooterComponent } from "@/component/footer";
 import useFullScreen from "@/helper/hooks/useFullScreen";
+import useResponsiveDevice from "@/helper/hooks/use-responsive";
 
 const { Header, Content, Footer } = Layout;
 
@@ -13,6 +14,7 @@ const MainLayout: React.FC = () => {
   } = theme.useToken();
 
   const { isFullScreen } = useFullScreen();
+  const { md, sm, xs } = useResponsiveDevice();
 
   return (
     <Layout style={{ minHeight: "100dvh", width: "100%", padding: 0, position: "relative" }}>
@@ -58,7 +60,7 @@ const MainLayout: React.FC = () => {
         style={{
           position: "absolute",
           top: isFullScreen ? 0 : 64,
-          padding: isFullScreen ? 0 : 4,
+          // padding: isFullScreen ? 0 : 4,
           width: "100%",
           height: "100%",
         }}
@@ -87,7 +89,14 @@ const MainLayout: React.FC = () => {
               position: "relative",
             }}
           >
-            <div style={{ flex: 1, width: "100%", paddingInline: isFullScreen ? 0 : 80, paddingBlock: isFullScreen ? 0 : 40 }}>
+            <div
+              style={{
+                flex: 1,
+                width: "100%",
+                paddingInline: isFullScreen ? 0 : md ? 20 : sm || xs ? 5 : 80,
+                paddingBlock: isFullScreen ? 0 : 40,
+              }}
+            >
               <Outlet />
             </div>
 
