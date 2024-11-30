@@ -3,6 +3,7 @@ import { Col, Layout, theme } from "antd";
 import { Outlet } from "react-router-dom";
 import { Navbar } from "@/component/navbar";
 import { FooterComponent } from "@/component/footer";
+import useFullScreen from "@/helper/hooks/useFullScreen";
 
 const { Header, Content, Footer } = Layout;
 
@@ -11,8 +12,10 @@ const MainLayout: React.FC = () => {
     token: { borderRadius },
   } = theme.useToken();
 
+  const { isFullScreen } = useFullScreen();
+
   return (
-    <Layout style={{ minHeight: "100dvh", width: "100%", position: "relative" }}>
+    <Layout style={{ minHeight: "100dvh", width: "100%", padding: 0, position: "relative" }}>
       {/* Video Background */}
       <video
         autoPlay
@@ -32,66 +35,72 @@ const MainLayout: React.FC = () => {
         Your browser does not support HTML video.
       </video>
 
-      <Header
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          zIndex: 10,
-          padding: 0,
-          background: "transparent",
-          backdropFilter: "blur(8px)",
-        }}
-      >
-        <Navbar />
-      </Header>
+      {!isFullScreen && (
+        <Header
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            zIndex: 10,
+            padding: 0,
+            background: "transparent",
+            backdropFilter: "blur(8px)",
+          }}
+        >
+          <Navbar />
+        </Header>
+      )}
 
       <Col
         xs={{ span: 24 }}
         sm={{ span: 24 }}
         style={{
           position: "absolute",
-          top: 64,
-          padding: 4,
+          top: isFullScreen ? 0 : 64,
+          padding: isFullScreen ? 0 : 4,
+          width: "100%",
+          height: "100%",
         }}
       >
         <Layout
           style={{
-            gap: 4,
-            marginInline: "auto",
+            gap: isFullScreen ? 0 : 4,
+            marginInline: isFullScreen ? 0 : "auto",
             height: "100%",
             width: "100%",
             background: "rgba(255, 255, 255, 0.5)", // Glass effect
             backdropFilter: "blur(8px)", // Glass blur
             borderRadius, // Matches theme's border radius
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Adds a subtle shadow
-            overflow: "auto",
+            overflow: isFullScreen ? "hidden" : "auto",
           }}
         >
           <Content
             style={{
               display: "flex",
               flexDirection: "column",
-              paddingTop: 32,
+              paddingTop: isFullScreen ? 0 : 32,
               width: "100%",
-              minHeight: "calc(100vh - 64px)",
+              minHeight: isFullScreen ? "100vh" : "calc(100vh - 64px)",
               borderRadius,
               position: "relative",
             }}
           >
-            <div style={{ flex: 1, width: "100%", paddingInline: 80, paddingBlock: 40 }}>
+            <div style={{ flex: 1, width: "100%", paddingInline: isFullScreen ? 0 : 80, paddingBlock: isFullScreen ? 0 : 40 }}>
               <Outlet />
             </div>
 
-            <Footer
-              style={{
-                minWidth: "calc(100vw - 8px - var(--scrollbar-width))", //col padding and scrollbar width
-                background: "var(--primary-color)",
-              }}
-            >
-              <FooterComponent />
-            </Footer>
+            {!isFullScreen && (
+              <Footer
+                style={{
+                  minWidth: "calc(100vw - 12px - var(--scrollbar-width))", //col padding and scrollbar width
+                  background: "var(--primary-color)",
+                }}
+              >
+                <FooterComponent />
+              </Footer>
+            )}
           </Content>
         </Layout>
       </Col>

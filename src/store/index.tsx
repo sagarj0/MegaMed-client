@@ -4,17 +4,19 @@ import storage from "redux-persist/lib/storage";
 import * as AuthRepo from "../module/auth/service/";
 import * as AdminModuleReducers from "../module/admin/service/";
 import * as QuizModuleReducers from "../module/quizes/services/";
+import * as HelperReducers from "./reducers/";
 
 const rootReducer = combineReducers({
   ...AuthRepo,
   ...AdminModuleReducers,
   ...QuizModuleReducers,
+  ...HelperReducers,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["AuthRepo"],
+  whitelist: ["AuthRepo", "QuizHelper"],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
