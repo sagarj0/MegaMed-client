@@ -25,30 +25,30 @@ export const Navbar: React.FC = () => {
     //make accessToken null and user empty and redirect to login page
     dispatch(changeAccessToken(null));
     dispatch(changeUser({}));
-    navigate(AllUrls.authUrls.login);
+    navigate(AllUrls.login);
   };
 
   const items: MenuProps["items"] = [
     {
-      key: AllUrls.home.home,
+      key: AllUrls.home,
       title: undefined,
       label: <Logo height={40} style={{ marginBlock: 0, marginRight: "20em" }} />,
       className: "menu-no-underline",
     },
     {
-      key: AllUrls.home.home,
+      key: AllUrls.home,
       title: "Home",
       label: "Home",
       icon: <HomeOutlined />,
     },
     {
-      key: AllUrls.home.about,
+      key: AllUrls.about,
       title: "About",
       label: "About",
       icon: <AccountBookOutlined />,
     },
     {
-      key: AllUrls.home.quiz.quiz,
+      key: AllUrls.quiz,
       title: "Tests",
       label: "Tests",
       icon: <FormOutlined />,
@@ -60,7 +60,7 @@ export const Navbar: React.FC = () => {
     //   icon: <UserAddOutlined />,
     // },
     {
-      key: AllUrls.home.contact,
+      key: AllUrls.contact,
       label: "Contact",
       icon: <ContactsOutlined />,
     },
@@ -90,7 +90,7 @@ export const Navbar: React.FC = () => {
         ],
       })
     : items.push({
-        key: AllUrls.authUrls.login,
+        key: AllUrls.login,
         title: "Login",
         className: "menu-no-underline",
         label: <Button type="primary" icon={<PoweroffOutlined />} children={"Login"} />,
@@ -107,7 +107,7 @@ export const Navbar: React.FC = () => {
       <Menu
         mode="horizontal"
         items={items}
-        defaultSelectedKeys={[AllUrls.home.home]}
+        defaultSelectedKeys={[AllUrls.home]}
         selectedKeys={[location.pathname]}
         onSelect={(item) => onTabChange(item.key)}
         style={{

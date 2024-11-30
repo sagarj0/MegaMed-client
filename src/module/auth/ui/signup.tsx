@@ -60,13 +60,7 @@ export const Signup: React.FC = () => {
         <Typography.Title level={3} children="Sign in to Mega Med" />
 
         <Row justify={"space-between"}>
-          <Button
-            onClick={handleGoogleLogin}
-            size="large"
-            style={{ width: 160, ...style }}
-            children="Google"
-            icon={<GoogleOutlined />}
-          />
+          <Button onClick={handleGoogleLogin} size="large" style={{ width: 160, ...style }} children="Google" icon={<GoogleOutlined />} />
           <Button size="large" style={{ width: 160, ...style }} children="Linked In " icon={<LinkedinOutlined />} />
           <Button size="large" style={{ width: 160, ...style }} children="Facebook" icon={<FacebookOutlined />} />
         </Row>
@@ -92,12 +86,7 @@ export const Signup: React.FC = () => {
 
       <Typography.Text style={{ textAlign: "center", width: "100%", display: "block", padding: 12 }}>
         Already have an account?{" "}
-        <Button
-          type="link"
-          onClick={() => navigate(AllUrls.authUrls.login)}
-          style={{ padding: 0 }}
-          children="Continue to login"
-        />
+        <Button type="link" onClick={() => navigate(AllUrls.login)} style={{ padding: 0 }} children="Continue to login" />
       </Typography.Text>
     </>
   );

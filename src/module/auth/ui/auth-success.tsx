@@ -16,7 +16,7 @@ export const SuccessAuth: React.FC = () => {
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
   const { success, error } = useAppSelector((root) => root.AuthGetMe);
-
+  const { user } = useAppSelector((root) => root.AuthRepo);
   const [message, setMessage] = useState("Hang on! while we authenticate you...");
 
   useEffect(() => {
@@ -28,11 +28,14 @@ export const SuccessAuth: React.FC = () => {
 
   const onSuccessReset = () => {
     setMessage("Welcome! Redirecting...");
-    setTimeout(() => navigate(AllUrls.home.home), 1000);
+    const userRole = user?.role;
+    if (userRole === "admin") setTimeout(() => navigate(AllUrls.admin), 1000);
+    // if (userRole === "mentor") setTimeout(() => navigate(AllUrls.mentor), 1000);
+    if (userRole === "student") setTimeout(() => navigate(AllUrls.home), 1000);
   };
   const onErrorReset = () => {
     setMessage("Something went wrong! Please try again later.");
-    setTimeout(() => navigate(AllUrls.authUrls.login), 1500);
+    setTimeout(() => navigate(AllUrls.login), 1000);
   };
   useStatusMessage({ success, error, resetSuccess, resetError, onSuccessReset, onErrorReset });
 

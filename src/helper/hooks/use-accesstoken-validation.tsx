@@ -10,7 +10,7 @@ const useAccessTokenValidation = (props?: Props) => {
   const { navigateUrl } = props || {};
   const navigate = useNavigate();
   const { accessToken } = useAppSelector((root) => root.AuthRepo);
-  if (!accessToken) navigate(navigateUrl || AllUrls.authUrls.login);
+  if (!accessToken) navigate(navigateUrl || AllUrls.login);
   return;
 };
 

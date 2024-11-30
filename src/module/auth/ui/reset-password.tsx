@@ -30,7 +30,7 @@ export const ResetPassword: React.FC = () => {
   const handleGoogleLogin = () => window.open(config.apiUrl + AuthEndpoint.googleLogin, "_self");
 
   const { isLoading, success, error } = useAppSelector((root) => root.ResetPassword);
-  const onSuccessReset = () => navigate(AllUrls.authUrls.login);
+  const onSuccessReset = () => navigate(AllUrls.login);
   useStatusMessage({ success, error, resetSuccess, resetError, onSuccessReset });
 
   const formItem: FormItemProps<ResetPasswordFormProps>[] = [
@@ -57,13 +57,7 @@ export const ResetPassword: React.FC = () => {
         <Typography.Title level={3} children="Sign in to Mega Med" />
 
         <Row justify={"space-between"}>
-          <Button
-            onClick={handleGoogleLogin}
-            size="large"
-            style={{ width: 160, ...style }}
-            children="Google"
-            icon={<GoogleOutlined />}
-          />
+          <Button onClick={handleGoogleLogin} size="large" style={{ width: 160, ...style }} children="Google" icon={<GoogleOutlined />} />
           <Button size="large" style={{ width: 160, ...style }} children="Linked In " icon={<LinkedinOutlined />} />
           <Button size="large" style={{ width: 160, ...style }} children="Facebook" icon={<FacebookOutlined />} />
         </Row>
@@ -75,26 +69,14 @@ export const ResetPassword: React.FC = () => {
             <Form.Item {...item} key={item.name as string} />
           ))}
 
-          <Button
-            type="primary"
-            htmlType="submit"
-            size="large"
-            style={{ width: "100%", ...style }}
-            children="Submit"
-            loading={isLoading}
-          />
+          <Button type="primary" htmlType="submit" size="large" style={{ width: "100%", ...style }} children="Submit" loading={isLoading} />
           <FormDebug />
         </Form>
       </Space>
 
       <Typography.Text style={{ textAlign: "center", width: "100%", display: "block", padding: 12 }}>
         Don't have an account?{" "}
-        <Button
-          type="link"
-          onClick={() => navigate(AllUrls.authUrls.signUp)}
-          style={{ padding: 0 }}
-          children="Create new account "
-        />
+        <Button type="link" onClick={() => navigate(AllUrls.signUp)} style={{ padding: 0 }} children="Create new account " />
       </Typography.Text>
     </>
   );
