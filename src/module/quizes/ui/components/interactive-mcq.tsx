@@ -42,7 +42,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
         dispatch(resetQuizReducer());
       }
     };
-  }, [dispatch]);
+  }, []);
 
   const checkScore = () => {
     const firstUnansweredIndex = questionData?.findIndex((question: any) => !question.answer);
