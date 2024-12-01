@@ -19,7 +19,7 @@ export const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user, accessToken } = useAppSelector((root) => root.AuthRepo);
-  const isLoggedIn = accessToken && user.id;
+  const isLoggedIn = accessToken && user?.id;
 
   const onLogout = () => {
     //make accessToken null and user empty and redirect to login page
@@ -69,7 +69,7 @@ export const Navbar: React.FC = () => {
   isLoggedIn
     ? items.push({
         key: "/profile",
-        icon: <Avatar src={user.pictureUrl} icon={<UserOutlined />} />,
+        icon: <Avatar src={user?.pictureUrl} icon={<UserOutlined />} />,
         children: [
           {
             key: "/details",
