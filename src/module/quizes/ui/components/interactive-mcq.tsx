@@ -38,11 +38,11 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
   useEffect(() => {
     return () => {
       if (started && !isScoreChecked) {
-        console.log("cleanup");
+        console.log("cleanup on unmount only");
         dispatch(resetQuizReducer());
       }
     };
-  }, [dispatch, started, isScoreChecked]);
+  }, [dispatch]);
 
   const checkScore = () => {
     const firstUnansweredIndex = questionData?.findIndex((question: any) => !question.answer);
