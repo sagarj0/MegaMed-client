@@ -10,6 +10,7 @@ import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "@/module/quizes/services/save/reducer";
 import { QuizUrls } from "../../util/url";
 import { useNavigate } from "react-router-dom";
+import { Rules } from "@/helper/form/form-rules";
 
 export const MockTestPage: React.FC = () => {
   const [form] = Form.useForm<SaveQuizProps>();
@@ -55,6 +56,7 @@ export const MockTestPage: React.FC = () => {
           name={SaveQuizKeys.title}
           label={"Name"}
           labelCol={{ span: 7 }}
+          rules={[Rules.required]}
           children={<Input placeholder="Enter the name for this quiz" />}
         />
         <Form.Item

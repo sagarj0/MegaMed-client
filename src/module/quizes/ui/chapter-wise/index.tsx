@@ -11,6 +11,7 @@ import { resetQuizReducer, setOpenModal } from "@/store/reducers/quiz-helper/red
 import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "@/module/quizes/services/save/reducer";
 import { QuizUrls } from "../../util/url";
+import { Rules } from "@/helper/form/form-rules";
 
 export const ChapterWiseTestPage: React.FC = () => {
   const { chapter } = useParams();
@@ -56,6 +57,7 @@ export const ChapterWiseTestPage: React.FC = () => {
           name={SaveQuizKeys.title}
           label={"Name"}
           labelCol={{ span: 7 }}
+          rules={[Rules.required]}
           children={<Input placeholder="Enter the name for this quiz" />}
         />
         <Form.Item

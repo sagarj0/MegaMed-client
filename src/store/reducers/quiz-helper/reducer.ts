@@ -42,6 +42,7 @@ const slice = createSlice({
       state.isScoreChecked = false;
       state.startedTime = 0;
       state.score = 0;
+      state.openModal = false;
     },
   },
 });

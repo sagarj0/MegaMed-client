@@ -30,19 +30,14 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
   const { md, sm, xs } = useResponsiveDevice();
   const { timeCompleted, started, startedTime, isScoreChecked, score } = useAppSelector((state) => state.QuizHelper);
 
+  useBeforeUnload({ isActive: started && !isScoreChecked });
+  useEffect(() => {
+    dispatch(resetQuizReducer());
+  }, []);
+
   const form = Form.useFormInstance<SaveQuizProps>();
   const questionData = Form.useWatch(SaveQuizKeys.questionData, form);
   const { toogleFullScreen, isFullScreen } = useFullScreen();
-
-  useBeforeUnload({ isActive: started && !isScoreChecked });
-  useEffect(() => {
-    return () => {
-      if (started && !isScoreChecked) {
-        console.log("cleanup on unmount only");
-        dispatch(resetQuizReducer());
-      }
-    };
-  }, []);
 
   const checkScore = () => {
     const firstUnansweredIndex = questionData?.findIndex((question: any) => !question.answer);
@@ -77,7 +72,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
     children: (
       <div key={index}>
         <Skeleton loading={!started} active={isLoading} paragraph={{ rows: 4 }}>
-          <Form.Item name={[SaveQuizKeys.questionData, index, SaveQuizKeys.questionData]} initialValue={question.id} noStyle>
+          <Form.Item name={[SaveQuizKeys.questionData, index, QuizTypeKeys.questionId]} initialValue={question.id} noStyle>
             <Typography.Title level={5}>{`${index + 1}. ${question.question}`}</Typography.Title>
           </Form.Item>
           <Form.Item

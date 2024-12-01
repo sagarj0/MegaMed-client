@@ -10,6 +10,7 @@ import { resetQuizReducer, setOpenModal } from "@/store/reducers/quiz-helper/red
 import { saveQuizAction } from "../../services/save/action";
 import { QuizUrls } from "../../util/url";
 import { SaveQuizProps, SaveQuizKeys } from "../type";
+import { Rules } from "@/helper/form/form-rules";
 
 export const UnitWiseTestPage: React.FC = () => {
   const { unit } = useParams();
@@ -54,6 +55,7 @@ export const UnitWiseTestPage: React.FC = () => {
           name={SaveQuizKeys.title}
           label={"Name"}
           labelCol={{ span: 7 }}
+          rules={[Rules.required]}
           children={<Input placeholder="Enter the name for this quiz" />}
         />
         <Form.Item

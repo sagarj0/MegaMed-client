@@ -5,7 +5,7 @@ export type QuizType = {
 };
 
 export type SaveQuizProps = {
-  title?: string;
+  title: string;
   type?: "subject" | "mock_test" | "chapter" | "unit" | "custom";
   subject?: string;
   unit?: string;
