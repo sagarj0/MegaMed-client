@@ -18,6 +18,7 @@ export type GetAllQuestionRequest = { query: URLSearchParams };
 export type FetchAllQuestionResponse = {
   data: {
     data: DetailedQuestion;
+    pagination: { total: number; current: number; pageSize: number };
     message: string;
   };
 };

@@ -23,6 +23,7 @@ export type User = {
   pictureUrl?: string;
   active: boolean;
   isPaidUser: boolean;
+  isEmailVerified: boolean;
 };
 
 export type LoginResponse = {

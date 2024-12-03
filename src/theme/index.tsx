@@ -52,7 +52,7 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
           },
           Card: {
             padding: 20,
-            headerFontSize: 20,
+            headerFontSize: 18,
             colorBgContainer: "white",
             paddingLG: 24,
           },

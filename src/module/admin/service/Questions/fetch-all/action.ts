@@ -14,7 +14,7 @@ export const fetchAllQuestionAciton = (props: FetchAllQuestionRequest) => async 
 
     const response = await fetchQuestion(request);
 
-    const { data } = response.data;
+    const { data } = response;
 
     dispatch(setData(data));
   } catch (error) {

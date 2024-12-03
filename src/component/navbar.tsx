@@ -5,34 +5,24 @@ import {
   HomeOutlined,
   PoweroffOutlined,
   SettingOutlined,
-  // UserAddOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Menu, MenuProps } from "antd";
+import { Button, Menu, MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import Logo from "./logo";
 import { AllUrls } from "../router/urls";
-import { useAppSelector, useAppDispatch } from "@/store/hook";
-import { changeAccessToken, changeUser } from "@/module/auth/service/repo/reducer";
+import useAuthHook from "@/module/auth/hook/useAuthHook";
 
 export const Navbar: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { user, accessToken } = useAppSelector((root) => root.AuthRepo);
-  const isLoggedIn = accessToken && user?.id;
 
-  const onLogout = () => {
-    //make accessToken null and user empty and redirect to login page
-    dispatch(changeAccessToken(null));
-    dispatch(changeUser({}));
-    navigate(AllUrls.login);
-  };
+  const { logout, isUserLoggedIn, UserAvatar } = useAuthHook();
 
   const items: MenuProps["items"] = [
     {
       key: AllUrls.home,
       title: undefined,
-      label: <Logo height={40} style={{ marginBlock: 0 }} />,
+      label: <Logo />,
       className: "menu-no-underline",
     },
     {
@@ -66,10 +56,10 @@ export const Navbar: React.FC = () => {
     },
   ];
 
-  isLoggedIn
+  isUserLoggedIn
     ? items.push({
         key: "/profile",
-        icon: <Avatar src={user?.pictureUrl} icon={<UserOutlined />} />,
+        icon: <UserAvatar />,
         children: [
           {
             key: "/details",
@@ -85,7 +75,7 @@ export const Navbar: React.FC = () => {
             key: "logout",
             label: "Logout",
             icon: <PoweroffOutlined />,
-            onClick: onLogout,
+            onClick: logout,
           },
         ],
       })
@@ -112,6 +102,7 @@ export const Navbar: React.FC = () => {
         onSelect={(item) => onTabChange(item.key)}
         style={{
           width: "100%",
+          alignItems: "center",
           justifyContent: "space-between",
           background: "rgba(255, 255, 255, 0.5)", // Glass effect
           backdropFilter: "blur(10px)", // Glass blur

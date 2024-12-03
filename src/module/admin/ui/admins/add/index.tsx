@@ -9,11 +9,11 @@ import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "@/module/admin/service/Questions/add/reducer";
 import { resetError as resetEditError, resetSuccess as resetEditSuccess } from "@/module/admin/service/Questions/edit/reducer";
 import { useParams } from "react-router-dom";
-import { addAdmin } from "@/module/admin/service/Admins/add/action";
-import { editAdminAction } from "@/module/admin/service/Admins/edit/action";
+import { addAdmin } from "@/module/admin/service/Users/Admins/add/action";
+import { editAdminAction } from "@/module/admin/service/Users/Admins/edit/action";
 import { mapToForm } from "./helper";
-import useFetchAdmin from "@/module/admin/hooks/useFetchAdmin";
 import { BasicSection } from "./basic-section";
+import useFetchUser from "@/module/admin/hooks/useFetchUser";
 
 interface Props {
   mode: "New" | "Edit";
@@ -25,7 +25,7 @@ export const AddAdmin: React.FC<Props> = ({ mode }) => {
   const title = "Question";
 
   const { id } = useParams();
-  const { data: editData } = useFetchAdmin(id);
+  const { data: editData } = useFetchUser(id);
 
   useEffect(() => {
     if (mode === "Edit" && editData && id) form.setFieldsValue(mapToForm(editData));

@@ -1,7 +1,7 @@
-import { DetailedAdmin } from "@/module/admin/service/Admins/fetch/type";
+import { DetailedUser } from "@/module/admin/service/Users/fetch/type";
 import { AddAdminProps } from "./type";
 
-export const mapToForm = (data: DetailedAdmin): AddAdminProps => {
+export const mapToForm = (data: DetailedUser): AddAdminProps => {
   return {
     name: data.name,
     email: data.email,

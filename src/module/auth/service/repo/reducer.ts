@@ -19,6 +19,7 @@ const initialState: AuthRepoType = {
     isPaidUser: false,
     role: "student",
     googleId: "",
+    isEmailVerified: false,
   },
 };
 

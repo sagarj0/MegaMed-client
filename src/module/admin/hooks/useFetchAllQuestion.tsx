@@ -19,13 +19,11 @@ const useFetchAllQuestion = (props: Props) => {
   const dispatch = useAppDispatch();
 
   const { isLoading, error } = useAppSelector((root) => root.FetchAllQuestion);
-  const { data, pagination, search, sortOption, filterOption } = useAppSelector((root) => root.QuestionRepo);
-  const { sortField, sortOrder } = sortOption;
-  const combinedFilter = { ...filterOption, ...filter };
-  const { pageSize, current, subject } = combinedFilter;
+  const { data, pagination, sortOption, filterOption } = useAppSelector((root) => root.QuestionRepo);
+  const { pageSize, current, subject, sortField, sortOrder, search } = { ...filter, ...filterOption, ...sortOption, ...pagination };
 
   useEffect(() => {
-    fetch && dispatch(fetchAllQuestionAciton({ ...filter }));
+    fetch && dispatch(fetchAllQuestionAciton({ pageSize, current, subject, sortField, sortOrder, search }));
   }, [dispatch, search, fetch, pageSize, current, subject, sortField, sortOrder]);
 
   useStatusMessage({ error, resetError });
@@ -39,8 +37,8 @@ const useFetchAllQuestion = (props: Props) => {
     filters && dispatch(updateFilter(filters));
     sorter && dispatch(updateSort(sorter));
   };
-
   const handleSearch = (searchText?: string) => dispatch(updateSearch(searchText));
+
   return { isLoading, data, pagination, handleSearch, handleQueryChange };
 };
 

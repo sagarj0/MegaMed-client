@@ -37,7 +37,8 @@ export const AddQuestions: React.FC<Props> = ({ mode }) => {
   };
 
   const { success, error, isLoading } = useAppSelector((root) => root.AddQuestion);
-  useStatusMessage({ success, error, resetError, resetSuccess });
+  const onSuccessReset = () => form.resetFields(["question", "optionA", "optionB", "optionC", "optionD", "correctAnswer", "explanation"]);
+  useStatusMessage({ success, error, resetError, resetSuccess, onSuccessReset });
 
   const { success: successEdit, error: errorEdit } = useAppSelector((root) => root.EditQuestion);
   useStatusMessage({ success: successEdit, error: errorEdit, resetError: resetEditError, resetSuccess: resetEditSuccess });
@@ -54,14 +55,7 @@ export const AddQuestions: React.FC<Props> = ({ mode }) => {
         </Button>
       }
     >
-      <Form
-        onFinish={submitForm}
-        form={form}
-        name="AddQuestion"
-        labelAlign="left"
-        colon={false}
-        requiredMark={customRequiredMark}
-      >
+      <Form onFinish={submitForm} form={form} name="AddQuestion" labelAlign="left" colon={false} requiredMark={customRequiredMark}>
         <BasicSection />
         <FormDebug />
       </Form>

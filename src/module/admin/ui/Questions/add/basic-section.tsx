@@ -1,5 +1,5 @@
 import { Rules } from "@/helper/form/form-rules";
-import { FormItemProps, Cascader, Input, Radio, Form } from "antd";
+import { FormItemProps, Cascader, Input, Radio, Form, InputNumber } from "antd";
 import { buildCascaderOptions, subjects, subjectData } from "./subjects";
 import { AddQuestionsProps, AddQuestionKeys } from "./type";
 
@@ -23,6 +23,12 @@ export const BasicSection: React.FC = () => {
         const [subjectUnit, chapter] = value;
         return [...subjectUnit.split("/"), chapter];
       },
+      rules: [Rules.required],
+    },
+    {
+      label: "Q. No.",
+      name: AddQuestionKeys.questionNo,
+      children: <InputNumber min={1} max={200} />,
       rules: [Rules.required],
     },
     {
@@ -79,7 +85,12 @@ export const BasicSection: React.FC = () => {
   return (
     <>
       {formItems.map((item) => (
-        <Form.Item {...item} labelCol={{ span: 3 }} wrapperCol={{ span: 10 }} key={item.name as string} />
+        <Form.Item
+          {...item}
+          labelCol={{ span: 4, md: 5, lg: 3 }}
+          wrapperCol={{ span: 20, md: 16, lg: 15, style: { textAlign: "left" } }} // Left-align the input
+          key={item.name as string}
+        />
       ))}
     </>
   );

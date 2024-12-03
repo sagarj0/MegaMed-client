@@ -1,7 +1,15 @@
+import useFetchAllUser from "@/module/admin/hooks/useFetchAllUser";
+import { bulkEditAction } from "@/module/admin/service/Users/bulk-edit/action";
+import { DetailedUser } from "@/module/admin/service/Users/fetch/type";
+import { useAppDispatch } from "@/store/hook";
 import { Button, Card, Table, TableProps, Tag } from "antd";
+import { useState } from "react";
 
 export const ViewAllStudents: React.FC = () => {
-  const columns: TableProps["columns"] = [
+  const dispatch = useAppDispatch();
+  const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
+
+  const columns: TableProps<DetailedUser>["columns"] = [
     {
       title: "Name",
       dataIndex: "name",
@@ -18,40 +26,44 @@ export const ViewAllStudents: React.FC = () => {
       key: "phone",
     },
     {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      render: (status: string) => <Tag color={status === "Paid" ? "success" : "error"} children={status} />,
+      title: "Is Verified",
+      dataIndex: "isEmailVerified",
+      key: "isVerified",
+      render: (isVerified) => <Tag color={isVerified ? "green" : "red"} children={isVerified ? "VERIFIED" : "UNVERIFIED"} />,
     },
     {
-      title: "Action",
-      dataIndex: "action",
-      key: "action",
+      title: "Is Paid",
+      dataIndex: "isPaidUser",
+      key: "status",
+      render: (status) => <Tag color={status ? "blue" : "red"} children={status ? "PAID" : "UNPAID"} />,
     },
   ];
 
-  const data = [
-    {
-      key: "1",
-      name: "John Brown",
-      email: "john@gmail.com",
-      phone: "1234567890",
-      status: "Paid",
-      action: "Edit",
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      email: "jim@gmail.com",
-      phone: "1234567890",
-      status: "Unpaid",
-      action: "Edit",
-    },
-  ];
+  const { data, handleQueryChange, isLoading, pagination } = useFetchAllUser({ filter: { role: "student" } });
+  const students = data?.filter((user) => user.role === "student");
+  const studentPagination = { ...pagination, total: students.length };
+
+  const onModifyToPaid = () => dispatch(bulkEditAction({ userIds: selectedRowKeys, properties: { isPaidUser: true } }));
 
   return (
-    <Card bordered={false} style={{ boxShadow: "none" }} extra={<Button type="primary">Modify to paid</Button>}>
-      <Table columns={columns} dataSource={data} />
+    <Card
+      bordered={false}
+      style={{ boxShadow: "none" }}
+      extra={
+        <Button type="primary" onClick={onModifyToPaid} disabled={!selectedRowKeys.length}>
+          Modify to paid
+        </Button>
+      }
+    >
+      <Table
+        columns={columns}
+        dataSource={data}
+        onChange={handleQueryChange}
+        pagination={studentPagination}
+        loading={isLoading}
+        rowKey={(record) => record.id}
+        rowSelection={{ onChange: (selectedRowKeys) => setSelectedRowKeys(selectedRowKeys as string[]) }}
+      />
     </Card>
   );
 };

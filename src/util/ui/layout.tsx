@@ -48,6 +48,7 @@ const MainLayout: React.FC = () => {
             padding: 0,
             background: "transparent",
             backdropFilter: "blur(8px)",
+            height: "fit-content",
           }}
         >
           <Navbar />
@@ -59,10 +60,10 @@ const MainLayout: React.FC = () => {
         sm={{ span: 24 }}
         style={{
           position: "absolute",
-          top: isFullScreen ? 0 : 64,
+          top: isFullScreen ? 0 : 67,
           // padding: isFullScreen ? 0 : 4,
           width: "100%",
-          height: "100%",
+          // height: "100%",
         }}
       >
         <Layout
@@ -84,14 +85,14 @@ const MainLayout: React.FC = () => {
               flexDirection: "column",
               paddingTop: isFullScreen ? 0 : 32,
               width: "100%",
-              minHeight: isFullScreen ? "100vh" : "calc(100vh - 64px)",
+              minHeight: isFullScreen ? "100vh" : "calc(100vh - 67px)",
               borderRadius,
               position: "relative",
             }}
           >
             <div
               style={{
-                flex: 1,
+                // flex: 1,
                 width: "100%",
                 paddingInline: isFullScreen ? 0 : md ? 20 : sm || xs ? 5 : 80,
                 paddingBlock: isFullScreen ? 0 : 40,

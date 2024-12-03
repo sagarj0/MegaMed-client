@@ -7,10 +7,11 @@ import { ViewAllAdmins } from "../ui/admins/view-all";
 import { ViewAllStudents } from "../ui/Students/view-all";
 import { AddQuestions } from "../ui/Questions/add";
 import { AddAdmin } from "../ui/admins/add";
+import { AdminDashboard } from "../ui/dashboard";
 
 export const AdminRoutes = (
   <Route element={<AdminLayout />}>
-    <Route path={AdminUrls.admin} element={<div>Admin Dashboard</div>} />
+    <Route path={AdminUrls.admin} element={<AdminDashboard />} />
 
     <Route path={AdminUrls.adminAdmin.viewAll} element={<ViewAllAdmins />} />
     <Route path={AdminUrls.adminAdmin.add} element={<AddAdmin mode="New" />} />

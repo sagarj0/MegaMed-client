@@ -51,6 +51,7 @@ export const createRepoReducer = <T extends { id: string }, F>(name: string) => 
 
       updateFilter: (state, action) => {
         const filterObj = action.payload as Partial<Record<keyof F, FilterValue | FilterValue[0]>>;
+
         state.filterOption = Object.fromEntries(
           Object.entries(filterObj).map(([key, value]) => [key, Array.isArray(value) ? value.join(",") : value]),
         ) as Draft<Partial<Record<keyof F, string>>>;

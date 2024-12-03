@@ -15,6 +15,7 @@ import Logo from "@/component/logo";
 import { properCase } from "@/helper/proper-case";
 import { getKeyFromUrl } from "@/helper/key-from-url";
 import useResponsiveDevice from "@/helper/hooks/use-responsive";
+import useAuthHook from "@/module/auth/hook/useAuthHook";
 
 const { Header, Content, Sider } = Layout;
 const { Title } = Typography;
@@ -34,6 +35,8 @@ const siderStyle: React.CSSProperties = {
 };
 
 const AdminLayout: React.FC = () => {
+  const { UserAvatar, logout } = useAuthHook({ checkToken: true, roleCheck: "admin" });
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -81,9 +84,10 @@ const AdminLayout: React.FC = () => {
     <Layout hasSider>
       {!isMobile && (
         <Sider style={siderStyle} theme="light">
-          <Logo />
+          <Logo style={{ bottom: 5, left: 45 }} />
           <Menu items={items} style={{ border: "none" }} selectedKeys={[selectedKey || "dashboard"]} />
           <Button
+            onClick={logout}
             type="text"
             icon={<PoweroffOutlined />}
             style={{
@@ -129,7 +133,7 @@ const AdminLayout: React.FC = () => {
               </Dropdown>
             </Row>
           ) : (
-            <Avatar icon={<UserOutlined />} />
+            <UserAvatar />
           )}
         </Header>
 

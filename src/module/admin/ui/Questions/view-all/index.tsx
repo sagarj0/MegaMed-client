@@ -9,7 +9,7 @@ export const ViewAllQuestion: React.FC = () => {
   const navigate = useNavigate();
   const defaultActiveTab = "physics";
   const handleAddQuestion = () => navigate(AdminUrls.adminquestions.add);
-  const { data, handleQueryChange } = useFetchAllQuestion({ filter: { subject: defaultActiveTab as subject } });
+  const { data, handleQueryChange, pagination, isLoading } = useFetchAllQuestion({ filter: { subject: defaultActiveTab as subject } });
   const onTabChange = (key: string) => handleQueryChange(undefined, { subject: key }, undefined);
 
   return (
@@ -27,7 +27,7 @@ export const ViewAllQuestion: React.FC = () => {
       }
       defaultActiveTabKey={defaultActiveTab}
     >
-      <Table columns={columns} dataSource={data} onChange={handleQueryChange} />
+      <Table columns={columns} dataSource={data} onChange={handleQueryChange} pagination={pagination} loading={isLoading} />
     </Card>
   );
 };

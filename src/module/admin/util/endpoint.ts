@@ -6,4 +6,8 @@ export const AdminEndpoints = {
   addmentor: "/user/add-mentor",
   revokemonitor: "/user/revoke-mentor",
   manageStudent: "/user/manage-student",
+
+  countQuestion: "/question/count",
+
+  bulkUpdateUsers: "/user/bulk-update",
 };

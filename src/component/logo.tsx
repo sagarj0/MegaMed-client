@@ -1,14 +1,27 @@
-import { Image } from "antd";
+// import { Image } from "antd";
+import { SVGLogo } from "./icons/logo";
 
 interface LogoProps {
   style?: React.CSSProperties;
-  height?: number;
 }
 
-const Logo: React.FC<LogoProps> = ({ style, height = 60 }) => {
+const Logo: React.FC<LogoProps> = ({ style }) => {
   return (
-    <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", marginBlock: "1em", ...style }}>
-      <Image src="MegaMed.png" height={height} preview={false} />
+    <div style={{ position: "relative", width: "80px", height: "40px" }}>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "absolute",
+          bottom: -15,
+          left: 0,
+          ...style,
+        }}
+      >
+        <SVGLogo />
+      </div>
     </div>
   );
 };

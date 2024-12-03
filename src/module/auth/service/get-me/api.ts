@@ -21,6 +21,7 @@ export const mockgetMe = (): Promise<GetMeResponse> => {
         googleId: "mock-googleId",
         number: "mock-number",
         password: "mock-password",
+        isEmailVerified: false,
       } as User,
       message: "mock-message",
     },

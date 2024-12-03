@@ -1,5 +1,5 @@
-import useFetchAllAdmin from "@/module/admin/hooks/useFetchAllAdmin";
-import { DetailedAdmin } from "@/module/admin/service/Admins/fetch/type";
+import useFetchAllUser from "@/module/admin/hooks/useFetchAllUser";
+import { DetailedUser } from "@/module/admin/service/Users/fetch/type";
 import { AdminUrls } from "@/module/admin/util/urls";
 import { Button, Card, Table, TableProps, Tag } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ export const ViewAllAdmins: React.FC = () => {
   const navigate = useNavigate();
   const onAddAdmin = () => navigate(AdminUrls.adminAdmin.add);
 
-  const columns: TableProps<DetailedAdmin>["columns"] = [
+  const columns: TableProps<DetailedUser>["columns"] = [
     {
       title: "Name",
       dataIndex: "name",
@@ -20,22 +20,27 @@ export const ViewAllAdmins: React.FC = () => {
       key: "email",
     },
     {
+      title: "Is Verified",
+      dataIndex: "isEmailVerified",
+      key: "isVerified",
+      render: (isVerified) => <Tag color={isVerified ? "green" : "red"} children={isVerified ? "VERIFIED" : "UNVERIFIED"} />,
+    },
+    {
       title: "Status",
       dataIndex: "active",
-      key: "active",
-      render: (status: boolean) => <Tag color={status ? "blue" : "gray"} children={status} />,
+      key: "status",
+      render: (status) => <Tag color={status ? "blue" : "gray"} children={status ? "ACTIVE" : "INACTIVE"} />,
     },
   ];
 
-  const { data, handleQueryChange } = useFetchAllAdmin({ filter: {} });
+  const { data, handleQueryChange, pagination, isLoading } = useFetchAllUser({ filter: { role: "admin" } });
+
+  const admins = data?.filter((user) => user.role === "admin");
+  const adminPagination = { ...pagination, total: admins.length };
 
   return (
-    <Card
-      bordered={false}
-      style={{ boxShadow: "none" }}
-      extra={<Button type="primary" onClick={onAddAdmin} children={"Add Admin"} />}
-    >
-      <Table columns={columns} dataSource={data} onChange={handleQueryChange} />
+    <Card bordered={false} style={{ boxShadow: "none" }} extra={<Button type="primary" onClick={onAddAdmin} children={"Add Admin"} />}>
+      <Table columns={columns} dataSource={admins} loading={isLoading} onChange={handleQueryChange} pagination={adminPagination} />
     </Card>
   );
 };

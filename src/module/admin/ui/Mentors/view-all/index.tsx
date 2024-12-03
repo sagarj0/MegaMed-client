@@ -1,9 +1,9 @@
-import useFetchAllMentor from "@/module/admin/hooks/usefetchAllMentor";
-import { DetailedMentor } from "@/module/admin/service/Mentor/fetch/type";
+import useFetchAllUser from "@/module/admin/hooks/useFetchAllUser";
+import { DetailedUser } from "@/module/admin/service/Users/fetch/type";
 import { Button, Card, Table, TableProps, Tag } from "antd";
 
 export const ViewAllMentors: React.FC = () => {
-  const columns: TableProps<DetailedMentor>["columns"] = [
+  const columns: TableProps<DetailedUser>["columns"] = [
     {
       title: "Name",
       dataIndex: "name",
@@ -21,17 +21,20 @@ export const ViewAllMentors: React.FC = () => {
     },
     {
       title: "Status",
-      dataIndex: "status",
+      dataIndex: "active",
       key: "status",
-      render: (status: string) => <Tag color={status === "Active" ? "blue" : "gray"} children={status} />,
+      render: (status) => <Tag color={status ? "blue" : "gray"} children={status ? "ACTIVE" : "INACTIVE"} />,
     },
   ];
 
-  const { data, handleQueryChange } = useFetchAllMentor({ filter: {} });
+  const { data, handleQueryChange, pagination, isLoading } = useFetchAllUser({ filter: { role: "mentor" } });
+
+  const mentors = data?.filter((user) => user.role === "mentor");
+  const mentorPagination = { ...pagination, total: mentors.length };
 
   return (
     <Card bordered={false} style={{ boxShadow: "none" }} extra={<Button type="primary">Add Mentor</Button>}>
-      <Table columns={columns} dataSource={data} onChange={handleQueryChange} />
+      <Table columns={columns} dataSource={mentors} onChange={handleQueryChange} pagination={mentorPagination} loading={isLoading} />
     </Card>
   );
 };

@@ -11,9 +11,9 @@ import { resetError as resetEditError, resetSuccess as resetEditSuccess } from "
 import { useParams } from "react-router-dom";
 import { mapToForm } from "./helper";
 import { BasicSection } from "./basic-section";
-import { addMentor } from "@/module/admin/service/Mentor/add/action";
-import { editMentorAction } from "@/module/admin/service/Mentor/edit/action";
-import useFetchMentor from "@/module/admin/hooks/useFetchMentor";
+import { addMentor } from "@/module/admin/service/Users/Mentor/add/action";
+import { editMentorAction } from "@/module/admin/service/Users/Mentor/edit/action";
+import useFetchUser from "@/module/admin/hooks/useFetchUser";
 
 interface Props {
   mode: "New" | "Edit";
@@ -25,7 +25,7 @@ export const AddMentor: React.FC<Props> = ({ mode }) => {
   const title = "Question";
 
   const { id } = useParams();
-  const { data: editData } = useFetchMentor(id);
+  const { data: editData } = useFetchUser(id);
 
   useEffect(() => {
     if (mode === "Edit" && editData && id) form.setFieldsValue(mapToForm(editData));
