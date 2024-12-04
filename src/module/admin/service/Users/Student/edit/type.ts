@@ -1,5 +1,5 @@
 import { PostQuestionResponse } from "../../../Questions/add/type";
-import { PostStudentRequest } from "../add/type";
+import { PostAdminRequest } from "../../Admins/add/type";
 
-export type PatchStudentReq = Partial<PostStudentRequest>;
+export type PatchStudentReq = Partial<PostAdminRequest>;
 export type PatchStudentRes = PostQuestionResponse;

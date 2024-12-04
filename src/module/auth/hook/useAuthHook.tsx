@@ -37,7 +37,7 @@ const useAuthHook = (props?: Props) => {
   };
   if (checkToken) checkAccessTokenValidation();
 
-  return { logout, isUserLoggedIn, UserAvatar, checkAccessTokenValidation };
+  return { logout, isUserLoggedIn, UserAvatar, checkAccessTokenValidation, user };
 };
 
 export default useAuthHook;

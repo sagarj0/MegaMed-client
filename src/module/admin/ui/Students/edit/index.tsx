@@ -11,7 +11,6 @@ import { useParams } from "react-router-dom";
 import { mapToForm } from "./helper";
 import { BasicSection } from "./basic-section";
 import useFetchStudent from "@/module/admin/hooks/useFetchUser";
-import { addStudent } from "@/module/admin/service/Users/Student/add/action";
 import { editStudentAction } from "@/module/admin/service/Users/Student/edit/action";
 
 interface Props {
@@ -31,7 +30,6 @@ export const AddStudent: React.FC<Props> = ({ mode }) => {
   }, [editData, form]);
 
   const submitForm: FormProps<AddStudentProps>["onFinish"] = (values) => {
-    if (mode === "New") dispatch(addStudent(values));
     if (mode === "Edit" && id) dispatch(editStudentAction({ oldData: mapToForm(editData), newData: values }));
   };
 

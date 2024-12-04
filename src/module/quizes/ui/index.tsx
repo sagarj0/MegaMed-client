@@ -1,12 +1,16 @@
-import { Card, Col, Flex, Row, Select, Typography } from "antd";
+import { Card, Col, Flex, Row, Select, Tooltip, Typography } from "antd";
 import { FieldTimeOutlined, FileUnknownOutlined, QuestionCircleOutlined, SendOutlined } from "@ant-design/icons";
 import { getChapterGroups, getSubjects, getUnitGroups } from "@/module/admin/ui/Questions/add/subjects";
 import GroupedSelect from "@/component/grouped-select";
 import { useNavigate } from "react-router-dom";
 import { QuizUrls } from "../util/url";
+import useAuthHook from "@/module/auth/hook/useAuthHook";
 
 export const QuizPage: React.FC = () => {
   const navigate = useNavigate();
+
+  const { user } = useAuthHook();
+  const isPaidUser = user?.isPaidUser;
 
   const onSubjectWiseTestClick = (subject: string) => navigate(QuizUrls.subjectWise + subject);
   const onUnitWiseTestClick = (unit: string) => navigate(QuizUrls.unitWise + unit);
@@ -33,14 +37,17 @@ export const QuizPage: React.FC = () => {
               <Typography.Text>
                 <QuestionCircleOutlined /> 50 Questions
               </Typography.Text>,
-              <Select
-                style={{ width: "100%" }}
-                options={getSubjects()}
-                placeholder={<>Start test</>}
-                dropdownStyle={{ width: "auto" }}
-                variant="borderless"
-                onChange={onSubjectWiseTestClick}
-              />,
+              <Tooltip title="This feature is only available for paid users">
+                <Select
+                  style={{ width: "100%" }}
+                  options={getSubjects()}
+                  placeholder={<>Start test</>}
+                  dropdownStyle={{ width: "auto" }}
+                  variant="borderless"
+                  onChange={onSubjectWiseTestClick}
+                  disabled={!isPaidUser}
+                />
+              </Tooltip>,
             ]}
           >
             Give a test on specific subject, to check your understandig on Physics, Chemistry, Botany, Zoology and Mat.
@@ -58,14 +65,17 @@ export const QuizPage: React.FC = () => {
               <Typography.Text>
                 <QuestionCircleOutlined /> 20 Questions
               </Typography.Text>,
-              <GroupedSelect
-                style={{ width: "100%" }}
-                options={getUnitGroups()}
-                placeholder={<>Start test</>}
-                dropdownStyle={{ width: 300 }}
-                variant="borderless"
-                onChange={onUnitWiseTestClick}
-              />,
+              <Tooltip title="This feature is only available for paid users">
+                <GroupedSelect
+                  style={{ width: "100%" }}
+                  options={getUnitGroups()}
+                  placeholder={<>Start test</>}
+                  dropdownStyle={{ width: 300 }}
+                  variant="borderless"
+                  onChange={onUnitWiseTestClick}
+                  disabled={!isPaidUser}
+                />
+              </Tooltip>,
             ]}
           >
             Give a test on specific unit, to check your understanding on specific units of Physics, Chemistry, Botany, Zoology and Mat.
@@ -83,14 +93,17 @@ export const QuizPage: React.FC = () => {
               <Typography.Text>
                 <QuestionCircleOutlined /> 10 Questions
               </Typography.Text>,
-              <GroupedSelect
-                style={{ width: "100%" }}
-                options={getChapterGroups()}
-                placeholder={<>Start test</>}
-                dropdownStyle={{ width: 300 }}
-                variant="borderless"
-                onChange={onChapterWiseTestClick}
-              />,
+              <Tooltip title="This feature is only available for paid users">
+                <GroupedSelect
+                  style={{ width: "100%" }}
+                  options={getChapterGroups()}
+                  placeholder={<>Start test</>}
+                  dropdownStyle={{ width: 300 }}
+                  variant="borderless"
+                  onChange={onChapterWiseTestClick}
+                  disabled={!isPaidUser}
+                />
+              </Tooltip>,
             ]}
           >
             Give a test on specific chapter, to check your understanding on specific chapter of Physics, Chemistry, Botany, Zoology and Mat.
@@ -108,9 +121,11 @@ export const QuizPage: React.FC = () => {
               <Typography.Text>
                 <FileUnknownOutlined /> 200 Questions
               </Typography.Text>,
-              <Typography.Link href={QuizUrls.mockTest}>
-                Start Test <SendOutlined />
-              </Typography.Link>,
+              <Tooltip title="This feature is only available for paid users">
+                <Typography.Link href={QuizUrls.mockTest} disabled={!isPaidUser}>
+                  Start Test <SendOutlined />
+                </Typography.Link>
+              </Tooltip>,
             ]}
           >
             Give a mock test to check your preparation, it will improve your speed and accuracy. It will help you to know your weak points.
