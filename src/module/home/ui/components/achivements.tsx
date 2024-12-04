@@ -76,7 +76,7 @@ const achievements: {
   },
 ].sort((a, b) => (a.mbbsRank || 0) - (b.mbbsRank || 0));
 
-export const AchievementSection: React.FC = () => {
+export const AchievementSection: React.FC<{ showButton?: boolean }> = ({ showButton = true }) => {
   // const navigate = useNavigate();
 
   return (
@@ -87,7 +87,7 @@ export const AchievementSection: React.FC = () => {
       <Typography.Paragraph style={{ textAlign: "center", width: "100%", marginBottom: 30 }}>
         Our students have been making us proud with their achievements. We are proud to have been a part of their journey to success.
       </Typography.Paragraph>
-      <Row justify="center" align={"middle"} gutter={[16, 16]} style={{ width: "100%", paddingBlock: 30 }}>
+      <Row justify="center" align={"top"} gutter={[16, 16]} style={{ width: "100%", paddingBlock: 30 }}>
         {achievements.map((student, index) => (
           <Col key={index} xs={24} sm={12} md={8} lg={6}>
             <Row justify={"center"}>
@@ -125,9 +125,11 @@ export const AchievementSection: React.FC = () => {
         ))}
       </Row>
       <Row justify={"center"} style={{ width: "100%" }}>
-        <Button type="primary" style={{ marginTop: 30 }}>
-          Explore About Our Legacy
-        </Button>
+        {showButton && (
+          <Button type="primary" style={{ marginTop: 30 }}>
+            Explore About Our Legacy
+          </Button>
+        )}
       </Row>
     </Row>
   );

@@ -1,9 +1,11 @@
+import useStatusMessage from "@/helper/hooks/use-message";
 import useFetchAllUser from "@/module/admin/hooks/useFetchAllUser";
 import { bulkEditAction } from "@/module/admin/service/Users/bulk-edit/action";
 import { DetailedUser } from "@/module/admin/service/Users/fetch/type";
-import { useAppDispatch } from "@/store/hook";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { Button, Card, Table, TableProps, Tag } from "antd";
 import { useState } from "react";
+import { resetError, resetSuccess } from "@/module/admin/service/Users/bulk-edit/reducer";
 
 export const ViewAllStudents: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -44,13 +46,15 @@ export const ViewAllStudents: React.FC = () => {
   const studentPagination = { ...pagination, total: students.length };
 
   const onModifyToPaid = () => dispatch(bulkEditAction({ userIds: selectedRowKeys, properties: { isPaidUser: true } }));
+  const { isLoading: bulkeditLoading, success, error } = useAppSelector((root) => root.BulkEditUser);
+  useStatusMessage({ success, error, resetSuccess, resetError });
 
   return (
     <Card
       bordered={false}
       style={{ boxShadow: "none" }}
       extra={
-        <Button type="primary" onClick={onModifyToPaid} disabled={!selectedRowKeys.length}>
+        <Button loading={bulkeditLoading} type="primary" onClick={onModifyToPaid} disabled={!selectedRowKeys.length}>
           Modify to paid
         </Button>
       }

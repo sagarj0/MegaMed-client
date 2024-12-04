@@ -5,7 +5,7 @@ import { PostQuestionRequest } from "./type";
 
 export const parseQuestionRequest = (data: AddQuestionsProps): PostQuestionRequest => {
   const { subjectData, ...rest } = data;
-  const [subject, chapter, unit] = subjectData;
+  const [subject, unit, chapter] = subjectData;
 
   return { subject: subject.toLowerCase(), chapter, unit, ...rest };
 };

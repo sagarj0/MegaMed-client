@@ -24,7 +24,7 @@ export const FormLayout: React.FC<Props> = ({ title, children, loading, footer, 
       styles={{
         header: {
           border: "none",
-          position: isFooterOnTop ? "sticky" : "static",
+          // position: isFooterOnTop ? "sticky" : "static",
           width: "100%",
           top: 0,
           zIndex: 100,
