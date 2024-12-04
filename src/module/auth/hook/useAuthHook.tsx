@@ -6,14 +6,16 @@ import { AllUrls } from "@/router/urls";
 import { Avatar } from "antd";
 import { config } from "@/util/config";
 import { UserRole } from "../service/login/type";
+import { message } from "antd";
 
 interface Props {
   checkToken?: boolean;
+  checkIsPaid?: boolean;
   roleCheck?: UserRole;
 }
 
 const useAuthHook = (props?: Props) => {
-  const { checkToken = false, roleCheck } = props || {};
+  const { checkToken = false, roleCheck, checkIsPaid } = props || {};
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -29,6 +31,7 @@ const useAuthHook = (props?: Props) => {
     dispatch(changeAccessToken(null));
     dispatch(changeUser({}));
     navigate(AllUrls.login);
+    message.success("Logged out successfully");
   };
 
   const checkAccessTokenValidation = () => {
@@ -37,7 +40,14 @@ const useAuthHook = (props?: Props) => {
   };
   if (checkToken) checkAccessTokenValidation();
 
-  return { logout, isUserLoggedIn, UserAvatar, checkAccessTokenValidation, user };
+  const checkIsPaidUser = () => {
+    if (user?.isPaidUser) return;
+    navigate(AllUrls.home);
+    message.error("This feature is only available to paid users");
+  };
+  if (checkIsPaid) checkIsPaidUser();
+
+  return { logout, isUserLoggedIn, UserAvatar, checkAccessTokenValidation, user, checkIsPaidUser };
 };
 
 export default useAuthHook;

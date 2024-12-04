@@ -37,7 +37,7 @@ export const QuizPage: React.FC = () => {
               <Typography.Text>
                 <QuestionCircleOutlined /> 50 Questions
               </Typography.Text>,
-              <Tooltip title="This feature is only available for paid users">
+              <Tooltip title={isPaidUser ? null : "This feature is only available to paid users"}>
                 <Select
                   style={{ width: "100%" }}
                   options={getSubjects()}
@@ -65,7 +65,7 @@ export const QuizPage: React.FC = () => {
               <Typography.Text>
                 <QuestionCircleOutlined /> 20 Questions
               </Typography.Text>,
-              <Tooltip title="This feature is only available for paid users">
+              <Tooltip title={isPaidUser ? null : "This feature is only available to paid users"}>
                 <GroupedSelect
                   style={{ width: "100%" }}
                   options={getUnitGroups()}
@@ -93,7 +93,7 @@ export const QuizPage: React.FC = () => {
               <Typography.Text>
                 <QuestionCircleOutlined /> 10 Questions
               </Typography.Text>,
-              <Tooltip title="This feature is only available for paid users">
+              <Tooltip title={isPaidUser ? null : "This feature is only available to paid users"}>
                 <GroupedSelect
                   style={{ width: "100%" }}
                   options={getChapterGroups()}
@@ -121,7 +121,7 @@ export const QuizPage: React.FC = () => {
               <Typography.Text>
                 <FileUnknownOutlined /> 200 Questions
               </Typography.Text>,
-              <Tooltip title="This feature is only available for paid users">
+              <Tooltip title={isPaidUser ? null : "This feature is only available to paid users"}>
                 <Typography.Link href={QuizUrls.mockTest} disabled={!isPaidUser}>
                   Start Test <SendOutlined />
                 </Typography.Link>

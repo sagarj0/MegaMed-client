@@ -10,4 +10,6 @@ export const AdminEndpoints = {
   countQuestion: "/question/count",
 
   bulkUpdateUsers: "/user/bulk-update",
+
+  dashboard: "/dashboard/admin",
 };

@@ -21,7 +21,7 @@ export { default as FetchAllUser } from "./Users/fetch-all/reducer";
 export { default as UserRepo } from "./Users/repo/reducer";
 
 //dashboard reducers
-export { default as DashboardReducer } from "./dashbaord/question-count/reducer";
+export { default as DashboardReducer } from "./dashbaord/fetch/reducer";
 
 //bulk edit reducers
 export { default as BulkEditUser } from "./Users/bulk-edit/reducer";

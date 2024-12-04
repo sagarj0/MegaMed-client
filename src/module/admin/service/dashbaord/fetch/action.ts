@@ -12,7 +12,7 @@ export const questionCountAction = () => async (dispatch: AppDispatch) => {
     const { message, data } = response.data;
 
     dispatch(setSuccess(message));
-    dispatch(setData({ questionCount: data }));
+    dispatch(setData(data));
   } catch (error) {
     dispatch(setError(parseError(error)));
   } finally {

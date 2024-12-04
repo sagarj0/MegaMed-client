@@ -1,14 +1,16 @@
 import { createFetchReducer } from "@/store/tempelate/fetch-reducer";
-import { DashboardData } from "../type";
+import { AdminDashboardData } from "./type";
 
-const slice = createFetchReducer<DashboardData>("count/question", {
-  questionCount: {
+const slice = createFetchReducer<AdminDashboardData>("count/question", {
+  totalUsers: {
+    totalUserCount: 0,
+    roleWiseCounts: [],
+  },
+  totalQuestions: {
     totalQuestionCount: 0,
     subjectWiseCounts: [],
   },
-  studentCount: 0,
-  mentorCount: 0,
-  adminCount: 0,
+  userMonthlyStat: [],
 });
 
 export const { setLoading, resetLoading, setSuccess, resetSuccess, setError, resetError, setData } = slice.actions;

@@ -16,6 +16,7 @@ import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
 import { config } from "@/util/config";
 import useResponsiveDevice from "@/helper/hooks/use-responsive";
 import useBeforeUnload from "@/helper/hooks/useBeforeUnload";
+import useAuthHook from "@/module/auth/hook/useAuthHook";
 
 interface InteractiveMCQProps {
   MCQs: DetailedQuestion[];
@@ -26,6 +27,8 @@ interface InteractiveMCQProps {
 }
 
 export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, time, timeFormat = "mm:ss", isLoading }) => {
+  useAuthHook({ checkIsPaid: true });
+
   const dispatch = useAppDispatch();
   const { md, sm, xs } = useResponsiveDevice();
   const { timeCompleted, started, startedTime, isScoreChecked, score } = useAppSelector((state) => state.QuizHelper);
