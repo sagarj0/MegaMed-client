@@ -15,70 +15,68 @@ const achievements: {
   {
     name: "Krirtika Shriwastav",
     mbbsRank: 71,
-    photo: "/kritika-shriwastav.jpg",
+    photo: "/achivements/kritika-shriwastav.jpg",
   },
   {
     name: "Narayan Neupane",
     mbbsRank: 81,
-    photo: "/narayan-neupane.jpg",
+    photo: "/achivements/narayan-neupane.jpg",
   },
   {
     name: "Binaya Luitel",
     mbbsRank: 87,
-    photo: "/binaya-luitel.jpg",
+    photo: "/achivements/binaya-luitel.jpg",
   },
   {
     name: "Sangam Pokhrel",
     mbbsRank: 21,
-    photo: "/sangam-pokhrel.jpg",
+    photo: "/achivements/sangam-pokhrel.jpg",
   },
   {
     name: "Samiksha Adhiakri",
     mbbsRank: 69,
     bdsRank: 18,
-    photo: "/samiksha-adhikari.jpg",
+    photo: "/achivements/samiksha-adhikari.jpg",
   },
   {
     name: "Suajata Thakur",
     mbbsRank: 15,
     bdsRank: 12,
-    photo: "/sujata-thakur.jpg",
+    photo: "/achivements/sujata-thakur.jpg",
   },
   {
     name: "Suraj Paneru",
     mbbsRank: 136,
     bdsRank: 21,
-    photo: "/suraj-paneru.jpg",
+    photo: "/achivements/suraj-paneru.jpg",
   },
   {
     name: "Dipika Acharya",
     mbbsRank: 172,
     bdsRank: 85,
     bscNursinRank: 4,
-    photo: "/dipika-acharya.jpg",
+    photo: "/achivements/dipika-acharya.jpg",
   },
   {
     name: "Garima Sharma",
     mbbsRank: 103,
-    photo: "/garima-sharma.jpg",
+    photo: "/achivements/garima-sharma.jpg",
   },
   {
     name: "Sanu Krishna Yadav",
     mbbsRank: 147,
-    photo: "/sanu-krishna-yadav.jpg",
+    photo: "/achivements/sanu-krishna-yadav.jpg",
   },
   {
     name: "Alisha Pokhrel",
     mbbsRank: 96,
     bdsRank: 70,
     bscNursinRank: 9,
-    photo: "/alisha-pokhrel.jpg",
+    photo: "/achivements/alisha-pokhrel.jpg",
   },
 ].sort((a, b) => (a.mbbsRank || 0) - (b.mbbsRank || 0));
 
 export const AchievementSection: React.FC<{ showButton?: boolean }> = ({ showButton = true }) => {
-  // const navigate = useNavigate();
-
   return (
     <Row style={{ width: "100%", paddingBlock: 24 }}>
       <Typography.Title level={2} style={{ marginBottom: 20, color: "var(--primary-color)", textAlign: "center", width: "100%" }}>
