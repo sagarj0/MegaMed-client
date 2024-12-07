@@ -23,10 +23,16 @@ export type UserMonthlyStat = {
   user: number;
 };
 
+export type QuestionMonthlyStat = {
+  month: string;
+  question: number;
+};
+
 export type AdminDashboardData = {
   totalUsers: TotalUsers;
   totalQuestions: TotalQuestions;
   userMonthlyStat: UserMonthlyStat[];
+  questionMonthlyStat: QuestionMonthlyStat[];
 };
 
 export type DashboardResponse = {

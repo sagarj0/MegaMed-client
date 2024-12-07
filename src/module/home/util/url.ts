@@ -3,4 +3,5 @@ export const HomeUrl = {
   about: "/about",
   mentors: "/mentors",
   contact: "/contact",
+  profile: "/profile",
 };

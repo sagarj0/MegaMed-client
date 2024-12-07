@@ -1,15 +1,7 @@
 import React from "react";
-import {
-  BarChartOutlined,
-  BarsOutlined,
-  FormOutlined,
-  KeyOutlined,
-  PoweroffOutlined,
-  UsergroupAddOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import { Avatar, Layout, Menu, theme, MenuProps, Typography, Button, Dropdown, Row } from "antd";
-import { useNavigate, useLocation, Outlet } from "react-router-dom";
+import { BarChartOutlined, BarsOutlined, FormOutlined, KeyOutlined, PoweroffOutlined, UsergroupAddOutlined, UserOutlined } from "@ant-design/icons";
+import { Layout, Menu, theme, MenuProps, Typography, Button, Dropdown, Row } from "antd";
+import { useNavigate, useLocation, Outlet, Link } from "react-router-dom";
 import { AdminUrls } from "../util/urls";
 import Logo from "@/component/logo";
 import { properCase } from "@/helper/proper-case";
@@ -126,14 +118,18 @@ const AdminLayout: React.FC = () => {
             {title}
           </Title>
           {isMobile ? (
-            <Row>
-              <Avatar icon={<UserOutlined />} />
+            <Row align={"middle"}>
+              <Link to={AdminUrls.profile}>
+                <UserAvatar />
+              </Link>
               <Dropdown overlay={<Menu items={items} selectedKeys={[selectedKey || "dashboard"]} />} trigger={["click"]}>
                 <Button type="text" icon={<BarsOutlined />} />
               </Dropdown>
             </Row>
           ) : (
-            <UserAvatar />
+            <Link to={AdminUrls.profile}>
+              <UserAvatar />
+            </Link>
           )}
         </Header>
 

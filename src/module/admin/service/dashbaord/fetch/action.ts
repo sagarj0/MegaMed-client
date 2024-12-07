@@ -1,13 +1,13 @@
 import { parseError } from "@/helper/parse-error";
 import { AppDispatch } from "@/store";
 import { setLoading, resetLoading, setSuccess, setError, setData } from "./reducer";
-import { getQuestionCount } from "./api";
+import { getDashboardData } from "./api";
 
-export const questionCountAction = () => async (dispatch: AppDispatch) => {
+export const dashboardAction = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(setLoading());
 
-    const response = await getQuestionCount();
+    const response = await getDashboardData();
 
     const { message, data } = response.data;
 

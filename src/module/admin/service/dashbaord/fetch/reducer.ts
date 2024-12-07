@@ -11,6 +11,7 @@ const slice = createFetchReducer<AdminDashboardData>("count/question", {
     subjectWiseCounts: [],
   },
   userMonthlyStat: [],
+  questionMonthlyStat: [],
 });
 
 export const { setLoading, resetLoading, setSuccess, resetSuccess, setError, resetError, setData } = slice.actions;

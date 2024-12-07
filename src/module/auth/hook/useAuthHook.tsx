@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { changeAccessToken, changeUser } from "../service/repo/reducer";
-import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { AllUrls } from "@/router/urls";
 import { Avatar } from "antd";
@@ -24,7 +23,11 @@ const useAuthHook = (props?: Props) => {
   const isUserLoggedIn = Boolean(accessToken && user?.id);
   const src = user?.pictureUrl;
 
-  const UserAvatar: React.FC = () => <Avatar src={src} icon={<UserOutlined />} />;
+  const UserAvatar: React.FC<{ style?: React.CSSProperties }> = ({ style }) => (
+    <Avatar src={src} style={{ background: "var(--secondary-color)", ...style }}>
+      {user?.name[0] + user?.name?.split(" ")[1][0]}
+    </Avatar>
+  );
 
   const logout = () => {
     //make accessToken null and user empty and redirect to login page

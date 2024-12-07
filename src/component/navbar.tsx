@@ -1,12 +1,4 @@
-import {
-  AccountBookOutlined,
-  ContactsOutlined,
-  FormOutlined,
-  HomeOutlined,
-  PoweroffOutlined,
-  SettingOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { AccountBookOutlined, ContactsOutlined, FormOutlined, HomeOutlined, PoweroffOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Menu, MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import Logo from "./logo";
@@ -58,19 +50,19 @@ export const Navbar: React.FC = () => {
 
   isUserLoggedIn
     ? items.push({
-        key: "/profile",
+        key: AllUrls.profile,
         icon: <UserAvatar />,
         children: [
           {
-            key: "/details",
+            key: AllUrls.profile,
             label: "Profile",
             icon: <UserOutlined />,
           },
-          {
-            key: "/settings",
-            label: "Settings",
-            icon: <SettingOutlined />,
-          },
+          // {
+          //   key: "/settings",
+          //   label: "Settings",
+          //   icon: <SettingOutlined />,
+          // },
           {
             key: "logout",
             label: "Logout",

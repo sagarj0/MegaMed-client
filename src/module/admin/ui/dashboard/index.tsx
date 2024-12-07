@@ -2,10 +2,11 @@ import { Col, Row } from "antd";
 import useFetchDashboardData from "../../hooks/useDashboard";
 import CountCard from "./basic-count";
 import UserMonthlyStatChart from "./user-monthly-stat";
+import QuestionMonthlyStatChart from "./question-monthly-stat";
 
 export const AdminDashboard: React.FC = () => {
   const { isLoading, data } = useFetchDashboardData();
-  const { totalUsers, totalQuestions, userMonthlyStat } = data || {};
+  const { totalUsers, totalQuestions, userMonthlyStat, questionMonthlyStat } = data || {};
   const { subjectWiseCounts, totalQuestionCount } = totalQuestions || {};
   const { roleWiseCounts } = totalUsers || {};
   const modefiedSubjectWiseCount = subjectWiseCounts ? subjectWiseCounts?.map((item) => ({ [item.subject]: item.count })) : [];
@@ -29,6 +30,9 @@ export const AdminDashboard: React.FC = () => {
       </Col>
       <Col sm={24} lg={16} xl={12}>
         <UserMonthlyStatChart isLoading={isLoading} userMonthlyStat={userMonthlyStat} />
+      </Col>
+      <Col sm={24} lg={16} xl={12}>
+        <QuestionMonthlyStatChart isLoading={isLoading} questionMonthlyStat={questionMonthlyStat} />
       </Col>
     </Row>
   );

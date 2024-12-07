@@ -8,10 +8,12 @@ import { ViewAllStudents } from "../ui/Students/view-all";
 import { AddQuestions } from "../ui/Questions/add";
 import { AddAdmin } from "../ui/admins/add";
 import { AdminDashboard } from "../ui/dashboard";
+import { ProfileComponent } from "@/module/auth/ui/profile";
 
 export const AdminRoutes = (
   <Route element={<AdminLayout />}>
     <Route path={AdminUrls.admin} element={<AdminDashboard />} />
+    <Route path={AdminUrls.profile} element={<ProfileComponent />} />
 
     <Route path={AdminUrls.adminAdmin.viewAll} element={<ViewAllAdmins />} />
     <Route path={AdminUrls.adminAdmin.add} element={<AddAdmin mode="New" />} />
