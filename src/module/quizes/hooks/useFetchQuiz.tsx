@@ -10,7 +10,7 @@ const useFetchQuiz = (props: FetchQuizReq) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (type && value) dispatch(fetchQuizAction({ type, value, current, pageSize }));
+    if (type) dispatch(fetchQuizAction({ type, value, current, pageSize }));
   }, [dispatch, type, value, current, pageSize]);
 
   const { isLoading, error, data, success } = useAppSelector((root) => root.FetchQuiz);

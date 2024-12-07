@@ -21,7 +21,7 @@ export const MockTestPage: React.FC = () => {
 
   const { openModal } = useAppSelector((root) => root.QuizHelper);
 
-  const { data, isLoading } = useFetchQuiz({ type: "mockTest", current: 1, pageSize: 10 });
+  const { data, isLoading } = useFetchQuiz({ type: "mockTest", current: 1, pageSize: 200 });
 
   const handleSubmit: FormProps<SaveQuizProps>["onFinish"] = (vals) => {
     const firstUnansweredIndex = vals.questionData?.findIndex((question: any) => !question.answer);

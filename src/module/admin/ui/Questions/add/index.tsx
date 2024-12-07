@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Button, Form, FormProps } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Form, FormProps, Switch } from "antd";
 import FormDebug from "@/helper/form/form-debug";
 import { AddQuestionsProps } from "./type";
 import { BasicSection } from "./basic-section";
@@ -12,8 +12,9 @@ import { resetError, resetSuccess } from "@/module/admin/service/Questions/add/r
 import { resetError as resetEditError, resetSuccess as resetEditSuccess } from "@/module/admin/service/Questions/edit/reducer";
 import { useParams } from "react-router-dom";
 import useFetchQuestion from "@/module/admin/hooks/useFetchQuestion";
-import { mapToForm } from "./helper";
+import { mapToForm, resetFields } from "./helper";
 import { editQuestionAction } from "@/module/admin/service/Questions/edit/action";
+import { UploadOutlined } from "@ant-design/icons";
 
 interface Props {
   mode: "New" | "Edit";
@@ -23,6 +24,9 @@ export const AddQuestions: React.FC<Props> = ({ mode }) => {
   const [form] = Form.useForm<AddQuestionsProps>();
   const dispatch = useAppDispatch();
   const title = "Question";
+
+  const [showUpload, setShowUpload] = useState(false);
+  const handleShowUpload = () => setShowUpload((prev) => !prev);
 
   const { id } = useParams();
   const { data: editData } = useFetchQuestion(id);
@@ -37,7 +41,7 @@ export const AddQuestions: React.FC<Props> = ({ mode }) => {
   };
 
   const { success, error, isLoading } = useAppSelector((root) => root.AddQuestion);
-  const onSuccessReset = () => form.resetFields(["question", "optionA", "optionB", "optionC", "optionD", "correctAnswer", "explanation"]);
+  const onSuccessReset = () => form.resetFields(resetFields);
   useStatusMessage({ success, error, resetError, resetSuccess, onSuccessReset });
 
   const { success: successEdit, error: errorEdit } = useAppSelector((root) => root.EditQuestion);
@@ -50,13 +54,16 @@ export const AddQuestions: React.FC<Props> = ({ mode }) => {
       isFooterOnTop
       loading={false}
       footer={
-        <Button loading={isLoading} type="primary" onClick={() => form.submit()}>
-          Save
-        </Button>
+        <>
+          <Switch checked={showUpload} onChange={handleShowUpload} unCheckedChildren={<UploadOutlined />} checkedChildren={<UploadOutlined />} />
+          <Button loading={isLoading} type="primary" onClick={() => form.submit()}>
+            Save
+          </Button>
+        </>
       }
     >
       <Form onFinish={submitForm} form={form} name="AddQuestion" labelAlign="left" colon={false} requiredMark={customRequiredMark}>
-        <BasicSection />
+        <BasicSection showUpload={showUpload} />
         <FormDebug />
       </Form>
     </FormLayout>

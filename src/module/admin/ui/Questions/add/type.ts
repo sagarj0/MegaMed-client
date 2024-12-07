@@ -2,18 +2,18 @@ export type AddQuestionsProps = {
   subjectData: string[];
   questionNo?: number;
   question: string;
-  qImage?: string | null;
+  qImage?: File | null;
   optionA: string;
   optionB: string;
   optionC: string;
   optionD: string;
-  aImage?: string | null;
-  bImage?: string | null;
-  cImage?: string | null;
-  dImage?: string | null;
+  aImage?: File | null;
+  bImage?: File | null;
+  cImage?: File | null;
+  dImage?: File | null;
   correctAnswer: string;
   explanation?: string;
-  eImage?: string | null;
+  eImage?: File | null;
   tag?: string;
 };
 

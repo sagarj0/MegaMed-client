@@ -4,19 +4,13 @@ import { CheckCircleFilled, CloseCircleFilled, FieldTimeOutlined, FullscreenExit
 import useFullScreen from "@/helper/hooks/useFullScreen";
 import { SaveQuizProps, QuizTypeKeys, SaveQuizKeys } from "../type";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
-import {
-  setTimeCompleted,
-  setStarted,
-  setScoreChecked,
-  resetQuizReducer,
-  setScoreValue,
-  setOpenModal,
-} from "@/store/reducers/quiz-helper/reducer";
+import { setTimeCompleted, setStarted, setScoreChecked, resetQuizReducer, setScoreValue, setOpenModal } from "@/store/reducers/quiz-helper/reducer";
 import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
 import { config } from "@/util/config";
 import useResponsiveDevice from "@/helper/hooks/use-responsive";
 import useBeforeUnload from "@/helper/hooks/useBeforeUnload";
 import useAuthHook from "@/module/auth/hook/useAuthHook";
+import { renderImage } from "./render-image";
 
 interface InteractiveMCQProps {
   MCQs: DetailedQuestion[];
@@ -58,7 +52,8 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
   const renderOptions = (question: DetailedQuestion, index: number) =>
     ["a", "b", "c", "d"].map((option) => (
       <Radio key={option} value={option}>
-        {option}.{question[`option${option.toUpperCase()}` as keyof DetailedQuestion]}{" "}
+        {option}. {question[`option${option.toUpperCase()}` as keyof DetailedQuestion]}{" "}
+        {renderImage(question[`${option}Image` as keyof DetailedQuestion] as string, "Option Image")}{" "}
         {isScoreChecked && (
           <>
             {questionData?.[index]?.correctAnswer === option ? (
@@ -77,18 +72,17 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
         <Skeleton loading={!started} active={isLoading} paragraph={{ rows: 4 }}>
           <Form.Item name={[SaveQuizKeys.questionData, index, QuizTypeKeys.questionId]} initialValue={question.id} noStyle>
             <Typography.Title level={5}>{`${index + 1}. ${question.question}`}</Typography.Title>
+            {renderImage(question.qImage, "Question Image")}
           </Form.Item>
-          <Form.Item
-            name={[SaveQuizKeys.questionData, index, QuizTypeKeys.correctAnswer]}
-            initialValue={question.correctAnswer}
-            noStyle
-            hidden
-          />
+          <Form.Item name={[SaveQuizKeys.questionData, index, QuizTypeKeys.correctAnswer]} initialValue={question.correctAnswer} noStyle hidden />
           <Form.Item name={[SaveQuizKeys.questionData, index, QuizTypeKeys.answer]}>
             <Radio.Group disabled={isScoreChecked}>
               <Space direction="vertical">{renderOptions(question, index)}</Space>
             </Radio.Group>
           </Form.Item>
+          {question.explanation && isScoreChecked && (
+            <Typography.Paragraph type="secondary">Explanation: {question.explanation}</Typography.Paragraph>
+          )}
         </Skeleton>
       </div>
     ),
@@ -130,7 +124,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
       <Card
         loading={isLoading}
         title={
-          <Row>
+          <Row align={"middle"}>
             <Col lg={15}>
               <Space size="large" wrap>
                 <Typography.Title level={4} style={{ whiteSpace: "break-spaces" }}>

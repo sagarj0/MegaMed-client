@@ -14,7 +14,7 @@ export const parseEditRequest = ({ id, oldData, newData }: Props): PatchQuestion
   const updatedData = Object.fromEntries(Object.entries(diffData).filter(([_, value]) => value !== undefined));
 
   //modify the subject data to subject, chapter and unit
-  const { subjectData, ...rest } = updatedData as Partial<AddQuestionsProps>;
+  const { subjectData, qImage, aImage, bImage, cImage, dImage, eImage, ...rest } = updatedData as Partial<AddQuestionsProps>;
   const [newSubject, chapter, unit] = subjectData || [];
   const subject = newSubject?.toLowerCase();
 

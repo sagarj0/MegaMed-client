@@ -1,11 +1,13 @@
 import { AddQuestionsProps } from "@/module/admin/ui/Questions/add/type";
 import { PostQuestionRequest } from "./type";
+import { uploadImages } from "./upload-image";
 
 //modify the subject data to subject, chapter and unit
-
-export const parseQuestionRequest = (data: AddQuestionsProps): PostQuestionRequest => {
-  const { subjectData, ...rest } = data;
+export const uploadAndParse = async (data: AddQuestionsProps): Promise<PostQuestionRequest> => {
+  const { subjectData, qImage, aImage, bImage, cImage, dImage, eImage, ...rest } = data;
   const [subject, unit, chapter] = subjectData;
 
-  return { subject: subject.toLowerCase(), chapter, unit, ...rest };
+  const images = await uploadImages({ qImage, aImage, bImage, cImage, dImage, eImage });
+
+  return { subject: subject.toLowerCase(), chapter, unit, ...rest, ...images };
 };

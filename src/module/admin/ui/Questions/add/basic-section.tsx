@@ -1,9 +1,15 @@
 import { Rules } from "@/helper/form/form-rules";
-import { FormItemProps, Cascader, Input, Radio, Form, InputNumber } from "antd";
+import { FormItemProps, Cascader, Input, Radio, Form, InputNumber, Row, Col, Typography } from "antd";
 import { buildCascaderOptions, subjects, subjectData } from "./subjects";
 import { AddQuestionsProps, AddQuestionKeys } from "./type";
+import { UploadImage } from "./basic-image";
 
-export const BasicSection: React.FC = () => {
+interface Props {
+  showUpload: boolean;
+}
+
+export const BasicSection: React.FC<Props> = (props) => {
+  const { showUpload } = props;
   const cascaderOptions = buildCascaderOptions(subjects, subjectData);
 
   const formItems: FormItemProps<AddQuestionsProps>[] = [
@@ -29,7 +35,7 @@ export const BasicSection: React.FC = () => {
       label: "Q. No.",
       name: AddQuestionKeys.questionNo,
       children: <InputNumber min={1} max={200} />,
-      rules: [Rules.required],
+      // rules: [Rules.required],
     },
     {
       label: "Question",
@@ -37,30 +43,35 @@ export const BasicSection: React.FC = () => {
       children: <Input.TextArea autoSize={{ maxRows: 4, minRows: 2 }} />,
       rules: [Rules.required],
     },
+
     {
       label: "Option A",
       name: AddQuestionKeys.optionA,
       children: <Input type="text" />,
       rules: [Rules.required],
     },
+
     {
       label: "Option B",
       name: AddQuestionKeys.optionB,
       children: <Input type="text" />,
       rules: [Rules.required],
     },
+
     {
       label: "Option C",
       name: AddQuestionKeys.optionC,
       children: <Input type="text" />,
       rules: [Rules.required],
     },
+
     {
       label: "Option D",
       name: AddQuestionKeys.optionD,
       children: <Input type="text" />,
       rules: [Rules.required],
     },
+
     {
       label: "Correct Answer",
       name: AddQuestionKeys.correctAnswer,
@@ -82,16 +93,70 @@ export const BasicSection: React.FC = () => {
     },
   ];
 
+  const images: FormItemProps<AddQuestionsProps>[] = [
+    {
+      label: "Question Image",
+      name: AddQuestionKeys.qImage,
+      children: <UploadImage forName="Question" formKey={AddQuestionKeys.qImage} />,
+    },
+    {
+      label: "Option A Image",
+      name: AddQuestionKeys.aImage,
+      children: <UploadImage forName="Option A" formKey={AddQuestionKeys.aImage} />,
+    },
+    {
+      label: "Option B Image",
+      name: AddQuestionKeys.bImage,
+      children: <UploadImage forName="Option B" formKey={AddQuestionKeys.bImage} />,
+    },
+    {
+      label: "Option C Image",
+      name: AddQuestionKeys.cImage,
+      children: <UploadImage forName="Option C" formKey={AddQuestionKeys.cImage} />,
+    },
+    {
+      label: "Option D Image",
+      name: AddQuestionKeys.dImage,
+      children: <UploadImage forName="Option D" formKey={AddQuestionKeys.dImage} />,
+    },
+  ];
+
   return (
-    <>
-      {formItems.map((item) => (
-        <Form.Item
-          {...item}
-          labelCol={{ span: 4, md: 5, lg: 3 }}
-          wrapperCol={{ span: 20, md: 16, lg: 15, style: { textAlign: "left" } }} // Left-align the input
-          key={item.name as string}
-        />
-      ))}
-    </>
+    <Row>
+      <Col span={24}>
+        {formItems.map((item) => (
+          <Row style={{ width: "100%" }}>
+            <Col span={24}>
+              <Form.Item
+                {...item}
+                labelCol={{ span: 6, md: 7, lg: 4 }}
+                wrapperCol={{ span: 20, md: 16, lg: 15, style: { textAlign: "left" } }} // Left-align the input
+                key={item.name as string}
+              />
+            </Col>
+          </Row>
+        ))}
+      </Col>
+
+      {showUpload && (
+        <Col span={12}>
+          <Typography.Title level={4} style={{ textAlign: "left", marginBlock: 48 }}>
+            Image Uploads
+          </Typography.Title>
+          {images.map((item) => (
+            <Row style={{ width: "100%" }}>
+              <Col span={24}>
+                <Form.Item
+                  {...item}
+                  labelCol={{ span: 10, md: 12, lg: 6 }}
+                  wrapperCol={{ span: 24, md: 20, lg: 18, style: { textAlign: "left" } }}
+                  key={item.name as string}
+                />
+              </Col>
+            </Row>
+          ))}
+        </Col>
+      )}
+    </Row>
   );
 };
