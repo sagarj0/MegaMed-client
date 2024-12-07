@@ -29,8 +29,8 @@ export const BasicSection: React.FC<Props> = (props) => {
     {
       label: "Q. No.",
       name: AddQuestionKeys.questionNo,
-      children: <InputNumber min={1} max={200} />,
-      // rules: [Rules.required],
+      children: <InputNumber />,
+      rules: [Rules.questionNoValidator],
     },
     {
       label: "Question",

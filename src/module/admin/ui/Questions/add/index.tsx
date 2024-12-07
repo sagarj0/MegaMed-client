@@ -26,7 +26,10 @@ export const AddQuestions: React.FC<Props> = ({ mode }) => {
   const title = "Question";
 
   const [showUpload, setShowUpload] = useState(false);
-  const handleShowUpload = () => setShowUpload((prev) => !prev);
+  const handleShowUpload = (checked: boolean) => {
+    setShowUpload((prev) => !prev);
+    !checked && form.resetFields(["qImage", "aImage", "bImage", "cImage", "dImage", "eImage"]);
+  };
 
   const { id } = useParams();
   const { data: editData } = useFetchQuestion(id);
