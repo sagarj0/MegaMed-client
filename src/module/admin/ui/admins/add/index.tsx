@@ -22,7 +22,7 @@ interface Props {
 export const AddAdmin: React.FC<Props> = ({ mode }) => {
   const [form] = Form.useForm<AddAdminProps>();
   const dispatch = useAppDispatch();
-  const title = "Question";
+  const title = "Admin";
 
   const { id } = useParams();
   const { data: editData } = useFetchUser(id);

@@ -1,8 +1,13 @@
 import useFetchAllUser from "@/module/admin/hooks/useFetchAllUser";
 import { DetailedUser } from "@/module/admin/service/Users/fetch/type";
+import { AdminUrls } from "@/module/admin/util/urls";
 import { Button, Card, Table, TableProps, Tag } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export const ViewAllMentors: React.FC = () => {
+  const navigate = useNavigate();
+  const onAddMentor = () => navigate(AdminUrls.adminMentor.add);
+
   const columns: TableProps<DetailedUser>["columns"] = [
     {
       title: "Name",
@@ -33,7 +38,15 @@ export const ViewAllMentors: React.FC = () => {
   const mentorPagination = { ...pagination, total: mentors.length };
 
   return (
-    <Card bordered={false} style={{ boxShadow: "none" }} extra={<Button type="primary">Add Mentor</Button>}>
+    <Card
+      bordered={false}
+      style={{ boxShadow: "none" }}
+      extra={
+        <Button type="primary" onClick={onAddMentor}>
+          Add Mentor
+        </Button>
+      }
+    >
       <Table columns={columns} dataSource={mentors} onChange={handleQueryChange} pagination={mentorPagination} loading={isLoading} />
     </Card>
   );

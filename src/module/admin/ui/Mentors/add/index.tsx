@@ -22,7 +22,7 @@ interface Props {
 export const AddMentor: React.FC<Props> = ({ mode }) => {
   const [form] = Form.useForm<AddMentorProps>();
   const dispatch = useAppDispatch();
-  const title = "Question";
+  const title = "Mentor";
 
   const { id } = useParams();
   const { data: editData } = useFetchUser(id);

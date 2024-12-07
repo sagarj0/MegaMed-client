@@ -17,12 +17,7 @@ export const BasicSection: React.FC<Props> = (props) => {
       label: "Select Subject",
       name: AddQuestionKeys.subjectData,
       children: (
-        <Cascader
-          options={cascaderOptions}
-          dropdownMenuColumnStyle={{ height: "auto" }}
-          showSearch
-          placeholder="Select a subject and subtopic"
-        />
+        <Cascader options={cascaderOptions} dropdownMenuColumnStyle={{ height: "auto" }} showSearch placeholder="Select a subject and subtopic" />
       ),
       normalize: (value: string[] | null) => {
         if (!value) return undefined;
@@ -75,6 +70,7 @@ export const BasicSection: React.FC<Props> = (props) => {
     {
       label: "Correct Answer",
       name: AddQuestionKeys.correctAnswer,
+      rules: [Rules.required],
       children: (
         <Radio.Group
           options={[
@@ -130,7 +126,7 @@ export const BasicSection: React.FC<Props> = (props) => {
               <Form.Item
                 {...item}
                 labelCol={{ span: 6, md: 7, lg: 4 }}
-                wrapperCol={{ span: 20, md: 16, lg: 15, style: { textAlign: "left" } }} // Left-align the input
+                wrapperCol={{ span: 20, md: 16, lg: 15, style: { textAlign: "left" } }}
                 key={item.name as string}
               />
             </Col>
