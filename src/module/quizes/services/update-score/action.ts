@@ -1,14 +1,17 @@
 import { parseError } from "@/helper/parse-error";
-import { saveQuiz } from "./api";
+import { updateScore } from "./api";
 import { AppDispatch } from "@/store";
 import { setLoading, resetLoading, setError, setSuccess } from "./reducer";
-import { UpdateScore } from "./type";
+import { UpdateScoreProps } from "../../ui/type";
+import { parseRequest } from "./parse";
 
-export const updateScoreAction = (props: UpdateScore) => async (dispatch: AppDispatch) => {
+export const updateScoreAction = (props: UpdateScoreProps) => async (dispatch: AppDispatch) => {
   try {
     dispatch(setLoading());
 
-    const response = await saveQuiz(props);
+    const req = parseRequest(props);
+
+    const response = await updateScore(req);
 
     const { message } = response.data;
 

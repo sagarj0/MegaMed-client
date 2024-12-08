@@ -144,7 +144,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
         }
         actions={[
           <Button type="default" disabled={!started || isScoreChecked} onClick={checkScore}>
-            Check the score
+            Submit and Check
           </Button>,
         ]}
         styles={{ header: { flexWrap: "wrap" } }}

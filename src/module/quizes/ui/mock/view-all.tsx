@@ -1,5 +1,5 @@
 import useFetchAllQuiz from "@/module/admin/hooks/useFetchAllQuiz";
-import { Typography, Row, Col, Card, Descriptions } from "antd";
+import { Typography, Row, Col, Card, Descriptions, Button, Empty, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import { QuizUrls } from "../../util/url";
 
@@ -12,6 +12,19 @@ export const ViewAllMockTestPage: React.FC = () => {
   return (
     <>
       <Typography.Title level={3} style={{ textAlign: "center" }}>{`All the Published Mock Tests`}</Typography.Title>
+
+      {data?.length === 0 && (
+        <Empty
+          description={
+            <Space direction="vertical" size="middle">
+              <Typography.Text>Sorry, There are no tests available Mock Test.</Typography.Text>
+              <Button type="primary" onClick={() => navigate(QuizUrls.quiz)}>
+                Go Back
+              </Button>
+            </Space>
+          }
+        />
+      )}
 
       <Row gutter={[24, 24]}>
         {data?.map((quiz) => (

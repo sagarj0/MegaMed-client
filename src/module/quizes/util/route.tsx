@@ -9,9 +9,10 @@ import { ChapterWiseTestPage } from "../ui/chapter-wise/mcqs";
 import { SubjectWiseTestPage } from "../ui/subject-wise/mcqs";
 import { UnitWiseTestPage } from "../ui/unit-wise/mcqs";
 import { MockTestPage } from "../ui/mock/mcqs";
+import { QuizLayout } from "./layout";
 
 export const QuizRoutes = (
-  <Route>
+  <Route element={<QuizLayout />}>
     <Route path={QuizUrls.quiz} element={<QuizPage />} />
     <Route path={QuizUrls.chapterWise + ":chapter"} element={<ViewAllChapterWiseTestPage />} />
     <Route path={QuizUrls.subjectWise + ":subject"} element={<ViewAllSubjectWiseTestPage />} />

@@ -1,6 +1,6 @@
 import { properCase } from "@/helper/proper-case";
 import useFetchAllQuiz from "@/module/admin/hooks/useFetchAllQuiz";
-import { Typography, Row, Col, Card, Descriptions } from "antd";
+import { Typography, Row, Col, Card, Descriptions, Button, Empty, Space } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { QuizUrls } from "../../util/url";
 
@@ -14,6 +14,19 @@ export const ViewAllUnitWiseTestPage: React.FC = () => {
   return (
     <>
       <Typography.Title level={3} style={{ textAlign: "center" }}>{`All the Published ${properCase(unit)} Tests`}</Typography.Title>
+
+      {data?.length === 0 && (
+        <Empty
+          description={
+            <Space direction="vertical" size="middle">
+              <Typography.Text>Sorry, There are no tests available for this Unit.</Typography.Text>
+              <Button type="primary" onClick={() => navigate(QuizUrls.quiz)}>
+                Go Back
+              </Button>
+            </Space>
+          }
+        />
+      )}
 
       <Row gutter={[24, 24]}>
         {data?.map((quiz) => (
