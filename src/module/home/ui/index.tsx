@@ -19,7 +19,7 @@ const Home: React.FC = () => {
         <>
           <Typography.Title level={5} style={{ marginBlock: 0 }} children={`Welcome, ${user?.name}!!`} />
           <Typography.Title level={5} style={{ marginBlock: 0 }} />
-          Time is Tickking for CEE 2025 <TimeDisplay />
+          Time is Ticking for CEE 2025 <TimeDisplay />
           <Typography.Title level={5} />
         </>
       ) : null}

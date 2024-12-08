@@ -5,10 +5,10 @@ const { Meta } = Card;
 const media = [
   { type: "image", src: "/mentors/sandeep.jpg", title: "Sandeep Karki" },
   { type: "image", src: "/mentors/prabhas.jpg", title: "Prabhas Bhandari" },
-  { type: "image", src: "/mentors/anup.jpg", title: "Anup" },
-  { type: "image", src: "/mentors/mentor1.jpg", title: "Our Mentors" },
-  { type: "image", src: "/mentors/mentor2.jpg", title: "Our Mentors" },
-  { type: "image", src: "/mentors/mentor3.jpg", title: "Our Mentors" },
+  { type: "image", src: "/mentors/anuj.jpg", title: "Anuj Pant" },
+  { type: "image", src: "/mentors/suchana.jpg", title: "Suchana Bhandari" },
+  { type: "image", src: "/mentors/prakash.jpg", title: "Prakash" },
+  { type: "image", src: "/mentors/alisha.jpg", title: "Alisha Pokharel" },
 ];
 
 const MentorsGallery: React.FC = () => {

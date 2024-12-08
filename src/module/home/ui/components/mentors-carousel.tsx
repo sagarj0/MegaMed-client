@@ -4,40 +4,34 @@ import { UserOutlined } from "@ant-design/icons";
 // Sample Data
 const mentors = [
   {
-    name: "Dr. Aayush Shrestha",
-    position: "Senior Consultant",
-    feedback: "I have been mentoring students for over 10 years. I believe that every student has the potential to succeed.",
-    avatar: "/aayush-shrestha.jpg",
+    name: "Sandeep Karki",
+    position: "Mentor",
+    feedback: "I have been mentoring students for over 3 years. I believe that every student has the potential to succeed.",
+    avatar: "/mentors/sandeep.jpg",
   },
   {
-    name: "Dr. Anjana Shrestha",
-    position: "Pediatrician",
-    feedback: "I have been mentoring students for over 10 years. I believe that every student has the potential to succeed.",
-    avatar: "/anjana-shrestha.jpg",
+    name: "Anuj Pant",
+    position: "Mentor",
+    feedback: "Mentor is someone who helps students to find the right path and achieve their goals.",
+    avatar: "/mentors/anuj.jpg",
   },
   {
-    name: "Dr. Aashish Shrestha",
-    position: "Cardiologist",
-    feedback: "I have been mentoring students for over 10 years. I believe that every student has the potential to succeed.",
-    avatar: "/aashish-shrestha.jpg",
+    name: "Prabhas Bhandari",
+    position: "Mentor",
+    feedback: "I help students to recognize their potential and work accordingly to achieve their dreams.",
+    avatar: "/mentors/prabhas.jpg",
   },
   {
-    name: "Dr. Aarav Shrestha",
-    position: "Neurologist",
-    feedback: "I have been mentoring students for over 10 years. I believe that every student has the potential to succeed.",
-    avatar: "/aarav-shrestha.jpg",
+    name: "Suchana Bhandari",
+    position: "Mentor",
+    feedback: "I will help you to find the right path based on my experience to drive you to success.",
+    avatar: "/mentors/suchana.jpg",
   },
   {
-    name: "Dr. Aarav Shrestha",
-    position: "Neurologist",
-    feedback: "I have been mentoring students for over 10 years. I believe that every student has the potential to succeed.",
-    avatar: "/aarav-shrestha.jpg",
-  },
-  {
-    name: "Dr. Aarav Shrestha",
-    position: "Neurologist",
-    feedback: "I have been mentoring students for over 10 years. I believe that every student has the potential to succeed.",
-    avatar: "/aarav-shrestha.jpg",
+    name: "Alisha Pokharel",
+    position: "Mentor",
+    feedback: "I will share my experience of 3 drop years and guide you to the right path.",
+    avatar: "/mentors/alisha.jpg",
   },
 ];
 
@@ -49,8 +43,7 @@ export const MentorsSection: React.FC = () => {
           Meet Our Mentors
         </Typography.Title>
         <Typography.Paragraph style={{ textAlign: "center", marginBottom: 30 }}>
-          Our mentors are industry professionals with years of experience in the field. They are here to guide you through your
-          journey.
+          Our mentors are industry professionals with years of experience in the field. They are here to guide you through your journey.
         </Typography.Paragraph>
         <Carousel
           autoplay
@@ -88,14 +81,7 @@ export const MentorsSection: React.FC = () => {
               <Typography.Paragraph style={{ textAlign: "justify", marginBottom: 30 }}>"{mentor.feedback}"</Typography.Paragraph>
 
               <Card.Meta
-                avatar={
-                  <Avatar
-                    size={"large"}
-                    icon={mentor.avatar ? null : <UserOutlined />}
-                    src={mentor.avatar}
-                    style={{ marginBottom: 20 }}
-                  />
-                }
+                avatar={<Avatar size={"large"} icon={mentor.avatar ? null : <UserOutlined />} src={mentor.avatar} style={{ marginBottom: 20 }} />}
                 title={mentor.name}
                 description={mentor.position}
               />

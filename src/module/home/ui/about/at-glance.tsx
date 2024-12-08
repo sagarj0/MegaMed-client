@@ -17,7 +17,6 @@ const media = [
   { type: "image", src: "/aglance/photo9.jpg" },
   { type: "video", src: "/aglance/vid.MOV" },
   { type: "video", src: "/aglance/vid1.MOV" },
-  { type: "video", src: "/aglance/vid2.MOV" },
 ];
 
 const AtAGlance: React.FC = () => {
@@ -26,9 +25,7 @@ const AtAGlance: React.FC = () => {
       <Typography.Title level={2} style={{ marginBottom: 20, color: "var(--primary-color)", textAlign: "center", width: "100%" }}>
         Us At a Glance
       </Typography.Title>
-      <Typography.Paragraph style={{ textAlign: "center", width: "100%", marginBottom: 30 }}>
-        Have a look at our journey so far.
-      </Typography.Paragraph>
+      <Typography.Paragraph style={{ textAlign: "center", width: "100%", marginBottom: 30 }}>Have a look at our journey so far.</Typography.Paragraph>
       <Row style={{ width: "100%" }}>
         <Image.PreviewGroup items={media.map(({ src }) => src)}>
           {media.map((item, index) => (

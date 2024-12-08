@@ -3,37 +3,35 @@ import { UserOutlined } from "@ant-design/icons";
 
 const testimonials = [
   {
-    name: "Dr. Alex Johnson",
-    avatar: null, // Use null to show default Avatar or replace with actual URL
-    title: "Scholarship Achiever",
+    name: "Kritagya Raj Pandey",
+    avatar: "/testimonials/kritagya.jpg",
+    title: "CEE MBBS 2080 Rank 1",
+    feedback: "The mentoring was amazing! The tests and final days' series gave me the practice I needed.",
+  },
+  {
+    name: "Sarisa Bhattrai",
+    avatar: "/testimonials/sarisa.jpg",
+    title: "CEE BDS 2081 rank-119",
+    feedback: "The structured guidance, expert insights, and personalized support provided by the mentors helped me stay focused.",
+  },
+  {
+    name: "Sanu Kumar Yadav",
+    avatar: "/testimonials/sanu.jpg",
+    title: "CEE MBBS 2081 rank-147",
+    feedback: "The mentor who will guide us in every difficulties that comes during our preparation along with the regular tests and quizzes.",
+  },
+  {
+    name: "Malbika Chaudhary",
+    avatar: "/testimonials/malbika.jpg",
+    title: "CEE BDS 2081 rank-1, CEE MBBS 2081 rank - 61",
+    feedback: "The mentors, routine plans, and tests kept me focused. It made my exam preparation simple.",
+  },
+  {
+    name: "Bishal Karki",
+    avatar: "/testimonials/bishal.jpg",
+    title: "CEE MBBS 2080 rank-37",
     feedback:
-      "This platform truly transformed my journey. The expert mentorship and practice tests were crucial in securing my scholarship seat.",
-  },
-  {
-    name: "Emily Carter",
-    avatar: null,
-    title: "Medical Student",
-    feedback:
-      "The progress tracking feature helped me focus on my weak areas and improve significantly. I couldn't have done it without this app.",
-  },
-  {
-    name: "Michael Brown",
-    avatar: null,
-    title: "Top Rank Holder",
-    feedback:
-      "The structured learning path and insightful mentorship made all the difference. A must-have platform for any aspirant!",
-  },
-  {
-    name: "Sophia Lee",
-    avatar: null,
-    title: "Test Series Topper",
-    feedback: "The practice tests were perfectly aligned with the exam pattern. They gave me the confidence I needed to excel.",
-  },
-  {
-    name: "Daniel Wilson",
-    avatar: null,
-    title: "Alumni Mentor",
-    feedback: "As an alumni mentor, I find this platform invaluable for guiding students toward success. Highly recommended!",
+      "It's definitely worth your time As someone who made it to IOM, these brothers and sisters whom we call as our mentors are the reasons behind it",
   },
 ];
 
@@ -80,18 +78,11 @@ export const TestimonialCarousel: React.FC = () => {
         >
           {testimonials.map((testimonial, index) => (
             <Card key={index} style={{ padding: 8 }}>
-              <Typography.Paragraph style={{ textAlign: "justify", marginBottom: 30 }}>
-                "{testimonial.feedback}"
-              </Typography.Paragraph>
+              <Typography.Paragraph style={{ textAlign: "justify", marginBottom: 30 }}>"{testimonial.feedback}"</Typography.Paragraph>
 
               <Card.Meta
                 avatar={
-                  <Avatar
-                    size={"large"}
-                    icon={testimonial.avatar ? null : <UserOutlined />}
-                    src={testimonial.avatar}
-                    style={{ marginBottom: 20 }}
-                  />
+                  <Avatar size={64} icon={testimonial.avatar ? null : <UserOutlined />} src={testimonial.avatar} style={{ marginBottom: 20 }} />
                 }
                 title={testimonial.name}
                 description={testimonial.title}
