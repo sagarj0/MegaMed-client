@@ -74,8 +74,17 @@ export const ProfileComponent: React.FC = () => {
           )}
 
           <Space direction="vertical" align="start" style={{ width: "100%" }}>
-            {(isAdmin || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.mentor}>Go to Mentor Dashboard</Typography.Link>}
-            {(isAdmin || isMentor || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.home}>Go to home page</Typography.Link>}
+            {(isAdmin || config.appMode !== "PRODUCTION") && (
+              <>
+                <Typography.Link href={AllUrls.admin}>Dashboard</Typography.Link>
+              </>
+            )}
+            {(isAdmin || isMentor || config.appMode !== "PRODUCTION") && (
+              <>
+                <Typography.Link href={AllUrls.mentor}>Go to Mentor Dashboard</Typography.Link>
+                <Typography.Link href={AllUrls.home}>Go to home page</Typography.Link>
+              </>
+            )}
           </Space>
         </Space>
       </Col>
