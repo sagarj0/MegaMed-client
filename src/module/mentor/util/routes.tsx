@@ -9,7 +9,7 @@ import { ProfileComponent } from "@/module/auth/ui/profile";
 export const MentorRoutes = (
   <Route element={<MentorLayout />}>
     <Route path={MentorUrls.mentor} element={<MentorDashboard />} />
-    <Route path={MentorUrls.profile} element={<ProfileComponent />} />
+    <Route path={MentorUrls.mentorProfile} element={<ProfileComponent />} />
 
     <Route path={MentorUrls.mentorquestions.viewAll} element={<ViewAllQuestion />} />
     <Route path={MentorUrls.mentorquestions.add} element={<AddQuestions mode="New" />} />

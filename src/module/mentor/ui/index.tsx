@@ -102,7 +102,7 @@ const MentorLayout: React.FC = () => {
           </Title>
           {isMobile ? (
             <Row align={"middle"}>
-              <Link to={MentorUrls.profile}>
+              <Link to={MentorUrls.mentorProfile}>
                 <UserAvatar />
               </Link>
               <Dropdown overlay={<Menu items={items} selectedKeys={[selectedKey || "dashboard"]} />} trigger={["click"]}>
@@ -110,7 +110,7 @@ const MentorLayout: React.FC = () => {
               </Dropdown>
             </Row>
           ) : (
-            <Link to={MentorUrls.profile}>
+            <Link to={MentorUrls.mentorProfile}>
               <UserAvatar />
             </Link>
           )}

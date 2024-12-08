@@ -1,6 +1,6 @@
 export const AdminUrls = {
   admin: "/admin/",
-  profile: "/admin/profile",
+  adminProfile: "/admin/profile",
   adminStudent: {
     view: "/admin/manage/students/view",
     add: "/admin/manage/students/add",

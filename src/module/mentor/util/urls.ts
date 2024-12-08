@@ -1,6 +1,6 @@
 export const MentorUrls = {
   mentor: "/mentor/",
-  profile: "/mentor/profile",
+  mentorProfile: "/mentor/profile",
 
   mentorquestions: {
     viewAll: "/mentor/manage/questions",

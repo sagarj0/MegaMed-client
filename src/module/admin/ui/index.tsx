@@ -128,7 +128,7 @@ const AdminLayout: React.FC = () => {
           </Title>
           {isMobile ? (
             <Row align={"middle"}>
-              <Link to={AdminUrls.profile}>
+              <Link to={AdminUrls.adminProfile}>
                 <UserAvatar />
               </Link>
               <Dropdown overlay={<Menu items={items} selectedKeys={[selectedKey || "dashboard"]} />} trigger={["click"]}>
@@ -136,7 +136,7 @@ const AdminLayout: React.FC = () => {
               </Dropdown>
             </Row>
           ) : (
-            <Link to={AdminUrls.profile}>
+            <Link to={AdminUrls.adminProfile}>
               <UserAvatar />
             </Link>
           )}
