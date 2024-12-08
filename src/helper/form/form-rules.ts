@@ -10,6 +10,8 @@ export const Rules: Record<RuleKey, RuleObject> = {
   email: { type: "email", message: "" },
 
   questionNoValidator: {
+    required: true,
+    message: "",
     validator: async (_, value) => {
       if (value && (value < 1 || value > 200)) {
         return Promise.reject("Question number should be between 1 and 200");
