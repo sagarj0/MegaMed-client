@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { Timeline, Radio, Typography, Space, Form, TimelineProps, Button, Statistic, Col, Card, Skeleton, FloatButton, Row } from "antd";
 import { CheckCircleFilled, CloseCircleFilled, FieldTimeOutlined, FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
 import useFullScreen from "@/helper/hooks/useFullScreen";
-import { SaveQuizProps, QuizTypeKeys, SaveQuizKeys } from "../type";
+import { QuizDataTypeKeys, UpdateScoreKey, UpdateScoreProps } from "../type";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { setTimeCompleted, setStarted, setScoreChecked, resetQuizReducer, setScoreValue, setOpenModal } from "@/store/reducers/quiz-helper/reducer";
+import { setTimeCompleted, setStarted, resetQuizReducer, setScoreValue } from "@/store/reducers/quiz-helper/reducer";
 import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
 import { config } from "@/util/config";
 import useResponsiveDevice from "@/helper/hooks/use-responsive";
@@ -32,8 +32,8 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
     dispatch(resetQuizReducer());
   }, []);
 
-  const form = Form.useFormInstance<SaveQuizProps>();
-  const questionData = Form.useWatch(SaveQuizKeys.questionData, form);
+  const form = Form.useFormInstance<UpdateScoreProps>();
+  const questionData = Form.useWatch(UpdateScoreKey.questionData, form);
   const { toogleFullScreen, isFullScreen } = useFullScreen();
 
   const checkScore = () => {
@@ -44,9 +44,9 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
       return;
     }
     const obtainedScore = questionData?.reduce((acc, question) => (question.answer === question.correctAnswer ? acc + 1 : acc), 0);
-    form.setFieldValue(SaveQuizKeys.score, obtainedScore);
+    form.setFieldValue(UpdateScoreKey.score, obtainedScore);
     dispatch(setScoreValue(obtainedScore));
-    dispatch(setScoreChecked(true));
+    form.submit();
   };
 
   const renderOptions = (question: DetailedQuestion, index: number) =>
@@ -70,12 +70,17 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
     children: (
       <div key={index}>
         <Skeleton loading={!started} active={isLoading} paragraph={{ rows: 4 }}>
-          <Form.Item name={[SaveQuizKeys.questionData, index, QuizTypeKeys.questionId]} initialValue={question.id} noStyle>
+          <Form.Item name={[UpdateScoreKey.questionData, index, QuizDataTypeKeys.questionId]} initialValue={question.id} noStyle>
             <Typography.Title level={5}>{`${index + 1}. ${question.question}`}</Typography.Title>
             {renderImage(question.qImage, "Question Image")}
           </Form.Item>
-          <Form.Item name={[SaveQuizKeys.questionData, index, QuizTypeKeys.correctAnswer]} initialValue={question.correctAnswer} noStyle hidden />
-          <Form.Item name={[SaveQuizKeys.questionData, index, QuizTypeKeys.answer]}>
+          <Form.Item
+            name={[UpdateScoreKey.questionData, index, QuizDataTypeKeys.correctAnswer]}
+            initialValue={question.correctAnswer}
+            noStyle
+            hidden
+          />
+          <Form.Item name={[UpdateScoreKey.questionData, index, QuizDataTypeKeys.answer]}>
             <Radio.Group disabled={isScoreChecked}>
               <Space direction="vertical">{renderOptions(question, index)}</Space>
             </Radio.Group>
@@ -140,9 +145,6 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
         actions={[
           <Button type="default" disabled={!started || isScoreChecked} onClick={checkScore}>
             Check the score
-          </Button>,
-          <Button type="primary" disabled={!isScoreChecked} onClick={() => dispatch(setOpenModal(true))}>
-            Save Quiz
           </Button>,
         ]}
         styles={{ header: { flexWrap: "wrap" } }}

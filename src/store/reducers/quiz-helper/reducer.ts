@@ -6,8 +6,6 @@ const initialState = {
   isScoreChecked: false,
   score: 0,
 
-  openModal: false,
-
   startedTime: 0,
 };
 
@@ -28,10 +26,6 @@ const slice = createSlice({
       state.isScoreChecked = action.payload;
     },
 
-    setOpenModal: (state, action: { payload: boolean }) => {
-      state.openModal = action.payload;
-    },
-
     setScoreValue: (state, action: { payload: number }) => {
       state.score = action.payload;
     },
@@ -42,10 +36,9 @@ const slice = createSlice({
       state.isScoreChecked = false;
       state.startedTime = 0;
       state.score = 0;
-      state.openModal = false;
     },
   },
 });
 
-export const { setScoreValue, setStarted, setTimeCompleted, setScoreChecked, resetQuizReducer, setOpenModal } = slice.actions;
+export const { setScoreValue, setStarted, setTimeCompleted, setScoreChecked, resetQuizReducer } = slice.actions;
 export default slice.reducer;

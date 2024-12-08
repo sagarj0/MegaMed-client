@@ -1,30 +1,22 @@
-export type QuizType = {
+export type QuizDataType = {
   questionId: string;
   answer: string;
   correctAnswer: string;
 };
 
-export type SaveQuizProps = {
-  title: string;
-  type?: "subject" | "mock_test" | "chapter" | "unit" | "custom";
-  subject?: string;
-  unit?: string;
-  chapter?: string;
-  score?: number;
-  questionData: QuizType[];
+export type UpdateScoreProps = {
+  quizId: string;
+  score: number;
+  questionData: QuizDataType[];
 };
 
-export const SaveQuizKeys: Required<{ [K in keyof SaveQuizProps]: K }> = {
-  title: "title",
-  type: "type",
-  subject: "subject",
-  unit: "unit",
-  chapter: "chapter",
+export const UpdateScoreKey: Required<{ [K in keyof UpdateScoreProps]: K }> = {
   score: "score",
+  quizId: "quizId",
   questionData: "questionData",
 };
 
-export const QuizTypeKeys: Required<{ [K in keyof QuizType]: K }> = {
+export const QuizDataTypeKeys: Required<{ [K in keyof QuizDataType]: K }> = {
   questionId: "questionId",
   answer: "answer",
   correctAnswer: "correctAnswer",

@@ -1,1 +1,1 @@
-export { default as SaveQuiz } from "./save/reducer";
+export { default as UpdateScore } from "./update-score/reducer";

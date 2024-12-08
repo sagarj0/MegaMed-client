@@ -1,5 +1,5 @@
 import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
-import { SaveQuizProps } from "@/module/quizes/ui/type";
+import { SaveQuizProps } from "@/module/admin/ui/quizes/add/type";
 
 export type DetailedQuiz = DetailedQuestion[];
 
