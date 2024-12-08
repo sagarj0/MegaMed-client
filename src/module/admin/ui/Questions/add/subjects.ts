@@ -241,7 +241,7 @@ export const getUnitGroups = (subject?: string): GroupType[] => {
           label,
           options: options.map((option) => ({
             label: option,
-            value: option.toLowerCase().replace(/\s+/g, "-"),
+            value: option,
           })),
         },
       ];
@@ -255,7 +255,7 @@ export const getUnitGroups = (subject?: string): GroupType[] => {
     label,
     options: groupedSubjects[label].map((option) => ({
       label: option,
-      value: option.toLowerCase().replace(/\s+/g, "-"), // Option value (unit name in lowercase with spaces replaced by dashes)
+      value: option, // Option value (unit name in lowercase with spaces replaced by dashes)
     })),
   }));
 };

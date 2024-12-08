@@ -3,6 +3,11 @@ import { SaveQuizProps } from "@/module/admin/ui/quizes/add/type";
 
 export type DetailedQuiz = DetailedQuestion[];
 
+export type MockDetailedQuiz = {
+  subject: string;
+  questions: DetailedQuestion[];
+};
+
 export type GenerateQuizReq = {
   pageSize?: number;
   current?: number;

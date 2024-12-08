@@ -18,6 +18,7 @@ export const GenerateQuiz: React.FC = () => {
 
   const isButtonDisabled =
     type === undefined ||
+    pageSize === undefined ||
     (type === "subject" && subject === undefined) ||
     (type === "unit" && unit === undefined) ||
     (type === "chapter" && chapter === undefined);

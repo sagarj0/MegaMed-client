@@ -10,11 +10,11 @@ export const BasicSection: React.FC = () => {
   const isSubjectDisabled = type === undefined || type === "mock_test" || type === "custom";
   const isUnitDisabled = isSubjectDisabled || type === "subject";
   const isChapterDisabled = isUnitDisabled || type === "unit";
-
   const isPageSizeDisabled = type === undefined || type === "custom" || type === "mock_test";
 
   const onTypeChange = (value: string) => {
     const isLargePageSize = value === "mock_test" || value === "custom";
+    form.resetFields([SaveQuizKeys.subject, SaveQuizKeys.unit, SaveQuizKeys.chapter]);
     form.setFieldValue(SaveQuizKeys.pageSize, isLargePageSize ? 200 : 50);
   };
 
