@@ -72,7 +72,7 @@ const MainLayout: React.FC = () => {
             marginInline: isFullScreen ? 0 : "auto",
             height: "100%",
             width: "100%",
-            background: "rgba(255, 255, 255, 0.5)", // Glass effect
+            background: "rgba(255, 255, 255, 0.8)", // Glass effect
             backdropFilter: "blur(8px)", // Glass blur
             borderRadius, // Matches theme's border radius
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Adds a subtle shadow

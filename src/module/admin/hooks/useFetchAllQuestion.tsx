@@ -39,7 +39,7 @@ const useFetchAllQuestion = (props: Props) => {
   };
   const handleSearch = (searchText?: string) => dispatch(updateSearch(searchText));
 
-  return { isLoading, data, pagination, handleSearch, handleQueryChange };
+  return { isLoading, data, pagination, handleSearch, handleQueryChange, subject };
 };
 
 export default useFetchAllQuestion;

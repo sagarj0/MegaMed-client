@@ -2,6 +2,7 @@ import { DetailedQuiz } from "@/module/admin/service/quizes/generate/type";
 import { Card, Typography, Col, Descriptions, Form, Space } from "antd";
 import { SaveQuizKeys } from "./type";
 import { CheckCircleFilled } from "@ant-design/icons";
+import { renderImage } from "@/module/quizes/ui/components/render-image";
 
 interface Props {
   data: DetailedQuiz;
@@ -19,22 +20,27 @@ export const RenderQuiz: React.FC<Props> = ({ data, isLoading, title }) => {
               column={1}
               colon={false}
               size="small"
-              style={{ marginBlock: 24 }}
+              style={{ marginBlock: 32 }}
               items={[
                 {
                   label: "Q " + (index + 1) + ".",
                   children: (
-                    <>
+                    <Space direction="vertical">
                       {question.question}
+                      {renderImage(question.qImage, "question image")}
                       <Form.Item name={[SaveQuizKeys.questionIds, index]} initialValue={question.id} noStyle hidden />
-                    </>
+                    </Space>
                   ),
                 },
                 {
                   label: "a.",
                   children: (
                     <Space>
-                      {question.optionA} {question.correctAnswer === "a" && <CheckCircleFilled style={{ color: "green" }} />}
+                      <Space direction="vertical" align="start">
+                        {question.optionA}
+                        {renderImage(question.aImage, "option a image")}
+                      </Space>
+                      {question.correctAnswer === "a" && <CheckCircleFilled style={{ color: "green" }} />}
                     </Space>
                   ),
                 },
@@ -42,7 +48,11 @@ export const RenderQuiz: React.FC<Props> = ({ data, isLoading, title }) => {
                   label: "b.",
                   children: (
                     <Space>
-                      {question.optionB} {question.correctAnswer === "b" && <CheckCircleFilled style={{ color: "green" }} />}
+                      <Space direction="vertical" align="start">
+                        {question.optionB}
+                        {renderImage(question.bImage, "option b image")}
+                      </Space>
+                      {question.correctAnswer === "b" && <CheckCircleFilled style={{ color: "green" }} />}
                     </Space>
                   ),
                 },
@@ -50,7 +60,11 @@ export const RenderQuiz: React.FC<Props> = ({ data, isLoading, title }) => {
                   label: "c.",
                   children: (
                     <Space>
-                      {question.optionC} {question.correctAnswer === "c" && <CheckCircleFilled style={{ color: "green" }} />}
+                      <Space direction="vertical" align="start">
+                        {question.optionC}
+                        {renderImage(question.cImage, "option c image")}
+                      </Space>
+                      {question.correctAnswer === "c" && <CheckCircleFilled style={{ color: "green" }} />}
                     </Space>
                   ),
                 },
@@ -58,7 +72,11 @@ export const RenderQuiz: React.FC<Props> = ({ data, isLoading, title }) => {
                   label: "d.",
                   children: (
                     <Space>
-                      {question.optionD} {question.correctAnswer === "d" && <CheckCircleFilled style={{ color: "green" }} />}
+                      <Space direction="vertical" align="start">
+                        {question.optionD}
+                        {renderImage(question.dImage, "option d image")}
+                      </Space>
+                      {question.correctAnswer === "d" && <CheckCircleFilled style={{ color: "green" }} />}
                     </Space>
                   ),
                 },

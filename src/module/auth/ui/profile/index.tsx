@@ -1,11 +1,15 @@
 import useAuthHook from "@/module/auth/hook/useAuthHook";
 import { Col, Row, theme, Typography, Descriptions, Space, Tag } from "antd";
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
+import { AllUrls } from "@/router/urls";
+import { config } from "@/util/config";
 
 export const ProfileComponent: React.FC = () => {
   const { user, UserAvatar } = useAuthHook();
   const isPaid = user?.isPaidUser;
   const isStudent = user?.role === "student";
+  const isAdmin = user?.role === "admin";
+  const isMentor = user?.role === "mentor";
 
   const {
     token: { fontSizeHeading1 },
@@ -38,35 +42,41 @@ export const ProfileComponent: React.FC = () => {
   return (
     <Row justify="center" wrap>
       <Col>
-        <Space direction="vertical" align="center" size={"large"}>
+        <Space direction="vertical" align="center" size={"large"} style={{ alignItems: "stretch" }}>
           <div>
             <UserAvatar style={{ width: 128, height: 128, fontSize: fontSizeHeading1 }} />
             <Typography.Title level={4}>{user?.name}</Typography.Title>
           </div>
           <Descriptions
-            // title="User Info"
             column={1}
             colon={false}
             size="small"
             style={{ width: 300, textAlign: "center" }}
-            labelStyle={{ width: 150 }}
-            contentStyle={{ width: 150 }}
+            labelStyle={{ width: 90 }}
+            contentStyle={{ width: 180, textWrap: "nowrap" }}
             items={descriptionItems}
           />
-          <Typography.Title level={4}>Accessible Features</Typography.Title>
 
-          {isStudent && (
-            <Descriptions
-              // title="Accessible Features"
-              column={1}
-              colon={false}
-              size="small"
-              style={{ width: 300, textAlign: "center" }}
-              labelStyle={{ width: 150 }}
-              contentStyle={{ width: 150, justifyContent: "end" }}
-              items={accessibleFeatures}
-            />
+          {(isStudent || config.appMode !== "PRODUCTION") && (
+            <>
+              <Typography.Title level={4}>Accessible Features</Typography.Title>
+              <Descriptions
+                // title="Accessible Features"
+                column={1}
+                colon={false}
+                size="small"
+                style={{ width: 300, textAlign: "center" }}
+                labelStyle={{ width: 150 }}
+                contentStyle={{ width: 150, justifyContent: "end" }}
+                items={accessibleFeatures}
+              />
+            </>
           )}
+
+          <Space direction="vertical" align="start" style={{ width: "100%" }}>
+            {(isAdmin || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.mentor}>Go to Mentor Dashboard</Typography.Link>}
+            {(isAdmin || isMentor || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.home}>Go to home page</Typography.Link>}
+          </Space>
         </Space>
       </Col>
     </Row>

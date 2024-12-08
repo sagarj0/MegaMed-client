@@ -135,7 +135,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
                 <Typography.Title level={4} style={{ whiteSpace: "break-spaces" }}>
                   {title}
                 </Typography.Title>
-                {isScoreChecked && <Statistic title="Score" value={score} suffix={`/ ${MCQs.length}`} />}
+                {isScoreChecked && <Statistic title="Score" value={score} suffix={`/ ${MCQs?.length}`} />}
                 {isFullScreen ? <FloatButton style={{ width: 80, height: 80 }} description={renderTimer()} /> : renderTimer()}
               </Space>
             </Col>

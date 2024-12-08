@@ -11,8 +11,6 @@ export const ViewAllChapterWiseTestPage: React.FC = () => {
 
   const handleOnClick = (id: string) => navigate(QuizUrls.giveChapterWiseTest + id);
 
-  console.log(data);
-
   return (
     <>
       <Typography.Title level={3} style={{ textAlign: "center" }}>{`All the Published ${properCase(chapter)} Tests`}</Typography.Title>

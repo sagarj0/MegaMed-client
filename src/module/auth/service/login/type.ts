@@ -24,6 +24,7 @@ export type User = {
   active: boolean;
   isPaidUser: boolean;
   isEmailVerified: boolean;
+  questionCount?: number;
 };
 
 export type LoginResponse = {

@@ -25,6 +25,11 @@ export const ViewAllMentors: React.FC = () => {
       key: "phone",
     },
     {
+      title: "Question Count",
+      dataIndex: "questionCount",
+      key: "questionCount",
+    },
+    {
       title: "Status",
       dataIndex: "active",
       key: "status",
