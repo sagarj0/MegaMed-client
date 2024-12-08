@@ -30,7 +30,7 @@ export const SuccessAuth: React.FC = () => {
     setMessage("Welcome! Redirecting...");
     const userRole = user?.role;
     if (userRole === "admin") setTimeout(() => navigate(AllUrls.admin), 1000);
-    // if (userRole === "mentor") setTimeout(() => navigate(AllUrls.mentor), 1000);
+    if (userRole === "mentor") setTimeout(() => navigate(AllUrls.mentor), 1000);
     if (userRole === "student") setTimeout(() => navigate(AllUrls.home), 1000);
   };
   const onErrorReset = () => {
