@@ -36,7 +36,7 @@ const siderStyle: React.CSSProperties = {
 };
 
 const AdminLayout: React.FC = () => {
-  const { UserAvatar, logout } = useAuthHook({ checkToken: true, roleCheck: "admin" });
+  const { UserAvatar, logout } = useAuthHook({ checkToken: true, roleCheck: ["admin"] });
 
   const {
     token: { colorBgContainer, borderRadiusLG },

@@ -10,7 +10,7 @@ import { message } from "antd";
 interface Props {
   checkToken?: boolean;
   checkIsPaid?: boolean;
-  roleCheck?: UserRole;
+  roleCheck?: UserRole[];
 }
 
 const useAuthHook = (props?: Props) => {
@@ -39,7 +39,10 @@ const useAuthHook = (props?: Props) => {
 
   const checkAccessTokenValidation = () => {
     if (!accessToken) navigate(AllUrls.login);
-    if (roleCheck && user.role !== roleCheck && config.appMode === "PRODUCTION") navigate(AllUrls.login);
+    if (roleCheck && config.appMode === "PRODUCTION") {
+      const isRoleMatched = roleCheck.includes(user?.role);
+      if (!isRoleMatched) navigate(AllUrls.login);
+    }
   };
   if (checkToken) checkAccessTokenValidation();
 

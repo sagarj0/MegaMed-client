@@ -27,7 +27,7 @@ const siderStyle: React.CSSProperties = {
 };
 
 const MentorLayout: React.FC = () => {
-  const { UserAvatar, logout } = useAuthHook({ checkToken: true, roleCheck: "mentor" });
+  const { UserAvatar, logout } = useAuthHook({ checkToken: true, roleCheck: ["mentor", "admin"] });
 
   const {
     token: { colorBgContainer, borderRadiusLG },
