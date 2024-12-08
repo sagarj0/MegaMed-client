@@ -25,4 +25,10 @@ export const AdminUrls = {
     edit: "/admin/manage/questions/edit",
     view: "/admin/manage/questions/view",
   },
+  adminquizes: {
+    viewAll: "/admin/manage/quizes",
+    add: "/admin/manage/quizes/add",
+    edit: "/admin/manage/quizes/edit",
+    view: "/admin/manage/quizes/view/",
+  },
 };

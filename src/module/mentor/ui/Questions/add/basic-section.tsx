@@ -1,6 +1,6 @@
 import { Rules } from "@/helper/form/form-rules";
 import { FormItemProps, Cascader, Input, Radio, Form, InputNumber, Row, Col, Typography } from "antd";
-import { buildCascaderOptions, subjects, subjectData } from "./subjects";
+import { buildCascaderOptions, subjects, subjectData } from "@/module/admin/ui/Questions/add/subjects";
 import { AddQuestionsProps, AddQuestionKeys } from "./type";
 import { UploadImage } from "./basic-image";
 

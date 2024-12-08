@@ -4,4 +4,9 @@ export const QuizUrls = {
   unitWise: "/quiz/unit-wise/",
   chapterWise: "/quiz/chapter-wise/",
   mockTest: "/quiz/mock-test/",
+
+  giveSubjectWiseTest: "/quiz/give/subject-wise/",
+  giveUnitWiseTest: "/quiz/give/unit-wise/",
+  giveChapterWiseTest: "/quiz/give/chapter-wise/",
+  giveMockTest: "/quiz/give/mock-test/",
 };

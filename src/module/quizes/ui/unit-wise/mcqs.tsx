@@ -1,27 +1,25 @@
 import { Form, FormProps, Input, Modal } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
 import { InteractiveMCQ } from "../components/interactive-mcq";
 import FormDebug from "@/helper/form/form-debug";
-import useFetchQuiz from "../../hooks/useFetchQuiz";
-import { SaveQuizKeys, SaveQuizProps } from "../type";
+import useFetchQuiz from "@/module/admin/hooks/useFetchQuiz";
+import { resetError, resetSuccess } from "@/module/quizes/services/save/reducer";
+import useStatusMessage from "@/helper/hooks/use-message";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { resetQuizReducer, setOpenModal } from "@/store/reducers/quiz-helper/reducer";
 import { saveQuizAction } from "../../services/save/action";
-import useStatusMessage from "@/helper/hooks/use-message";
-import { resetError, resetSuccess } from "@/module/quizes/services/save/reducer";
 import { QuizUrls } from "../../util/url";
-import { useNavigate } from "react-router-dom";
-import { Rules } from "@/helper/form/form-rules";
+import { SaveQuizProps, SaveQuizKeys } from "../type";
 
-export const MockTestPage: React.FC = () => {
-  const [form] = Form.useForm<SaveQuizProps>();
+export const UnitWiseTestPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const time = 1000 * 60 * 180; // 180 minutes
+  const [form] = Form.useForm<SaveQuizProps>();
+  const { data, isLoading } = useFetchQuiz(id);
+  const time = 1000 * 60 * 20; // 20 minutes
 
   const { openModal } = useAppSelector((root) => root.QuizHelper);
-
-  const { data, isLoading } = useFetchQuiz({ type: "mockTest", current: 1, pageSize: 200 });
 
   const handleSubmit: FormProps<SaveQuizProps>["onFinish"] = (vals) => {
     const firstUnansweredIndex = vals.questionData?.findIndex((question: any) => !question.answer);
@@ -52,24 +50,17 @@ export const MockTestPage: React.FC = () => {
         okText="Submit"
         styles={{ body: { padding: "40px 20px" } }}
       >
-        <Form.Item
-          name={SaveQuizKeys.title}
-          label={"Name"}
-          labelCol={{ span: 7 }}
-          rules={[Rules.required]}
-          children={<Input placeholder="Enter the name for this quiz" />}
-        />
+        <Form.Item name={SaveQuizKeys.title} label={"Name"} labelCol={{ span: 7 }} initialValue={data?.title} children={<Input disabled />} />
         <Form.Item
           name={SaveQuizKeys.type}
-          initialValue={"mock_test" as SaveQuizProps["type"]}
+          initialValue={"unit" as SaveQuizProps["type"]}
           labelCol={{ span: 7 }}
           label={"Type"}
           children={<Input disabled />}
         />
-
         <Form.Item name={SaveQuizKeys.score} labelCol={{ span: 7 }} label={"Score Obtained"} children={<Input disabled />} />
       </Modal>
-      <InteractiveMCQ MCQs={data} isLoading={isLoading} title={"Mock Test"} time={time} timeFormat={"HH:mm:ss"} />
+      <InteractiveMCQ MCQs={data?.questions} isLoading={isLoading} title={data?.unit!} time={time} />
       <FormDebug />
     </Form>
   );

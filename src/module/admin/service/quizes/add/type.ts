@@ -1,0 +1,12 @@
+import { SaveQuizProps } from "@/module/admin/ui/quizes/add/type";
+
+export type PostQuizRequest = SaveQuizProps;
+
+export type SaveQuizResponse = Omit<SaveQuizProps, "questionData"> & { id: string; createdBy: string; questionCount: number };
+
+export type PostQuizResponse = {
+  data: {
+    data: SaveQuizResponse;
+    message: string;
+  };
+};

@@ -1,5 +1,14 @@
 import React from "react";
-import { BarChartOutlined, BarsOutlined, FormOutlined, KeyOutlined, PoweroffOutlined, UsergroupAddOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  BarChartOutlined,
+  BarsOutlined,
+  FormOutlined,
+  KeyOutlined,
+  PoweroffOutlined,
+  UsergroupAddOutlined,
+  UserOutlined,
+  SnippetsOutlined,
+} from "@ant-design/icons";
 import { Layout, Menu, theme, MenuProps, Typography, Button, Dropdown, Row } from "antd";
 import { useNavigate, useLocation, Outlet, Link } from "react-router-dom";
 import { AdminUrls } from "../util/urls";
@@ -70,6 +79,12 @@ const AdminLayout: React.FC = () => {
       label: "Questions",
       onClick: () => navigate(AdminUrls.adminquestions.viewAll),
     },
+    {
+      key: "quizes",
+      icon: <SnippetsOutlined />,
+      label: "Quizes",
+      onClick: () => navigate(AdminUrls.adminquizes.viewAll),
+    },
   ];
 
   return (
@@ -82,13 +97,7 @@ const AdminLayout: React.FC = () => {
             onClick={logout}
             type="text"
             icon={<PoweroffOutlined />}
-            style={{
-              position: "absolute",
-              bottom: 20,
-              left: 5,
-              width: "100%",
-              justifyContent: "left",
-            }}
+            style={{ position: "absolute", bottom: 20, left: 5, width: "100%", justifyContent: "left" }}
           >
             Log Out
           </Button>

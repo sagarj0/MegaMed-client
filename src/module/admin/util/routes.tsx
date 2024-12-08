@@ -9,6 +9,9 @@ import { AddQuestions } from "../ui/Questions/add";
 import { AddAdmin } from "../ui/admins/add";
 import { AdminDashboard } from "../ui/dashboard";
 import { ProfileComponent } from "@/module/auth/ui/profile";
+import { ViewAllQuiz } from "../ui/quizes/view-all";
+import { AddQuiz } from "../ui/quizes/add";
+import { ViewQuiz } from "../ui/quizes/view";
 
 export const AdminRoutes = (
   <Route element={<AdminLayout />}>
@@ -30,5 +33,9 @@ export const AdminRoutes = (
     <Route path={AdminUrls.adminquestions.viewAll} element={<ViewAllQuestion />} />
     <Route path={AdminUrls.adminquestions.add} element={<AddQuestions mode="New" />} />
     <Route path={AdminUrls.adminquestions.edit + ":id"} element={<AddQuestions mode="Edit" />} />
+
+    <Route path={AdminUrls.adminquizes.viewAll} element={<ViewAllQuiz />} />
+    <Route path={AdminUrls.adminquizes.add} element={<AddQuiz mode="New" />} />
+    <Route path={AdminUrls.adminquizes.view + ":id"} element={<ViewQuiz />} />
   </Route>
 );

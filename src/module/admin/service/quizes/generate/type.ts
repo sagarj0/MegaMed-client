@@ -1,16 +1,16 @@
 import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
-import { QuizEndpoints } from "../../util/endpoint";
+import { SaveQuizProps } from "@/module/quizes/ui/type";
 
 export type DetailedQuiz = DetailedQuestion[];
 
-export type FetchQuizReq = {
+export type GenerateQuizReq = {
   pageSize?: number;
   current?: number;
-  type: keyof typeof QuizEndpoints;
+  type: SaveQuizProps["type"];
   value?: string;
 };
 
-export type FetchQuizRes = {
+export type GenerateQuizRes = {
   data: {
     data: DetailedQuiz;
     pagination: { pageSize: number; current: number; total: number };

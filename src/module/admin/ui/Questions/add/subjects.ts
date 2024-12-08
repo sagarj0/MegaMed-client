@@ -45,12 +45,7 @@ export const subjectData: SubjectData = {
     "Transmission of Heat",
     "Thermodynamics",
   ],
-  "Physics/Waves and Sound": [
-    "Wave",
-    "Superposition of Waves",
-    "Stationary|Standing Waves",
-    "Doppler's Effect and Musical Sound",
-  ],
+  "Physics/Waves and Sound": ["Wave", "Superposition of Waves", "Stationary|Standing Waves", "Doppler's Effect and Musical Sound"],
   "Physics/Optics": [
     "Reflection of Plane and Curved Mirrors",
     "Refraction at Plane Surfaces and Total Internal Reflection",
@@ -217,7 +212,7 @@ export const getSubjects = () => {
   }));
 };
 
-export const getUnitGroups = (): GroupType[] => {
+export const getUnitGroups = (subject?: string): GroupType[] => {
   const groupedSubjects: { [key: string]: string[] } = {};
 
   subjects.forEach((subject) => {
@@ -234,6 +229,28 @@ export const getUnitGroups = (): GroupType[] => {
     }
   });
 
+  // If a subject is provided, find the subgroup matching it
+  if (subject) {
+    const matchedGroup = Object.entries(groupedSubjects).find(([label]) => label.toLowerCase() === subject.toLowerCase());
+
+    // Return only the matched group if found
+    if (matchedGroup) {
+      const [label, options] = matchedGroup;
+      return [
+        {
+          label,
+          options: options.map((option) => ({
+            label: option,
+            value: option.toLowerCase().replace(/\s+/g, "-"),
+          })),
+        },
+      ];
+    }
+
+    // Return an empty array if the subject is not found
+    return [];
+  }
+
   return Object.keys(groupedSubjects).map((label) => ({
     label,
     options: groupedSubjects[label].map((option) => ({
@@ -243,7 +260,26 @@ export const getUnitGroups = (): GroupType[] => {
   }));
 };
 
-export const getChapterGroups = (): GroupType[] => {
+export const getChapterGroups = (unit?: string): GroupType[] => {
+  if (unit) {
+    const matchedGroup = Object.entries(subjectData).find(([key, _]) => key.toLowerCase().includes(unit.toLowerCase()));
+
+    if (matchedGroup) {
+      const [label, options] = matchedGroup;
+      return [
+        {
+          label,
+          options: options.map((option) => ({
+            label: option,
+            value: option,
+          })),
+        },
+      ];
+    }
+
+    return [];
+  }
+
   return Object.keys(subjectData).map((label) => ({
     label,
     options: subjectData[label].map((option) => ({

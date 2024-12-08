@@ -25,3 +25,10 @@ export { default as DashboardReducer } from "./dashbaord/fetch/reducer";
 
 //bulk edit reducers
 export { default as BulkEditUser } from "./Users/bulk-edit/reducer";
+
+//manage  quiz reducers
+export { default as AddQuiz } from "./quizes/add/reducer";
+export { default as FetchQuiz } from "./quizes/fetch/reducer";
+export { default as FetchAllQuiz } from "./quizes/fetch-all/reducer";
+export { default as GenerateQuiz } from "./quizes/generate/reducer";
+export { default as QuizRepo } from "./quizes/repo/reducer";
