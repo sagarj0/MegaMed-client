@@ -9,7 +9,7 @@ export const ViewAllUnitWiseTestPage: React.FC = () => {
   const { data, isLoading } = useFetchAllQuiz({ filter: { unit, type: "unit" } });
   const navigate = useNavigate();
 
-  const handleOnClick = (id: string) => navigate(QuizUrls.quiz + id);
+  const handleOnClick = (id: string) => navigate(QuizUrls.giveUnitWiseTest + id);
 
   return (
     <>

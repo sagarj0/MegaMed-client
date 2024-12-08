@@ -7,13 +7,13 @@ export const ViewAllMockTestPage: React.FC = () => {
   const { data, isLoading } = useFetchAllQuiz({ filter: { type: "mock_test" } });
 
   const navigate = useNavigate();
-  const handleOnClick = (id: string) => navigate(QuizUrls.quiz + id);
+  const handleOnClick = (id: string) => navigate(QuizUrls.giveMockTest + id);
 
   return (
     <>
       <Typography.Title level={3} style={{ textAlign: "center" }}>{`All the Published Mock Tests`}</Typography.Title>
 
-      <Row>
+      <Row gutter={[24, 24]}>
         {data?.map((quiz) => (
           <Col span={24} xs={12} sm={8} lg={6}>
             <Card title={quiz.title} key={quiz.id} loading={isLoading} onClick={() => handleOnClick(quiz.id)} style={{ cursor: "pointer" }}>

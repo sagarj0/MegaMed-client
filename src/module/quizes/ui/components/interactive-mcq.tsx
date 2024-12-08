@@ -66,7 +66,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
       </Radio>
     ));
 
-  const items: TimelineProps["items"] = MCQs.map((question, index) => ({
+  const items: TimelineProps["items"] = MCQs?.map((question, index) => ({
     children: (
       <div key={index}>
         <Skeleton loading={!started} active={isLoading} paragraph={{ rows: 4 }}>
