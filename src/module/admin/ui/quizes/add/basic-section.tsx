@@ -1,14 +1,22 @@
-import { Col, Form, FormItemProps, Input, Row, Select } from "antd";
+import { Col, Form, FormItemProps, Input, InputNumber, Row, Select } from "antd";
 import { SaveQuizProps, SaveQuizKeys } from "./type";
 import { Rules } from "@/helper/form/form-rules";
 import { quizTypeOptions } from "./helper";
 import { getChapterGroups, getSubjects, getUnitGroups } from "../../Questions/add/subjects";
 
 export const BasicSection: React.FC = () => {
-  const { subject, unit, type } = Form.useWatch<SaveQuizProps>([]) || {};
+  const form = Form.useFormInstance<SaveQuizProps>();
+  const { subject, unit, type } = Form.useWatch<SaveQuizProps>([], form) || {};
   const isSubjectDisabled = type === undefined || type === "mock_test" || type === "custom";
   const isUnitDisabled = isSubjectDisabled || type === "subject";
   const isChapterDisabled = isUnitDisabled || type === "unit";
+
+  const isPageSizeDisabled = type === undefined || type === "custom" || type === "mock_test";
+
+  const onTypeChange = (value: string) => {
+    const isLargePageSize = value === "mock_test" || value === "custom";
+    form.setFieldValue(SaveQuizKeys.pageSize, isLargePageSize ? 200 : 50);
+  };
 
   const formItems: FormItemProps<SaveQuizProps>[] = [
     {
@@ -21,7 +29,7 @@ export const BasicSection: React.FC = () => {
       name: SaveQuizKeys.type,
       label: "Type",
       rules: [Rules.required],
-      children: <Select options={quizTypeOptions} placeholder="Select Type" />,
+      children: <Select options={quizTypeOptions} placeholder="Select Type" onChange={onTypeChange} />,
     },
     {
       name: SaveQuizKeys.subject,
@@ -40,6 +48,12 @@ export const BasicSection: React.FC = () => {
       label: "Chapter",
       // rules: [Rules.required],
       children: <Select options={getChapterGroups(unit)} placeholder=" Select Chapter" disabled={isChapterDisabled} />,
+    },
+    {
+      name: SaveQuizKeys.pageSize,
+      label: "Count",
+      rules: [Rules.required],
+      children: <InputNumber min={0} max={200} disabled={isPageSizeDisabled} />,
     },
   ];
 

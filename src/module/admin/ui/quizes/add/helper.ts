@@ -6,5 +6,5 @@ export const quizTypeOptions: SelectProps["options"] = [
   { label: "Subject Wise", value: "subject" },
   { label: "Unit Wise", value: "unit" },
   { label: "Chapter Wise", value: "chapter" },
-  { label: "Custom", value: "custom" },
+  { label: "Custom", value: "custom", disabled: true },
 ] as Array<{ label: string; value: SaveQuizProps["type"] }>;

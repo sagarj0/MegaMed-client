@@ -14,7 +14,7 @@ export const UnitWiseTestPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const [form] = Form.useForm<UpdateScoreProps>();
-  const time = 1000 * 60 * 20; // 20 minutes
+  const time = 1000 * 60 * 40; // 20 minutes
 
   const { data, isLoading } = useFetchQuiz(id);
 

@@ -14,7 +14,7 @@ export const GenerateQuiz: React.FC = () => {
     dispatch(setData(null));
   }, []);
 
-  const { type, subject, unit, chapter } = Form.useWatch<SaveQuizProps>([]) || {};
+  const { type, subject, unit, chapter, pageSize } = Form.useWatch<SaveQuizProps>([]) || {};
 
   const isButtonDisabled =
     type === undefined ||
@@ -23,7 +23,6 @@ export const GenerateQuiz: React.FC = () => {
     (type === "chapter" && chapter === undefined);
 
   const value = type === "subject" ? subject : type === "unit" ? unit : type === "chapter" ? chapter : undefined;
-  const pageSize = type === "subject" ? 30 : type === "unit" ? 20 : type === "chapter" ? 10 : undefined;
   const { data, handleGenerate, isLoading } = useGenerateQuiz({ type, value, pageSize });
 
   return (

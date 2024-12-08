@@ -15,7 +15,7 @@ export const ChapterWiseTestPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const [form] = Form.useForm<UpdateScoreProps>();
-  const time = 1000 * 60 * 10;
+  const time = 1000 * 60 * 40;
 
   const { data, isLoading } = useFetchQuiz(id);
 

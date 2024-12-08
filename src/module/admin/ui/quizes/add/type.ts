@@ -6,6 +6,8 @@ export type SaveQuizProps = {
   chapter?: string;
   score?: number;
   questionIds: string[];
+
+  pageSize?: number;
 };
 
 export const SaveQuizKeys: Required<{ [K in keyof SaveQuizProps]: K }> = {
@@ -16,4 +18,6 @@ export const SaveQuizKeys: Required<{ [K in keyof SaveQuizProps]: K }> = {
   chapter: "chapter",
   score: "score",
   questionIds: "questionIds",
+
+  pageSize: "pageSize",
 };

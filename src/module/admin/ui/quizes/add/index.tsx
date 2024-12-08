@@ -10,6 +10,8 @@ import { resetError, resetSuccess } from "@/module/admin/service/quizes/add/redu
 import { addQuizAction } from "@/module/admin/service/quizes/add/action";
 import { BasicSection } from "./basic-section";
 import { GenerateQuiz } from "../components/generate-quiz";
+import { AllUrls } from "@/router/urls";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   mode: "New" | "Edit";
@@ -18,21 +20,16 @@ interface Props {
 export const AddQuiz: React.FC<Props> = ({ mode }) => {
   const [form] = Form.useForm<SaveQuizProps>();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const title = "Quizes";
-
-  // const { id } = useParams();
-  // const { data: editData } = useFetchQuiz(id);
-
-  // useEffect(() => {
-  //   if (mode === "Edit" && editData && id) form.setFieldsValue(mapToForm(editData));
-  // }, [editData, form]);
 
   const submitForm: FormProps<SaveQuizProps>["onFinish"] = (values) => {
     if (mode === "New") dispatch(addQuizAction(values));
   };
 
   const { success, error, isLoading } = useAppSelector((root) => root.AddQuiz);
-  useStatusMessage({ success, error, resetError, resetSuccess });
+  const onSuccessReset = () => navigate(AllUrls.adminquizes.viewAll);
+  useStatusMessage({ success, error, resetError, resetSuccess, onSuccessReset });
 
   return (
     <FormLayout

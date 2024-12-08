@@ -53,7 +53,7 @@ export const ProfileComponent: React.FC = () => {
             size="small"
             style={{ width: 300, textAlign: "center" }}
             labelStyle={{ width: 90 }}
-            contentStyle={{ width: 180, textWrap: "nowrap" }}
+            contentStyle={{ width: 200, textWrap: "nowrap" }}
             items={descriptionItems}
           />
 

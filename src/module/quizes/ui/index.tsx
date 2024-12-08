@@ -41,7 +41,7 @@ export const QuizPage: React.FC = () => {
                 <Select
                   style={{ width: "100%" }}
                   options={getSubjects()}
-                  placeholder={<>Start test</>}
+                  placeholder={<>Vew tests</>}
                   dropdownStyle={{ width: "auto" }}
                   variant="borderless"
                   onChange={onSubjectWiseTestClick}
@@ -60,16 +60,16 @@ export const QuizPage: React.FC = () => {
             bordered={false}
             actions={[
               <Typography.Text>
-                <FieldTimeOutlined /> 20 Min
+                <FieldTimeOutlined /> 40 Min
               </Typography.Text>,
               <Typography.Text>
-                <QuestionCircleOutlined /> 20 Questions
+                <QuestionCircleOutlined /> 50 Questions
               </Typography.Text>,
               <Tooltip title={isPaidUser ? null : "This feature is only available to paid users"}>
                 <GroupedSelect
                   style={{ width: "100%" }}
                   options={getUnitGroups()}
-                  placeholder={<>Start test</>}
+                  placeholder={<>Vew tests</>}
                   dropdownStyle={{ width: 300 }}
                   variant="borderless"
                   onChange={onUnitWiseTestClick}
@@ -88,16 +88,16 @@ export const QuizPage: React.FC = () => {
             bordered={false}
             actions={[
               <Typography.Text>
-                <FieldTimeOutlined /> 10 Min
+                <FieldTimeOutlined /> 40 Min
               </Typography.Text>,
               <Typography.Text>
-                <QuestionCircleOutlined /> 10 Questions
+                <QuestionCircleOutlined /> 50 Questions
               </Typography.Text>,
               <Tooltip title={isPaidUser ? null : "This feature is only available to paid users"}>
                 <GroupedSelect
                   style={{ width: "100%" }}
                   options={getChapterGroups()}
-                  placeholder={<>Start test</>}
+                  placeholder={<>Vew tests</>}
                   dropdownStyle={{ width: 300 }}
                   variant="borderless"
                   onChange={onChapterWiseTestClick}
@@ -123,7 +123,7 @@ export const QuizPage: React.FC = () => {
               </Typography.Text>,
               <Tooltip title={isPaidUser ? null : "This feature is only available to paid users"}>
                 <Typography.Link href={QuizUrls.mockTest} disabled={!isPaidUser}>
-                  Start Test <SendOutlined />
+                  View Test <SendOutlined />
                 </Typography.Link>
               </Tooltip>,
             ]}
