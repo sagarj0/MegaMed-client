@@ -85,9 +85,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
               <Space direction="vertical">{renderOptions(question, index)}</Space>
             </Radio.Group>
           </Form.Item>
-          {question.explanation && isScoreChecked && (
-            <Typography.Paragraph type="secondary">Explanation: {question.explanation}</Typography.Paragraph>
-          )}
+          {question.explanation && isScoreChecked && <Typography.Paragraph strong>Explanation: {question.explanation}</Typography.Paragraph>}
         </Skeleton>
       </div>
     ),

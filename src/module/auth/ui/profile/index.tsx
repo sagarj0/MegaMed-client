@@ -42,8 +42,8 @@ export const ProfileComponent: React.FC = () => {
   return (
     <Row justify="center" wrap>
       <Col>
-        <Space direction="vertical" align="center" size={"large"} style={{ alignItems: "stretch" }}>
-          <div>
+        <Space direction="vertical" size={"large"} style={{ alignItems: "stretch" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
             <UserAvatar style={{ width: 128, height: 128, fontSize: fontSizeHeading1 }} />
             <Typography.Title level={4}>{user?.name}</Typography.Title>
           </div>
