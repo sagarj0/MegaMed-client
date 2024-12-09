@@ -7,7 +7,7 @@ const NotFound: React.FC = () => {
   const redirectToHome = () => navigate("/");
 
   return (
-    <Card style={{ width: 600, height: "100vh", border: 0, margin: "auto" }}>
+    <Card style={{ maxWidth: 600, height: "100vh", border: 0, margin: "auto" }}>
       <Row justify="center" align={"middle"} style={{ height: "100%" }}>
         <Col xs={24} sm={20} md={16} lg={12}>
           <Result

@@ -19,19 +19,19 @@ export const AdminDashboard: React.FC = () => {
       <Col sm={12} lg={8} xl={6}>
         <CountCard isLoading={isLoading} title="Questions" value={totalQuestionCount} childrenCount={modefiedSubjectWiseCount} />
       </Col>
-      <Col sm={12} lg={8} xl={6}>
+      <Col span={24} sm={12} lg={8} xl={6}>
         <CountCard isLoading={isLoading} title="Admins" value={adminCount} />
       </Col>
-      <Col sm={12} lg={8} xl={6}>
+      <Col span={24}  sm={12} lg={8} xl={6}>
         <CountCard isLoading={isLoading} title="Mentors" value={mentorCount} />
       </Col>
-      <Col sm={12} lg={8} xl={6}>
+      <Col span={24} sm={12} lg={8} xl={6}>
         <CountCard isLoading={isLoading} title="Students" value={studentCount} />
       </Col>
-      <Col sm={24} lg={16} xl={12}>
+      <Col span={24} sm={24} lg={16} xl={12}>
         <UserMonthlyStatChart isLoading={isLoading} userMonthlyStat={userMonthlyStat} />
       </Col>
-      <Col sm={24} lg={16} xl={12}>
+      <Col span={24} sm={24} lg={16} xl={12}>
         <QuestionMonthlyStatChart isLoading={isLoading} questionMonthlyStat={questionMonthlyStat} />
       </Col>
     </Row>

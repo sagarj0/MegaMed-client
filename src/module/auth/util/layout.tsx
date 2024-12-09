@@ -7,7 +7,7 @@ export const AuthLayout: React.FC = () => {
   return (
     <Layout style={{ width: "100vw", height: "100vh", background: "white" }}>
       <Content>
-        <Card title={<Logo style={{ bottom: 0 }} />} style={{ width: 600, border: 0, margin: "auto" }}>
+        <Card title={<Logo style={{ bottom: 0 }} />} style={{ minWidth: 600, width: "100%", border: 0, margin: "auto" }}>
           <Outlet />
         </Card>
       </Content>
