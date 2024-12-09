@@ -9,6 +9,9 @@ const media = [
   { type: "image", src: "/mentors/suchana.jpg", title: "Suchana Bhandari" },
   { type: "image", src: "/mentors/prakash.jpg", title: "Prakash" },
   { type: "image", src: "/mentors/alisha.jpg", title: "Alisha Pokharel" },
+  { type: "image", src: "/mentors/sandeepm.jpg", title: "Sandeep Marashini" },
+  { type: "image", src: "/mentors/kritika.jpg", title: "Kritika Dangi" },
+  { type: "image", src: "/mentors/pratima.jpg", title: "Pratima Raj Roy" },
 ];
 
 const MentorsGallery: React.FC = () => {

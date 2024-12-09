@@ -19,6 +19,7 @@ const media = [
   { type: "video", src: "/aglance/vid2.mp4" },
   { type: "video", src: "/aglance/vid3.mp4" },
   { type: "video", src: "/aglance/vid4.mp4" },
+  { type: "video", src: "/aglance/vid5.mp4" },
 ];
 
 const AtAGlance: React.FC = () => {
