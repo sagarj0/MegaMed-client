@@ -20,7 +20,7 @@ export const RenderQuiz: React.FC<Props> = ({ data, isLoading, title }) => {
           ? data.map((mockQuiz, subjectIndex) => (
               <div key={subjectIndex}>
                 <Typography.Title level={5}>{mockQuiz.subject}</Typography.Title>
-                {mockQuiz.questions.map((question, index) => renderQuestion(question, index))}
+                {mockQuiz.questions.map((question, index) => renderQuestion(question, index * subjectIndex))}
               </div>
             ))
           : data?.map((question, index) => renderQuestion(question, index))}
