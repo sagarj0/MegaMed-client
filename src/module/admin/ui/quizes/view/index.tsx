@@ -1,11 +1,10 @@
 import useFetchQuiz from "@/module/admin/hooks/useFetchQuiz";
 import { useParams } from "react-router-dom";
-import { RenderQuiz } from "../add/render-quiz";
+import { RenderQuiz } from "../components/render-quiz";
 import { Descriptions, DescriptionsProps } from "antd";
 
 export const ViewQuiz: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-
   const { data, isLoading } = useFetchQuiz(id);
 
   const descriptionItems: DescriptionsProps["items"] = [
@@ -34,7 +33,6 @@ export const ViewQuiz: React.FC = () => {
   return (
     <>
       <Descriptions column={1} colon={false} size="small" style={{ marginBlock: 24, padding: 8 }} items={descriptionItems} />
-
       <RenderQuiz data={data?.questions} title={data?.title} isLoading={isLoading} />
     </>
   );

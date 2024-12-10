@@ -43,7 +43,7 @@ export const ProfileComponent: React.FC = () => {
     <Row justify="center" wrap>
       <Col>
         <Space direction="vertical" size={"large"} style={{ alignItems: "stretch" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
             <UserAvatar style={{ width: 128, height: 128, fontSize: fontSizeHeading1 }} />
             <Typography.Title level={4}>{user?.name}</Typography.Title>
           </div>

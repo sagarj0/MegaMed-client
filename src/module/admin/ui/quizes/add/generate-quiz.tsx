@@ -1,10 +1,10 @@
 import { Button, Col, Form, Row } from "antd";
-import { SaveQuizProps } from "../add/type";
+import { SaveQuizProps } from "./type";
 import useGenerateQuiz from "@/module/admin/hooks/useGenerateQuiz";
 import { useEffect } from "react";
 import { useAppDispatch } from "@/store/hook";
 import { setData } from "@/module/admin/service/quizes/generate/reducer";
-import { RenderQuiz } from "../add/render-quiz";
+import { RenderQuiz } from "../components/render-quiz";
 
 export const GenerateQuiz: React.FC = () => {
   const dispatch = useAppDispatch();

@@ -6,7 +6,9 @@ export type DetailedQuiz = DetailedQuestion[];
 export type MockDetailedQuiz = {
   subject: string;
   questions: DetailedQuestion[];
-};
+}[];
+
+export type GeneralizedQuiz = DetailedQuiz | MockDetailedQuiz;
 
 export type GenerateQuizReq = {
   pageSize?: number;
@@ -17,7 +19,7 @@ export type GenerateQuizReq = {
 
 export type GenerateQuizRes = {
   data: {
-    data: DetailedQuiz;
+    data: GeneralizedQuiz;
     pagination: { pageSize: number; current: number; total: number };
     message: string;
   };

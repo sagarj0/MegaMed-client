@@ -9,7 +9,7 @@ import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "@/module/admin/service/quizes/add/reducer";
 import { addQuizAction } from "@/module/admin/service/quizes/add/action";
 import { BasicSection } from "./basic-section";
-import { GenerateQuiz } from "../components/generate-quiz";
+import { GenerateQuiz } from "./generate-quiz";
 import { AllUrls } from "@/router/urls";
 import { useNavigate } from "react-router-dom";
 
