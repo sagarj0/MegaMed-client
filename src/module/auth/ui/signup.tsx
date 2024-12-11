@@ -2,7 +2,7 @@ import { Button, Divider, Form, FormItemProps, Input, Row, Space, Typography } f
 import FormDebug from "@/helper/form/form-debug";
 import { SignupFormKey, SignupFormProps } from "./type";
 import { Rules } from "@/helper/form/form-rules";
-import { FacebookOutlined, GoogleOutlined, LinkedinOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
+import { GoogleOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "../service/login/reducer";
@@ -60,9 +60,7 @@ export const Signup: React.FC = () => {
         <Typography.Title level={3} children="Sign in to Mega Med" />
 
         <Row justify={"space-between"}>
-          <Button onClick={handleGoogleLogin} size="large" style={{ width: 160, ...style }} children="Google" icon={<GoogleOutlined />} />
-          <Button size="large" style={{ width: 160, ...style }} children="Linked In " icon={<LinkedinOutlined />} />
-          <Button size="large" style={{ width: 160, ...style }} children="Facebook" icon={<FacebookOutlined />} />
+          <Button onClick={handleGoogleLogin} size="large" style={{ width: "100%", ...style }} children="Google" icon={<GoogleOutlined />} />
         </Row>
 
         <Divider children={"or Continue Signing up with Email"} style={{ marginBottom: 0 }} />
@@ -72,21 +70,13 @@ export const Signup: React.FC = () => {
             <Form.Item {...item} key={item.name} />
           ))}
 
-          <Button
-            type="primary"
-            htmlType="submit"
-            size="large"
-            style={{ width: "100%", ...style }}
-            children="Sign Up"
-            loading={isLoading}
-          />
+          <Button type="primary" htmlType="submit" size="large" style={{ width: "100%", ...style }} children="Sign Up" loading={isLoading} />
           <FormDebug />
         </Form>
       </Space>
 
       <Typography.Text style={{ textAlign: "center", width: "100%", display: "block", padding: 12 }}>
-        Already have an account?{" "}
-        <Button type="link" onClick={() => navigate(AllUrls.login)} style={{ padding: 0 }} children="Continue to login" />
+        Already have an account? <Button type="link" onClick={() => navigate(AllUrls.login)} style={{ padding: 0 }} children="Continue to login" />
       </Typography.Text>
     </>
   );
