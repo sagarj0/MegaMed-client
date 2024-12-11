@@ -1,19 +1,18 @@
 import { createSlice, Draft } from "@reduxjs/toolkit";
-import { FilterValue } from "antd/es/table/interface";
 
 export interface SortOptionProps<T> {
   sortField: keyof T;
   sortOrder: "ASC" | "DESC";
 }
 
-export const createRepoReducer = <T extends { id: string }, F>(name: string) => {
+export const createRepoReducer = <T extends { id: string }, F>(name: string, initialFilter: Partial<F> = {}) => {
   const initialState = {
     isFetched: false,
     isSelectFetched: false,
     data: [] as T[],
     pagination: { current: 1, pageSize: 10, total: 1 },
     sortOption: {} as SortOptionProps<T>,
-    filterOption: {} as Partial<Record<keyof F, any>>,
+    filterOption: initialFilter as Partial<F>,
     search: undefined,
   };
 
@@ -50,11 +49,13 @@ export const createRepoReducer = <T extends { id: string }, F>(name: string) => 
       },
 
       updateFilter: (state, action) => {
-        const filterObj = action.payload as Partial<Record<keyof F, FilterValue | FilterValue[0]>>;
+        const filterObj = action.payload as Partial<F>;
+
+        if (Object.keys(filterObj).length === 0) return;
 
         state.filterOption = Object.fromEntries(
           Object.entries(filterObj).map(([key, value]) => [key, Array.isArray(value) ? value.join(",") : value]),
-        ) as Draft<Partial<Record<keyof F, string>>>;
+        ) as Draft<Partial<F>>;
       },
 
       updateSort: (state, action) => {

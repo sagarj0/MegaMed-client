@@ -9,7 +9,6 @@ export const mapToForm = (data: DetailedQuestion): AddQuestionsProps => {
 };
 
 export const resetFields: (keyof AddQuestionsProps)[] = [
-  "questionNo",
   "question",
   "optionA",
   "optionB",

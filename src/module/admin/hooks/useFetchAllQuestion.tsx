@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import { fetchAllQuestionAciton } from "../service/Questions/fetch-all/action";
 import useStatusMessage from "@/helper/hooks/use-message";
-import { FilterValue, SorterResult } from "antd/es/table/interface";
+import { SorterResult } from "antd/es/table/interface";
 import { DetailedQuestion } from "../service/Questions/fetch/type";
 import { updateFilter, updatePagination, updateSearch, updateSort } from "../service/Questions/repo/reducer";
 import { resetError } from "../service/Questions/fetch-all/reducer";
@@ -30,7 +30,7 @@ const useFetchAllQuestion = (props: Props) => {
 
   const handleQueryChange = (
     pagination?: TablePaginationConfig,
-    filters?: Partial<Record<keyof FetchAllQuestionRequest, FilterValue | FilterValue[0]>>,
+    filters?: Partial<FetchAllQuestionRequest>,
     sorter?: SorterResult<DetailedQuestion> | SorterResult<DetailedQuestion>[],
   ) => {
     pagination && dispatch(updatePagination(pagination));

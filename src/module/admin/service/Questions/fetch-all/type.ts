@@ -2,9 +2,7 @@ import { DetailedQuestion } from "../fetch/type";
 
 export type subject = "physics" | "chemistry" | "zoology" | "botany" | "MAT";
 
-export type FetchAllQuestionRequest = {
-  [key in keyof Partial<DetailedQuestion>]: any;
-} & {
+export type FetchAllQuestionRequest = Partial<DetailedQuestion> & {
   subject?: subject;
   search?: string;
   current?: number;

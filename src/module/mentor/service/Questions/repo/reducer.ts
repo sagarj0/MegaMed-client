@@ -2,7 +2,7 @@ import { createRepoReducer } from "@/store/tempelate/repo-reducer";
 import { DetailedQuestion } from "../fetch/type";
 import { FetchAllQuestionRequest } from "../fetch-all/type";
 
-const slice = createRepoReducer<DetailedQuestion, FetchAllQuestionRequest>("question/repo");
+const slice = createRepoReducer<DetailedQuestion, FetchAllQuestionRequest>("question/repo", { subject: "physics" });
 export const {
   setData,
   setIsFetched,

@@ -1,8 +1,6 @@
 import { DetailedUser } from "../fetch/type";
 
-export type FetchAllUserReq = {
-  [key in keyof Partial<DetailedUser>]: any;
-} & {
+export type FetchAllUserReq = Partial<DetailedUser> & {
   search?: string;
   current?: number;
   pageSize?: number;

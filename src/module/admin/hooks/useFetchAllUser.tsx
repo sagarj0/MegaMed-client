@@ -2,7 +2,7 @@ import { TablePaginationConfig } from "antd";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import useStatusMessage from "@/helper/hooks/use-message";
-import { FilterValue, SorterResult } from "antd/es/table/interface";
+import { SorterResult } from "antd/es/table/interface";
 import { FetchAllUserReq } from "../service/Users/fetch-all/type";
 import { fetchAllUserAction } from "../service/Users/fetch-all/action";
 import { DetailedUser } from "../service/Users/fetch/type";
@@ -33,7 +33,7 @@ const useFetchAllUser = (props: Props) => {
 
   const handleQueryChange = (
     pagination?: TablePaginationConfig,
-    filters?: Partial<Record<keyof FetchAllUserReq, FilterValue | FilterValue[0]>>,
+    filters?: Partial<FetchAllUserReq>,
     sorter?: SorterResult<DetailedUser> | SorterResult<DetailedUser>[],
   ) => {
     pagination && dispatch(updatePagination(pagination));

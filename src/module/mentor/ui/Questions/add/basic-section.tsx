@@ -115,6 +115,11 @@ export const BasicSection: React.FC<Props> = (props) => {
       name: AddQuestionKeys.dImage,
       children: <UploadImage forName="Option D" formKey={AddQuestionKeys.dImage} />,
     },
+    {
+      label: "Explanation Image",
+      name: AddQuestionKeys.eImage,
+      children: <UploadImage forName="Explanation" formKey={AddQuestionKeys.eImage} />,
+    },
   ];
 
   return (
