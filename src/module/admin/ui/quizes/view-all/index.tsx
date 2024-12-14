@@ -1,6 +1,6 @@
 import useFetchAllQuiz from "@/module/admin/hooks/useFetchAllQuiz";
 import { AdminUrls } from "@/module/admin/util/urls";
-import { Button, Card, ConfigProvider, Table, TableProps } from "antd";
+import { Button, Card, Table, TableProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { SaveQuizResponse } from "@/module/admin/service/quizes/add/type";
 
@@ -42,21 +42,8 @@ export const ViewAllQuiz: React.FC = () => {
     <Card
       bordered={false}
       style={{ boxShadow: "none" }}
-      extra={
-        <Button type="primary" onClick={handleAddQuiz}>
-          Add Quiz
-        </Button>
-      }
-    >
-      <ConfigProvider
-        theme={{
-          components: {
-            Table: {
-              rowHoverBg: "transsparent",
-            },
-          },
-        }}
-      >
+      extra={<Button type="primary" onClick={handleAddQuiz} children={"Add Quiz"} />}
+      children={
         <Table
           columns={columns}
           dataSource={data}
@@ -69,7 +56,7 @@ export const ViewAllQuiz: React.FC = () => {
           })}
           rowKey={(record) => record.id.toString()}
         />
-      </ConfigProvider>
-    </Card>
+      }
+    />
   );
 };

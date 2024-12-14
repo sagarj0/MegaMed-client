@@ -1,7 +1,9 @@
 import useFetchQuiz from "@/module/admin/hooks/useFetchQuiz";
 import { useParams } from "react-router-dom";
 import { RenderQuiz } from "../components/render-quiz";
-import { Descriptions, DescriptionsProps } from "antd";
+import { Button, Card, Descriptions, DescriptionsProps } from "antd";
+import { EditOutlined } from "@ant-design/icons";
+
 
 export const ViewQuiz: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -31,9 +33,9 @@ export const ViewQuiz: React.FC = () => {
   ];
 
   return (
-    <>
-      <Descriptions column={1} colon={false} size="small" style={{ marginBlock: 24, padding: 8 }} items={descriptionItems} />
+    <Card bordered={false} style={{ boxShadow: "none" }} extra={<Button type="link" children={"Edit Quiz"} disabled icon={<EditOutlined />} />}>
+      <Descriptions column={1} colon={false} size="small" style={{ marginBlockEnd: 12 }} items={descriptionItems} />
       <RenderQuiz data={data?.questions} title={data?.title} isLoading={isLoading} />
-    </>
+    </Card>
   );
 };

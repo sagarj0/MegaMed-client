@@ -100,7 +100,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
   }));
 
   const renderExtra = () => (
-    <Space size="small" wrap>
+    <Space size="small" wrap style={{ width: "100%", justifyContent: "flex-end" }}>
       {config.appMode === "LOCAL" && <Button onClick={() => dispatch(resetQuizReducer())}>Reset</Button>}
       <Button type="primary" disabled={started} onClick={() => dispatch(setStarted(true))}>
         Start Quiz
@@ -145,7 +145,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
             Submit and Check
           </Button>,
         ]}
-        styles={{ header: { flexWrap: "wrap" } }}
+        styles={{ header: { flexWrap: "wrap" }, actions: { width: "fit-content" } }}
         style={{
           padding: isFullScreen || md ? 0 : 8,
           paddingInline: isFullScreen && !md && !sm && !xs ? 100 : 8,

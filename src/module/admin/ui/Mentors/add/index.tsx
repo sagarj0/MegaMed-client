@@ -30,12 +30,12 @@ export const AddMentor: React.FC<Props> = ({ mode }) => {
   const { data: editData } = useFetchUser(id);
 
   useEffect(() => {
-    if (mode === "Edit" && editData && id) form.setFieldsValue(mapToForm(editData));
+    if (mode === "Edit" && editData && id) form.setFieldsValue(mapToForm(editData.user));
   }, [editData, form]);
 
   const submitForm: FormProps<AddMentorProps>["onFinish"] = (values) => {
     if (mode === "New") dispatch(addMentor(values));
-    if (mode === "Edit" && id) dispatch(editMentorAction({ oldData: mapToForm(editData), newData: values }));
+    if (mode === "Edit" && id) dispatch(editMentorAction({ oldData: mapToForm(editData.user), newData: values }));
   };
 
   const onSuccessReset = () => navigate(AdminUrls.adminMentor.viewAll);

@@ -26,11 +26,11 @@ export const AddStudent: React.FC<Props> = ({ mode }) => {
   const { data: editData } = useFetchStudent(id);
 
   useEffect(() => {
-    if (mode === "Edit" && editData && id) form.setFieldsValue(mapToForm(editData));
+    if (mode === "Edit" && editData && id) form.setFieldsValue(mapToForm(editData.user));
   }, [editData, form]);
 
   const submitForm: FormProps<AddStudentProps>["onFinish"] = (values) => {
-    if (mode === "Edit" && id) dispatch(editStudentAction({ oldData: mapToForm(editData), newData: values }));
+    if (mode === "Edit" && id) dispatch(editStudentAction({ oldData: mapToForm(editData.user), newData: values }));
   };
 
   const { success, error, isLoading } = useAppSelector((root) => root.EditStudent);

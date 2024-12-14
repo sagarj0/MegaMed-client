@@ -49,12 +49,14 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
             borderRadiusLG: 16,
             borderRadiusSM: 14,
             defaultHoverBg: "transparent",
+            textHoverBg: "transparent",
           },
           Card: {
             padding: 20,
             headerFontSize: 18,
             colorBgContainer: "white",
             paddingLG: 24,
+            headerHeight: 56,
           },
           Form: {
             marginLG: 12,
@@ -71,10 +73,9 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
             footerBg: "white",
             controlItemBgActive: "#e5e5f9",
             rowSelectedHoverBg: "#e5e5f9",
-            rowHoverBg: "#f1f1fa",
             cellPaddingBlock: 10,
             cellPaddingInline: 10,
-            selectionColumnWidth: 50,
+            rowHoverBg: "transparent",
           },
           Cascader: {
             optionSelectedBg: "rgb(240, 246, 223)",

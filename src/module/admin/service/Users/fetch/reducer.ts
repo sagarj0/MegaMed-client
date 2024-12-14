@@ -1,7 +1,7 @@
 import { createFetchReducer } from "@/store/tempelate/fetch-reducer";
-import { DetailedUser } from "./type";
+import { FetchUserData } from "./type";
 
-const slice = createFetchReducer<DetailedUser>("invoice/fetch", {} as DetailedUser);
+const slice = createFetchReducer<FetchUserData>("invoice/fetch", {} as FetchUserData);
 
 export const { setLoading, resetLoading, setData, setError, resetError } = slice.actions;
 export default slice.reducer;

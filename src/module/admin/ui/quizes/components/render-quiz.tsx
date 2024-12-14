@@ -17,7 +17,7 @@ export const RenderQuiz: React.FC<Props> = ({ data, isLoading, title }) => {
 
   return (
     <Card loading={isLoading} title={<Typography.Title level={4}>{title || "Generated Questions"}</Typography.Title>}>
-      <Col sm={{ offset: 4 }} md={{ offset: 3 }} lg={{ offset: 2 }}>
+      <Col sm={{ offset: 1 }}>
         {isMockDetailedQuiz(data)
           ? data.map((mockQuiz, subjectIndex) => (
               <div key={subjectIndex}>

@@ -54,20 +54,19 @@ export const ViewAllStudents: React.FC = () => {
       bordered={false}
       style={{ boxShadow: "none" }}
       extra={
-        <Button loading={bulkeditLoading} type="primary" onClick={onModifyToPaid} disabled={!selectedRowKeys.length}>
-          Modify to paid
-        </Button>
+        <Button loading={bulkeditLoading} type="primary" onClick={onModifyToPaid} disabled={!selectedRowKeys.length} children={"Modify to paid"} />
       }
-    >
-      <Table
-        columns={columns}
-        dataSource={data}
-        onChange={handleQueryChange}
-        pagination={studentPagination}
-        loading={isLoading}
-        rowKey={(record) => record.id}
-        rowSelection={{ onChange: (selectedRowKeys) => setSelectedRowKeys(selectedRowKeys as string[]) }}
-      />
-    </Card>
+      children={
+        <Table
+          columns={columns}
+          dataSource={data}
+          onChange={handleQueryChange}
+          pagination={studentPagination}
+          loading={isLoading}
+          rowKey={(record) => record.id}
+          rowSelection={{ onChange: (selectedRowKeys) => setSelectedRowKeys(selectedRowKeys as string[]) }}
+        />
+      }
+    />
   );
 };

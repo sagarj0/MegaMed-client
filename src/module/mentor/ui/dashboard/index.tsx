@@ -10,7 +10,7 @@ export const MentorDashboard: React.FC = () => {
   const modefiedSubjectWiseCount = subjectWiseCounts ? subjectWiseCounts?.map((item) => ({ [item.subject]: item.count })) : [];
 
   return (
-    <Row gutter={[16, 16]} align={"stretch"}>
+    <Row gutter={[16, 16]} align={"stretch"} style={{ width: "100%" }}>
       <Col sm={24} lg={16} xl={12}>
         <QuestionMonthlyStatChart isLoading={isLoading} questionMonthlyStat={questionMonthlyStat} />
       </Col>

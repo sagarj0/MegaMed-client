@@ -46,13 +46,20 @@ export const ViewAllMentors: React.FC = () => {
     <Card
       bordered={false}
       style={{ boxShadow: "none" }}
-      extra={
-        <Button type="primary" onClick={onAddMentor}>
-          Add Mentor
-        </Button>
+      extra={<Button type="primary" onClick={onAddMentor} children={"Add Mentor"} />}
+      children={
+        <Table
+          columns={columns}
+          dataSource={mentors}
+          onChange={handleQueryChange}
+          pagination={mentorPagination}
+          loading={isLoading}
+          onRow={({ id }) => ({
+            style: { cursor: "pointer" },
+            onClick: () => navigate(AdminUrls.adminMentor.view + id),
+          })}
+        />
       }
-    >
-      <Table columns={columns} dataSource={mentors} onChange={handleQueryChange} pagination={mentorPagination} loading={isLoading} />
-    </Card>
+    />
   );
 };

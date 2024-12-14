@@ -13,6 +13,7 @@ import { ViewAllQuiz } from "../ui/quizes/view-all";
 import { AddQuiz } from "../ui/quizes/add";
 import { ViewQuiz } from "../ui/quizes/view";
 import { AddMentor } from "../ui/Mentors/add";
+import { ViewMentor } from "../ui/Mentors/view";
 
 export const AdminRoutes = (
   <Route element={<AdminLayout />}>
@@ -26,6 +27,7 @@ export const AdminRoutes = (
     <Route path={AdminUrls.adminMentor.viewAll} element={<ViewAllMentors />} />
     <Route path={AdminUrls.adminMentor.add} element={<AddMentor mode="New" />} />
     <Route path={AdminUrls.adminMentor.edit + ":id"} element={<AddMentor mode="Edit" />} />
+    <Route path={AdminUrls.adminMentor.view + ":id"} element={<ViewMentor />} />
 
     <Route path={AdminUrls.adminStudent.add} element={<AddAdmin mode="New" />} />
     <Route path={AdminUrls.adminStudent.edit + ":id"} element={<AddAdmin mode="Edit" />} />

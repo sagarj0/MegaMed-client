@@ -7,8 +7,6 @@ import { resetError } from "../service/Users/fetch/reducer";
 const useFetchUser = (id: string | undefined) => {
   const dispatch = useAppDispatch();
 
-  // const { success: paymentRecorded } = useAppSelector((state) => state.AddTransaction);
-
   useEffect(() => {
     if (id) dispatch(fetchUserAction({ id }));
   }, [dispatch, id]);

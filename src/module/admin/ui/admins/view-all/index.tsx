@@ -39,8 +39,11 @@ export const ViewAllAdmins: React.FC = () => {
   const adminPagination = { ...pagination, total: admins.length };
 
   return (
-    <Card bordered={false} style={{ boxShadow: "none" }} extra={<Button type="primary" onClick={onAddAdmin} children={"Add Admin"} />}>
-      <Table columns={columns} dataSource={admins} loading={isLoading} onChange={handleQueryChange} pagination={adminPagination} />
-    </Card>
+    <Card
+      bordered={false}
+      style={{ boxShadow: "none" }}
+      extra={<Button type="primary" onClick={onAddAdmin} children={"Add Admin"} />}
+      children={<Table columns={columns} dataSource={admins} loading={isLoading} onChange={handleQueryChange} pagination={adminPagination} />}
+    />
   );
 };
