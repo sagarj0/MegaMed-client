@@ -21,7 +21,9 @@ export const ViewAllQuestion: React.FC = () => {
       onTabChange={onTabChange}
       activeTabKey={subject}
       tabBarExtraContent={<Button type="primary" onClick={handleAddQuestion} children={"Add Question"} />}
-      children={<Table columns={columns} dataSource={data} onChange={handleQueryChange} pagination={pagination} loading={isLoading} />}
+      children={
+        <Table columns={columns} dataSource={data} onChange={handleQueryChange} pagination={pagination} loading={isLoading} scroll={{ x: 500 }} />
+      }
     />
   );
 };

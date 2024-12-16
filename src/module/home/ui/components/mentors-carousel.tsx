@@ -77,7 +77,7 @@ export const MentorsSection: React.FC = () => {
           ]}
         >
           {mentors.map((mentor, index) => (
-            <Card key={index} style={{ padding: 8 }}>
+            <Card key={index} style={{ padding: 8, height: 200 }}>
               <Typography.Paragraph style={{ textAlign: "justify", marginBottom: 30 }}>"{mentor.feedback}"</Typography.Paragraph>
 
               <Card.Meta

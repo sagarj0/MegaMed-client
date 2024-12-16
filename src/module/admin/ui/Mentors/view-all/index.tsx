@@ -54,6 +54,7 @@ export const ViewAllMentors: React.FC = () => {
           onChange={handleQueryChange}
           pagination={mentorPagination}
           loading={isLoading}
+          scroll={{ x: 500 }}
           onRow={({ id }) => ({
             style: { cursor: "pointer" },
             onClick: () => navigate(AdminUrls.adminMentor.view + id),

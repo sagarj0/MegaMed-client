@@ -54,6 +54,7 @@ export const ViewAllQuiz: React.FC = () => {
             style: { cursor: "pointer" },
             onClick: () => navigate(AdminUrls.adminquizes.view + id),
           })}
+          scroll={{ x: 500 }}
           rowKey={(record) => record.id.toString()}
         />
       }

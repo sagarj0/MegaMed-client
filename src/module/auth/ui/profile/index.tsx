@@ -1,5 +1,5 @@
 import useAuthHook from "@/module/auth/hook/useAuthHook";
-import { Col, Row, theme, Typography, Descriptions, Space, Tag } from "antd";
+import { Col, Row, theme, Typography, Descriptions, Space, Tag, Card } from "antd";
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import { AllUrls } from "@/router/urls";
 import { config } from "@/util/config";
@@ -40,54 +40,56 @@ export const ProfileComponent: React.FC = () => {
   ];
 
   return (
-    <Row justify="center" wrap>
-      <Col>
-        <Space direction="vertical" size={"large"} style={{ alignItems: "stretch" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
-            <UserAvatar style={{ width: 128, height: 128, fontSize: fontSizeHeading1 }} />
-            <Typography.Title level={4}>{user?.name}</Typography.Title>
-          </div>
-          <Descriptions
-            column={1}
-            colon={false}
-            size="small"
-            style={{ width: 300, textAlign: "center" }}
-            labelStyle={{ width: 90 }}
-            contentStyle={{ width: 200, textWrap: "nowrap" }}
-            items={descriptionItems}
-          />
+    <Card bordered={false} style={{ boxShadow: "none" }}>
+      <Row justify="center" wrap>
+        <Col>
+          <Space direction="vertical" size={"large"} style={{ alignItems: "stretch" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+              <UserAvatar style={{ width: 128, height: 128, fontSize: fontSizeHeading1 }} />
+              <Typography.Title level={4}>{user?.name}</Typography.Title>
+            </div>
+            <Descriptions
+              column={1}
+              colon={false}
+              size="small"
+              style={{ width: 300, textAlign: "center" }}
+              labelStyle={{ width: 90 }}
+              contentStyle={{ width: 200, textWrap: "nowrap" }}
+              items={descriptionItems}
+            />
 
-          {(isStudent || config.appMode !== "PRODUCTION") && (
-            <>
-              <Typography.Title level={4}>Accessible Features</Typography.Title>
-              <Descriptions
-                // title="Accessible Features"
-                column={1}
-                colon={false}
-                size="small"
-                style={{ width: 300, textAlign: "center" }}
-                labelStyle={{ width: 150 }}
-                contentStyle={{ width: 150, justifyContent: "end" }}
-                items={accessibleFeatures}
-              />
-            </>
-          )}
-
-          <Space direction="vertical" align="start" style={{ width: "100%" }}>
-            {(isAdmin || config.appMode !== "PRODUCTION") && (
+            {(isStudent || config.appMode !== "PRODUCTION") && (
               <>
-                <Typography.Link href={AllUrls.admin}>Dashboard</Typography.Link>
+                <Typography.Title level={4}>Accessible Features</Typography.Title>
+                <Descriptions
+                  // title="Accessible Features"
+                  column={1}
+                  colon={false}
+                  size="small"
+                  style={{ width: 300, textAlign: "center" }}
+                  labelStyle={{ width: 150 }}
+                  contentStyle={{ width: 150, justifyContent: "end" }}
+                  items={accessibleFeatures}
+                />
               </>
             )}
-            {(isAdmin || isMentor || config.appMode !== "PRODUCTION") && (
-              <>
-                <Typography.Link href={AllUrls.mentor}>Go to Mentor Dashboard</Typography.Link>
-                <Typography.Link href={AllUrls.home}>Go to home page</Typography.Link>
-              </>
-            )}
+
+            <Space direction="vertical" align="start" style={{ width: "100%" }}>
+              {(isAdmin || config.appMode !== "PRODUCTION") && (
+                <>
+                  <Typography.Link href={AllUrls.admin}>Dashboard</Typography.Link>
+                </>
+              )}
+              {(isAdmin || isMentor || config.appMode !== "PRODUCTION") && (
+                <>
+                  <Typography.Link href={AllUrls.mentor}>Go to Mentor Dashboard</Typography.Link>
+                  <Typography.Link href={AllUrls.home}>Go to home page</Typography.Link>
+                </>
+              )}
+            </Space>
           </Space>
-        </Space>
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+    </Card>
   );
 };

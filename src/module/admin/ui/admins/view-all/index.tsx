@@ -43,7 +43,16 @@ export const ViewAllAdmins: React.FC = () => {
       bordered={false}
       style={{ boxShadow: "none" }}
       extra={<Button type="primary" onClick={onAddAdmin} children={"Add Admin"} />}
-      children={<Table columns={columns} dataSource={admins} loading={isLoading} onChange={handleQueryChange} pagination={adminPagination} />}
+      children={
+        <Table
+          columns={columns}
+          dataSource={admins}
+          loading={isLoading}
+          onChange={handleQueryChange}
+          pagination={adminPagination}
+          scroll={{ x: 500 }}
+        />
+      }
     />
   );
 };

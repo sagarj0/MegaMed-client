@@ -15,8 +15,8 @@ export const AdminDashboard: React.FC = () => {
   const studentCount = roleWiseCounts?.find((item) => item.role === "student")?.count || 0;
 
   return (
-    <Row gutter={[8, 8]} align={"stretch"} style={{ width: "100%", padding: 8 }}>
-      <Col sm={12} lg={8} xl={6}>
+    <Row gutter={[8, 8]} align={"stretch"} style={{ width: "100%", padding: "8px 0px 8px 8px" }}>
+      <Col span={24} sm={12} lg={8} xl={6}>
         <CountCard isLoading={isLoading} title="Questions" value={totalQuestionCount} childrenCount={modefiedSubjectWiseCount} />
       </Col>
       <Col span={24} sm={12} lg={8} xl={6}>

@@ -65,6 +65,7 @@ export const ViewAllStudents: React.FC = () => {
           loading={isLoading}
           rowKey={(record) => record.id}
           rowSelection={{ onChange: (selectedRowKeys) => setSelectedRowKeys(selectedRowKeys as string[]) }}
+          scroll={{ x: 500 }}
         />
       }
     />
