@@ -2,6 +2,8 @@ import React from "react";
 import { Row, Col, Typography, Avatar, Button } from "antd";
 import { Ribbon } from "@/component/icons/ribbon";
 import { Medal } from "@/component/icons/medal";
+import { useNavigate } from "react-router-dom";
+import { AllUrls } from "@/router/urls";
 // import { useNavigate } from "react-router-dom";
 
 // Sample Data
@@ -77,6 +79,8 @@ const achievements: {
 ].sort((a, b) => (a.mbbsRank || 0) - (b.mbbsRank || 0));
 
 export const AchievementSection: React.FC<{ showButton?: boolean }> = ({ showButton = true }) => {
+  const navigate = useNavigate();
+
   return (
     <Row style={{ width: "100%", paddingBlock: 24 }}>
       <Typography.Title level={2} style={{ marginBottom: 20, color: "var(--primary-color)", textAlign: "center", width: "100%" }}>
@@ -124,7 +128,7 @@ export const AchievementSection: React.FC<{ showButton?: boolean }> = ({ showBut
       </Row>
       <Row justify={"center"} style={{ width: "100%" }}>
         {showButton && (
-          <Button type="primary" style={{ marginTop: 30 }}>
+          <Button type="primary" style={{ marginTop: 30 }} onClick={() => navigate(AllUrls.about)}>
             Explore About Our Legacy
           </Button>
         )}

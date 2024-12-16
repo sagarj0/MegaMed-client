@@ -24,9 +24,7 @@ const useStatusMessage: React.FC<StatusMessageType> = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  message.config({
-    maxCount: 1,
-  });
+  message.config({ maxCount: 1 });
 
   useEffect(() => {
     if (success) {
