@@ -19,15 +19,13 @@ const useFetchAllUser = (props: Props) => {
   const dispatch = useAppDispatch();
 
   const { isLoading, error } = useAppSelector((root) => root.FetchAllUser);
-  const { data, pagination, search, sortOption, filterOption } = useAppSelector((root) => root.UserRepo);
+  const { data, pagination, filterOption } = useAppSelector((root) => root.UserRepo);
   const { success } = useAppSelector((root) => root.BulkEditUser);
-  const { sortField, sortOrder } = sortOption;
-  const combinedFilter = { ...filterOption, ...filter };
-  const { pageSize, current } = combinedFilter;
+  const { pageSize, current, role, isPaidUser } = { ...filter, ...filterOption, ...pagination };
 
   useEffect(() => {
-    fetch && dispatch(fetchAllUserAction({ ...combinedFilter }));
-  }, [dispatch, search, fetch, pageSize, current, sortField, sortOrder, success]);
+    fetch && dispatch(fetchAllUserAction({ pageSize, current, role, isPaidUser }));
+  }, [dispatch, fetch, pageSize, current, success]);
 
   useStatusMessage({ error, resetError });
 

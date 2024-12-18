@@ -10,7 +10,7 @@ export const createRepoReducer = <T extends { id: string }, F>(name: string, ini
     isFetched: false,
     isSelectFetched: false,
     data: [] as T[],
-    pagination: { current: 1, pageSize: 10, total: 1 },
+    pagination: { current: 1, pageSize: 20, total: 1 },
     sortOption: {} as SortOptionProps<T>,
     filterOption: initialFilter as Partial<F>,
     search: undefined,
