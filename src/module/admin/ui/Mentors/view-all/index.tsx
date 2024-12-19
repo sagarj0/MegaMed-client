@@ -39,9 +39,6 @@ export const ViewAllMentors: React.FC = () => {
 
   const { data, handleQueryChange, pagination, isLoading } = useFetchAllUser({ filter: { role: "mentor" } });
 
-  const mentors = data?.filter((user) => user.role === "mentor");
-  const mentorPagination = { ...pagination, total: mentors.length };
-
   return (
     <Card
       bordered={false}
@@ -50,9 +47,9 @@ export const ViewAllMentors: React.FC = () => {
       children={
         <Table
           columns={columns}
-          dataSource={mentors}
+          dataSource={data}
           onChange={handleQueryChange}
-          pagination={mentorPagination}
+          pagination={pagination}
           loading={isLoading}
           scroll={{ x: 500 }}
           onRow={({ id }) => ({

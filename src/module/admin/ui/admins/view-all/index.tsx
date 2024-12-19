@@ -35,23 +35,13 @@ export const ViewAllAdmins: React.FC = () => {
 
   const { data, handleQueryChange, pagination, isLoading } = useFetchAllUser({ filter: { role: "admin" } });
 
-  const admins = data?.filter((user) => user.role === "admin");
-  const adminPagination = { ...pagination, total: admins.length };
-
   return (
     <Card
       bordered={false}
       style={{ boxShadow: "none" }}
       extra={<Button type="primary" onClick={onAddAdmin} children={"Add Admin"} />}
       children={
-        <Table
-          columns={columns}
-          dataSource={admins}
-          loading={isLoading}
-          onChange={handleQueryChange}
-          pagination={adminPagination}
-          scroll={{ x: 500 }}
-        />
+        <Table columns={columns} dataSource={data} loading={isLoading} onChange={handleQueryChange} pagination={pagination} scroll={{ x: 500 }} />
       }
     />
   );

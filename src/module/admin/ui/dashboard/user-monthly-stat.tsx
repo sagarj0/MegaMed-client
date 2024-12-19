@@ -18,11 +18,13 @@ const UserMonthlyStatChart: React.FC<UserMonthlyStatChartProps> = ({ isLoading, 
     xField: "month",
     yField: "user",
     point: {
-      shape: "circle",
-      size: 4,
+      shapeField: "circle",
+      sizeField: 4,
     },
-    tooltip: {
-      showMarkers: false,
+    interaction: {
+      tooltip: {
+        marker: false,
+      },
     },
     style: {
       lineWidth: 2,
@@ -34,8 +36,10 @@ const UserMonthlyStatChart: React.FC<UserMonthlyStatChartProps> = ({ isLoading, 
     data: userMonthlyStat,
     xField: "month",
     yField: "user",
-    tooltip: {
-      showMarkers: false,
+    interaction: {
+      tooltip: {
+        marker: false,
+      },
     },
     style: {
       columnWidthRatio: 0.2,
