@@ -47,6 +47,7 @@ const QuestionMonthlyStatChart: React.FC<QuestionMonthlyStatChartProps> = ({ isL
   return (
     <Card
       title="Question Count Monthly Stat"
+      styles={{ title: { textAlign: "left" } }}
       loading={isLoading}
       extra={
         <Select defaultValue="line" onChange={(value) => setChartType(value as "line" | "bar")}>

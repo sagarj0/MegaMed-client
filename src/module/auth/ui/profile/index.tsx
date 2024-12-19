@@ -40,7 +40,7 @@ export const ProfileComponent: React.FC = () => {
   ];
 
   return (
-    <Card bordered={false} style={{ boxShadow: "none" }}>
+    <Card bordered={false} style={{ boxShadow: "none", background: "transparent" }}>
       <Row justify="center" wrap>
         <Col>
           <Space direction="vertical" size={"large"} style={{ alignItems: "stretch" }}>

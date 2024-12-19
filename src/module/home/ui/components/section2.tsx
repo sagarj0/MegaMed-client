@@ -8,14 +8,12 @@ const features = [
   },
   {
     title: "Feel the Growth",
-    description:
-      "Experience steady improvement with personalized practice tests. Track your progress and master key topics with tailored resources.",
+    description: "Experience steady improvement with personalized practice tests. Track your progress and master key topics with tailored resources.",
     imageSrc: "/exam 1.png",
   },
   {
     title: "Secure Your Seat",
-    description:
-      "Achieve your dream by securing a scholarship seat in your entrance exam. Celebrate your hard work and success with flying colors.",
+    description: "Achieve your dream by securing a scholarship seat in your entrance exam. Celebrate your hard work and success with flying colors.",
     imageSrc: "/certification 1.png",
   },
 ];
@@ -24,7 +22,7 @@ export const Section2: React.FC = () => {
   return (
     <Col
       sm={{ span: 24 }}
-      md={{ span: 22, offset: 2 }}
+      md={{ span: 22, offset: 1 }}
       style={{
         background: "rgba(74, 58, 225, 0.9)",
         padding: 20,

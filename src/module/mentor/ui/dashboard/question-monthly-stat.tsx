@@ -1,7 +1,8 @@
-import React from "react";
-import { Card } from "antd";
-import { Line, LineConfig } from "@ant-design/plots";
+import React, { useState } from "react";
+import { Card, Select } from "antd";
+import { Column, ColumnConfig, Line, LineConfig } from "@ant-design/plots";
 import { QuestionMonthlyStat } from "../../service/dashbaord/fetch/type";
+const { Option } = Select;
 
 interface QuestionMonthlyStatChartProps {
   isLoading: boolean;
@@ -9,6 +10,8 @@ interface QuestionMonthlyStatChartProps {
 }
 
 const QuestionMonthlyStatChart: React.FC<QuestionMonthlyStatChartProps> = ({ isLoading, questionMonthlyStat }) => {
+  const [chartType, setChartType] = useState<"line" | "bar">("line");
+
   const config: LineConfig = {
     data: questionMonthlyStat,
     xField: "month",
@@ -28,9 +31,32 @@ const QuestionMonthlyStatChart: React.FC<QuestionMonthlyStatChartProps> = ({ isL
     legend: true,
   };
 
+  const columnConfig: ColumnConfig = {
+    data: questionMonthlyStat,
+    xField: "month",
+    yField: "question",
+    tooltip: {
+      showMarkers: false,
+    },
+    style: {
+      columnWidthRatio: 0.2,
+    },
+    legend: true,
+  };
+
   return (
-    <Card title="Question Count Monthly Stat" loading={isLoading}>
-      <Line {...config} />
+    <Card
+      title="Question Count Monthly Stat"
+      styles={{ title: { textAlign: "left" } }}
+      loading={isLoading}
+      extra={
+        <Select defaultValue="line" onChange={(value) => setChartType(value as "line" | "bar")}>
+          <Option value="line">Line</Option>
+          <Option value="bar">Bar</Option>
+        </Select>
+      }
+    >
+      {chartType === "line" ? <Line {...config} /> : <Column {...columnConfig} />}
     </Card>
   );
 };

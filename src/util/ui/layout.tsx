@@ -47,7 +47,7 @@ const MainLayout: React.FC = () => {
             zIndex: 10,
             padding: 0,
             background: "transparent",
-            backdropFilter: "blur(8px)",
+            backdropFilter: "blur(10px)",
             height: "fit-content",
           }}
         >
@@ -61,9 +61,7 @@ const MainLayout: React.FC = () => {
         style={{
           position: "absolute",
           top: isFullScreen ? 0 : 67,
-          // padding: isFullScreen ? 0 : 4,
           width: "100%",
-          // height: "100%",
         }}
       >
         <Layout
