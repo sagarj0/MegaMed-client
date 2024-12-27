@@ -3,9 +3,7 @@ import type { StatisticProps } from "antd";
 import { Card, Statistic } from "antd";
 import CountUp from "react-countup";
 
-const formatter: StatisticProps["formatter"] = (value) => (
-  <CountUp style={{ fontSize: 20 }} duration={2} end={value as number} separator="," />
-);
+const formatter: StatisticProps["formatter"] = (value) => <CountUp style={{ fontSize: 20 }} duration={2} end={value as number} separator="," />;
 
 interface CountCardProps {
   isLoading: boolean;
