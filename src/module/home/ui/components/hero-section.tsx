@@ -10,8 +10,8 @@ export const HeroSection: React.FC = () => {
           children="The Smart Choice For Entrance Prepration"
         />
         <Typography.Paragraph>
-          Welcome to Mega-Med: Improve your medical entrance exams Prepare for your medical entrance exams with Mega-Med. Take tests, talk
-          to mentors, and track your progress. Join us and succeed in your medical career.
+          Welcome to Mega-Med: Improve your medical entrance exams Prepare for your medical entrance exams with Mega-Med. Take tests, talk to mentors,
+          and track your progress. Join us and succeed in your medical career.
         </Typography.Paragraph>
 
         <Button type="primary" size="large" style={{ marginBlock: 20 }}>

@@ -6,6 +6,7 @@ import { v4 } from "uuid";
 
 type UploadImage = Pick<AddQuestionsProps, "qImage" | "aImage" | "bImage" | "cImage" | "dImage" | "eImage">;
 
+//TODO: Move it to UploadImage component
 export const uploadImages = async (data: UploadImage): Promise<Partial<PostQuestionRequest>> => {
   const { qImage, aImage, bImage, cImage, dImage, eImage } = data;
 

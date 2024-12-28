@@ -23,7 +23,7 @@ export const UploadImage: React.FC<Props> = (props) => {
     }
     const isLt5M = file.size / 1024 / 1024 < 5;
     if (!isLt5M) {
-      message.error("Image must smaller than 5MB!");
+      message.error("Image must be smaller than 5MB!");
       return false;
     }
     form.setFieldValue(formKey, file);

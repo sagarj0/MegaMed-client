@@ -94,8 +94,8 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
         ? "blue"
         : "gray"
       : questionData?.[index]?.answer === question.correctAnswer
-      ? "green"
-      : "red",
+        ? "green"
+        : "red",
     pending: !questionData?.[index]?.answer,
   }));
 

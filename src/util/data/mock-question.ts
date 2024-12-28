@@ -7,8 +7,7 @@ export const mockMCQs: DetailedQuestion[] = [
     unit: "Modern Physics",
     chapter: "Cathode Rays, Positive Rays, and Electrons",
     questionNo: 38,
-    question:
-      "If the de brogile wavelength for a proton and a alpha particles are equal then the ratio of the velocities will be ",
+    question: "If the de brogile wavelength for a proton and a alpha particles are equal then the ratio of the velocities will be ",
     qImage: null,
     optionA: "4:1",
     optionB: "2:1",
@@ -42,8 +41,7 @@ export const mockMCQs: DetailedQuestion[] = [
     cImage: null,
     dImage: null,
     correctAnswer: "b",
-    explanation:
-      "When the velocity of electron increase so as per Einstein equation mass of electron increase hence specific charges decrease",
+    explanation: "When the velocity of electron increase so as per Einstein equation mass of electron increase hence specific charges decrease",
     eImage: null,
     tag: "",
     subject: "Physics",
@@ -214,8 +212,7 @@ export const mockMCQs: DetailedQuestion[] = [
     cImage: null,
     dImage: null,
     correctAnswer: "c",
-    explanation:
-      "Potential drop is due to internal resistance of battery and is directly proportional to the current draw from the cell ",
+    explanation: "Potential drop is due to internal resistance of battery and is directly proportional to the current draw from the cell ",
     eImage: null,
     tag: "",
     subject: "Physics",
@@ -252,8 +249,7 @@ export const mockMCQs: DetailedQuestion[] = [
     unit: "Electricity and Magnetism",
     chapter: "Electric Current",
     questionNo: 29,
-    question:
-      "A potential difference V is applied to a copper wire of length l and thickness d. If V is doubled the drift velocity is ",
+    question: "A potential difference V is applied to a copper wire of length l and thickness d. If V is doubled the drift velocity is ",
     qImage: null,
     optionA: "Doubled ",
     optionB: "Is halved",
@@ -277,8 +273,7 @@ export const mockMCQs: DetailedQuestion[] = [
     unit: "Electricity and Magnetism",
     chapter: "Capacitance",
     questionNo: 21,
-    question:
-      "Two insulated spheres of 3μF and 5μF are charged to 300V and 500V respectively. The energy loss when they are connected by a wire is ",
+    question: "Two insulated spheres of 3μF and 5μF are charged to 300V and 500V respectively. The energy loss when they are connected by a wire is ",
     qImage: null,
     optionA: "0.025J",
     optionB: "2.5J",
@@ -302,8 +297,7 @@ export const mockMCQs: DetailedQuestion[] = [
     unit: "Electricity and Magnetism",
     chapter: "Charge and Force",
     questionNo: 20,
-    question:
-      "The force between two charges in air is 10N.On inserting dielectric the force becomes 4N then the dielectric constant of medium is ",
+    question: "The force between two charges in air is 10N.On inserting dielectric the force becomes 4N then the dielectric constant of medium is ",
     qImage: null,
     optionA: "2.5",
     optionB: "0.5",
@@ -327,8 +321,7 @@ export const mockMCQs: DetailedQuestion[] = [
     unit: "Waves and Sound",
     chapter: "Wave",
     questionNo: 20,
-    question:
-      "A wave is represented by x = 0.4cos(8t -y/2) where x and y are in the meter and t in second. The frequency of the wave is ",
+    question: "A wave is represented by x = 0.4cos(8t -y/2) where x and y are in the meter and t in second. The frequency of the wave is ",
     qImage: null,
     optionA: "4/π ",
     optionB: "8/π",
@@ -339,8 +332,7 @@ export const mockMCQs: DetailedQuestion[] = [
     cImage: null,
     dImage: null,
     correctAnswer: "a",
-    explanation:
-      "Compare with the standard equation \n\nx = r cos (2π/T ×t - 2π /lambda ×y ) \n\n2π/T =8 \n\nT = π/4 \n\nn= 1/T = 4/π",
+    explanation: "Compare with the standard equation \n\nx = r cos (2π/T ×t - 2π /lambda ×y ) \n\n2π/T =8 \n\nT = π/4 \n\nn= 1/T = 4/π",
     eImage: null,
     tag: "",
     subject: "Physics",
@@ -533,8 +525,7 @@ export const mockMCQs: DetailedQuestion[] = [
     cImage: null,
     dImage: null,
     correctAnswer: "d",
-    explanation:
-      "Object at 2f then image formed at 2f . So minimum distance between object and it's real image in case of concave mirror is zeroed",
+    explanation: "Object at 2f then image formed at 2f . So minimum distance between object and it's real image in case of concave mirror is zeroed",
     eImage: null,
     tag: "",
     subject: "Physics",
@@ -680,8 +671,7 @@ export const mockMCQs: DetailedQuestion[] = [
     cImage: null,
     dImage: null,
     correctAnswer: "c",
-    explanation:
-      "Infinite heat capacity implies that there would be practically no change in temperature whether heat is given or taken ",
+    explanation: "Infinite heat capacity implies that there would be practically no change in temperature whether heat is given or taken ",
     eImage: null,
     tag: "",
     subject: "Physics",
@@ -705,8 +695,7 @@ export const mockMCQs: DetailedQuestion[] = [
     cImage: null,
     dImage: null,
     correctAnswer: "d",
-    explanation:
-      "Since weight of bag with water is equal to the weight of water displaced, hence reading of spring balance is zero",
+    explanation: "Since weight of bag with water is equal to the weight of water displaced, hence reading of spring balance is zero",
     eImage: null,
     tag: "",
     subject: "Physics",

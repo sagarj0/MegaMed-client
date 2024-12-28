@@ -17,10 +17,7 @@ export const Medal: React.FC<MedalProps> = ({ width, height, style }) => {
       xmlSpace="preserve"
       style={style}
     >
-      <polygon
-        style={{ fill: "#5374FC" }}
-        points="340.835,301.255 340.835,511.174 256.824,472.638 175.127,511.174 175.127,301.255 "
-      />
+      <polygon style={{ fill: "#5374FC" }} points="340.835,301.255 340.835,511.174 256.824,472.638 175.127,511.174 175.127,301.255 " />
       <polygon style={{ fill: "#4D53F1" }} points="340.01,302.082 256,302.082 256,473.463 340.01,512 " />
       <path
         style={{ opacity: 0.25, fill: "#3F489B" }}

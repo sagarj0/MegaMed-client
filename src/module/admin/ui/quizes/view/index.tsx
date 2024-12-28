@@ -4,7 +4,6 @@ import { RenderQuiz } from "../components/render-quiz";
 import { Button, Card, Descriptions, DescriptionsProps } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 
-
 export const ViewQuiz: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading } = useFetchQuiz(id);

@@ -1,8 +1,4 @@
-export const getAllModifiedProperty = <T extends Record<string, any>>(
-  oldObj: T,
-  newObj: T,
-  template?: Record<string, any>,
-): Partial<T> => {
+export const getAllModifiedProperty = <T extends Record<string, any>>(oldObj: T, newObj: T, template?: Record<string, any>): Partial<T> => {
   const result: Record<string, any> = {};
 
   for (const key in template) {
