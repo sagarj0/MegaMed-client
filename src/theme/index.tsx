@@ -12,16 +12,14 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
           fontFamily: "Inter",
           colorError: "#f34141",
           fontWeightStrong: 500,
-          colorPrimary: "rgb(74, 58, 225)",
+          colorPrimary: "#4a3ae1",
         },
 
         components: {
           Spin: {
-            colorPrimary: "blue",
+            colorPrimary: "#4a3ae1",
           },
-          DatePicker: {
-            controlHeight: 34,
-          },
+
           Input: {
             controlHeight: 34,
             activeShadow: "none",
@@ -67,18 +65,11 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
           },
 
           Table: {
-            headerBg: "white",
+            headerBg: "transparent",
             fontSize: 12,
-            headerColor: "#757383",
-            footerBg: "white",
-            controlItemBgActive: "#e5e5f9",
-            rowSelectedHoverBg: "#e5e5f9",
             cellPaddingBlock: 10,
             cellPaddingInline: 10,
             rowHoverBg: "transparent",
-          },
-          Cascader: {
-            optionSelectedBg: "rgb(240, 246, 223)",
           },
           Modal: {
             titleFontSize: 20,
@@ -86,19 +77,11 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
           Select: {
             controlHeight: 34,
             controlOutline: "none",
-            optionSelectedBg: "#ededf7",
-          },
-          Menu: {
-            itemSelectedColor: "white",
           },
           Tabs: {
-            itemColor: "rgb(164, 164, 164)",
-            cardBg: "rgb(255, 255, 255)",
-            itemSelectedColor: "rgb(41, 41, 41)",
-            fontWeightStrong: 500,
-            fontSize: 14,
+            fontSize: 13,
             fontSizeLG: 14,
-            fontSizeSM: 14,
+            fontSizeSM: 13,
           },
         },
       }}
