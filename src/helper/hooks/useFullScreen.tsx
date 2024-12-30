@@ -6,12 +6,10 @@ const useFullScreen = () => {
   const dispatch = useAppDispatch();
   const { isFullScreen } = useAppSelector((root) => root.FullScreen);
 
-  // Toggle full-screen state in Redux
   const toogleFullScreen = useCallback(() => {
     dispatch(setFullScreen(!isFullScreen));
   }, [dispatch, isFullScreen]);
 
-  // Request full-screen mode
   const requestFullScreen = useCallback(async () => {
     try {
       if (!document.fullscreenElement) {
@@ -22,7 +20,6 @@ const useFullScreen = () => {
     }
   }, []);
 
-  // Exit full-screen mode
   const exitFullScreen = useCallback(async () => {
     try {
       if (document.fullscreenElement) {
@@ -33,7 +30,6 @@ const useFullScreen = () => {
     }
   }, []);
 
-  // Sync full-screen state with browser changes
   useEffect(() => {
     const handleFullScreenChange = () => {
       const isCurrentlyFullScreen = Boolean(document.fullscreenElement);
@@ -48,7 +44,6 @@ const useFullScreen = () => {
     };
   }, [dispatch, isFullScreen]);
 
-  // React to `isFullScreen` state changes
   useEffect(() => {
     if (isFullScreen) {
       requestFullScreen();

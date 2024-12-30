@@ -28,6 +28,12 @@ export type QuestionMonthlyStat = {
   question: number;
 };
 
+export type QuestionChartDataType = {
+  date: string;
+  count: number;
+  subject: string;
+};
+
 export type AdminDashboardData = {
   totalUsers: TotalUsers;
   totalQuestions: TotalQuestions;

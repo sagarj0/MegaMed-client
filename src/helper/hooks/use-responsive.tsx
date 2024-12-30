@@ -45,10 +45,8 @@ const useResponsiveDevice = (): Breakpoints => {
       setDevice(getDeviceBreakpoint());
     };
 
-    // Initial check
     handleResize();
 
-    // Add resize event listener
     window.addEventListener("resize", handleResize);
 
     // Cleanup on unmount

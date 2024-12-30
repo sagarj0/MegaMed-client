@@ -1,5 +1,5 @@
 import { User } from "@/module/auth/service/login/type";
-import { TotalQuestions } from "../../dashbaord/fetch/type";
+import { QuestionChartDataType, TotalQuestions } from "../../dashbaord/fetch/type";
 
 export type DetailedUser = User;
 
@@ -10,6 +10,7 @@ export type FetchUserReq = {
 export type FetchUserData = {
   user: DetailedUser;
   totalQuestions?: TotalQuestions;
+  questionChartData: QuestionChartDataType[];
 };
 
 export type FetchUserRes = {

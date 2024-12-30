@@ -1,14 +1,14 @@
 import { Button, Col, Input, Row, Space, Typography } from "antd";
-import { useEffect, useRef } from "react";
+// import { useEffect, useRef } from "react";
 
 export const NewsLetter: React.FC = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  // const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.25; // Set playback speed (0.5x slower)
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (videoRef.current) {
+  //     videoRef.current.playbackRate = 0.25; // Set playback speed (0.5x slower)
+  //   }
+  // }, []);
 
   return (
     <Col
@@ -23,7 +23,7 @@ export const NewsLetter: React.FC = () => {
       }}
     >
       {/* Video Background */}
-      <video
+      {/* <video
         ref={videoRef}
         autoPlay
         muted
@@ -40,7 +40,7 @@ export const NewsLetter: React.FC = () => {
       >
         <source src="/newsletter-bg.mp4" type="video/mp4" />
         Your browser does not support HTML video.
-      </video>
+      </video> */}
 
       {/* Glass Effect Content */}
       <div

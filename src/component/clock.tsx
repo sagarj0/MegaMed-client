@@ -8,26 +8,23 @@ const TimeDisplay: React.FC = () => {
     const interval = setInterval(() => {
       const now = new Date();
 
-      // Define short month names
       const monthNamesShort = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-      // Format time with short month name
       const formattedTime =
-        `${now.getFullYear().toString()}:` + // Last 2 digits of year
+        `${now.getFullYear().toString()}:` +
         monthNamesShort[now.getMonth()] +
-        ":" + // Short month name
+        ":" +
         String(now.getDate()).padStart(2, "0") +
-        ":" + // Day (1-31)
+        ":" +
         String(now.getHours()).padStart(2, "0") +
-        ":" + // Hours (0-23)
+        ":" +
         String(now.getMinutes()).padStart(2, "0") +
-        ":" + // Minutes (0-59)
-        String(now.getSeconds()).padStart(2, "0"); // Seconds (0-59)
+        ":" +
+        String(now.getSeconds()).padStart(2, "0");
 
       setCurrentTime(formattedTime);
-    }, 1000); // Update every second
+    }, 1000);
 
-    // Cleanup the interval on component unmount
     return () => clearInterval(interval);
   }, []);
 

@@ -3,19 +3,18 @@ import { Select, SelectProps } from "antd";
 
 const { Option, OptGroup } = Select;
 
-// Define types for props
 interface OptionType {
-  label: string; // Displayed text
-  value: string | number; // Value associated with the option
+  label: string;
+  value: string | number;
 }
 
 export interface GroupType {
-  label: string; // Group label
-  options: OptionType[]; // Options within the group
+  label: string;
+  options: OptionType[];
 }
 
 interface GroupedSelectProps extends Omit<SelectProps, "options"> {
-  options: GroupType[]; // Array of groups with options
+  options: GroupType[];
 }
 
 const GroupedSelect: React.FC<GroupedSelectProps> = ({ options, ...rest }) => {

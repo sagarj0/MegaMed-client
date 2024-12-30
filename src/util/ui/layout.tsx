@@ -19,7 +19,7 @@ const MainLayout: React.FC = () => {
   return (
     <Layout style={{ minHeight: "100dvh", width: "100%", padding: 0, position: "relative" }}>
       {/* Video Background */}
-      <video
+      {/* <video
         autoPlay
         muted
         loop
@@ -35,7 +35,7 @@ const MainLayout: React.FC = () => {
       >
         <source src="/background.mp4" type="video/mp4" />
         Your browser does not support HTML video.
-      </video>
+      </video> */}
 
       {!isFullScreen && (
         <Header
@@ -90,9 +90,8 @@ const MainLayout: React.FC = () => {
           >
             <div
               style={{
-                // flex: 1,
                 width: "100%",
-                paddingInline: isFullScreen ? 0 : md ? 20 : sm || xs ? 16 : 80,
+                paddingInline: isFullScreen ? 0 : md || sm || xs ? 20 : 80,
                 paddingBlock: isFullScreen ? 0 : 40,
               }}
             >
@@ -104,6 +103,8 @@ const MainLayout: React.FC = () => {
                 style={{
                   minWidth: "calc(100vw - 12px - var(--scrollbar-width))", //col padding and scrollbar width
                   background: "var(--primary-color)",
+                  paddingInline: md || sm || xs ? 20 : 80,
+                  paddingBlock: 40,
                 }}
               >
                 <FooterComponent />

@@ -3,11 +3,12 @@ import useFetchMentor from "@/module/admin/hooks/useFetchUser";
 import { Button, Card, Descriptions, DescriptionsProps, Divider, Row, Tooltip } from "antd";
 import { useParams } from "react-router-dom";
 import { EditOutlined } from "@ant-design/icons";
+import { QuestionChartData } from "./question-chart-data";
 
 export const ViewMentor: React.FC = () => {
   const { id } = useParams();
-  const { data } = useFetchMentor(id);
-  const { user, totalQuestions } = data;
+  const { data, isLoading } = useFetchMentor(id);
+  const { user, totalQuestions, questionChartData } = data;
   const { subjectWiseCounts, totalQuestionCount } = totalQuestions || {};
 
   const items: DescriptionsProps["items"] = [
@@ -22,8 +23,14 @@ export const ViewMentor: React.FC = () => {
   ];
 
   return (
-    <Card bordered={false} style={{ boxShadow: "none" }} extra={<Button type="link" children={"Edit Mentor"} icon={<EditOutlined />} disabled />}>
+    <Card
+      loading={isLoading}
+      bordered={false}
+      style={{ boxShadow: "none" }}
+      extra={<Button type="link" children={"Edit Mentor"} icon={<EditOutlined />} disabled />}
+    >
       <Descriptions colon={true} column={1} items={items} />
+      <QuestionChartData data={questionChartData} />
       <Divider />
       <Row justify="start">
         <Tooltip title="Currently we are working on this feature">
