@@ -1,11 +1,16 @@
 import { QuestionChartDataType } from "@/module/admin/service/dashbaord/fetch/type";
 import { Line, LineConfig } from "@ant-design/plots";
-import { Divider, Typography } from "antd";
+import { Card } from "antd";
 
-export const QuestionChartData: React.FC<{ data: QuestionChartDataType[] }> = ({ data }) => {
+interface QuestionChartDataProps {
+  data: QuestionChartDataType[];
+  onDateChange?: (date: string) => void;
+}
+
+export const QuestionChartData: React.FC<QuestionChartDataProps> = ({ data }) => {
   const config: LineConfig = {
     data,
-    xField: (d: QuestionChartDataType) => new Date(d.date).getDate(),
+    xField: (d: QuestionChartDataType) => new Date(d.date).getDate().toString(),
     yField: "count",
     legend: { size: false },
     colorField: "subject",
@@ -23,17 +28,25 @@ export const QuestionChartData: React.FC<{ data: QuestionChartDataType[] }> = ({
     },
   };
 
-  const date = new Date(data?.[0]?.date);
-  const month = date.toLocaleString("default", { month: "long" });
-  const year = date.getFullYear();
-
   return (
     <>
-      <Divider />
-      <Typography.Title level={5} style={{ textAlign: "left" }}>
-        Questions Added in {`${month} ${year}`}
-      </Typography.Title>
-      <Line {...config} />
+      <Card
+        bordered={false}
+        style={{ boxShadow: "none", marginBlockStart: "1rem" }}
+        title="Added Questions"
+        styles={{ body: { padding: 0 }, header: { textAlign: "left" } }}
+        // extra={
+        //   <Select
+        //     options={[
+        //       { label: "This Week", value: "thisWeek" },
+        //       { label: "This Month", value: "thisMonth" },
+        //     ]}
+        //     defaultValue="thisWeek"
+        //     onChange={onDateChange}
+        //   />
+        // }
+        children={<Line {...config} />}
+      />
     </>
   );
 };
