@@ -24,7 +24,7 @@ const useFetchAllUser = (props: Props) => {
   const { pageSize, current, role, isPaidUser } = { ...filter, ...filterOption, ...pagination };
 
   useEffect(() => {
-    fetch && dispatch(fetchAllUserAction({ pageSize, current, role, isPaidUser }));
+    if (fetch) dispatch(fetchAllUserAction({ pageSize, current, role, isPaidUser }));
   }, [dispatch, fetch, pageSize, current, success]);
 
   useStatusMessage({ error, resetError });

@@ -49,6 +49,9 @@ export const createRepoReducer = <T extends { id: string }, F>(name: string, ini
       },
 
       updateFilter: (state, action) => {
+        //reset isFetched on filter change
+        state.isFetched = false;
+
         const filterObj = action.payload as Partial<F>;
 
         if (Object.keys(filterObj).length === 0) return;
@@ -59,13 +62,22 @@ export const createRepoReducer = <T extends { id: string }, F>(name: string, ini
       },
 
       updateSort: (state, action) => {
+        //reset isFetched on sort change
+        state.isFetched = false;
+
         const { field, order } = action.payload;
         state.sortOption = { sortField: field, sortOrder: order === "ascend" ? "ASC" : "DESC" };
       },
       updatePagination: (state, action) => {
+        //reset isFetched on pagination change
+        state.isFetched = false;
+
         state.pagination = action.payload;
       },
       updateSearch: (state, action) => {
+        //reset isFetched on search change
+        state.isFetched = false;
+
         state.search = action.payload;
       },
       removeData: (state, action) => {

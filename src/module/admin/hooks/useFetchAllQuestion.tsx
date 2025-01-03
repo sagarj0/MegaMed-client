@@ -19,11 +19,11 @@ const useFetchAllQuestion = (props: Props) => {
   const dispatch = useAppDispatch();
 
   const { isLoading, error } = useAppSelector((root) => root.FetchAllQuestion);
-  const { data, pagination, sortOption, filterOption } = useAppSelector((root) => root.QuestionRepo);
+  const { data, pagination, sortOption, filterOption, isFetched } = useAppSelector((root) => root.QuestionRepo);
   const { pageSize, current, subject, sortField, sortOrder, search } = { ...filter, ...filterOption, ...sortOption, ...pagination };
 
   useEffect(() => {
-    fetch && dispatch(fetchAllQuestionAciton({ pageSize, current, subject, sortField, sortOrder, search }));
+    if (fetch && !isFetched) dispatch(fetchAllQuestionAciton({ pageSize, current, subject, sortField, sortOrder, search }));
   }, [dispatch, search, fetch, pageSize, current, subject, sortField, sortOrder]);
 
   useStatusMessage({ error, resetError });

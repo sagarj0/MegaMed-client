@@ -4,7 +4,7 @@ import { AppDispatch } from "@/store";
 import { setLoading, resetLoading, setError } from "./reducer";
 import { FetchAllQuestionRequest } from "./type";
 import { parseRequest } from "@/helper/convert-to-urlquery";
-import { setData } from "../repo/reducer";
+import { setData, setIsFetched } from "../repo/reducer";
 
 export const fetchAllQuestionAciton = (props: FetchAllQuestionRequest) => async (dispatch: AppDispatch) => {
   try {
@@ -17,6 +17,7 @@ export const fetchAllQuestionAciton = (props: FetchAllQuestionRequest) => async 
     const { data } = response;
 
     dispatch(setData(data));
+    dispatch(setIsFetched(true));
   } catch (error) {
     dispatch(setError(parseError(error)));
   } finally {

@@ -12,7 +12,7 @@ export const Navbar: React.FC = () => {
 
   const items: MenuProps["items"] = [
     {
-      key: AllUrls.home,
+      key: AllUrls.root,
       title: undefined,
       label: <Logo />,
       className: "menu-no-underline",
