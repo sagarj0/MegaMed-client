@@ -35,7 +35,6 @@ export const AddQuiz: React.FC<Props> = ({ mode }) => {
     <FormLayout
       title={title}
       mode={mode}
-      isFooterOnTop
       loading={false}
       footer={
         <>

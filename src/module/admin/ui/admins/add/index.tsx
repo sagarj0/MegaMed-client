@@ -48,7 +48,6 @@ export const AddAdmin: React.FC<Props> = ({ mode }) => {
     <FormLayout
       title={title}
       mode={mode}
-      isFooterOnTop
       loading={false}
       footer={
         <Button loading={isLoading} type="primary" onClick={() => form.submit()}>
