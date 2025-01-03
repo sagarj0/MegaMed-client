@@ -9,7 +9,7 @@ export const renderQuestion = (question: DetailedQuestion, index: number) => (
     column={1}
     colon={false}
     size="small"
-    style={{ marginBlock: 32 }}
+    style={{ marginBlock: 32, textAlign: "left" }}
     items={[
       {
         label: "Q " + (index + 1) + ".",
