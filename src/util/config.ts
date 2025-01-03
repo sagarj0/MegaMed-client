@@ -1,19 +1,16 @@
-// This file is created for those scenario where no environment variable file exists
-
 type AppConfig = {
-  apiUrl: string;
-  appMode: "DEVELOPMENT" | "PRODUCTION" | "LOCAL";
-  database: "REAL" | "MOCK";
+  readonly apiUrl: string;
+  readonly appMode: "DEVELOPMENT" | "PRODUCTION" | "LOCAL";
+  readonly database: "REAL" | "MOCK";
 
   //firebaseConfig
-  apiKey: string;
-  authDomain: string;
-  projectId: string;
-  storageBucket: string;
-  messagingSenderId: string;
-  appId: string;
-  measurementId?: string;
-  //firebaseConfig
+  readonly apiKey: string;
+  readonly authDomain: string;
+  readonly projectId: string;
+  readonly storageBucket: string;
+  readonly messagingSenderId: string;
+  readonly appId: string;
+  readonly measurementId?: string;
 };
 
 export const config: AppConfig = {
@@ -29,5 +26,4 @@ export const config: AppConfig = {
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
   appId: import.meta.env.VITE_FIREBASE_APP_ID || "",
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "",
-  //firebaseConfig
 };

@@ -1,4 +1,4 @@
-import { Button, Divider, Form, FormItemProps, Input, Row, Space, Typography } from "antd";
+import { Button, Divider, Form, FormItemProps, Input, Space, Typography } from "antd";
 import FormDebug from "@/helper/form/form-debug";
 import { ForgetPasswordFormKey, ForgetPasswordFormProps } from "./type";
 import { Rules } from "@/helper/form/form-rules";
@@ -8,7 +8,6 @@ import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "../service/login/reducer";
 import { config } from "@/util/config";
 import { AuthEndpoint } from "../util/endpoint";
-import { useNavigate } from "react-router-dom";
 import { AllUrls } from "@/router/urls";
 import { forgetPassword } from "../service/forget-password/action";
 
@@ -17,7 +16,6 @@ const style: React.CSSProperties = { height: 45 };
 export const ForgetPassword: React.FC = () => {
   const [form] = Form.useForm<ForgetPasswordFormProps>();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const submitForm = async (values: ForgetPasswordFormProps) => await dispatch(forgetPassword(values));
   const handleGoogleLogin = () => window.open(config.apiUrl + AuthEndpoint.googleLogin, "_self");
@@ -39,24 +37,22 @@ export const ForgetPassword: React.FC = () => {
       <Space direction="vertical" style={{ width: "100%" }} size={"middle"}>
         <Typography.Title level={3} children="Sign in to Mega Med" />
 
-        <Row justify={"space-around"}>
-          <Button onClick={handleGoogleLogin} size="large" style={{ width: "100%", ...style }} children="Google" icon={<GoogleOutlined />} />
-        </Row>
+        <Button onClick={handleGoogleLogin} size="large" style={style} block children="Google" icon={<GoogleOutlined />} />
 
-        <Divider children={"or conitnue resetting your password "} style={{ marginBottom: 0 }} />
+        <Divider children={"or continue reseting your password "} style={{ marginBottom: 0 }} />
 
         <Form layout="vertical" name="login" colon={false} onFinish={submitForm} form={form}>
           {formItem.map((item) => (
             <Form.Item {...item} key={item.name} />
           ))}
 
-          <Button type="primary" htmlType="submit" size="large" style={{ width: "100%", ...style }} children="Submit" loading={isLoading} />
+          <Button type="primary" htmlType="submit" size="large" style={style} block children="Submit" loading={isLoading} />
           <FormDebug />
         </Form>
       </Space>
 
       <Typography.Text style={{ textAlign: "center", width: "100%", display: "block", padding: 12 }}>
-        Don't have an account? <Button type="link" onClick={() => navigate(AllUrls.signUp)} style={{ padding: 0 }} children="Create new account " />
+        Don't have an account? <Typography.Link href={AllUrls.signUp} children="Create new account " />
       </Typography.Text>
     </>
   );
