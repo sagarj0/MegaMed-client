@@ -17,6 +17,7 @@ import { properCase } from "@/helper/proper-case";
 import { getKeyFromUrl } from "@/helper/key-from-url";
 import useResponsiveDevice from "@/helper/hooks/use-responsive";
 import useAuthHook from "@/module/auth/hook/useAuthHook";
+import { UserAvatar } from "@/component/user-avatar";
 
 const { Header, Content, Sider } = Layout;
 const { Title } = Typography;
@@ -36,7 +37,7 @@ const siderStyle: React.CSSProperties = {
 };
 
 const AdminLayout: React.FC = () => {
-  const { UserAvatar, logout } = useAuthHook({ checkToken: true, roleCheck: ["admin"] });
+  const { logout, user } = useAuthHook({ checkToken: true, roleCheck: ["admin"] });
 
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -129,7 +130,7 @@ const AdminLayout: React.FC = () => {
           {isMobile ? (
             <Row align={"middle"}>
               <Link to={AdminUrls.adminProfile}>
-                <UserAvatar />
+                <UserAvatar user={user} />
               </Link>
               <Dropdown overlay={<Menu items={items} selectedKeys={[selectedKey || "dashboard"]} />} trigger={["click"]}>
                 <Button type="text" icon={<BarsOutlined />} />
@@ -137,7 +138,7 @@ const AdminLayout: React.FC = () => {
             </Row>
           ) : (
             <Link to={AdminUrls.adminProfile}>
-              <UserAvatar />
+              <UserAvatar user={user} />
             </Link>
           )}
         </Header>

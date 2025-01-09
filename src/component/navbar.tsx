@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import Logo from "./logo";
 import { AllUrls } from "../router/urls";
 import useAuthHook from "@/module/auth/hook/useAuthHook";
+import { UserAvatar } from "./user-avatar";
 
 export const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
-  const { logout, isUserLoggedIn, UserAvatar } = useAuthHook();
+  const { logout, isUserLoggedIn, user } = useAuthHook();
 
   const items: MenuProps["items"] = [
     {
@@ -51,7 +52,7 @@ export const Navbar: React.FC = () => {
   isUserLoggedIn
     ? items.push({
         key: AllUrls.profile,
-        icon: <UserAvatar />,
+        icon: <UserAvatar user={user} />,
         children: [
           {
             key: AllUrls.profile,

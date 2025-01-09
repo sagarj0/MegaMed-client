@@ -1,42 +1,11 @@
-import { properCase } from "@/helper/proper-case";
 import useFetchMentor from "@/module/admin/hooks/useFetchUser";
-import { Button, Card, Descriptions, DescriptionsProps, Divider, Row, Tooltip } from "antd";
+import { Card } from "antd";
 import { useParams } from "react-router-dom";
-import { EditOutlined } from "@ant-design/icons";
-import { QuestionChartData } from "./question-chart-data";
+import { tabList } from "./tabs";
 
 export const ViewMentor: React.FC = () => {
   const { id } = useParams();
-  const { data, isLoading } = useFetchMentor(id);
-  const { user, totalQuestions, questionChartData } = data;
-  const { subjectWiseCounts, totalQuestionCount } = totalQuestions || {};
+  useFetchMentor(id);
 
-  const items: DescriptionsProps["items"] = [
-    { label: "Name", children: user?.name },
-    { label: "Email", children: user?.email },
-    { label: "Total Questions Added", children: totalQuestionCount ?? 0 },
-    { label: "", children: "Subject Wise Count" },
-    ...(subjectWiseCounts?.map((subject) => ({
-      label: properCase(subject?.subject),
-      children: subject?.count,
-    })) ?? []),
-  ];
-
-  return (
-    <Card
-      loading={isLoading}
-      bordered={false}
-      style={{ boxShadow: "none" }}
-      extra={<Button type="link" children={"Edit Mentor"} icon={<EditOutlined />} disabled />}
-    >
-      <Descriptions colon={true} column={1} items={items} />
-      <QuestionChartData data={questionChartData} />
-      <Divider />
-      <Row justify="start">
-        <Tooltip title="Currently we are working on this feature">
-          <Button children={"View Questions Added"} type="primary" disabled />
-        </Tooltip>
-      </Row>
-    </Card>
-  );
+  return <Card bordered={false} style={{ boxShadow: "none" }} styles={{ header: { border: "none" } }} tabList={tabList} />;
 };

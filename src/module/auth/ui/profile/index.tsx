@@ -3,9 +3,18 @@ import { Col, Row, theme, Typography, Descriptions, Space, Card } from "antd";
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import { AllUrls } from "@/router/urls";
 import { config } from "@/util/config";
+import { User } from "../../service/login/type";
+import { UserAvatar } from "@/component/user-avatar";
 
-export const ProfileComponent: React.FC = () => {
-  const { user, UserAvatar } = useAuthHook();
+interface ProfileComponentProps {
+  userData?: User;
+  profileOnly?: boolean;
+  isLoading?: boolean;
+}
+
+export const ProfileComponent: React.FC<ProfileComponentProps> = ({ userData, profileOnly = false, isLoading = false }) => {
+  const { user: thisUser } = useAuthHook();
+  const user = userData || thisUser;
   const isPaid = user?.isPaidUser;
   const isStudent = user?.role === "student";
   const isAdmin = user?.role === "admin";
@@ -30,12 +39,12 @@ export const ProfileComponent: React.FC = () => {
   ];
 
   return (
-    <Card bordered={false} style={{ boxShadow: "none", background: "transparent" }}>
+    <Card bordered={false} style={{ boxShadow: "none", background: "transparent" }} loading={isLoading}>
       <Row justify="center" wrap>
         <Col>
           <Space direction="vertical" size={"large"} style={{ alignItems: "stretch" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
-              <UserAvatar style={{ width: 128, height: 128, fontSize: fontSizeHeading1 }} />
+              <UserAvatar style={{ width: 120, height: 120, fontSize: fontSizeHeading1 }} user={user} />
               <Typography.Title level={4}>{user?.name}</Typography.Title>
               <Row>
                 <Typography.Text>{user?.email}</Typography.Text> &nbsp;
@@ -44,30 +53,34 @@ export const ProfileComponent: React.FC = () => {
               <Typography.Text>{user?.role?.toUpperCase()}</Typography.Text>
             </div>
 
-            {(isStudent || config.appMode !== "PRODUCTION") && (
+            {profileOnly || (
               <>
-                <Descriptions
-                  title="Accessible Features"
-                  column={1}
-                  colon={false}
-                  size="small"
-                  style={{ width: 300, textAlign: "center" }}
-                  labelStyle={{ width: 150 }}
-                  contentStyle={{ width: 150, justifyContent: "end" }}
-                  items={accessibleFeatures}
-                />
+                {(isStudent || config.appMode !== "PRODUCTION") && (
+                  <>
+                    <Descriptions
+                      title="Accessible Features"
+                      column={1}
+                      colon={false}
+                      size="small"
+                      style={{ width: 300, textAlign: "center" }}
+                      labelStyle={{ width: 150 }}
+                      contentStyle={{ width: 150, justifyContent: "end" }}
+                      items={accessibleFeatures}
+                    />
+                  </>
+                )}
+
+                <Space direction="vertical" align="start" style={{ width: "100%" }}>
+                  {(isAdmin || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.admin}>Admin Dashboard</Typography.Link>}
+                  {(isAdmin || isMentor || config.appMode !== "PRODUCTION") && (
+                    <>
+                      <Typography.Link href={AllUrls.mentor}>Mentor Dashboard</Typography.Link>
+                      <Typography.Link href={AllUrls.home}>Home page</Typography.Link>
+                    </>
+                  )}
+                </Space>
               </>
             )}
-
-            <Space direction="vertical" align="start" style={{ width: "100%" }}>
-              {(isAdmin || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.admin}>Admin Dashboard</Typography.Link>}
-              {(isAdmin || isMentor || config.appMode !== "PRODUCTION") && (
-                <>
-                  <Typography.Link href={AllUrls.mentor}>Mentor Dashboard</Typography.Link>
-                  <Typography.Link href={AllUrls.home}>Home page</Typography.Link>
-                </>
-              )}
-            </Space>
           </Space>
         </Col>
       </Row>
