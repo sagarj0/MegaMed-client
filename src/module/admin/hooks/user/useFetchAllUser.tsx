@@ -3,11 +3,11 @@ import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import useStatusMessage from "@/helper/hooks/use-message";
 import { SorterResult } from "antd/es/table/interface";
-import { FetchAllUserReq } from "../service/Users/fetch-all/type";
-import { fetchAllUserAction } from "../service/Users/fetch-all/action";
-import { DetailedUser } from "../service/Users/fetch/type";
-import { updateFilter, updatePagination, updateSearch, updateSort } from "../service/Users/repo/reducer";
-import { resetError } from "../service/Users/fetch-all/reducer";
+import { FetchAllUserReq } from "../../service/Users/fetch-all/type";
+import { fetchAllUserAction } from "../../service/Users/fetch-all/action";
+import { DetailedUser } from "../../service/Users/fetch/type";
+import { updateFilter, updatePagination, updateSearch, updateSort } from "../../service/Users/repo/reducer";
+import { resetError } from "../../service/Users/fetch-all/reducer";
 
 interface Props {
   filter: FetchAllUserReq;

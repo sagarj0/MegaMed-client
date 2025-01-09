@@ -1,13 +1,13 @@
 import { TablePaginationConfig } from "antd";
-import { FetchAllQuestionRequest } from "../service/Questions/fetch-all/type";
+import { FetchAllQuestionRequest } from "../../service/Questions/fetch-all/type";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
-import { fetchAllQuestionAciton } from "../service/Questions/fetch-all/action";
+import { fetchAllQuestionAciton } from "../../service/Questions/fetch-all/action";
 import useStatusMessage from "@/helper/hooks/use-message";
 import { SorterResult } from "antd/es/table/interface";
-import { DetailedQuestion } from "../service/Questions/fetch/type";
-import { updateFilter, updatePagination, updateSearch, updateSort } from "../service/Questions/repo/reducer";
-import { resetError } from "../service/Questions/fetch-all/reducer";
+import { DetailedQuestion } from "../../service/Questions/fetch/type";
+import { updateFilter, updatePagination, updateSearch, updateSort } from "../../service/Questions/repo/reducer";
+import { resetError } from "../../service/Questions/fetch-all/reducer";
 
 interface Props {
   filter: FetchAllQuestionRequest;

@@ -1,4 +1,4 @@
-import useFetchAllQuiz from "@/module/admin/hooks/useFetchAllQuiz";
+import useFetchAllQuiz from "@/module/admin/hooks/quizes/useFetchAllQuiz";
 import { Typography, Row, Col, Card, Descriptions, Button, Empty, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import { QuizUrls } from "../../util/url";

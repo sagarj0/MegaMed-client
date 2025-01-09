@@ -1,4 +1,4 @@
-import useFetchAllUser from "@/module/admin/hooks/useFetchAllUser";
+import useFetchAllUser from "@/module/admin/hooks/user/useFetchAllUser";
 import { DetailedUser } from "@/module/admin/service/Users/fetch/type";
 import { AdminUrls } from "@/module/admin/util/urls";
 import { Button, Card, Table, TableProps, Tag } from "antd";

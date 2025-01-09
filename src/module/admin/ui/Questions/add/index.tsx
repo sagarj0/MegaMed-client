@@ -11,7 +11,7 @@ import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "@/module/admin/service/Questions/add/reducer";
 import { resetError as resetEditError, resetSuccess as resetEditSuccess } from "@/module/admin/service/Questions/edit/reducer";
 import { useParams } from "react-router-dom";
-import useFetchQuestion from "@/module/admin/hooks/useFetchQuestion";
+import useFetchQuestion from "@/module/admin/hooks/questions/useFetchQuestion";
 import { mapToForm, resetFields } from "./helper";
 import { editQuestionAction } from "@/module/admin/service/Questions/edit/action";
 import { UploadOutlined } from "@ant-design/icons";

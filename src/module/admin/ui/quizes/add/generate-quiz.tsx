@@ -1,6 +1,6 @@
 import { Button, Col, Form, Row } from "antd";
 import { SaveQuizProps } from "./type";
-import useGenerateQuiz from "@/module/admin/hooks/useGenerateQuiz";
+import useGenerateQuiz from "@/module/admin/hooks/quizes/useGenerateQuiz";
 import { useEffect } from "react";
 import { useAppDispatch } from "@/store/hook";
 import { setData } from "@/module/admin/service/quizes/generate/reducer";

@@ -2,7 +2,7 @@ import { Form, FormProps } from "antd";
 import { useParams } from "react-router-dom";
 import { InteractiveMCQ } from "../components/interactive-mcq";
 import FormDebug from "@/helper/form/form-debug";
-import useFetchQuiz from "@/module/admin/hooks/useFetchQuiz";
+import useFetchQuiz from "@/module/admin/hooks/quizes/useFetchQuiz";
 import { resetError, resetSuccess } from "@/module/quizes/services/update-score/reducer";
 import useStatusMessage from "@/helper/hooks/use-message";
 import { useAppDispatch, useAppSelector } from "@/store/hook";

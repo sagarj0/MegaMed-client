@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { InteractiveMCQ } from "../components/interactive-mcq";
 import FormDebug from "@/helper/form/form-debug";
-import useFetchQuiz from "@/module/admin/hooks/useFetchQuiz";
+import useFetchQuiz from "@/module/admin/hooks/quizes/useFetchQuiz";
 import React from "react";
 import { Form, FormProps } from "antd";
 import { UpdateScoreKey, UpdateScoreProps } from "../type";

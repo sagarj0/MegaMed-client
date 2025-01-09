@@ -1,13 +1,13 @@
 import { TablePaginationConfig } from "antd";
-import { FetchAllQuizRequest } from "../service/quizes/fetch-all/type";
+import { FetchAllQuizRequest } from "../../service/quizes/fetch-all/type";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
-import { fetchAllQuizAciton } from "../service/quizes/fetch-all/action";
+import { fetchAllQuizAciton } from "../../service/quizes/fetch-all/action";
 import useStatusMessage from "@/helper/hooks/use-message";
 import { FilterValue, SorterResult } from "antd/es/table/interface";
-import { updateFilter, updatePagination, updateSearch, updateSort } from "../service/quizes/repo/reducer";
-import { resetError } from "../service/quizes/fetch-all/reducer";
-import { SaveQuizResponse } from "../service/quizes/add/type";
+import { updateFilter, updatePagination, updateSearch, updateSort } from "../../service/quizes/repo/reducer";
+import { resetError } from "../../service/quizes/fetch-all/reducer";
+import { SaveQuizResponse } from "../../service/quizes/add/type";
 
 interface Props {
   filter: FetchAllQuizRequest;

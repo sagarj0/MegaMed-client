@@ -1,7 +1,7 @@
 import { Form, FormProps } from "antd";
 import { InteractiveMCQ } from "../components/interactive-mcq";
 import FormDebug from "@/helper/form/form-debug";
-import useFetchQuiz from "@/module/admin/hooks/useFetchQuiz";
+import useFetchQuiz from "@/module/admin/hooks/quizes/useFetchQuiz";
 import { UpdateScoreProps } from "../type";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { setScoreChecked } from "@/store/reducers/quiz-helper/reducer";

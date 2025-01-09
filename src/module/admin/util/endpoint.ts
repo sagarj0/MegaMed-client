@@ -1,10 +1,14 @@
 export const AdminEndpoints = {
   manageQuestion: "/question/",
   user: "/user/",
+
   addAdmin: "/user/add-admin",
   revokeAdmin: "/user/revoke-admin",
+
   addmentor: "/user/add-mentor",
   revokemonitor: "/user/revoke-mentor",
+  mentorDetails: "/user/mentor-details/",
+
   manageStudent: "/user/manage-student",
 
   createQuiz: "/quiz/create",

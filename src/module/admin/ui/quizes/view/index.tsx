@@ -1,4 +1,4 @@
-import useFetchQuiz from "@/module/admin/hooks/useFetchQuiz";
+import useFetchQuiz from "@/module/admin/hooks/quizes/useFetchQuiz";
 import { useParams } from "react-router-dom";
 import { RenderQuiz } from "../components/render-quiz";
 import { Button, Card, Descriptions, DescriptionsProps } from "antd";

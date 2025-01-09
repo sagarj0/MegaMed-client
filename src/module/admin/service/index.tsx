@@ -11,6 +11,7 @@ export { default as EditAdmin } from "./Users/Admins/edit/reducer";
 //manage  mentor reducers
 export { default as AddMentor } from "./Users/Mentor/add/reducer";
 export { default as EditMentor } from "./Users/Mentor/edit/reducer";
+export { default as FetchMentorDetails } from "./Users/Mentor/fetch-details/reducer";
 
 //manage  student reducers
 export { default as EditStudent } from "./Users/Student/edit/reducer";

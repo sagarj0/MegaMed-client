@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError } from "@/module/admin/service/Questions/fetch/reducer";
-import { fetchQuestionAciton } from "../service/Questions/fetch/action";
+import { fetchQuestionAciton } from "../../service/Questions/fetch/action";
 
 const useFetchQuestion = (id: string | undefined) => {
   const dispatch = useAppDispatch();

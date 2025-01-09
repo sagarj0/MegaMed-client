@@ -1,7 +1,7 @@
-import useFetchMentor from "@/module/admin/hooks/useFetchUser";
 import { Card } from "antd";
-import { useParams } from "react-router-dom";
 import { tabList } from "./tabs";
+import { useParams } from "react-router-dom";
+import useFetchMentor from "@/module/admin/hooks/user/useFetchUser";
 
 export const ViewMentor: React.FC = () => {
   const { id } = useParams();

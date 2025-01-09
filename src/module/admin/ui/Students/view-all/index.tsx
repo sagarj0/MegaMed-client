@@ -1,5 +1,5 @@
 import useStatusMessage from "@/helper/hooks/use-message";
-import useFetchAllUser from "@/module/admin/hooks/useFetchAllUser";
+import useFetchAllUser from "@/module/admin/hooks/user/useFetchAllUser";
 import { bulkEditAction } from "@/module/admin/service/Users/bulk-edit/action";
 import { DetailedUser } from "@/module/admin/service/Users/fetch/type";
 import { useAppDispatch, useAppSelector } from "@/store/hook";

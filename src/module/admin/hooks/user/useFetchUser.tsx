@@ -1,8 +1,8 @@
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import useStatusMessage from "@/helper/hooks/use-message";
-import { fetchUserAction } from "../service/Users/fetch/action";
-import { resetError } from "../service/Users/fetch/reducer";
+import { fetchUserAction } from "../../service/Users/fetch/action";
+import { resetError } from "../../service/Users/fetch/reducer";
 
 const useFetchUser = (id: string | undefined) => {
   const dispatch = useAppDispatch();

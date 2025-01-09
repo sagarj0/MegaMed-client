@@ -1,4 +1,4 @@
-import useFetchAllQuestion from "@/module/admin/hooks/useFetchAllQuestion";
+import useFetchAllQuestion from "@/module/admin/hooks/questions/useFetchAllQuestion";
 import { AdminUrls } from "@/module/admin/util/urls";
 import { Button, Card, Table } from "antd";
 import { useNavigate } from "react-router-dom";

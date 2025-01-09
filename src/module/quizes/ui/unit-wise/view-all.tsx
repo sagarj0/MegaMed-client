@@ -1,5 +1,5 @@
 import { properCase } from "@/helper/proper-case";
-import useFetchAllQuiz from "@/module/admin/hooks/useFetchAllQuiz";
+import useFetchAllQuiz from "@/module/admin/hooks/quizes/useFetchAllQuiz";
 import { Typography, Row, Col, Card, Descriptions, Button, Empty, Space } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { QuizUrls } from "../../util/url";

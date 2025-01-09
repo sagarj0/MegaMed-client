@@ -13,7 +13,7 @@ import { addAdmin } from "@/module/admin/service/Users/Admins/add/action";
 import { editAdminAction } from "@/module/admin/service/Users/Admins/edit/action";
 import { mapToForm } from "./helper";
 import { BasicSection } from "./basic-section";
-import useFetchUser from "@/module/admin/hooks/useFetchUser";
+import useFetchUser from "@/module/admin/hooks/user/useFetchUser";
 import { AdminUrls } from "@/module/admin/util/urls";
 
 interface Props {

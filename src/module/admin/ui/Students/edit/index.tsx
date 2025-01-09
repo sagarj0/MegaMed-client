@@ -10,7 +10,7 @@ import { resetError, resetSuccess } from "@/module/admin/service/Questions/edit/
 import { useParams } from "react-router-dom";
 import { mapToForm } from "./helper";
 import { BasicSection } from "./basic-section";
-import useFetchStudent from "@/module/admin/hooks/useFetchUser";
+import useFetchStudent from "@/module/admin/hooks/user/useFetchUser";
 import { editStudentAction } from "@/module/admin/service/Users/Student/edit/action";
 
 interface Props {
