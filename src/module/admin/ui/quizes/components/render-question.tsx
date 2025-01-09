@@ -1,18 +1,19 @@
 import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
 import { renderImage } from "@/module/quizes/ui/components/render-image";
-import { Descriptions, Space, Form } from "antd";
+import { Descriptions, Space, Form, DescriptionsProps } from "antd";
 import { SaveQuizKeys } from "../add/type";
 import { CheckCircleFilled } from "@ant-design/icons";
 
-export const renderQuestion = (question: DetailedQuestion, index: number) => (
+export const renderQuestion = (question: DetailedQuestion, index: number = 0, items: DescriptionsProps["items"] = []) => (
   <Descriptions
     column={1}
     colon={false}
     size="small"
     style={{ marginBlock: 32, textAlign: "left" }}
     items={[
+      ...items,
       {
-        label: "Q " + (index + 1) + ".",
+        label: "Q " + index + ".",
         children: (
           <Space direction="vertical" align="start">
             {question.question}
@@ -70,8 +71,13 @@ export const renderQuestion = (question: DetailedQuestion, index: number) => (
         ),
       },
       {
-        label: "explanation",
-        children: question.explanation,
+        label: "explanation :",
+        children: (
+          <Space direction="vertical" align="start">
+            {question.explanation}
+            {renderImage(question.eImage, "explanation image")}
+          </Space>
+        ),
       },
     ]}
   />

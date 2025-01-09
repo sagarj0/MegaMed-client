@@ -17,7 +17,7 @@ export const editQuestionAction = (props: Props) => async (dispatch: AppDispatch
 
     const request = parseEditRequest(props);
 
-    const response = await patchQuestion(request);
+    const response = await patchQuestion(request, props.id);
 
     const { message } = response.data;
 

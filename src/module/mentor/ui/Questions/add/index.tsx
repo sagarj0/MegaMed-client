@@ -55,7 +55,7 @@ export const AddQuestions: React.FC<Props> = ({ mode }) => {
       title={title}
       mode={mode}
       loading={false}
-      footer={
+      action={
         <>
           <Switch checked={showUpload} onChange={handleShowUpload} unCheckedChildren={<UploadOutlined />} checkedChildren={<UploadOutlined />} />
           <Button loading={isLoading} type="primary" onClick={() => form.submit()}>

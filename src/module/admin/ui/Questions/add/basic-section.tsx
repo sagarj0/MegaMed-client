@@ -16,15 +16,13 @@ export const BasicSection: React.FC<Props> = (props) => {
     {
       label: "Select Subject",
       name: AddQuestionKeys.subjectData,
-      children: (
-        <Cascader options={cascaderOptions} dropdownMenuColumnStyle={{ height: "auto" }} showSearch placeholder="Select a subject and subtopic" />
-      ),
+      children: <Cascader options={cascaderOptions} showSearch placeholder="Select a subject and subtopic" />,
+      rules: [Rules.required],
       normalize: (value: string[] | null) => {
         if (!value) return undefined;
         const [subjectUnit, chapter] = value;
         return [...subjectUnit.split("/"), chapter];
       },
-      rules: [Rules.required],
     },
     {
       label: "Q. No.",

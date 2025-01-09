@@ -13,7 +13,7 @@ export const RenderQuiz: React.FC<Props> = ({ data, isLoading, title }) => {
     return Array.isArray(quiz) && quiz.every((item) => "questions" in item);
   };
 
-  let questionCounter = 0;
+  let questionCounter = 1;
 
   return (
     <Card loading={isLoading} title={<Typography.Title level={4}>{title || "Generated Questions"}</Typography.Title>}>
@@ -25,7 +25,7 @@ export const RenderQuiz: React.FC<Props> = ({ data, isLoading, title }) => {
                 {mockQuiz.questions.map((question) => renderQuestion(question, questionCounter++))}
               </div>
             ))
-          : data?.map((question, index) => renderQuestion(question, index))}
+          : data?.map((question, index) => renderQuestion(question, index + 1))}
       </Col>
     </Card>
   );

@@ -22,7 +22,18 @@ export const ViewAllQuestion: React.FC = () => {
       activeTabKey={subject}
       tabBarExtraContent={<Button type="primary" onClick={handleAddQuestion} children={"Add Question"} />}
       children={
-        <Table columns={columns} dataSource={data} onChange={handleQueryChange} pagination={pagination} loading={isLoading} scroll={{ x: 500 }} />
+        <Table
+          columns={columns}
+          dataSource={data}
+          onChange={handleQueryChange}
+          pagination={pagination}
+          loading={isLoading}
+          scroll={{ x: 500 }}
+          onRow={({ id }) => ({
+            style: { cursor: "pointer" },
+            onClick: () => navigate(AdminUrls.adminquestions.view + id),
+          })}
+        />
       }
     />
   );

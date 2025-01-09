@@ -3,12 +3,11 @@ import { AddQuestionKeys, AddQuestionsProps } from "@/module/admin/ui/Questions/
 import { PatchQuestionRequest } from "./type";
 
 interface Props {
-  id: string;
   oldData: AddQuestionsProps;
   newData: AddQuestionsProps;
 }
 
-export const parseEditRequest = ({ id, oldData, newData }: Props): PatchQuestionRequest => {
+export const parseEditRequest = ({ oldData, newData }: Props): PatchQuestionRequest => {
   const diffData = getAllModifiedProperty(oldData, newData, AddQuestionKeys);
 
   const updatedData = Object.fromEntries(Object.entries(diffData).filter(([_, value]) => value !== undefined));
@@ -18,5 +17,5 @@ export const parseEditRequest = ({ id, oldData, newData }: Props): PatchQuestion
   const [newSubject, chapter, unit] = subjectData || [];
   const subject = newSubject?.toLowerCase();
 
-  return { id, subject, chapter, unit, ...rest };
+  return { subject, chapter, unit, ...rest };
 };

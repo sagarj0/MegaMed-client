@@ -5,11 +5,11 @@ type Props = {
   title?: string;
   loading: boolean;
   children: React.ReactNode;
-  footer: React.ReactNode;
+  action: React.ReactNode;
   mode?: "New" | "Edit";
 };
 
-export const FormLayout: React.FC<Props> = ({ title, children, loading, footer, mode }) => {
+export const FormLayout: React.FC<Props> = ({ title, children, loading, action, mode }) => {
   const navigate = useNavigate();
 
   return (
@@ -30,7 +30,7 @@ export const FormLayout: React.FC<Props> = ({ title, children, loading, footer, 
       }}
       extra={
         <Space>
-          {footer}
+          {action}
           {<Button onClick={() => navigate(-1)}>Cancel</Button>}
         </Space>
       }

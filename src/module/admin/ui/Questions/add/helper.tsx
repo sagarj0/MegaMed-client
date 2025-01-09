@@ -4,7 +4,6 @@ import { AddQuestionsProps } from "./type";
 export const mapToForm = (data: DetailedQuestion): AddQuestionsProps => {
   const { subject, chapter, unit, qImage, aImage, bImage, cImage, dImage, eImage, ...rest } = data;
   const subjectData = [subject, chapter, unit].filter(Boolean) as string[];
-
   return { subjectData, ...rest };
 };
 

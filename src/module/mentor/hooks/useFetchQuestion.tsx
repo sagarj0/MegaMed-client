@@ -7,8 +7,6 @@ import { fetchQuestionAciton } from "../service/Questions/fetch/action";
 const useFetchQuestion = (id: string | undefined) => {
   const dispatch = useAppDispatch();
 
-  // const { success: paymentRecorded } = useAppSelector((state) => state.AddTransaction);
-
   useEffect(() => {
     if (id) dispatch(fetchQuestionAciton({ id }));
   }, [dispatch, id]);

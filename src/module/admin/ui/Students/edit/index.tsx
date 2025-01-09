@@ -41,7 +41,7 @@ export const AddStudent: React.FC<Props> = ({ mode }) => {
       title={title}
       mode={mode}
       loading={false}
-      footer={
+      action={
         <Button loading={isLoading} type="primary" onClick={() => form.submit()}>
           Save
         </Button>

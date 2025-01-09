@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Form, FormProps, Switch } from "antd";
 import FormDebug from "@/helper/form/form-debug";
 import { AddQuestionsProps } from "./type";
@@ -10,11 +10,12 @@ import { useAppDispatch, useAppSelector } from "@/store/hook";
 import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "@/module/admin/service/Questions/add/reducer";
 import { resetError as resetEditError, resetSuccess as resetEditSuccess } from "@/module/admin/service/Questions/edit/reducer";
-import { useParams } from "react-router-dom";
-import useFetchQuestion from "@/module/admin/hooks/questions/useFetchQuestion";
+import { useLocation, useParams, Location, useNavigate } from "react-router-dom";
 import { mapToForm, resetFields } from "./helper";
 import { editQuestionAction } from "@/module/admin/service/Questions/edit/action";
 import { UploadOutlined } from "@ant-design/icons";
+import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
+import { AllUrls } from "@/router/urls";
 
 interface Props {
   mode: "New" | "Edit";
@@ -23,20 +24,17 @@ interface Props {
 export const AddQuestions: React.FC<Props> = ({ mode }) => {
   const [form] = Form.useForm<AddQuestionsProps>();
   const dispatch = useAppDispatch();
-  const title = "Question";
+  const navigate = useNavigate();
+
+  const { id } = useParams();
+  const { state: editData }: Location<DetailedQuestion> = useLocation();
+  if (mode === "Edit" && editData && id) form.setFieldsValue(mapToForm(editData));
 
   const [showUpload, setShowUpload] = useState(false);
   const handleShowUpload = (checked: boolean) => {
     setShowUpload((prev) => !prev);
     !checked && form.resetFields(["qImage", "aImage", "bImage", "cImage", "dImage", "eImage"]);
   };
-
-  const { id } = useParams();
-  const { data: editData } = useFetchQuestion(id);
-
-  useEffect(() => {
-    if (mode === "Edit" && editData && id) form.setFieldsValue(mapToForm(editData));
-  }, [editData, form]);
 
   const submitForm: FormProps<AddQuestionsProps>["onFinish"] = (values) => {
     if (mode === "New") dispatch(addQuestionAction(values));
@@ -48,16 +46,29 @@ export const AddQuestions: React.FC<Props> = ({ mode }) => {
   useStatusMessage({ success, error, resetError, resetSuccess, onSuccessReset });
 
   const { success: successEdit, error: errorEdit } = useAppSelector((root) => root.EditQuestion);
-  useStatusMessage({ success: successEdit, error: errorEdit, resetError: resetEditError, resetSuccess: resetEditSuccess });
+  const onSuccessEditReset = () => navigate(AllUrls.adminquestions.viewAll);
+  useStatusMessage({
+    success: successEdit,
+    error: errorEdit,
+    resetError: resetEditError,
+    resetSuccess: resetEditSuccess,
+    onSuccessReset: onSuccessEditReset,
+  });
 
   return (
     <FormLayout
-      title={title}
+      title={"Question"}
       mode={mode}
       loading={false}
-      footer={
+      action={
         <>
-          <Switch checked={showUpload} onChange={handleShowUpload} unCheckedChildren={<UploadOutlined />} checkedChildren={<UploadOutlined />} />
+          <Switch
+            checked={showUpload}
+            disabled={Boolean(id && editData)}
+            onChange={handleShowUpload}
+            unCheckedChildren={<UploadOutlined />}
+            checkedChildren={<UploadOutlined />}
+          />
           <Button loading={isLoading} type="primary" onClick={() => form.submit()}>
             Save
           </Button>
