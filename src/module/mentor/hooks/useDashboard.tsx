@@ -8,10 +8,10 @@ const useFetchDashboardData = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(dashboardAction());
+    if (!Boolean(success)) dispatch(dashboardAction());
   }, [dispatch]);
 
-  const { data, error, isLoading } = useAppSelector((root) => root.MentorDashboardReducer);
+  const { data, error, isLoading, success } = useAppSelector((root) => root.MentorDashboardReducer);
 
   useStatusMessage({ error, resetError });
 
