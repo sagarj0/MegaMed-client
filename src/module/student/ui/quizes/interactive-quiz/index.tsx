@@ -1,23 +1,24 @@
 import { useParams } from "react-router-dom";
-import { InteractiveMCQ } from "../components/interactive-mcq";
+import { InteractiveMCQ } from "./interactive-component";
 import FormDebug from "@/helper/form/form-debug";
 import useFetchQuiz from "@/module/admin/hooks/quizes/useFetchQuiz";
 import React from "react";
 import { Form, FormProps } from "antd";
-import { UpdateScoreKey, UpdateScoreProps } from "../type";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { setScoreChecked } from "@/store/reducers/quiz-helper/reducer";
 import useStatusMessage from "@/helper/hooks/use-message";
-import { resetError, resetSuccess } from "@/module/quizes/services/update-score/reducer";
-import { updateScoreAction } from "../../services/update-score/action";
+import { resetError, resetSuccess } from "@/module/student/services/quizes/update-score/reducer";
+import { updateScoreAction } from "@/module/student/services/quizes/update-score/action";
+import { UpdateScoreKey, UpdateScoreProps } from "../type";
+import { getQuizTime } from "@/helper/get-quiz-time";
 
-export const ChapterWiseTestPage: React.FC = () => {
+export const InteractiveQuizPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const [form] = Form.useForm<UpdateScoreProps>();
-  const time = 1000 * 60 * 40;
 
   const { data, isLoading } = useFetchQuiz(id);
+  const time = getQuizTime(data?.type);
 
   const handleSubmit: FormProps<UpdateScoreProps>["onFinish"] = (vals) => dispatch(updateScoreAction(vals));
 

@@ -1,14 +1,13 @@
 import { AccountBookOutlined, ContactsOutlined, FormOutlined, HomeOutlined, PoweroffOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Menu, MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
-import Logo from "./logo";
-import { AllUrls } from "../router/urls";
+import { AllUrls } from "../../../router/urls";
 import useAuthHook from "@/module/auth/hook/useAuthHook";
-import { UserAvatar } from "./user-avatar";
+import Logo from "@/component/logo";
+import { UserAvatar } from "@/component/user-avatar";
 
 export const Navbar: React.FC = () => {
   const navigate = useNavigate();
-
   const { logout, isUserLoggedIn, user } = useAuthHook();
 
   const items: MenuProps["items"] = [
@@ -31,7 +30,7 @@ export const Navbar: React.FC = () => {
       icon: <AccountBookOutlined />,
     },
     {
-      key: AllUrls.quiz,
+      key: AllUrls.test,
       title: "Tests",
       label: "Tests",
       icon: <FormOutlined />,
@@ -97,9 +96,9 @@ export const Navbar: React.FC = () => {
           width: "100%",
           alignItems: "center",
           justifyContent: "space-between",
-          background: "rgba(255, 255, 255, 0.5)", // Glass effect
-          backdropFilter: "blur(10px)", // Glass blur
-          boxShadow: "0 5px 6px rgba(74, 58, 225, 0.5)", // Slight
+          background: "rgba(255, 255, 255, 0.5)",
+          backdropFilter: "blur(10px)",
+          boxShadow: "0 5px 6px rgba(74, 58, 225, 0.5)",
         }}
       />
     </>

@@ -9,8 +9,6 @@ export const AdminEndpoints = {
   revokemonitor: "/user/revoke-mentor",
   mentorDetails: "/user/mentor-details/",
 
-  manageStudent: "/user/manage-student",
-
   createQuiz: "/quiz/create",
   createCustomQuiz: "/quiz/create-custom",
   listAllQuiz: "/quiz/list",
@@ -21,8 +19,6 @@ export const AdminEndpoints = {
     chapter: "/quiz/chapter-wise/",
     mock_test: "/quiz/mock-test/",
   },
-
-  countQuestion: "/question/count",
 
   bulkUpdateUsers: "/user/bulk-update",
 

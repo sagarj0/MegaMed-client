@@ -1,8 +1,8 @@
 import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
-import { renderImage } from "@/module/quizes/ui/components/render-image";
 import { Descriptions, Space, Form, DescriptionsProps } from "antd";
 import { SaveQuizKeys } from "../add/type";
 import { CheckCircleFilled } from "@ant-design/icons";
+import { renderImage } from "@/component/render-image";
 
 export const renderQuestion = (question: DetailedQuestion, index: number = 0, items: DescriptionsProps["items"] = []) => (
   <Descriptions

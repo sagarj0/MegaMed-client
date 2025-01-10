@@ -37,9 +37,11 @@ const useFetchAllQuiz = (props: Props) => {
     filters && dispatch(updateFilter(filters));
     sorter && dispatch(updateSort(sorter));
   };
+
+  const handleFilter = (filter: FetchAllQuizRequest) => dispatch(updateFilter(filter));
   const handleSearch = (searchText?: string) => dispatch(updateSearch(searchText));
 
-  return { isLoading, data, pagination, handleSearch, handleQueryChange };
+  return { isLoading, data, pagination, handleSearch, handleQueryChange, filterOption, handleFilter };
 };
 
 export default useFetchAllQuiz;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { BarChartOutlined, FormOutlined, PoweroffOutlined, MenuOutlined } from "@ant-design/icons";
+import { BarChartOutlined, PoweroffOutlined, MenuOutlined, SnippetsOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme, Typography, Button, Drawer, Row, MenuProps } from "antd";
 import { useNavigate, useLocation, Outlet, Link } from "react-router-dom";
-import { MentorUrls } from "../util/urls";
+import { StudentUrls } from "./urls";
 import Logo from "@/component/logo";
 import { properCase } from "@/helper/proper-case";
 import { getKeyFromUrl } from "@/helper/key-from-url";
@@ -27,8 +27,8 @@ const siderStyle: React.CSSProperties = {
   boxShadow: "4px 0 4px -2px rgba(0, 0, 0, 0.1)",
 };
 
-const MentorLayout: React.FC = () => {
-  const { logout, user } = useAuthHook({ checkToken: true, roleCheck: ["mentor", "admin"] });
+const StudentLayout: React.FC = () => {
+  const { logout, user } = useAuthHook({ checkToken: true, roleCheck: ["mentor", "admin", "student"], checkIsPaid: true });
 
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -48,14 +48,13 @@ const MentorLayout: React.FC = () => {
       key: "dashboard",
       icon: <BarChartOutlined />,
       label: "Dashboard",
-      onClick: () => navigate(MentorUrls.mentor),
+      onClick: () => navigate(StudentUrls.student),
     },
-
     {
-      key: "questions",
-      icon: <FormOutlined />,
-      label: "Questions",
-      onClick: () => navigate(MentorUrls.mentorquestions.viewAll),
+      key: "quiz",
+      icon: <SnippetsOutlined />,
+      label: "Quizes",
+      onClick: () => navigate(StudentUrls.studentQuizes),
     },
   ];
 
@@ -133,7 +132,7 @@ const MentorLayout: React.FC = () => {
               {title}
             </Title>
           </Row>
-          <Link to={MentorUrls.mentorProfile}>
+          <Link to={StudentUrls.studentProfile}>
             <UserAvatar user={user} />
           </Link>
         </Header>
@@ -165,4 +164,4 @@ const MentorLayout: React.FC = () => {
   );
 };
 
-export { MentorLayout };
+export { StudentLayout };

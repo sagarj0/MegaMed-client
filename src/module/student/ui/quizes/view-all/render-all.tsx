@@ -1,26 +1,25 @@
-import { properCase } from "@/helper/proper-case";
-import useFetchAllQuiz from "@/module/admin/hooks/quizes/useFetchAllQuiz";
-import { Card, Col, Descriptions, Row, Typography, Empty, Space, Button } from "antd";
-import { useNavigate, useParams } from "react-router-dom";
-import { QuizUrls } from "../../util/url";
+import { SaveQuizResponse } from "@/module/admin/service/quizes/add/type";
+import { Empty, Space, Typography, Button, Row, Col, Card, Descriptions } from "antd";
+import { useNavigate } from "react-router-dom";
+import { StudentUrls } from "@/module/student/util/urls";
+import { getQuizTime } from "@/helper/get-quiz-time";
 
-export const ViewAllChapterWiseTestPage: React.FC = () => {
-  const { chapter } = useParams<{ chapter: string }>();
-  const { data, isLoading } = useFetchAllQuiz({ filter: { chapter, type: "chapter" } });
+interface ViewAllQuizesProps {
+  data: SaveQuizResponse[];
+}
+
+export const ViewAllQuizes: React.FC<ViewAllQuizesProps> = ({ data }) => {
   const navigate = useNavigate();
-
-  const handleOnClick = (id: string) => navigate(QuizUrls.giveChapterWiseTest + id);
+  const handleOnClick = (id: string) => navigate(StudentUrls.studentQuizes + id);
 
   return (
     <>
-      <Typography.Title level={3} style={{ textAlign: "center" }}>{`All the Published ${properCase(chapter)} Tests`}</Typography.Title>
-
       {data?.length === 0 && (
         <Empty
           description={
             <Space direction="vertical" size="middle">
               <Typography.Text>Sorry, There are no tests available for this chapter.</Typography.Text>
-              <Button type="primary" onClick={() => navigate(QuizUrls.quiz)}>
+              <Button type="primary" onClick={() => navigate(-1)}>
                 Go Back
               </Button>
             </Space>
@@ -34,7 +33,6 @@ export const ViewAllChapterWiseTestPage: React.FC = () => {
             <Card
               title={quiz.title}
               key={quiz.id}
-              loading={isLoading}
               onClick={() => !quiz.score && handleOnClick(quiz.id)}
               style={{ cursor: quiz.score ? "not-allowed" : "pointer" }}
               hoverable={quiz.score ? false : true}
@@ -54,7 +52,7 @@ export const ViewAllChapterWiseTestPage: React.FC = () => {
                   },
                   {
                     label: "Time",
-                    children: "10 Min",
+                    children: getQuizTime(quiz.type, true) + " Min",
                   },
                   {
                     label: "Marks Obtained",

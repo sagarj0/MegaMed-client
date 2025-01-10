@@ -2,8 +2,8 @@ import { parseError } from "@/helper/parse-error";
 import { updateScore } from "./api";
 import { AppDispatch } from "@/store";
 import { setLoading, resetLoading, setError, setSuccess } from "./reducer";
-import { UpdateScoreProps } from "../../ui/type";
 import { parseRequest } from "./parse";
+import { UpdateScoreProps } from "@/module/student/ui/quizes/type";
 
 export const updateScoreAction = (props: UpdateScoreProps) => async (dispatch: AppDispatch) => {
   try {

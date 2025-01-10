@@ -4,14 +4,14 @@ import storage from "redux-persist/lib/storage";
 import * as AuthRepo from "../module/auth/service/";
 import * as AdminModuleReducers from "../module/admin/service/";
 import * as MentorReducers from "../module/mentor/service/";
-import * as QuizModuleReducers from "../module/quizes/services/";
+import * as StudentReducers from "../module/student/services";
 import * as HelperReducers from "./reducers/";
 
 const rootReducer = combineReducers({
   ...AuthRepo,
   ...AdminModuleReducers,
   ...MentorReducers,
-  ...QuizModuleReducers,
+  ...StudentReducers,
   ...HelperReducers,
 });
 

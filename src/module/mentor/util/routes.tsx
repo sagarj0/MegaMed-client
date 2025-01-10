@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-import { MentorLayout } from "../ui";
+import { MentorLayout } from "./layout";
 import { MentorUrls } from "./urls";
 import { ViewAllQuestion } from "../ui/Questions/view-all";
 import { AddQuestions } from "../ui/Questions/add";

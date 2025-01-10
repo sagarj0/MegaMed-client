@@ -1,7 +1,7 @@
 import { api } from "@/util/apis";
 import { UpdateScore, UpdateScoreRes } from "./type";
-import { QuizEndpoints } from "../../util/endpoint";
+import { StudentEndpoints } from "@/module/student/util/endpoints";
 
 export const updateScore = (data: UpdateScore): Promise<UpdateScoreRes> => {
-  return api.patch(QuizEndpoints.update, data);
+  return api.patch(StudentEndpoints.quizEndpoints.update, data);
 };

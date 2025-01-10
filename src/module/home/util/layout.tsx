@@ -1,8 +1,8 @@
 import React from "react";
 import { Col, Layout, theme } from "antd";
 import { Outlet } from "react-router-dom";
-import { Navbar } from "@/component/navbar";
-import { FooterComponent } from "@/component/footer";
+import { Navbar } from "@/module/home/util/navbar";
+import { FooterComponent } from "@/module/home/util/footer";
 import useFullScreen from "@/helper/hooks/useFullScreen";
 import useResponsiveDevice from "@/helper/hooks/use-responsive";
 

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Timeline, Radio, Typography, Space, Form, TimelineProps, Button, Statistic, Col, Card, Skeleton, FloatButton, Row } from "antd";
 import { CheckCircleFilled, CloseCircleFilled, FieldTimeOutlined, FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
 import useFullScreen from "@/helper/hooks/useFullScreen";
-import { QuizDataTypeKeys, UpdateScoreKey, UpdateScoreProps } from "../type";
+import { QuizDataTypeKeys, UpdateScoreKey, UpdateScoreProps } from "@/module/student/ui/quizes/type";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { setTimeCompleted, setStarted, resetQuizReducer, setScoreValue } from "@/store/reducers/quiz-helper/reducer";
 import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
@@ -10,7 +10,7 @@ import { config } from "@/util/config";
 import useResponsiveDevice from "@/helper/hooks/use-responsive";
 import useBeforeUnload from "@/helper/hooks/useBeforeUnload";
 import useAuthHook from "@/module/auth/hook/useAuthHook";
-import { renderImage } from "./render-image";
+import { renderImage } from "@/component/render-image";
 
 interface InteractiveMCQProps {
   MCQs: DetailedQuestion[];
@@ -94,8 +94,8 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
         ? "blue"
         : "gray"
       : questionData?.[index]?.answer === question.correctAnswer
-        ? "green"
-        : "red",
+      ? "green"
+      : "red",
     pending: !questionData?.[index]?.answer,
   }));
 

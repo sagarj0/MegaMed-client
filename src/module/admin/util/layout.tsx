@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu, theme, Typography, Button, Drawer, Row, MenuProps } from "antd";
 import { useNavigate, useLocation, Outlet, Link } from "react-router-dom";
-import { AdminUrls } from "../util/urls";
+import { AdminUrls } from "./urls";
 import Logo from "@/component/logo";
 import { properCase } from "@/helper/proper-case";
 import { getKeyFromUrl } from "@/helper/key-from-url";

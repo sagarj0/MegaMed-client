@@ -1,4 +1,4 @@
-import { UpdateScoreProps } from "../../ui/type";
+import { UpdateScoreProps } from "@/module/student/ui/quizes/type";
 import { UpdateScore } from "./type";
 
 export const parseRequest = (data: UpdateScoreProps): UpdateScore => {

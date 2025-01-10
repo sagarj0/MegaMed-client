@@ -5,4 +5,5 @@ export const HomeUrl = {
   mentors: "/mentors",
   contact: "/contact",
   profile: "/profile",
+  test: "/test",
 };

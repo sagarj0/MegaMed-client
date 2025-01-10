@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { BarChartOutlined, PoweroffOutlined, MenuOutlined } from "@ant-design/icons";
+import { BarChartOutlined, FormOutlined, PoweroffOutlined, MenuOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme, Typography, Button, Drawer, Row, MenuProps } from "antd";
 import { useNavigate, useLocation, Outlet, Link } from "react-router-dom";
-import { StudentUrls } from "../util/urls";
+import { MentorUrls } from "./urls";
 import Logo from "@/component/logo";
 import { properCase } from "@/helper/proper-case";
 import { getKeyFromUrl } from "@/helper/key-from-url";
@@ -27,7 +27,7 @@ const siderStyle: React.CSSProperties = {
   boxShadow: "4px 0 4px -2px rgba(0, 0, 0, 0.1)",
 };
 
-const StudentLayout: React.FC = () => {
+const MentorLayout: React.FC = () => {
   const { logout, user } = useAuthHook({ checkToken: true, roleCheck: ["mentor", "admin"] });
 
   const {
@@ -48,7 +48,14 @@ const StudentLayout: React.FC = () => {
       key: "dashboard",
       icon: <BarChartOutlined />,
       label: "Dashboard",
-      onClick: () => navigate(StudentUrls.student),
+      onClick: () => navigate(MentorUrls.mentor),
+    },
+
+    {
+      key: "questions",
+      icon: <FormOutlined />,
+      label: "Questions",
+      onClick: () => navigate(MentorUrls.mentorquestions.viewAll),
     },
   ];
 
@@ -126,7 +133,7 @@ const StudentLayout: React.FC = () => {
               {title}
             </Title>
           </Row>
-          <Link to={StudentUrls.studentProfile}>
+          <Link to={MentorUrls.mentorProfile}>
             <UserAvatar user={user} />
           </Link>
         </Header>
@@ -158,4 +165,4 @@ const StudentLayout: React.FC = () => {
   );
 };
 
-export { StudentLayout };
+export { MentorLayout };

@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-import { AdminLayout } from "../ui";
+import { AdminLayout } from "./layout";
 import { AdminUrls } from "./urls";
 import { ViewAllQuestion } from "../ui/Questions/view-all";
 import { ViewAllMentors } from "../ui/Mentors/view-all";

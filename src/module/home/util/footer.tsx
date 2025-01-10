@@ -1,6 +1,6 @@
 import { Button, Col, Divider, Flex, Row, Space, Typography } from "antd";
 import { ArrowUpOutlined } from "@ant-design/icons";
-import Logo from "./logo";
+import Logo from "@/component/logo";
 
 const SectionLinks = ({ title, links }: { title: string; links: string[] }) => (
   <Col span={24} sm={12} md={4}>

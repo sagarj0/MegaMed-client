@@ -3,18 +3,15 @@ import { FieldTimeOutlined, FileUnknownOutlined, QuestionCircleOutlined, SendOut
 import { getChapterGroups, getSubjects, getUnitGroups } from "@/module/admin/ui/Questions/add/subjects";
 import GroupedSelect from "@/component/grouped-select";
 import { useNavigate } from "react-router-dom";
-import { QuizUrls } from "../util/url";
+import { StudentUrls } from "@/module/student/util/urls";
 import useAuthHook from "@/module/auth/hook/useAuthHook";
 
-export const QuizPage: React.FC = () => {
+export const TestPage: React.FC = () => {
   const navigate = useNavigate();
-
   const { user } = useAuthHook();
   const isPaidUser = user?.isPaidUser;
 
-  const onSubjectWiseTestClick = (subject: string) => navigate(QuizUrls.subjectWise + subject);
-  const onUnitWiseTestClick = (unit: string) => navigate(QuizUrls.unitWise + unit);
-  const onChapterWiseTestClick = (chapter: string) => navigate(QuizUrls.chapterWise + chapter);
+  const onGiveTest = () => navigate(StudentUrls.studentQuizes);
 
   return (
     <Flex vertical gap={20}>
@@ -29,7 +26,6 @@ export const QuizPage: React.FC = () => {
           <Card
             style={{ height: "100%", width: "100%" }}
             title="Subject Wise"
-            bordered={false}
             actions={[
               <Typography.Text>
                 <FieldTimeOutlined /> 40 Min
@@ -44,7 +40,7 @@ export const QuizPage: React.FC = () => {
                   placeholder={<>Vew tests</>}
                   dropdownStyle={{ width: "auto" }}
                   variant="borderless"
-                  onChange={onSubjectWiseTestClick}
+                  onChange={onGiveTest}
                   disabled={!isPaidUser}
                 />
               </Tooltip>,
@@ -57,7 +53,6 @@ export const QuizPage: React.FC = () => {
           <Card
             style={{ height: "100%", width: "100%" }}
             title="Unit Wise"
-            bordered={false}
             actions={[
               <Typography.Text>
                 <FieldTimeOutlined /> 40 Min
@@ -72,7 +67,7 @@ export const QuizPage: React.FC = () => {
                   placeholder={<>Vew tests</>}
                   dropdownStyle={{ width: 300 }}
                   variant="borderless"
-                  onChange={onUnitWiseTestClick}
+                  onChange={onGiveTest}
                   disabled={!isPaidUser}
                 />
               </Tooltip>,
@@ -85,7 +80,6 @@ export const QuizPage: React.FC = () => {
           <Card
             style={{ height: "100%", width: "100%" }}
             title="Chapter Wise"
-            bordered={false}
             actions={[
               <Typography.Text>
                 <FieldTimeOutlined /> 40 Min
@@ -100,7 +94,7 @@ export const QuizPage: React.FC = () => {
                   placeholder={<>Vew tests</>}
                   dropdownStyle={{ width: 300 }}
                   variant="borderless"
-                  onChange={onChapterWiseTestClick}
+                  onChange={onGiveTest}
                   disabled={!isPaidUser}
                 />
               </Tooltip>,
@@ -113,7 +107,6 @@ export const QuizPage: React.FC = () => {
           <Card
             style={{ height: "100%", width: "100%" }}
             title="Mock test"
-            bordered={false}
             actions={[
               <Typography.Text>
                 <FieldTimeOutlined /> 3 Hrs
@@ -122,7 +115,7 @@ export const QuizPage: React.FC = () => {
                 <FileUnknownOutlined /> 200 Questions
               </Typography.Text>,
               <Tooltip title={isPaidUser ? null : "This feature is only available to paid users"}>
-                <Typography.Link href={QuizUrls.mockTest} disabled={!isPaidUser}>
+                <Typography.Link href={StudentUrls.studentQuizes} disabled={!isPaidUser}>
                   View Test <SendOutlined />
                 </Typography.Link>
               </Tooltip>,
