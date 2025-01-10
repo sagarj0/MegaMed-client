@@ -8,15 +8,16 @@ import useStatusMessage from "@/helper/hooks/use-message";
 import { resetError, resetSuccess } from "../service/get-me/reducer";
 import { Spin, Typography } from "antd";
 
-//backend or frontend is redirected to this page if authentication succeeds, in oauth and in email verification
-
+//backend or frontend is redirected to this page if authentication succeeds, in oauth and in email verification or in other
 export const SuccessAuth: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
+
   const { success, error } = useAppSelector((root) => root.AuthGetMe);
   const { user } = useAppSelector((root) => root.AuthRepo);
+
   const [message, setMessage] = useState("Hang on! while we authenticate you...");
 
   useEffect(() => {
@@ -29,9 +30,9 @@ export const SuccessAuth: React.FC = () => {
   const onSuccessReset = () => {
     setMessage("Welcome! Redirecting...");
     const userRole = user?.role;
-    if (userRole === "admin") setTimeout(() => navigate(AllUrls.admin), 1000);
-    if (userRole === "mentor") setTimeout(() => navigate(AllUrls.mentor), 1000);
-    if (userRole === "student") setTimeout(() => navigate(AllUrls.home), 1000);
+    if (userRole === "admin") navigate(AllUrls.admin);
+    if (userRole === "mentor") navigate(AllUrls.mentor);
+    if (userRole === "student") navigate(AllUrls.student);
   };
   const onErrorReset = () => {
     setMessage("Something went wrong! Please try again later.");

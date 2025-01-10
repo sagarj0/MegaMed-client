@@ -56,28 +56,23 @@ export const ProfileComponent: React.FC<ProfileComponentProps> = ({ userData, pr
             {profileOnly || (
               <>
                 {(isStudent || config.appMode !== "PRODUCTION") && (
-                  <>
-                    <Descriptions
-                      title="Accessible Features"
-                      column={1}
-                      colon={false}
-                      size="small"
-                      style={{ width: 300, textAlign: "center" }}
-                      labelStyle={{ width: 150 }}
-                      contentStyle={{ width: 150, justifyContent: "end" }}
-                      items={accessibleFeatures}
-                    />
-                  </>
+                  <Descriptions
+                    title="Accessible Features"
+                    column={1}
+                    colon={false}
+                    size="small"
+                    style={{ width: 300, textAlign: "center" }}
+                    labelStyle={{ width: 150 }}
+                    contentStyle={{ width: 150, justifyContent: "end" }}
+                    items={accessibleFeatures}
+                  />
                 )}
 
                 <Space direction="vertical" align="start" style={{ width: "100%" }}>
                   {(isAdmin || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.admin}>Admin Dashboard</Typography.Link>}
-                  {(isAdmin || isMentor || config.appMode !== "PRODUCTION") && (
-                    <>
-                      <Typography.Link href={AllUrls.mentor}>Mentor Dashboard</Typography.Link>
-                      <Typography.Link href={AllUrls.home}>Home page</Typography.Link>
-                    </>
-                  )}
+                  {(isMentor || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.mentor}>Mentor Dashboard</Typography.Link>}
+                  {(isStudent || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.student}>Student Dashboard</Typography.Link>}
+                  <Typography.Link href={AllUrls.home}>Home</Typography.Link>
                 </Space>
               </>
             )}
