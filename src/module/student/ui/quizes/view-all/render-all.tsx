@@ -2,7 +2,7 @@ import { SaveQuizResponse } from "@/module/admin/service/quizes/add/type";
 import { Empty, Space, Typography, Button, Row, Col, Card, Descriptions } from "antd";
 import { useNavigate } from "react-router-dom";
 import { StudentUrls } from "@/module/student/util/urls";
-import { getQuizTime } from "@/helper/get-quiz-time";
+import { getDescriptionItems } from "./helper";
 
 interface ViewAllQuizesProps {
   data: SaveQuizResponse[];
@@ -37,29 +37,7 @@ export const ViewAllQuizes: React.FC<ViewAllQuizesProps> = ({ data }) => {
               style={{ cursor: quiz.score ? "not-allowed" : "pointer" }}
               hoverable={quiz.score ? false : true}
             >
-              <Descriptions
-                colon={false}
-                size="small"
-                column={1}
-                items={[
-                  {
-                    label: "Chapter",
-                    children: quiz.chapter,
-                  },
-                  {
-                    label: "Question Count",
-                    children: quiz.questionCount,
-                  },
-                  {
-                    label: "Time",
-                    children: getQuizTime(quiz.type, true) + " Min",
-                  },
-                  {
-                    label: "Marks Obtained",
-                    children: quiz.score ? quiz.score : "Not Attempted",
-                  },
-                ]}
-              />
+              <Descriptions colon={false} size="small" column={1} items={getDescriptionItems(quiz)} />
             </Card>
           </Col>
         ))}

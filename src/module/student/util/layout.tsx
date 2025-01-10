@@ -35,7 +35,7 @@ const StudentLayout: React.FC = () => {
   } = theme.useToken();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const selectedKey = getKeyFromUrl(pathname, 3);
+  const selectedKey = getKeyFromUrl(pathname, 2);
   const { isMobile } = useResponsiveDevice();
 
   const title = properCase(selectedKey ? `manage ${selectedKey}` : "dashboard");
@@ -51,7 +51,7 @@ const StudentLayout: React.FC = () => {
       onClick: () => navigate(StudentUrls.student),
     },
     {
-      key: "quiz",
+      key: "quizes",
       icon: <SnippetsOutlined />,
       label: "Quizes",
       onClick: () => navigate(StudentUrls.studentQuizes),

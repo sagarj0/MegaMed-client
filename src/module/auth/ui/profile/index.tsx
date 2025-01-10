@@ -24,18 +24,13 @@ export const ProfileComponent: React.FC<ProfileComponentProps> = ({ userData, pr
     token: { fontSizeHeading1 },
   } = theme.useToken();
 
+  const children = isPaid ? <CheckCircleFilled style={{ color: "green" }} /> : <CloseCircleFilled style={{ color: "red" }} />;
   const accessibleFeatures = [
-    { label: "Mentorship", children: isPaid ? <CheckCircleFilled style={{ color: "green" }} /> : <CloseCircleFilled style={{ color: "red" }} /> },
-    { label: "Mock Test", children: isPaid ? <CheckCircleFilled style={{ color: "green" }} /> : <CloseCircleFilled style={{ color: "red" }} /> },
-    {
-      label: "Subject Wise Test",
-      children: isPaid ? <CheckCircleFilled style={{ color: "green" }} /> : <CloseCircleFilled style={{ color: "red" }} />,
-    },
-    {
-      label: "Chapter Wise Test",
-      children: isPaid ? <CheckCircleFilled style={{ color: "green" }} /> : <CloseCircleFilled style={{ color: "red" }} />,
-    },
-    { label: "Unit Wise Test", children: isPaid ? <CheckCircleFilled style={{ color: "green" }} /> : <CloseCircleFilled style={{ color: "red" }} /> },
+    { label: "Mentorship", children },
+    { label: "Mock Test", children },
+    { label: "Subject Wise Test", children },
+    { label: "Chapter Wise Test", children },
+    { label: "Unit Wise Test", children },
   ];
 
   return (
