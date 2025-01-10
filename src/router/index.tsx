@@ -7,6 +7,7 @@ import { HomeRoutes } from "@/module/home/util/route";
 import { AuthRoutes } from "@/module/auth/util/route";
 import { QuizRoutes } from "@/module/quizes/util/route";
 import { MentorRoutes } from "@/module/mentor/util/routes";
+import { StudentRoutes } from "@/module/student/util/routes";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ export const router = createBrowserRouter(
       </Route>
       {AdminRoutes}
       {MentorRoutes}
+      {StudentRoutes}
       <Route path="*" element={<NotFound />} />
     </Route>,
   ),

@@ -1,17 +1,8 @@
 import React, { useState } from "react";
-import {
-  BarChartOutlined,
-  FormOutlined,
-  KeyOutlined,
-  PoweroffOutlined,
-  UsergroupAddOutlined,
-  UserOutlined,
-  SnippetsOutlined,
-  MenuOutlined,
-} from "@ant-design/icons";
+import { BarChartOutlined, PoweroffOutlined, MenuOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme, Typography, Button, Drawer, Row, MenuProps } from "antd";
 import { useNavigate, useLocation, Outlet, Link } from "react-router-dom";
-import { AdminUrls } from "../util/urls";
+import { StudentUrls } from "../util/urls";
 import Logo from "@/component/logo";
 import { properCase } from "@/helper/proper-case";
 import { getKeyFromUrl } from "@/helper/key-from-url";
@@ -36,8 +27,9 @@ const siderStyle: React.CSSProperties = {
   boxShadow: "4px 0 4px -2px rgba(0, 0, 0, 0.1)",
 };
 
-const AdminLayout: React.FC = () => {
-  const { logout, user } = useAuthHook({ checkToken: true, roleCheck: ["admin"] });
+const StudentLayout: React.FC = () => {
+  const { logout, user } = useAuthHook({ checkToken: true, roleCheck: ["mentor", "admin"] });
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -56,37 +48,7 @@ const AdminLayout: React.FC = () => {
       key: "dashboard",
       icon: <BarChartOutlined />,
       label: "Dashboard",
-      onClick: () => navigate(AdminUrls.admin),
-    },
-    {
-      key: "admins",
-      icon: <KeyOutlined />,
-      label: "Admins",
-      onClick: () => navigate(AdminUrls.adminAdmin.viewAll),
-    },
-    {
-      key: "mentors",
-      icon: <UsergroupAddOutlined />,
-      label: "Mentors",
-      onClick: () => navigate(AdminUrls.adminMentor.viewAll),
-    },
-    {
-      key: "students",
-      icon: <UserOutlined />,
-      label: "Students",
-      onClick: () => navigate(AdminUrls.adminStudent.viewAll),
-    },
-    {
-      key: "questions",
-      icon: <FormOutlined />,
-      label: "Questions",
-      onClick: () => navigate(AdminUrls.adminquestions.viewAll),
-    },
-    {
-      key: "quizes",
-      icon: <SnippetsOutlined />,
-      label: "Quizes",
-      onClick: () => navigate(AdminUrls.adminquizes.viewAll),
+      onClick: () => navigate(StudentUrls.student),
     },
   ];
 
@@ -164,7 +126,7 @@ const AdminLayout: React.FC = () => {
               {title}
             </Title>
           </Row>
-          <Link to={AdminUrls.adminProfile}>
+          <Link to={StudentUrls.studentProfile}>
             <UserAvatar user={user} />
           </Link>
         </Header>
@@ -179,6 +141,7 @@ const AdminLayout: React.FC = () => {
         >
           <div
             style={{
+              padding: 8,
               width: "100%",
               height: "100%",
               textAlign: "center",
@@ -195,4 +158,4 @@ const AdminLayout: React.FC = () => {
   );
 };
 
-export { AdminLayout };
+export { StudentLayout };

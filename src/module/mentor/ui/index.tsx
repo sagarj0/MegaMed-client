@@ -1,6 +1,6 @@
-import React from "react";
-import { BarChartOutlined, BarsOutlined, FormOutlined, PoweroffOutlined } from "@ant-design/icons";
-import { Layout, Menu, theme, MenuProps, Typography, Button, Dropdown, Row } from "antd";
+import React, { useState } from "react";
+import { BarChartOutlined, FormOutlined, PoweroffOutlined, MenuOutlined } from "@ant-design/icons";
+import { Layout, Menu, theme, Typography, Button, Drawer, Row, MenuProps } from "antd";
 import { useNavigate, useLocation, Outlet, Link } from "react-router-dom";
 import { MentorUrls } from "../util/urls";
 import Logo from "@/component/logo";
@@ -40,6 +40,9 @@ const MentorLayout: React.FC = () => {
 
   const title = properCase(selectedKey ? `manage ${selectedKey}` : "dashboard");
 
+  const [drawerVisible, setDrawerVisible] = useState(false);
+  const toggleDrawer = () => setDrawerVisible((prev) => !prev);
+
   const items: MenuProps["items"] = [
     {
       key: "dashboard",
@@ -58,7 +61,7 @@ const MentorLayout: React.FC = () => {
 
   return (
     <Layout hasSider>
-      {!isMobile && (
+      {!isMobile ? (
         <Sider style={siderStyle} theme="light">
           <Logo style={{ bottom: 5, left: 45 }} />
           <Menu items={items} style={{ border: "none" }} selectedKeys={[selectedKey || "dashboard"]} />
@@ -77,6 +80,32 @@ const MentorLayout: React.FC = () => {
             Log Out
           </Button>
         </Sider>
+      ) : (
+        <Drawer
+          title={<Logo style={{ bottom: -5 }} />}
+          placement="left"
+          onClose={toggleDrawer}
+          closeIcon={null}
+          open={drawerVisible}
+          width={250}
+          styles={{ body: { padding: " 0px 0.25rem" } }}
+        >
+          <Menu items={items} style={{ border: "none" }} selectedKeys={[selectedKey || "dashboard"]} onClick={toggleDrawer} />
+          <Button
+            onClick={logout}
+            type="text"
+            icon={<PoweroffOutlined />}
+            style={{
+              position: "absolute",
+              bottom: 20,
+              left: 10,
+              width: "100%",
+              justifyContent: "left",
+            }}
+          >
+            Log Out
+          </Button>
+        </Drawer>
       )}
       <Layout
         style={{
@@ -98,23 +127,15 @@ const MentorLayout: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <Title level={4} style={{ marginBlock: 0 }}>
-            {title}
-          </Title>
-          {isMobile ? (
-            <Row align={"middle"}>
-              <Link to={MentorUrls.mentorProfile}>
-                <UserAvatar user={user} />
-              </Link>
-              <Dropdown overlay={<Menu items={items} selectedKeys={[selectedKey || "dashboard"]} />} trigger={["click"]}>
-                <Button type="text" icon={<BarsOutlined />} />
-              </Dropdown>
-            </Row>
-          ) : (
-            <Link to={MentorUrls.mentorProfile}>
-              <UserAvatar user={user} />
-            </Link>
-          )}
+          <Row align={"middle"}>
+            {isMobile && <Button type="text" icon={<MenuOutlined />} onClick={toggleDrawer} style={{ marginRight: "1rem" }} />}
+            <Title level={4} style={{ marginBlock: 0 }}>
+              {title}
+            </Title>
+          </Row>
+          <Link to={MentorUrls.mentorProfile}>
+            <UserAvatar user={user} />
+          </Link>
         </Header>
 
         <Content
