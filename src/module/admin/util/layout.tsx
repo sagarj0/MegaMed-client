@@ -52,42 +52,12 @@ const AdminLayout: React.FC = () => {
   const toggleDrawer = () => setDrawerVisible((prev) => !prev);
 
   const items: MenuProps["items"] = [
-    {
-      key: "dashboard",
-      icon: <BarChartOutlined />,
-      label: "Dashboard",
-      onClick: () => navigate(AdminUrls.admin),
-    },
-    {
-      key: "admins",
-      icon: <KeyOutlined />,
-      label: "Admins",
-      onClick: () => navigate(AdminUrls.adminAdmin.viewAll),
-    },
-    {
-      key: "mentors",
-      icon: <UsergroupAddOutlined />,
-      label: "Mentors",
-      onClick: () => navigate(AdminUrls.adminMentor.viewAll),
-    },
-    {
-      key: "students",
-      icon: <UserOutlined />,
-      label: "Students",
-      onClick: () => navigate(AdminUrls.adminStudent.viewAll),
-    },
-    {
-      key: "questions",
-      icon: <FormOutlined />,
-      label: "Questions",
-      onClick: () => navigate(AdminUrls.adminquestions.viewAll),
-    },
-    {
-      key: "quizes",
-      icon: <SnippetsOutlined />,
-      label: "Quizes",
-      onClick: () => navigate(AdminUrls.adminquizes.viewAll),
-    },
+    { key: "dashboard", icon: <BarChartOutlined />, label: "Dashboard", onClick: () => navigate(AdminUrls.admin) },
+    { key: "admins", icon: <KeyOutlined />, label: "Admins", onClick: () => navigate(AdminUrls.adminAdmin.viewAll) },
+    { key: "mentors", icon: <UsergroupAddOutlined />, label: "Mentors", onClick: () => navigate(AdminUrls.adminMentor.viewAll) },
+    { key: "students", icon: <UserOutlined />, label: "Students", onClick: () => navigate(AdminUrls.adminStudent.viewAll) },
+    { key: "questions", icon: <FormOutlined />, label: "Questions", onClick: () => navigate(AdminUrls.adminquestions.viewAll) },
+    { key: "quizes", icon: <SnippetsOutlined />, label: "Quizes", onClick: () => navigate(AdminUrls.adminquizes.viewAll) },
   ];
 
   return (
@@ -95,7 +65,7 @@ const AdminLayout: React.FC = () => {
       {!isMobile ? (
         <Sider style={siderStyle} theme="light">
           <Logo style={{ bottom: 5, left: 45 }} />
-          <Menu items={items} style={{ border: "none" }} selectedKeys={[selectedKey || "dashboard"]} />
+          <Menu items={items} style={{ border: "none" }} selectedKeys={[selectedKey || "dashboard"]} mode="inline" />
           <Button
             onClick={logout}
             type="text"
@@ -121,7 +91,7 @@ const AdminLayout: React.FC = () => {
           width={250}
           styles={{ body: { padding: " 0px 0.25rem" } }}
         >
-          <Menu items={items} style={{ border: "none" }} selectedKeys={[selectedKey || "dashboard"]} onClick={toggleDrawer} />
+          <Menu items={items} style={{ border: "none" }} selectedKeys={[selectedKey || "dashboard"]} onClick={toggleDrawer} mode="inline" />
           <Button
             onClick={logout}
             type="text"

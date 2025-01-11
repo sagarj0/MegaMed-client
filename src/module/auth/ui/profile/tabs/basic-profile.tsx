@@ -18,7 +18,6 @@ export const BasicProfile: React.FC<BasicProfileProps> = ({ userData, profileOnl
   const isPaid = user?.isPaidUser;
   const isStudent = user?.role === "student";
   const isAdmin = user?.role === "admin";
-  const isMentor = user?.role === "mentor";
 
   const {
     token: { fontSizeHeading1 },
@@ -64,9 +63,13 @@ export const BasicProfile: React.FC<BasicProfileProps> = ({ userData, profileOnl
                 )}
 
                 <Space direction="vertical" align="start" style={{ width: "100%" }}>
-                  {(isAdmin || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.admin}>Admin Dashboard</Typography.Link>}
-                  {(isMentor || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.mentor}>Mentor Dashboard</Typography.Link>}
-                  {(isStudent || config.appMode !== "PRODUCTION") && <Typography.Link href={AllUrls.student}>Student Dashboard</Typography.Link>}
+                  {(isAdmin || config.appMode !== "PRODUCTION") && (
+                    <>
+                      <Typography.Link href={AllUrls.admin}>Admin Dashboard</Typography.Link>
+                      <Typography.Link href={AllUrls.mentor}>Mentor Dashborad</Typography.Link>
+                      <Typography.Link href={AllUrls.student}>Student Dashboard</Typography.Link>
+                    </>
+                  )}
                   <Typography.Link href={AllUrls.home}>Home</Typography.Link>
                 </Space>
               </>
