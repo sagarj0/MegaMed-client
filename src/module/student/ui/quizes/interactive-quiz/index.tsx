@@ -31,7 +31,7 @@ export const InteractiveQuizPage: React.FC = () => {
     <Form form={form} onFinish={handleSubmit} colon={false} labelAlign="left">
       <Form.Item name={UpdateScoreKey.quizId} initialValue={id} noStyle hidden />
       <Form.Item name={UpdateScoreKey.score} noStyle hidden />
-      <InteractiveMCQ MCQs={data.questions} title={data?.chapter!} time={time} isLoading={isLoading} />
+      <InteractiveMCQ MCQs={data.questions} title={data?.title!} time={time} isLoading={isLoading} />
       <FormDebug />
     </Form>
   );

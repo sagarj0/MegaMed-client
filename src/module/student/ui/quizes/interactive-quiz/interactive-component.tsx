@@ -17,11 +17,10 @@ interface InteractiveMCQProps {
   MCQs: DetailedQuestion[];
   title: string;
   time: number;
-  timeFormat?: string;
   isLoading?: boolean;
 }
 
-export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, time, timeFormat = "mm:ss", isLoading }) => {
+export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, time, isLoading }) => {
   useAuthHook({ checkIsPaid: true });
 
   const dispatch = useAppDispatch();
@@ -116,7 +115,6 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
   const renderTimer = () => (
     <Statistic.Countdown
       value={started && !isScoreChecked ? startedTime + time : 0}
-      format={timeFormat}
       valueStyle={{ fontSize: 16 }}
       onFinish={() => dispatch(setTimeCompleted(true))}
       valueRender={(value) => (timeCompleted ? <Typography.Text type="danger">Time's Up</Typography.Text> : value)}
