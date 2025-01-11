@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Timeline, Radio, Typography, Space, Form, TimelineProps, Button, Statistic, Col, Card, Skeleton, FloatButton, Row } from "antd";
-import { CheckCircleFilled, CloseCircleFilled, FieldTimeOutlined, FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
+import { CheckCircleFilled, CloseCircleFilled, FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
 import useFullScreen from "@/helper/hooks/useFullScreen";
 import { QuizDataTypeKeys, UpdateScoreKey, UpdateScoreProps } from "@/module/student/ui/quizes/type";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
@@ -11,6 +11,7 @@ import useResponsiveDevice from "@/helper/hooks/use-responsive";
 import useBeforeUnload from "@/helper/hooks/useBeforeUnload";
 import useAuthHook from "@/module/auth/hook/useAuthHook";
 import { renderImage } from "@/component/render-image";
+import { properCase } from "@/helper/proper-case";
 
 interface InteractiveMCQProps {
   MCQs: DetailedQuestion[];
@@ -97,10 +98,11 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
       ? "green"
       : "red",
     pending: !questionData?.[index]?.answer,
+    style: { textAlign: "left" },
   }));
 
   const renderExtra = () => (
-    <Space size="small" wrap style={{ width: "100%", justifyContent: "flex-end" }}>
+    <Space wrap style={{ width: "100%", justifyContent: "flex-end" }}>
       {config.appMode === "LOCAL" && <Button onClick={() => dispatch(resetQuizReducer())}>Reset</Button>}
       <Button type="primary" disabled={started} onClick={() => dispatch(setStarted(true))}>
         Start Quiz
@@ -113,39 +115,43 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
 
   const renderTimer = () => (
     <Statistic.Countdown
-      title={<FieldTimeOutlined style={{ fontSize: 20, color: "black" }} />}
       value={started && !isScoreChecked ? startedTime + time : 0}
       format={timeFormat}
       valueStyle={{ fontSize: 16 }}
       onFinish={() => dispatch(setTimeCompleted(true))}
-      valueRender={(value) => (timeCompleted ? "Time Completed" : value)}
+      valueRender={(value) => (timeCompleted ? <Typography.Text type="danger">Time's Up</Typography.Text> : value)}
     />
   );
 
   return (
-    <Col xxl={18} xl={20} lg={20} md={24} sm={24} xs={24} style={{ margin: isFullScreen ? 0 : "auto" }}>
+    <Col span={24} style={{ margin: isFullScreen ? 0 : "auto" }}>
       <Card
         loading={isLoading}
         title={
-          <Row align={"middle"}>
-            <Col lg={15}>
-              <Space size="large" wrap>
-                <Typography.Title level={4} style={{ whiteSpace: "break-spaces" }}>
-                  {title}
+          <Row align={"middle"} justify={"space-between"} wrap={false}>
+            <Col>
+              <Space wrap>
+                <Typography.Title level={5} style={{ whiteSpace: "break-spaces" }}>
+                  {properCase(title)}
                 </Typography.Title>
                 {isScoreChecked && <Statistic title="Score" value={score} suffix={`/ ${MCQs?.length}`} />}
                 {isFullScreen ? <FloatButton style={{ width: 80, height: 80 }} description={renderTimer()} /> : renderTimer()}
               </Space>
             </Col>
-            <Col lg={9}>{renderExtra()}</Col>
+            <Col>{renderExtra()}</Col>
           </Row>
         }
         actions={[
           <Button type="default" disabled={!started || isScoreChecked} onClick={checkScore}>
             Submit and Check
           </Button>,
+          timeCompleted && (
+            <Typography.Title level={5} type="danger">
+              Time's Up
+            </Typography.Title>
+          ),
         ]}
-        styles={{ header: { flexWrap: "wrap" }, actions: { width: "fit-content" } }}
+        styles={{ header: { flexWrap: "wrap" } }}
         style={{
           padding: isFullScreen || md ? 0 : 8,
           paddingInline: isFullScreen && !md && !sm && !xs ? 100 : 8,

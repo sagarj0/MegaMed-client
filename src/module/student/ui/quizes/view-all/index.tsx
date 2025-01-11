@@ -18,7 +18,7 @@ export const QuizPage: React.FC = () => {
       tabList={tabList}
       bordered={false}
       style={{ boxShadow: "none" }}
-      styles={{ header: { border: "none" } }}
+      styles={{ header: { border: "none", paddingInline: 12 }, body: { paddingInline: 12 } }}
       loading={isLoading}
       activeTabKey={filterOption.type}
       onTabChange={(key) => handleFilter({ type: key })}

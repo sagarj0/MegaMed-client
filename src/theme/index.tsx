@@ -50,9 +50,9 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
             textHoverBg: "transparent",
           },
           Card: {
-            padding: 20,
             headerFontSize: 18,
             colorBgContainer: "white",
+            padding: 20,
             paddingLG: 24,
             headerHeight: 56,
           },

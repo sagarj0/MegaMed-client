@@ -32,33 +32,33 @@ export const getDescriptionItems = (quiz: SaveQuizResponse): DescriptionsProps["
         { label: "Subject", children: quiz.subject },
         { label: "Question Count", children: quiz.questionCount },
         { label: "Time", children: getQuizTime(quiz.type, true) + " Min" },
-        { label: "Marks Obtained", children: quiz.score ? quiz.score : "Not Attempted" },
+        { label: "Marks Obtained", children: quiz.score ? quiz.score : "-" },
       ];
     case "chapter":
       return [
         { label: "Chapter", children: quiz.chapter },
         { label: "Question Count", children: quiz.questionCount },
         { label: "Time", children: getQuizTime(quiz.type, true) + " Min" },
-        { label: "Marks Obtained", children: quiz.score ? quiz.score : "Not Attempted" },
+        { label: "Marks Obtained", children: quiz.score ? quiz.score : "-" },
       ];
     case "unit":
       return [
         { label: "Unit", children: quiz.unit },
         { label: "Question Count", children: quiz.questionCount },
         { label: "Time", children: getQuizTime(quiz.type, true) + " Min" },
-        { label: "Marks Obtained", children: quiz.score ? quiz.score : "Not Attempted" },
+        { label: "Marks Obtained", children: quiz.score ? quiz.score : "-" },
       ];
     case "mock_test":
       return [
         { label: "Question Count", children: quiz.questionCount },
         { label: "Time", children: getQuizTime(quiz.type, true) + " Min" },
-        { label: "Marks Obtained", children: quiz.score ? quiz.score : "Not Attempted" },
+        { label: "Marks Obtained", children: quiz.score ? quiz.score : "-" },
       ];
     case "custom":
       return [
         { label: "Question Count", children: quiz.questionCount },
         { label: "Time", children: getQuizTime(quiz.type, true) + " Min" },
-        { label: "Marks Obtained", children: quiz.score ? quiz.score : "Not Attempted" },
+        { label: "Marks Obtained", children: quiz.score ? quiz.score : "-" },
       ];
     default:
       return [];

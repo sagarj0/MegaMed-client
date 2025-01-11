@@ -1,5 +1,5 @@
 import { SaveQuizResponse } from "@/module/admin/service/quizes/add/type";
-import { Empty, Space, Typography, Button, Row, Col, Card, Descriptions } from "antd";
+import { Empty, Space, Typography, Button, Row, Col, Card, Descriptions, Tag } from "antd";
 import { useNavigate } from "react-router-dom";
 import { StudentUrls } from "@/module/student/util/urls";
 import { getDescriptionItems } from "./helper";
@@ -27,14 +27,16 @@ export const ViewAllQuizes: React.FC<ViewAllQuizesProps> = ({ data }) => {
         />
       )}
 
-      <Row gutter={[24, 24]}>
+      <Row gutter={[8, 8]}>
         {data?.map((quiz) => (
-          <Col span={24} xs={12} sm={8} lg={6}>
+          <Col span={24} sm={12} lg={8} xxl={6} key={quiz.id}>
             <Card
               title={quiz.title}
               key={quiz.id}
               onClick={() => !quiz.score && handleOnClick(quiz.id)}
-              style={{ cursor: quiz.score ? "not-allowed" : "pointer" }}
+              style={{ cursor: quiz.score ? "not-allowed" : "pointer", boxShadow: quiz.score ? "none" : "0 2px 8px rgba(0, 0, 0, 0.1)" }}
+              styles={{ header: { textAlign: "left" }, body: { padding: 12 } }}
+              extra={new Date().getDate() - new Date(quiz.createdAt).getDate() <= 2 && !quiz.score ? <Tag color="red" children="New" /> : null}
               hoverable={quiz.score ? false : true}
             >
               <Descriptions colon={false} size="small" column={1} items={getDescriptionItems(quiz)} />
