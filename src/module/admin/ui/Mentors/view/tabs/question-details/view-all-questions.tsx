@@ -1,12 +1,10 @@
 import { AdminUrls } from "@/module/admin/util/urls";
-import { Button, Card, Row, Table, Tooltip } from "antd";
 import { tablist, columns } from "../../../../Questions/view-all/helper";
 import { useNavigate, useParams } from "react-router-dom";
 import { subject } from "@/module/admin/service/Questions/fetch-all/type";
 import useFetchAllMentorAddedQuestions from "@/module/admin/hooks/questions/useFetchMentorAddedQuestion";
 import { FetchMentorDetailsReq } from "@/module/admin/service/Users/Mentor/fetch-details/type";
-import { setFetch } from "@/module/admin/service/Questions/repo/mentor-added-qs-repo";
-import { useAppDispatch } from "@/store/hook";
+import { Card, Table } from "antd";
 
 interface Props {
   timeValue: FetchMentorDetailsReq["timeValue"];
@@ -15,18 +13,12 @@ interface Props {
 export const ViewAllMentorAddedQuestions: React.FC<Props> = ({ timeValue }) => {
   const { id: mentorId } = useParams();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const { data, handleQueryChange, pagination, isLoading, subject } = useFetchAllMentorAddedQuestions({ filter: { timeValue, mentorId } });
   const onTabChange = (key: string) => handleQueryChange(undefined, { subject: key as subject });
 
   return (
     <>
-      <Row justify={"start"}>
-        <Tooltip title={"View all questions in above time period"}>
-          <Button children={"Questions added"} onClick={() => dispatch(setFetch(true))} />
-        </Tooltip>
-      </Row>
       <Card
         bordered={false}
         style={{ height: "100%", boxShadow: "none" }}
