@@ -1,9 +1,10 @@
 import { Card, Select } from "antd";
-import { QuestionChartData } from "../question-chart-data";
 import { useAppSelector } from "@/store/hook";
 import useFetchMentorDetails from "@/module/admin/hooks/useFetchMentorDetails";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { QuestionChartData } from "./question-chart-data";
+import { ViewAllMentorAddedQuestions } from "./view-all-questions";
 
 export const QuestionAddedDetails: React.FC = () => {
   const [timeValue, setTimeValue] = useState<any>("thisWeek");
@@ -37,6 +38,8 @@ export const QuestionAddedDetails: React.FC = () => {
         }
       >
         <QuestionChartData data={data?.questionChartData} questionCounts={data?.totalQuestions} loading={isLoading} />
+
+        <ViewAllMentorAddedQuestions timeValue={timeValue} />
       </Card>
     </>
   );

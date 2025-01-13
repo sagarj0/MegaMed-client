@@ -9,6 +9,7 @@ export const createRepoReducer = <T extends { id: string }, F>(name: string, ini
   const initialState = {
     isFetched: false,
     isSelectFetched: false,
+    fetch: false,
     data: [] as T[],
     pagination: { current: 1, pageSize: 20, total: 1 },
     sortOption: {} as SortOptionProps<T>,
@@ -25,6 +26,9 @@ export const createRepoReducer = <T extends { id: string }, F>(name: string, ini
       },
       setIsSelectFetched: (state, action) => {
         state.isSelectFetched = action.payload;
+      },
+      setFetch: (state, action) => {
+        state.fetch = action.payload;
       },
 
       setData: (state, action) => {

@@ -3,6 +3,8 @@ export { default as EditQuestion } from "./Questions/edit/reducer";
 export { default as FetchQuestion } from "./Questions/fetch/reducer";
 export { default as FetchAllQuestion } from "./Questions/fetch-all/reducer";
 export { default as QuestionRepo } from "./Questions/repo/reducer";
+export { default as FetchAllMentorAddedQuestions } from "./Questions/fetch-all-mentor-added/reducer";
+export { default as MentorAddedQuestionRepo } from "./Questions/repo/mentor-added-qs-repo";
 
 //manage  admin reducers
 export { default as AddAdmin } from "./Users/Admins/add/reducer";

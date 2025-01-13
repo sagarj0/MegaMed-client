@@ -9,6 +9,7 @@ export const AdminUrls = {
   },
   adminMentor: {
     view: "/admin/manage/mentors/view/",
+    viewAddedQuestion: "/admin/manage/mentors/view/added-questions/",
     add: "/admin/manage/mentors/add",
     edit: "/admin/manage/mentors/edit/",
     viewAll: "/admin/manage/mentors",

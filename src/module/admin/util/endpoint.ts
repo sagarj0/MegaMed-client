@@ -1,5 +1,6 @@
 export const AdminEndpoints = {
   manageQuestion: "/question/",
+  mentorAddedQuestions: "/question/mentor-added/",
   user: "/user/",
 
   addAdmin: "/user/add-admin",
