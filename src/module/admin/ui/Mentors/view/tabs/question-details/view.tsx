@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Card, DescriptionsProps } from "antd";
+import { Button, Card, DescriptionsProps, Row } from "antd";
 // import useFetchQuestion from "@/module/admin/hooks/questions/useFetchQuestion";
 import { ArrowLeftOutlined, EditOutlined } from "@ant-design/icons";
 import { AllUrls } from "@/router/urls";
@@ -28,8 +28,8 @@ export const ViewMentorAddedQuestion: React.FC = () => {
     <Card
       loading={isLoading}
       style={{ border: "none" }}
-      styles={{ body: { paddingBlock: 0 } }}
-      title={<Button type={"text"} children={"Back"} icon={<ArrowLeftOutlined />} onClick={goBack} />}
+      styles={{ body: { paddingBlock: 0 }, title: { marginLeft: "auto" } }}
+      title={<Row children={<Button type={"text"} children={"Back"} icon={<ArrowLeftOutlined />} onClick={goBack} />} justify={"start"} />}
       extra={<Button type={"text"} icon={<EditOutlined />} children={"Edit"} onClick={onEdit} />}
     >
       {renderQuestion(data!, data?.questionNo, subjectData)}

@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { renderQuestion } from "../../quizes/components/render-question";
-import { Button, Card, DescriptionsProps } from "antd";
+import { Button, Card, DescriptionsProps, Row } from "antd";
 // import useFetchQuestion from "@/module/admin/hooks/questions/useFetchQuestion";
 import { ArrowLeftOutlined, EditOutlined } from "@ant-design/icons";
 import { AllUrls } from "@/router/urls";
@@ -30,7 +30,7 @@ export const ViewQuestion: React.FC = () => {
       style={{ border: "none" }}
       styles={{ body: { paddingBlock: 0 } }}
       extra={<Button type={"text"} icon={<EditOutlined />} children={"Edit"} onClick={onEdit} />}
-      title={<Button type={"text"} children={"Back"} icon={<ArrowLeftOutlined />} onClick={goBack} />}
+      title={<Row children={<Button type={"text"} children={"Back"} icon={<ArrowLeftOutlined />} onClick={goBack} />} justify={"start"} />}
     >
       {renderQuestion(data!, data?.questionNo, subjectData)}
     </Card>
