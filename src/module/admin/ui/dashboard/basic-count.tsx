@@ -8,7 +8,7 @@ const formatter: StatisticProps["formatter"] = (value) => <CountUp style={{ font
 interface CountCardProps {
   isLoading: boolean;
   title: string;
-  value: number;
+  value: number | string;
   childrenCount?: Record<string, number>[];
 }
 

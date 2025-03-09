@@ -5,10 +5,14 @@ import { FooterComponent } from "@/module/home/util/footer";
 import useFullScreen from "@/helper/hooks/useFullScreen";
 import useResponsiveDevice from "@/helper/hooks/use-responsive";
 import { Navbar } from "@/module/home/util/navbar";
+import { useSeoConfig } from "@/helper/hooks/useSeoConfig";
+import { seoConfig } from "./seo-config";
 
 const { Header, Content, Footer } = Layout;
 
 const MainLayout: React.FC = () => {
+  useSeoConfig(seoConfig);
+
   const {
     token: { borderRadius },
   } = theme.useToken();
