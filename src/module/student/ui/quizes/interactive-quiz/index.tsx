@@ -11,9 +11,12 @@ import { resetError, resetSuccess } from "@/module/student/services/quizes/updat
 import { updateScoreAction } from "@/module/student/services/quizes/update-score/action";
 import { UpdateScoreKey, UpdateScoreProps } from "../type";
 import { getQuizTime } from "@/helper/get-quiz-time";
+import useAuthHook from "@/module/auth/hook/useAuthHook";
 
 export const InteractiveQuizPage: React.FC = () => {
+  useAuthHook({ checkIsPaid: true });
   const { id } = useParams<{ id: string }>();
+
   const dispatch = useAppDispatch();
   const [form] = Form.useForm<UpdateScoreProps>();
 

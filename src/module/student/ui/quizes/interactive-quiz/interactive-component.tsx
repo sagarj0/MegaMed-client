@@ -9,7 +9,6 @@ import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
 import { config } from "@/util/config";
 import useResponsiveDevice from "@/helper/hooks/use-responsive";
 import useBeforeUnload from "@/helper/hooks/useBeforeUnload";
-import useAuthHook from "@/module/auth/hook/useAuthHook";
 import { renderImage } from "@/component/render-image";
 import { properCase } from "@/helper/proper-case";
 
@@ -21,8 +20,6 @@ interface InteractiveMCQProps {
 }
 
 export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, time, isLoading }) => {
-  useAuthHook({ checkIsPaid: true });
-
   const dispatch = useAppDispatch();
   const { md, sm, xs } = useResponsiveDevice();
   const { timeCompleted, started, startedTime, isScoreChecked, score } = useAppSelector((state) => state.QuizHelper);
@@ -33,17 +30,17 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
   }, []);
 
   const form = Form.useFormInstance<UpdateScoreProps>();
-  const questionData = Form.useWatch(UpdateScoreKey.questionData, form);
+  const questionData = Form.useWatch(UpdateScoreKey.answers, form);
   const { toogleFullScreen, isFullScreen } = useFullScreen();
 
   const checkScore = () => {
-    const firstUnansweredIndex = questionData?.findIndex((question: any) => !question.answer);
+    const firstUnansweredIndex = questionData?.findIndex((question) => !question.choosedAnswer);
     if (firstUnansweredIndex !== -1) {
       const timelineItem = document.querySelectorAll(".ant-timeline-item")[firstUnansweredIndex] as HTMLElement;
       if (timelineItem) timelineItem.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
-    const obtainedScore = questionData?.reduce((acc, question) => (question.answer === question.correctAnswer ? acc + 1 : acc), 0);
+    const obtainedScore = questionData?.reduce((acc, question) => (question.choosedAnswer === question.correctAnswer ? acc + 1 : acc), 0);
     form.setFieldValue(UpdateScoreKey.score, obtainedScore);
     dispatch(setScoreValue(obtainedScore));
     form.submit();
@@ -59,7 +56,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
             {questionData?.[index]?.correctAnswer === option ? (
               <CheckCircleFilled style={{ color: "green" }} />
             ) : (
-              questionData?.[index]?.answer === option && <CloseCircleFilled style={{ color: "red" }} />
+              questionData?.[index]?.choosedAnswer === option && <CloseCircleFilled style={{ color: "red" }} />
             )}
           </>
         )}
@@ -70,17 +67,12 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
     children: (
       <div key={index}>
         <Skeleton loading={!started} active={isLoading} paragraph={{ rows: 4 }}>
-          <Form.Item name={[UpdateScoreKey.questionData, index, QuizDataTypeKeys.questionId]} initialValue={question.id} noStyle>
+          <Form.Item name={[UpdateScoreKey.answers, index, QuizDataTypeKeys.questionId]} initialValue={question.id} noStyle>
             <Typography.Title level={5}>{`${index + 1}. ${question.question}`}</Typography.Title>
             {renderImage(question.qImage, "Question Image")}
           </Form.Item>
-          <Form.Item
-            name={[UpdateScoreKey.questionData, index, QuizDataTypeKeys.correctAnswer]}
-            initialValue={question.correctAnswer}
-            noStyle
-            hidden
-          />
-          <Form.Item name={[UpdateScoreKey.questionData, index, QuizDataTypeKeys.answer]}>
+          <Form.Item name={[UpdateScoreKey.answers, index, QuizDataTypeKeys.correctAnswer]} initialValue={question.correctAnswer} noStyle hidden />
+          <Form.Item name={[UpdateScoreKey.answers, index, QuizDataTypeKeys.choosedAnswer]}>
             <Radio.Group disabled={isScoreChecked}>
               <Space direction="vertical">{renderOptions(question, index)}</Space>
             </Radio.Group>
@@ -90,13 +82,13 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
       </div>
     ),
     color: !isScoreChecked
-      ? questionData?.[index]?.answer
+      ? questionData?.[index]?.choosedAnswer
         ? "blue"
         : "gray"
-      : questionData?.[index]?.answer === question.correctAnswer
+      : questionData?.[index]?.choosedAnswer === question.correctAnswer
       ? "green"
       : "red",
-    pending: !questionData?.[index]?.answer,
+    pending: !questionData?.[index]?.choosedAnswer,
     style: { textAlign: "left" },
   }));
 
@@ -117,7 +109,6 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
       value={started && !isScoreChecked ? startedTime + time : 0}
       valueStyle={{ fontSize: 16 }}
       onFinish={() => dispatch(setTimeCompleted(true))}
-      valueRender={(value) => (timeCompleted ? <Typography.Text type="danger">Time's Up</Typography.Text> : value)}
     />
   );
 
@@ -145,7 +136,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
           </Button>,
           timeCompleted && (
             <Typography.Title level={5} type="danger">
-              Time's Up
+              TIME'S UP
             </Typography.Title>
           ),
         ]}

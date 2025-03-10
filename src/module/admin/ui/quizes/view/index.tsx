@@ -9,26 +9,11 @@ export const ViewQuiz: React.FC = () => {
   const { data, isLoading } = useFetchQuiz(id);
 
   const descriptionItems: DescriptionsProps["items"] = [
-    {
-      label: "Type",
-      children: data.type || "N/A",
-    },
-    {
-      label: "Subject",
-      children: data.subject || "N/A",
-    },
-    {
-      label: "Unit",
-      children: data.unit || "N/A",
-    },
-    {
-      label: "Chapter",
-      children: data.chapter || "N/A",
-    },
-    {
-      label: "Question Count",
-      children: data.questionCount,
-    },
+    { label: "Type", children: data.type || "N/A" },
+    { label: "Subject", children: data.subject || "N/A" },
+    { label: "Unit", children: data.unit || "N/A" },
+    { label: "Chapter", children: data.chapter || "N/A" },
+    { label: "Question Count", children: data.questionCount },
   ];
 
   return (

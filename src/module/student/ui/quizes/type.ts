@@ -1,23 +1,23 @@
 export type QuizDataType = {
   questionId: string;
-  answer: string;
+  choosedAnswer: string;
   correctAnswer: string;
 };
 
 export type UpdateScoreProps = {
   quizId: string;
   score: number;
-  questionData: QuizDataType[];
+  answers: QuizDataType[];
 };
 
 export const UpdateScoreKey: Required<{ [K in keyof UpdateScoreProps]: K }> = {
   score: "score",
   quizId: "quizId",
-  questionData: "questionData",
+  answers: "answers",
 };
 
 export const QuizDataTypeKeys: Required<{ [K in keyof QuizDataType]: K }> = {
   questionId: "questionId",
-  answer: "answer",
+  choosedAnswer: "choosedAnswer",
   correctAnswer: "correctAnswer",
 };

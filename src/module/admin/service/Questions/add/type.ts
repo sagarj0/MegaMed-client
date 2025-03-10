@@ -14,6 +14,7 @@ export type Question = {
   cImage?: string | null;
   dImage?: string | null;
   correctAnswer: string;
+  choosedAnswer?: string;
   explanation?: string;
   eImage?: string | null;
   tag?: string;

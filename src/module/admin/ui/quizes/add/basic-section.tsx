@@ -55,6 +55,21 @@ export const BasicSection: React.FC = () => {
       rules: [Rules.required],
       children: <InputNumber min={0} max={200} disabled={isPageSizeDisabled} />,
     },
+    // {
+    //   name: SaveQuizKeys.startTime,
+    //   label: "Start Time",
+    //   children: <Input type="datetime-local" />,
+    // },
+    // {
+    //   name: SaveQuizKeys.duration,
+    //   label: "Duration",
+    //   children: <InputNumber min={0} addonAfter={"Minute"} />,
+    // },
+    // {
+    //   name: SaveQuizKeys.bufferTime,
+    //   label: "Buffer Time",
+    //   children: <InputNumber min={0} addonAfter={"Minute"} />,
+    // },
   ];
 
   return (
@@ -64,7 +79,7 @@ export const BasicSection: React.FC = () => {
           <Col span={24}>
             <Form.Item
               {...item}
-              labelCol={{ span: 4, md: 3, lg: 2 }}
+              labelCol={{ span: 4, md: 3 }}
               wrapperCol={{ span: 20, md: 16, lg: 12, style: { textAlign: "left" } }}
               key={item.name as string}
             />

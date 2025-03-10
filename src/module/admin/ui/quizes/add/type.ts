@@ -8,6 +8,10 @@ export type SaveQuizProps = {
   questionIds: string[];
 
   pageSize?: number;
+
+  startTime?: string;
+  duration?: number;
+  bufferTime?: number;
 };
 
 export const SaveQuizKeys: Required<{ [K in keyof SaveQuizProps]: K }> = {
@@ -20,4 +24,8 @@ export const SaveQuizKeys: Required<{ [K in keyof SaveQuizProps]: K }> = {
   questionIds: "questionIds",
 
   pageSize: "pageSize",
+
+  startTime: "startTime",
+  duration: "duration",
+  bufferTime: "bufferTime",
 };

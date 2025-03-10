@@ -9,9 +9,9 @@ import { RenderQuiz } from "../components/render-quiz";
 export const GenerateQuiz: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  //to reset the data when the component is mounted
+  // to reset the data when the component is mounted
   useEffect(() => {
-    dispatch(setData(null));
+    dispatch(setData([]));
   }, []);
 
   const { type, subject, unit, chapter, pageSize } = Form.useWatch<SaveQuizProps>([]) || {};
@@ -35,7 +35,7 @@ export const GenerateQuiz: React.FC = () => {
           </Button>
         </Row>
       </Col>
-      {data && <RenderQuiz data={data} />}
+      {Boolean(data?.length) && <RenderQuiz data={data} />}
     </Row>
   );
 };

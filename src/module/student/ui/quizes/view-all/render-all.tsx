@@ -10,7 +10,8 @@ interface ViewAllQuizesProps {
 
 export const ViewAllQuizes: React.FC<ViewAllQuizesProps> = ({ data }) => {
   const navigate = useNavigate();
-  const handleOnClick = (id: string) => navigate(StudentUrls.studentQuizes + id);
+  const handleOnClick = (id: string, isAttempted: boolean) =>
+    isAttempted ? navigate(StudentUrls.studentAttemptedQuizes + id) : navigate(StudentUrls.studentQuizes + id);
 
   return (
     <>
@@ -18,7 +19,7 @@ export const ViewAllQuizes: React.FC<ViewAllQuizesProps> = ({ data }) => {
         <Empty
           description={
             <Space direction="vertical" size="middle">
-              <Typography.Text>Sorry, There are no tests available for this chapter.</Typography.Text>
+              <Typography.Text>Sorry, There are no tests available for this type.</Typography.Text>
               <Button type="primary" onClick={() => navigate(-1)}>
                 Go Back
               </Button>
@@ -33,13 +34,13 @@ export const ViewAllQuizes: React.FC<ViewAllQuizesProps> = ({ data }) => {
             <Card
               title={quiz.title}
               key={quiz.id}
-              onClick={() => !quiz.score && handleOnClick(quiz.id)}
-              style={{ cursor: quiz.score ? "not-allowed" : "pointer", boxShadow: quiz.score ? "none" : "0 2px 8px rgba(0, 0, 0, 0.1)" }}
+              onClick={() => handleOnClick(quiz.id, Boolean(quiz.score))}
+              style={{ cursor: "pointer", boxShadow: quiz.score ? "none" : "2px 4px 8px rgba(0, 0, 0, 0.1)" }}
               styles={{ header: { textAlign: "left" }, body: { padding: 12 } }}
-              extra={new Date().getDate() - new Date(quiz.createdAt).getDate() <= 2 && !quiz.score ? <Tag color="red" children="New" /> : null}
+              extra={!quiz.score && <Tag color="red" children="NEW" />}
               hoverable={quiz.score ? false : true}
             >
-              <Descriptions colon={false} size="small" column={1} items={getDescriptionItems(quiz)} />
+              <Descriptions contentStyle={{ textAlign: "left" }} colon={false} size="small" column={1} items={getDescriptionItems(quiz)} />
             </Card>
           </Col>
         ))}

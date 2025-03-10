@@ -1,8 +1,10 @@
 import { SaveQuizResponse } from "@/module/admin/service/quizes/add/type";
+import { QuizDataType } from "@/module/student/ui/quizes/type";
 
 export type UpdateScore = {
   quizId: string;
   score: number;
+  answers: Omit<QuizDataType, "correctAnswer">[];
 };
 
 export type UpdateScoreRes = {

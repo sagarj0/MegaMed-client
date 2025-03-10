@@ -1,10 +1,15 @@
 import { DetailedQuestion } from "@/module/admin/service/Questions/fetch/type";
 import { Descriptions, Space, Form, DescriptionsProps } from "antd";
 import { SaveQuizKeys } from "../add/type";
-import { CheckCircleFilled } from "@ant-design/icons";
+import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import { renderImage } from "@/component/render-image";
 
-export const renderQuestion = (question: DetailedQuestion, index: number = 0, items: DescriptionsProps["items"] = []) => (
+export const renderQuestion = (
+  question: DetailedQuestion,
+  index: number = 0,
+  items: DescriptionsProps["items"] = [],
+  showAnswers: boolean = false,
+) => (
   <Descriptions
     column={1}
     colon={false}
@@ -18,7 +23,7 @@ export const renderQuestion = (question: DetailedQuestion, index: number = 0, it
           <Space direction="vertical" align="start">
             {question.question}
             {renderImage(question.qImage, "question image")}
-            <Form.Item name={[SaveQuizKeys.questionIds, index]} initialValue={question.id} noStyle hidden />
+            <Form.Item name={[SaveQuizKeys.questionIds, index - 1]} initialValue={question.id} noStyle hidden />
           </Space>
         ),
       },
@@ -31,6 +36,7 @@ export const renderQuestion = (question: DetailedQuestion, index: number = 0, it
               {renderImage(question.aImage, "option a image")}
             </Space>
             {question.correctAnswer === "a" && <CheckCircleFilled style={{ color: "green" }} />}
+            {showAnswers && question.correctAnswer !== "a" && question.choosedAnswer === "a" && <CloseCircleFilled style={{ color: "red" }} />}
           </Space>
         ),
       },
@@ -43,6 +49,7 @@ export const renderQuestion = (question: DetailedQuestion, index: number = 0, it
               {renderImage(question.bImage, "option b image")}
             </Space>
             {question.correctAnswer === "b" && <CheckCircleFilled style={{ color: "green" }} />}
+            {showAnswers && question.correctAnswer !== "b" && question.choosedAnswer === "b" && <CloseCircleFilled style={{ color: "red" }} />}
           </Space>
         ),
       },
@@ -55,6 +62,7 @@ export const renderQuestion = (question: DetailedQuestion, index: number = 0, it
               {renderImage(question.cImage, "option c image")}
             </Space>
             {question.correctAnswer === "c" && <CheckCircleFilled style={{ color: "green" }} />}
+            {showAnswers && question.correctAnswer !== "c" && question.choosedAnswer === "c" && <CloseCircleFilled style={{ color: "red" }} />}
           </Space>
         ),
       },
@@ -67,6 +75,7 @@ export const renderQuestion = (question: DetailedQuestion, index: number = 0, it
               {renderImage(question.dImage, "option d image")}
             </Space>
             {question.correctAnswer === "d" && <CheckCircleFilled style={{ color: "green" }} />}
+            {showAnswers && question.correctAnswer !== "d" && question.choosedAnswer === "d" && <CloseCircleFilled style={{ color: "red" }} />}
           </Space>
         ),
       },

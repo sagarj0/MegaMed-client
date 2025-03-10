@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, FormProps } from "antd";
 import FormDebug from "@/helper/form/form-debug";
-import { SaveQuizProps } from "./type";
+import { SaveQuizKeys, SaveQuizProps } from "./type";
 import { customRequiredMark } from "@/helper/form/custom-required-mark";
 import { FormLayout } from "@/helper/form/form-layout";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
@@ -31,17 +31,17 @@ export const AddQuiz: React.FC<Props> = ({ mode }) => {
   const onSuccessReset = () => navigate(AllUrls.adminquizes.viewAll);
   useStatusMessage({ success, error, resetError, resetSuccess, onSuccessReset });
 
+  const questionIds = Form.useWatch(SaveQuizKeys.questionIds, form);
+
   return (
     <FormLayout
       title={title}
       mode={mode}
       loading={false}
       action={
-        <>
-          <Button loading={isLoading} type="primary" onClick={() => form.submit()}>
-            Save and Publish
-          </Button>
-        </>
+        <Button loading={isLoading} type="primary" onClick={() => form.submit()} disabled={!questionIds || questionIds?.length === 0}>
+          Save and Publish
+        </Button>
       }
     >
       <Form onFinish={submitForm} form={form} name="AddQuestion" labelAlign="left" colon={false} requiredMark={customRequiredMark}>
