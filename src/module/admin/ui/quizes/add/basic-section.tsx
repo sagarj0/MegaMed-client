@@ -1,9 +1,8 @@
-import { Col, Form, FormItemProps, Input, InputNumber, Row, Select } from "antd";
+import { Col, DatePicker, Form, FormItemProps, Input, InputNumber, Row, Select } from "antd";
 import { SaveQuizProps, SaveQuizKeys } from "./type";
 import { Rules } from "@/helper/form/form-rules";
 import { quizTypeOptions } from "./helper";
 import { getChapterGroups, getSubjects, getUnitGroups } from "../../Questions/add/subjects";
-import LocalDatePicker from "@/helper/form/custom-date-picker";
 
 export const BasicSection: React.FC = () => {
   const form = Form.useFormInstance<SaveQuizProps>();
@@ -21,10 +20,15 @@ export const BasicSection: React.FC = () => {
 
   const formItems: FormItemProps<SaveQuizProps>[] = [
     {
+      name: SaveQuizKeys.status,
+      noStyle: true,
+      hidden: true,
+    },
+    {
       name: SaveQuizKeys.title,
       label: "Name",
       rules: [Rules.required],
-      children: <Input placeholder="Name of Quiz e.g. Mangshir 2nd Week Quiz" />,
+      children: <Input placeholder="Name of Quiz e.g. March|Mock|II|Sat" />,
     },
     {
       name: SaveQuizKeys.type,
@@ -56,7 +60,12 @@ export const BasicSection: React.FC = () => {
       rules: [Rules.required],
       children: <InputNumber min={0} max={200} disabled={isPageSizeDisabled} />,
     },
-    { name: SaveQuizKeys.startTime, label: "Start Time", rules: [Rules.required], children: <LocalDatePicker /> },
+    {
+      name: SaveQuizKeys.startTime,
+      label: "Start Time",
+      rules: [Rules.required],
+      children: <DatePicker showTime />,
+    },
     { name: SaveQuizKeys.duration, label: "Duration", rules: [Rules.required], children: <InputNumber min={0} addonAfter={"Minute"} /> },
     { name: SaveQuizKeys.bufferTime, label: "Buffer Time", children: <InputNumber min={0} addonAfter={"Minute"} /> },
   ];

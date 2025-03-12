@@ -1,3 +1,8 @@
+export enum QuizStatus {
+  Draft = "Draft",
+  Published = "Published",
+}
+
 export type SaveQuizProps = {
   title: string;
   type?: "subject" | "mock_test" | "chapter" | "unit" | "custom";
@@ -11,6 +16,7 @@ export type SaveQuizProps = {
   startTime?: string;
   duration?: number; // in minutes
   bufferTime?: number; // in minutes
+  status?: QuizStatus;
 };
 
 export const SaveQuizKeys: Required<{ [K in keyof SaveQuizProps]: K }> = {
@@ -26,4 +32,5 @@ export const SaveQuizKeys: Required<{ [K in keyof SaveQuizProps]: K }> = {
   startTime: "startTime",
   duration: "duration",
   bufferTime: "bufferTime",
+  status: "status",
 };

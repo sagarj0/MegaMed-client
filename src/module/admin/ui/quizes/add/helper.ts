@@ -1,5 +1,5 @@
 import { SelectProps } from "antd";
-import { SaveQuizProps } from "./type";
+import { QuizStatus, SaveQuizProps } from "./type";
 
 export const quizTypeOptions: SelectProps["options"] = [
   { label: "Mock Test", value: "mock_test" },
@@ -11,4 +11,5 @@ export const quizTypeOptions: SelectProps["options"] = [
 
 export const initialValues: Partial<SaveQuizProps> = {
   bufferTime: 1,
+  status: QuizStatus.Draft,
 };

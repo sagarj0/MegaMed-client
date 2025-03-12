@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Form, FormProps } from "antd";
+import { Dropdown, Form, FormProps } from "antd";
 import FormDebug from "@/helper/form/form-debug";
-import { SaveQuizKeys, SaveQuizProps } from "./type";
+import { QuizStatus, SaveQuizKeys, SaveQuizProps } from "./type";
 import { customRequiredMark } from "@/helper/form/custom-required-mark";
 import { FormLayout } from "@/helper/form/form-layout";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
@@ -34,15 +34,26 @@ export const AddQuiz: React.FC<Props> = ({ mode }) => {
 
   const questionIds = Form.useWatch(SaveQuizKeys.questionIds, form);
 
+  const handleSaveAndPublish = () => {
+    form.setFieldsValue({ status: QuizStatus.Published });
+    form.submit();
+  };
+
   return (
     <FormLayout
       title={title}
       mode={mode}
       loading={false}
       action={
-        <Button loading={isLoading} type="primary" onClick={() => form.submit()} disabled={!questionIds || questionIds?.length === 0}>
-          Save and Publish
-        </Button>
+        <Dropdown.Button
+          menu={{ items: [{ key: "save", label: "Save and Publish", onClick: handleSaveAndPublish }] }}
+          loading={isLoading}
+          type="primary"
+          disabled={!questionIds || questionIds?.length === 0}
+          onClick={() => form.submit()}
+        >
+          Save
+        </Dropdown.Button>
       }
     >
       <Form

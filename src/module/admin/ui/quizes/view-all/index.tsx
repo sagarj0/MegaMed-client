@@ -3,37 +3,32 @@ import { AdminUrls } from "@/module/admin/util/urls";
 import { Button, Card, Table, TableProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { SaveQuizResponse } from "@/module/admin/service/quizes/add/type";
+import { formatDateTime } from "@/helper/format-date";
+import { renderTag } from "@/component/globar-tag-renderer";
+import { customConcatString } from "@/helper/custom-concat";
 
 export const ViewAllQuiz: React.FC = () => {
   const navigate = useNavigate();
   const handleAddQuiz = () => navigate(AdminUrls.adminquizes.add);
 
   const columns: TableProps<SaveQuizResponse>["columns"] = [
+    { title: "Name", dataIndex: "title", key: "title" },
+    { title: "Type", dataIndex: "type", key: "type" },
+    { title: "Count", dataIndex: "questionCount", key: "questionCount" },
     {
-      title: "Name",
-      dataIndex: "title",
-      key: "title",
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      render: renderTag,
+      filters: [
+        { text: "Draft", value: "Draft" },
+        { text: "Published", value: "Published" },
+      ],
+      filterMultiple: false,
     },
-    {
-      title: "Type",
-      dataIndex: "type",
-      key: "type",
-    },
-    {
-      title: "Subject",
-      dataIndex: "subject",
-      key: "subject",
-    },
-    {
-      title: "Unit",
-      dataIndex: "unit",
-      key: "unit",
-    },
-    {
-      title: "Chapter",
-      dataIndex: "chapter",
-      key: "chapter",
-    },
+    { title: "Start Time", dataIndex: "startTime", key: "startTime", render: formatDateTime },
+    { title: "Duration", dataIndex: "duration", key: "duration", render: customConcatString("min") },
+    { title: "Buffer Time", dataIndex: "bufferTime", key: "bufferTime", render: customConcatString("min") },
   ];
 
   const { data, handleQueryChange, pagination, isLoading } = useFetchAllQuiz({ filter: {} });

@@ -17,10 +17,6 @@ interface LocalDatePickerProps extends Omit<DatePickerProps, "value" | "onChange
  * A DatePicker component that handles local time conversion for Ant Design forms
  */
 const LocalDatePicker: React.FC<LocalDatePickerProps> = ({ value, onChange, ...props }) => {
-  // For form integration, we need to:
-  // 1. Convert incoming string value to dayjs object with local timezone
-  // 2. Return ISO string on change for form storage
-
   // Convert value to dayjs object if it's a string
   const dayjsValue = value ? (typeof value === "string" ? dayjs(value) : value) : null;
 
