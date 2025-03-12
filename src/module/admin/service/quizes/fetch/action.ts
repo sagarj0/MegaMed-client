@@ -15,7 +15,7 @@ export const fetchQuizAciton = (props: Props) => async (dispatch: AppDispatch) =
 
     const { data } = response.data;
 
-    dispatch(setData(data));
+    dispatch(setData(data ?? {}));
   } catch (error) {
     dispatch(setError(parseError(error)));
   } finally {

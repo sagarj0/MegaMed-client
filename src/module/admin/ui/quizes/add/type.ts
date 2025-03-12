@@ -4,14 +4,13 @@ export type SaveQuizProps = {
   subject?: string;
   unit?: string;
   chapter?: string;
-  score?: number;
   questionIds: string[];
 
   pageSize?: number;
 
   startTime?: string;
-  duration?: number;
-  bufferTime?: number;
+  duration?: number; // in minutes
+  bufferTime?: number; // in minutes
 };
 
 export const SaveQuizKeys: Required<{ [K in keyof SaveQuizProps]: K }> = {
@@ -20,7 +19,6 @@ export const SaveQuizKeys: Required<{ [K in keyof SaveQuizProps]: K }> = {
   subject: "subject",
   unit: "unit",
   chapter: "chapter",
-  score: "score",
   questionIds: "questionIds",
 
   pageSize: "pageSize",

@@ -21,7 +21,7 @@ export const InteractiveQuizPage: React.FC = () => {
   const [form] = Form.useForm<UpdateScoreProps>();
 
   const { data, isLoading } = useFetchQuiz(id);
-  const time = getQuizTime(data?.type);
+  const time = getQuizTime({ quiz: data });
 
   const handleSubmit: FormProps<UpdateScoreProps>["onFinish"] = (vals) => dispatch(updateScoreAction(vals));
 

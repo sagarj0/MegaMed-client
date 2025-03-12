@@ -8,3 +8,7 @@ export const quizTypeOptions: SelectProps["options"] = [
   { label: "Chapter Wise", value: "chapter" },
   { label: "Custom", value: "custom", disabled: true },
 ] as Array<{ label: string; value: SaveQuizProps["type"] }>;
+
+export const initialValues: Partial<SaveQuizProps> = {
+  bufferTime: 1,
+};

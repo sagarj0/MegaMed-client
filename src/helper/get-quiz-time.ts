@@ -1,6 +1,23 @@
+import { SaveQuizResponse } from "@/module/admin/service/quizes/add/type";
 import { DetailedQuiz } from "@/module/admin/service/quizes/fetch/type";
 
-export const getQuizTime = (type: DetailedQuiz["type"], inMinute: Boolean = false) => {
+interface Props {
+  inMinute?: Boolean;
+  quiz: SaveQuizResponse | DetailedQuiz;
+}
+
+export const getQuizTime = (props: Props) => {
+  const { inMinute = false, quiz } = props;
+  const type = quiz.type;
+  const { startTime, duration, bufferTime } = quiz;
+
+  if (startTime && duration && bufferTime) {
+    const durationInMilliSecond = duration * 60 * 1000;
+    const bufferTimeInMilliSecond = bufferTime * 60 * 1000;
+    const totalPeriod = durationInMilliSecond + bufferTimeInMilliSecond;
+    return inMinute ? totalPeriod / (60 * 1000) : totalPeriod;
+  }
+
   switch (type) {
     case "chapter":
       return inMinute ? 40 : 40 * 60 * 1000;

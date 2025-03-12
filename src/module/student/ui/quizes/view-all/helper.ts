@@ -11,39 +11,39 @@ export const tabList: CardProps["tabList"] = [
   { key: "custom", tab: "Custom" },
 ];
 
-export const getDescriptionItems = (quiz: SaveQuizResponse): DescriptionsProps["items"] => {
+export const getQuizDescriptions = (quiz: SaveQuizResponse): DescriptionsProps["items"] => {
   switch (quiz.type) {
     case "subject":
       return [
         { label: "Subject", children: properCase(quiz.subject) },
         { label: "Question Count", children: quiz.questionCount },
-        { label: "Time", children: getQuizTime(quiz.type, true) + " Min" },
+        { label: "Time", children: getQuizTime({ quiz, inMinute: true }) + " Min" },
         { label: "Score Obtained", children: quiz.score ? quiz.score : "-" },
       ];
     case "chapter":
       return [
         { label: "Chapter", children: properCase(quiz.chapter) },
         { label: "Question Count", children: quiz.questionCount },
-        { label: "Time", children: getQuizTime(quiz.type, true) + " Min" },
+        { label: "Time", children: getQuizTime({ quiz, inMinute: true }) + " Min" },
         { label: "Score Obtained", children: quiz.score ? quiz.score : "-" },
       ];
     case "unit":
       return [
         { label: "Unit", children: properCase(quiz.unit) },
         { label: "Question Count", children: quiz.questionCount },
-        { label: "Time", children: getQuizTime(quiz.type, true) + " Min" },
+        { label: "Time", children: getQuizTime({ quiz, inMinute: true }) + " Min" },
         { label: "Score Obtained", children: quiz.score ? quiz.score : "-" },
       ];
     case "mock_test":
       return [
         { label: "Question Count", children: quiz.questionCount },
-        { label: "Time", children: getQuizTime(quiz.type, true) + " Min" },
+        { label: "Time", children: getQuizTime({ quiz, inMinute: true }) + " Min" },
         { label: "Score Obtained", children: quiz.score ? quiz.score : "-" },
       ];
     case "custom":
       return [
         { label: "Question Count", children: quiz.questionCount },
-        { label: "Time", children: getQuizTime(quiz.type, true) + " Min" },
+        { label: "Time", children: getQuizTime({ quiz, inMinute: true }) + " Min" },
         { label: "Score Obtained", children: quiz.score ? quiz.score : "-" },
       ];
     default:

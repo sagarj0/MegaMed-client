@@ -28,7 +28,7 @@ export const GenerateQuiz: React.FC = () => {
 
   return (
     <Row>
-      <Col sm={{ offset: 4 }} md={{ offset: 3 }} lg={{ offset: 2 }}>
+      <Col sm={{ offset: 4 }} md={{ offset: 3 }}>
         <Row style={{ marginBlock: 32 }}>
           <Button type="primary" disabled={isButtonDisabled} onClick={handleGenerate} loading={isLoading}>
             Generate Quiz

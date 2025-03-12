@@ -3,6 +3,10 @@ import { SaveQuizResponse } from "../add/type";
 
 export type DetailedQuiz = SaveQuizResponse & {
   questions: DetailedQuestion[];
+  averageScore?: number;
+  timeTaken?: number;
+  rank?: number;
+  averageTime?: number;
 };
 
 export type FetchQuizRequest = {

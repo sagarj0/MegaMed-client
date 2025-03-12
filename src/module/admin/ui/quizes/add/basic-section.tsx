@@ -3,6 +3,7 @@ import { SaveQuizProps, SaveQuizKeys } from "./type";
 import { Rules } from "@/helper/form/form-rules";
 import { quizTypeOptions } from "./helper";
 import { getChapterGroups, getSubjects, getUnitGroups } from "../../Questions/add/subjects";
+import LocalDatePicker from "@/helper/form/custom-date-picker";
 
 export const BasicSection: React.FC = () => {
   const form = Form.useFormInstance<SaveQuizProps>();
@@ -51,25 +52,13 @@ export const BasicSection: React.FC = () => {
     },
     {
       name: SaveQuizKeys.pageSize,
-      label: "Count",
+      label: "Qsn. Count",
       rules: [Rules.required],
       children: <InputNumber min={0} max={200} disabled={isPageSizeDisabled} />,
     },
-    // {
-    //   name: SaveQuizKeys.startTime,
-    //   label: "Start Time",
-    //   children: <Input type="datetime-local" />,
-    // },
-    // {
-    //   name: SaveQuizKeys.duration,
-    //   label: "Duration",
-    //   children: <InputNumber min={0} addonAfter={"Minute"} />,
-    // },
-    // {
-    //   name: SaveQuizKeys.bufferTime,
-    //   label: "Buffer Time",
-    //   children: <InputNumber min={0} addonAfter={"Minute"} />,
-    // },
+    { name: SaveQuizKeys.startTime, label: "Start Time", rules: [Rules.required], children: <LocalDatePicker /> },
+    { name: SaveQuizKeys.duration, label: "Duration", rules: [Rules.required], children: <InputNumber min={0} addonAfter={"Minute"} /> },
+    { name: SaveQuizKeys.bufferTime, label: "Buffer Time", children: <InputNumber min={0} addonAfter={"Minute"} /> },
   ];
 
   return (
@@ -79,8 +68,8 @@ export const BasicSection: React.FC = () => {
           <Col span={24}>
             <Form.Item
               {...item}
-              labelCol={{ span: 4, md: 3 }}
-              wrapperCol={{ span: 20, md: 16, lg: 12, style: { textAlign: "left" } }}
+              labelCol={{ span: 4, md: 4, lg: 3 }}
+              wrapperCol={{ span: 16, md: 16, lg: 10, style: { textAlign: "left" } }}
               key={item.name as string}
             />
           </Col>

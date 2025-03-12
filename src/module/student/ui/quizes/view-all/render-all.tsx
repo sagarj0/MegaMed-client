@@ -2,7 +2,7 @@ import { SaveQuizResponse } from "@/module/admin/service/quizes/add/type";
 import { Empty, Space, Typography, Button, Row, Col, Card, Descriptions, Tag } from "antd";
 import { useNavigate } from "react-router-dom";
 import { StudentUrls } from "@/module/student/util/urls";
-import { getDescriptionItems } from "./helper";
+import { getQuizDescriptions } from "./helper";
 
 interface ViewAllQuizesProps {
   data: SaveQuizResponse[];
@@ -40,7 +40,7 @@ export const ViewAllQuizes: React.FC<ViewAllQuizesProps> = ({ data }) => {
               extra={!quiz.score && <Tag color="red" children="NEW" />}
               hoverable={quiz.score ? false : true}
             >
-              <Descriptions contentStyle={{ textAlign: "left" }} colon={false} size="small" column={1} items={getDescriptionItems(quiz)} />
+              <Descriptions contentStyle={{ textAlign: "left" }} colon={false} size="small" column={1} items={getQuizDescriptions(quiz)} />
             </Card>
           </Col>
         ))}

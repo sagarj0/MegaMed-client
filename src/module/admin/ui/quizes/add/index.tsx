@@ -12,6 +12,7 @@ import { BasicSection } from "./basic-section";
 import { GenerateQuiz } from "./generate-quiz";
 import { AllUrls } from "@/router/urls";
 import { useNavigate } from "react-router-dom";
+import { initialValues } from "./helper";
 
 interface Props {
   mode: "New" | "Edit";
@@ -44,7 +45,15 @@ export const AddQuiz: React.FC<Props> = ({ mode }) => {
         </Button>
       }
     >
-      <Form onFinish={submitForm} form={form} name="AddQuestion" labelAlign="left" colon={false} requiredMark={customRequiredMark}>
+      <Form
+        onFinish={submitForm}
+        form={form}
+        name="AddQuestion"
+        labelAlign="left"
+        colon={false}
+        requiredMark={customRequiredMark}
+        initialValues={initialValues}
+      >
         <BasicSection />
         <GenerateQuiz />
         <FormDebug />
