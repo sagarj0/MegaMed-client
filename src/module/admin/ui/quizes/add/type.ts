@@ -5,7 +5,7 @@ export enum QuizStatus {
 
 export type SaveQuizProps = {
   title: string;
-  type?: "subject" | "mock_test" | "chapter" | "unit" | "custom";
+  type: "subject" | "mock_test" | "chapter" | "unit" | "custom";
   subject?: string;
   unit?: string;
   chapter?: string;

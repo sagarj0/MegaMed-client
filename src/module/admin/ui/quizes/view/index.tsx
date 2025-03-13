@@ -1,25 +1,44 @@
 import useFetchQuiz from "@/module/admin/hooks/quizes/useFetchQuiz";
 import { useParams } from "react-router-dom";
 import { RenderQuiz } from "../components/render-quiz";
-import { Button, Card, Descriptions, DescriptionsProps } from "antd";
+import { Button, Card, Descriptions, DescriptionsProps, Space } from "antd";
 import { EditOutlined } from "@ant-design/icons";
+import { formatDateTime } from "@/helper/format-date";
+import { customConcatString } from "@/helper/custom-concat";
+import { properCase } from "@/helper/proper-case";
+import { UpdateQuizStatus } from "./update-status";
+import { renderTag } from "@/component/globar-tag-renderer";
 
 export const ViewQuiz: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading } = useFetchQuiz(id);
 
   const descriptionItems: DescriptionsProps["items"] = [
-    { label: "Type", children: data.type || "N/A" },
-    { label: "Subject", children: data.subject || "N/A" },
-    { label: "Unit", children: data.unit || "N/A" },
-    { label: "Chapter", children: data.chapter || "N/A" },
+    { label: "Type", children: properCase(data.type) || "N/A" },
+    { label: "Subject", children: properCase(data.subject) || "N/A" },
+    { label: "Unit", children: properCase(data.unit) || "N/A" },
+    { label: "Chapter", children: properCase(data.chapter) || "N/A" },
     { label: "Question Count", children: data.questionCount },
+    { label: "Start Time", children: formatDateTime(data.startTime) },
+    { label: "Duration", children: customConcatString("min")(data.duration) },
+    { label: "Buffer Time", children: customConcatString("min")(data.bufferTime) },
   ];
 
   return (
-    <Card bordered={false} style={{ boxShadow: "none" }} extra={<Button type="link" children={"Edit Quiz"} disabled icon={<EditOutlined />} />}>
+    <Card
+      bordered={false}
+      style={{ boxShadow: "none" }}
+      loading={isLoading}
+      title={
+        <Space>
+          {data.title} {renderTag(data.status)}
+        </Space>
+      }
+      styles={{ header: { textAlign: "left" } }}
+      extra={[<UpdateQuizStatus />, <Button type="link" children={"Edit Quiz"} disabled icon={<EditOutlined />} />]}
+    >
       <Descriptions column={1} colon={false} size="small" style={{ marginBlockEnd: 12 }} items={descriptionItems} />
-      <RenderQuiz data={data?.questions} title={data?.title} isLoading={isLoading} />
+      <RenderQuiz data={data?.questions} title={data?.title} noStyle />
     </Card>
   );
 };

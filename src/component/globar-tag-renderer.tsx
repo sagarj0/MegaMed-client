@@ -1,6 +1,6 @@
 import { Tag, TagProps } from "antd";
 
-export type GlobalTags = "Draft" | "Published" | "New" | "Attempted" | "Not Attempted";
+export type GlobalTags = "Draft" | "Published" | "New" | "Attempted" | "Not Attempted" | undefined;
 
 export const renderTag = (name: GlobalTags) => {
   let color: TagProps["color"];
@@ -33,7 +33,7 @@ export const renderTag = (name: GlobalTags) => {
 
   return (
     <Tag color={color} key={name} style={{ fontSize: 10, paddingInline: "1em", borderRadius: "1em", margin: 0, whiteSpace: "nowrap" }}>
-      {name.toUpperCase()}
+      {name?.toUpperCase()}
     </Tag>
   );
 };

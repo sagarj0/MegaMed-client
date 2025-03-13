@@ -13,6 +13,7 @@ export const AdminEndpoints = {
   createQuiz: "/quiz/create",
   createCustomQuiz: "/quiz/create-custom",
   listAllQuiz: "/quiz/list",
+  update: "/quiz/update-status/",
   getQuiz: {
     byId: "/quiz/",
     subject: "/quiz/subject-wise/",

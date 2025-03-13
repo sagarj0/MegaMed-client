@@ -35,3 +35,4 @@ export { default as FetchQuiz } from "./quizes/fetch/reducer";
 export { default as FetchAllQuiz } from "./quizes/fetch-all/reducer";
 export { default as GenerateQuiz } from "./quizes/generate/reducer";
 export { default as QuizRepo } from "./quizes/repo/reducer";
+export { default as EditQuiz } from "./quizes/edit/reducer";

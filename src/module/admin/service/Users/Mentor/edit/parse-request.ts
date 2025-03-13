@@ -1,6 +1,6 @@
 import { getAllModifiedProperty } from "@/helper/get-modified-property";
 import { PatchMentorReq } from "./type";
-import { AddMentorKeys, AddMentorProps } from "@/module/admin/ui/Mentors/add/type";
+import { AddMentorKeys, AddMentorProps } from "@/module/admin/ui/mentors/add/type";
 
 interface Props {
   oldData: AddMentorProps;

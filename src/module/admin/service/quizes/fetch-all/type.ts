@@ -1,8 +1,6 @@
 import { SaveQuizResponse } from "../add/type";
 
-export type FetchAllQuizRequest = {
-  [key in keyof Partial<SaveQuizResponse>]: any;
-} & {
+export type FetchAllQuizRequest = Partial<SaveQuizResponse> & {
   search?: string;
   current?: number;
   pageSize?: number;

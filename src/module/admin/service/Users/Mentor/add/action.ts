@@ -3,7 +3,7 @@ import { postMentor } from "./api";
 import { AppDispatch } from "@/store";
 import { setLoading, resetLoading, setSuccess, setError } from "./reducer";
 import { parseMentorReq } from "./parse-request";
-import { AddMentorProps } from "@/module/admin/ui/Mentors/add/type";
+import { AddMentorProps } from "@/module/admin/ui/mentors/add/type";
 
 export const addMentor = (props: AddMentorProps) => async (dispatch: AppDispatch) => {
   try {

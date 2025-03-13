@@ -2,7 +2,7 @@ import { Route } from "react-router-dom";
 import { AdminLayout } from "./layout";
 import { AdminUrls } from "./urls";
 import { ViewAllQuestion } from "../ui/Questions/view-all";
-import { ViewAllMentors } from "../ui/Mentors/view-all";
+import { ViewAllMentors } from "../ui/mentors/view-all";
 import { ViewAllAdmins } from "../ui/admins/view-all";
 import { ViewAllStudents } from "../ui/Students/view-all";
 import { AddQuestions } from "../ui/Questions/add";
@@ -12,10 +12,10 @@ import { ProfileComponent } from "@/module/auth/ui/profile";
 import { ViewAllQuiz } from "../ui/quizes/view-all";
 import { AddQuiz } from "../ui/quizes/add";
 import { ViewQuiz } from "../ui/quizes/view";
-import { AddMentor } from "../ui/Mentors/add";
-import { ViewMentor } from "../ui/Mentors/view";
+import { AddMentor } from "../ui/mentors/add";
+import { ViewMentor } from "../ui/mentors/view";
 import { ViewQuestion } from "../ui/Questions/view";
-import { ViewMentorAddedQuestion } from "../ui/Mentors/view/tabs/question-details/view";
+import { ViewMentorAddedQuestion } from "../ui/mentors/view/tabs/question-details/view";
 
 export const AdminRoutes = (
   <Route element={<AdminLayout />}>
