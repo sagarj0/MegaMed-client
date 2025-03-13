@@ -1,3 +1,4 @@
+import { formatDateTime } from "@/helper/format-date";
 import { getQuizTime } from "@/helper/get-quiz-time";
 import { properCase } from "@/helper/proper-case";
 import { SaveQuizResponse } from "@/module/admin/service/quizes/add/type";
@@ -17,34 +18,34 @@ export const getQuizDescriptions = (quiz: SaveQuizResponse): DescriptionsProps["
       return [
         { label: "Subject", children: properCase(quiz.subject) },
         { label: "Question Count", children: quiz.questionCount },
-        { label: "Time", children: getQuizTime({ quiz, inMinute: true }) + " Min" },
-        { label: "Score Obtained", children: quiz.score ? quiz.score : "-" },
+        { label: "Start Time", children: formatDateTime(quiz.startTime) },
+        { label: "Time", children: getQuizTime({ quiz, inMinute: true, inString: true }) },
       ];
     case "chapter":
       return [
         { label: "Chapter", children: properCase(quiz.chapter) },
         { label: "Question Count", children: quiz.questionCount },
-        { label: "Time", children: getQuizTime({ quiz, inMinute: true }) + " Min" },
-        { label: "Score Obtained", children: quiz.score ? quiz.score : "-" },
+        { label: "Start Time", children: formatDateTime(quiz.startTime) },
+        { label: "Time", children: getQuizTime({ quiz, inMinute: true, inString: true }) },
       ];
     case "unit":
       return [
         { label: "Unit", children: properCase(quiz.unit) },
         { label: "Question Count", children: quiz.questionCount },
-        { label: "Time", children: getQuizTime({ quiz, inMinute: true }) + " Min" },
-        { label: "Score Obtained", children: quiz.score ? quiz.score : "-" },
+        { label: "Start Time", children: formatDateTime(quiz.startTime) },
+        { label: "Time", children: getQuizTime({ quiz, inMinute: true, inString: true }) },
       ];
     case "mock_test":
       return [
         { label: "Question Count", children: quiz.questionCount },
-        { label: "Time", children: getQuizTime({ quiz, inMinute: true }) + " Min" },
-        { label: "Score Obtained", children: quiz.score ? quiz.score : "-" },
+        { label: "Start Time", children: formatDateTime(quiz.startTime) },
+        { label: "Time", children: getQuizTime({ quiz, inMinute: true, inString: true }) },
       ];
     case "custom":
       return [
         { label: "Question Count", children: quiz.questionCount },
-        { label: "Time", children: getQuizTime({ quiz, inMinute: true }) + " Min" },
-        { label: "Score Obtained", children: quiz.score ? quiz.score : "-" },
+        { label: "Start Time", children: formatDateTime(quiz.startTime) },
+        { label: "Time", children: getQuizTime({ quiz, inMinute: true, inString: true }) },
       ];
     default:
       return [];

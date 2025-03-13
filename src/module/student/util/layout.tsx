@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BarChartOutlined, PoweroffOutlined, MenuOutlined, SnippetsOutlined } from "@ant-design/icons";
+import { BarChartOutlined, PoweroffOutlined, MenuOutlined, SnippetsOutlined, BellOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme, Typography, Button, Drawer, Row, MenuProps } from "antd";
 import { useNavigate, useLocation, Outlet, Link } from "react-router-dom";
 import { StudentUrls } from "./urls";
@@ -132,9 +132,13 @@ const StudentLayout: React.FC = () => {
               {title}
             </Title>
           </Row>
-          <Link to={StudentUrls.studentProfile}>
-            <UserAvatar user={user} />
-          </Link>
+
+          <Row align="middle" style={{ gap: "1rem" }}>
+            <BellOutlined style={{ fontSize: "1.1rem" }} />
+            <Link to={StudentUrls.studentProfile}>
+              <UserAvatar user={user} />
+            </Link>
+          </Row>
         </Header>
 
         <Content

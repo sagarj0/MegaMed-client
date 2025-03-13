@@ -6,6 +6,7 @@ import { SaveQuizResponse } from "@/module/admin/service/quizes/add/type";
 import { formatDateTime } from "@/helper/format-date";
 import { renderTag } from "@/component/globar-tag-renderer";
 import { customConcatString } from "@/helper/custom-concat";
+import { isQuizActive } from "@/helper/is-quiz-active";
 
 export const ViewAllQuiz: React.FC = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ export const ViewAllQuiz: React.FC = () => {
       ],
       filterMultiple: false,
     },
-    { title: "Start Time", dataIndex: "startTime", key: "startTime", render: formatDateTime },
+    { title: "Start Time", dataIndex: "startTime", key: "startTime", render: (value) => formatDateTime(value, true) },
     { title: "Duration", dataIndex: "duration", key: "duration", render: customConcatString("min") },
     { title: "Buffer Time", dataIndex: "bufferTime", key: "bufferTime", render: customConcatString("min") },
   ];
@@ -45,9 +46,10 @@ export const ViewAllQuiz: React.FC = () => {
           onChange={handleQueryChange}
           pagination={pagination}
           loading={isLoading}
-          onRow={({ id }) => ({
+          onRow={({ id, ...rest }) => ({
             style: { cursor: "pointer" },
             onClick: () => navigate(AdminUrls.adminquizes.view + id),
+            className: isQuizActive(rest) ? "active-quiz-row" : "",
           })}
           scroll={{ x: 500 }}
           rowKey={(record) => record.id.toString()}

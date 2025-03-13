@@ -8,6 +8,8 @@ import { customConcatString } from "@/helper/custom-concat";
 import { properCase } from "@/helper/proper-case";
 import { UpdateQuizStatus } from "./update-status";
 import { renderTag } from "@/component/globar-tag-renderer";
+import { isQuizActive } from "@/helper/is-quiz-active";
+import { RotatingClockIcon } from "@/component/rotating-clock-icon";
 
 export const ViewQuiz: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -32,6 +34,7 @@ export const ViewQuiz: React.FC = () => {
       title={
         <Space>
           {data.title} {renderTag(data.status)}
+          {isQuizActive(data) && <RotatingClockIcon />}
         </Space>
       }
       styles={{ header: { textAlign: "left" } }}

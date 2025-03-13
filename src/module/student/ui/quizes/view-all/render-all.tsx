@@ -3,6 +3,8 @@ import { Empty, Space, Typography, Button, Row, Col, Card, Descriptions, Tag } f
 import { useNavigate } from "react-router-dom";
 import { StudentUrls } from "@/module/student/util/urls";
 import { getQuizDescriptions } from "./helper";
+import { isQuizActive } from "@/helper/is-quiz-active";
+import { RotatingClockIcon } from "@/component/rotating-clock-icon";
 
 interface ViewAllQuizesProps {
   data: SaveQuizResponse[];
@@ -32,11 +34,16 @@ export const ViewAllQuizes: React.FC<ViewAllQuizesProps> = ({ data }) => {
         {data?.map((quiz) => (
           <Col span={24} sm={12} lg={8} xxl={6} key={quiz.id}>
             <Card
-              title={quiz.title}
+              title={
+                <Space>
+                  {quiz.title}
+                  {isQuizActive(quiz) && <RotatingClockIcon />}
+                </Space>
+              }
               key={quiz.id}
               onClick={() => handleOnClick(quiz.id, Boolean(quiz.score))}
               style={{ cursor: "pointer", boxShadow: quiz.score ? "none" : "2px 4px 8px rgba(0, 0, 0, 0.1)" }}
-              styles={{ header: { textAlign: "left" }, body: { padding: 12 } }}
+              styles={{ header: { textAlign: "left", paddingInline: 12 }, body: { padding: 12 } }}
               extra={!quiz.score && <Tag color="red" children="NEW" />}
               hoverable={quiz.score ? false : true}
             >

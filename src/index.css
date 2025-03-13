@@ -95,3 +95,57 @@
   border: "1px dashed var(--gray-primary)";
   border-radius: "2px";
 }
+
+/* active quiz row pulse effect */
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+    background-color: rgba(52, 152, 219, 0.1);
+  }
+
+  50% {
+    opacity: 1;
+    background-color: rgba(52, 152, 219, 0.2);
+  }
+
+  100% {
+    opacity: 0.7;
+    background-color: rgba(52, 152, 219, 0.1);
+  }
+}
+
+.active-quiz-row {
+  animation: pulse 2s infinite alternate;
+}
+
+/* rotating clock */
+.clock {
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .minute-hand {
+    width: 1.5px;
+    height: 6px;
+    background: black;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    transform-origin: center bottom;
+    animation: rotateHand 10s steps(12, end) infinite;
+  }
+}
+
+@keyframes rotateHand {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

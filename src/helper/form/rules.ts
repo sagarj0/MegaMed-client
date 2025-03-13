@@ -16,7 +16,6 @@ export const Rules: RulesType = {
 
   quizDurationRule: (qCount: number | undefined) => ({
     required: true,
-    message: "This field is required",
     validator: async (_, value) => {
       if (!qCount || !value) return Promise.resolve();
 
