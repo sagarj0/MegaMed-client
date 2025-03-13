@@ -1,6 +1,6 @@
 import { Col, DatePicker, Form, FormItemProps, Input, InputNumber, Row, Select } from "antd";
 import { SaveQuizProps, SaveQuizKeys } from "./type";
-import { Rules } from "@/helper/form/form-rules";
+import { Rules } from "@/helper/form/rules";
 import { quizTypeOptions } from "./helper";
 import { getChapterGroups, getSubjects, getUnitGroups } from "../../Questions/add/subjects";
 
@@ -17,6 +17,8 @@ export const BasicSection: React.FC = () => {
     form.resetFields([SaveQuizKeys.subject, SaveQuizKeys.unit, SaveQuizKeys.chapter]);
     form.setFieldValue(SaveQuizKeys.pageSize, isLargePageSize ? 200 : 50);
   };
+
+  const qCount = Form.useWatch([SaveQuizKeys.pageSize], form);
 
   const formItems: FormItemProps<SaveQuizProps>[] = [
     {
@@ -66,8 +68,13 @@ export const BasicSection: React.FC = () => {
       rules: [Rules.required],
       children: <DatePicker showTime />,
     },
-    { name: SaveQuizKeys.duration, label: "Duration", rules: [Rules.required], children: <InputNumber min={0} addonAfter={"Minute"} /> },
-    { name: SaveQuizKeys.bufferTime, label: "Buffer Time", children: <InputNumber min={0} addonAfter={"Minute"} /> },
+    {
+      name: SaveQuizKeys.duration,
+      label: "Duration",
+      rules: [Rules.quizDurationRule(qCount)],
+      children: <InputNumber min={0} addonAfter={"Minute"} />,
+    },
+    { name: SaveQuizKeys.bufferTime, label: "Buffer Time", children: <InputNumber min={0} max={5} addonAfter={"Minute"} /> },
   ];
 
   return (

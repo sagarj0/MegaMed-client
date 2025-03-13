@@ -1,7 +1,7 @@
 import { Button, Divider, Form, FormItemProps, Input, Space, Typography } from "antd";
 import FormDebug from "@/helper/form/form-debug";
 import { LoginFormKey, LoginFormProps } from "./type";
-import { Rules } from "@/helper/form/form-rules";
+import { Rules } from "@/helper/form/rules";
 import { GoogleOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import { loginWithCredential } from "../service/login/action";
 import { useAppDispatch, useAppSelector } from "@/store/hook";

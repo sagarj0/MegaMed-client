@@ -1,4 +1,4 @@
-import { Rules } from "@/helper/form/form-rules";
+import { Rules } from "@/helper/form/rules";
 import { FormItemProps, Input, Form } from "antd";
 import { AddStudentProps, AddStudentKeys } from "./type";
 
