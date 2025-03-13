@@ -5,6 +5,7 @@ export type UpdateScore = {
   quizId: string;
   score: number;
   answers: Omit<QuizDataType, "correctAnswer">[];
+  timeTaken: number;
 };
 
 export type UpdateScoreRes = {
@@ -17,6 +18,7 @@ export type UpdateScoreRes = {
       deletedAt: string | null; // Nullable field
       score: number;
       quiz: SaveQuizResponse;
+      timeTaken: number;
     };
     message: string;
   };

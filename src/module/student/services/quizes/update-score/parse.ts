@@ -5,4 +5,5 @@ export const parseRequest = (data: UpdateScoreProps): UpdateScore => ({
   quizId: data.quizId,
   score: data.score,
   answers: data.answers.map(({ choosedAnswer, questionId }) => ({ choosedAnswer, questionId })),
+  timeTaken: data.timeTaken,
 });

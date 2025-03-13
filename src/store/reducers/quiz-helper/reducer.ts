@@ -7,6 +7,7 @@ const initialState = {
   score: 0,
 
   startedTime: 0,
+  timeTaken: 0, // in minutes
 };
 
 const slice = createSlice({
@@ -20,6 +21,7 @@ const slice = createSlice({
 
     setTimeCompleted: (state, action: { payload: boolean }) => {
       state.timeCompleted = action.payload;
+      state.timeTaken = Date.now() - state.startedTime;
     },
 
     setScoreChecked: (state, action: { payload: boolean }) => {
@@ -28,14 +30,12 @@ const slice = createSlice({
 
     setScoreValue: (state, action: { payload: number }) => {
       state.score = action.payload;
+      const timeTakeninMilliSeconds = Date.now() - state.startedTime;
+      state.timeTaken = Math.ceil(timeTakeninMilliSeconds / 60000);
     },
 
     resetQuizReducer: (state) => {
-      state.started = false;
-      state.timeCompleted = false;
-      state.isScoreChecked = false;
-      state.startedTime = 0;
-      state.score = 0;
+      Object.assign(state, initialState);
     },
   },
 });

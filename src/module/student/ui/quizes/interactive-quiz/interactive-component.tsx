@@ -11,6 +11,7 @@ import useResponsiveDevice from "@/helper/hooks/use-responsive";
 import useBeforeUnload from "@/helper/hooks/useBeforeUnload";
 import { renderImage } from "@/component/render-image";
 import { properCase } from "@/helper/proper-case";
+import { getTimeDiff } from "@/helper/get-time-diff";
 
 interface InteractiveMCQProps {
   MCQs: DetailedQuestion[];
@@ -41,7 +42,10 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
       return;
     }
     const obtainedScore = questionData?.reduce((acc, question) => (question.choosedAnswer === question.correctAnswer ? acc + 1 : acc), 0);
-    form.setFieldValue(UpdateScoreKey.score, obtainedScore);
+    form.setFieldsValue({
+      [UpdateScoreKey.score]: obtainedScore,
+      [UpdateScoreKey.timeTaken]: getTimeDiff({ startDate: startedTime, unit: "minutes" }),
+    });
     dispatch(setScoreValue(obtainedScore));
     form.submit();
   };
