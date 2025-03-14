@@ -6,6 +6,7 @@ import * as AdminModuleReducers from "../module/admin/service/";
 import * as MentorReducers from "../module/mentor/service/";
 import * as StudentReducers from "../module/student/services";
 import * as HelperReducers from "./reducers/";
+import * as CommonReducers from "../module/common/reducers/";
 
 const rootReducer = combineReducers({
   ...AuthRepo,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   ...MentorReducers,
   ...StudentReducers,
   ...HelperReducers,
+  ...CommonReducers,
 });
 
 const persistConfig = {

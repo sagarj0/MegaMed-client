@@ -31,5 +31,6 @@ export const AdminUrls = {
     add: "/admin/manage/quizes/add",
     edit: "/admin/manage/quizes/edit/",
     view: "/admin/manage/quizes/view/",
+    viewReport: "/admin/manage/quizes/view-report/",
   },
 };

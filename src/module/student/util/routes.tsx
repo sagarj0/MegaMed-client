@@ -6,6 +6,7 @@ import { ProfileComponent } from "@/module/auth/ui/profile";
 import { QuizPage } from "../ui/quizes/view-all";
 import { InteractiveQuizPage } from "../ui/quizes/interactive-quiz";
 import { ViewAttemptedQuiz } from "../ui/quizes/view-attempted-quiz";
+import ViewQuizReport from "@/module/common/view-quiz-report/ui";
 
 export const StudentRoutes = (
   <Route element={<StudentLayout />}>
@@ -14,5 +15,6 @@ export const StudentRoutes = (
     <Route path={StudentUrls.studentQuizes} element={<QuizPage />} />
     <Route path={StudentUrls.studentQuizes + ":id"} element={<InteractiveQuizPage />} />
     <Route path={StudentUrls.studentAttemptedQuizes + ":id"} element={<ViewAttemptedQuiz />} />
+    <Route path={StudentUrls.viewQuizReport + ":id"} element={<ViewQuizReport />} />
   </Route>
 );

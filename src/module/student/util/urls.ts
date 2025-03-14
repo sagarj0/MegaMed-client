@@ -3,4 +3,5 @@ export const StudentUrls = {
   studentProfile: "/student/profile",
   studentQuizes: "/student/quizes/",
   studentAttemptedQuizes: "/student/quizes/attempted-quiz/",
+  viewQuizReport: "/student/quizes/view-quiz-report/",
 };

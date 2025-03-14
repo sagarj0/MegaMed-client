@@ -16,6 +16,7 @@ import { AddMentor } from "../ui/mentors/add";
 import { ViewMentor } from "../ui/mentors/view";
 import { ViewQuestion } from "../ui/Questions/view";
 import { ViewMentorAddedQuestion } from "../ui/mentors/view/tabs/question-details/view";
+import ViewQuizReport from "@/module/common/view-quiz-report/ui";
 
 export const AdminRoutes = (
   <Route element={<AdminLayout />}>
@@ -44,5 +45,6 @@ export const AdminRoutes = (
     <Route path={AdminUrls.adminquizes.viewAll} element={<ViewAllQuiz />} />
     <Route path={AdminUrls.adminquizes.add} element={<AddQuiz mode="New" />} />
     <Route path={AdminUrls.adminquizes.view + ":id"} element={<ViewQuiz />} />
+    <Route path={AdminUrls.adminquizes.viewReport + ":id"} element={<ViewQuizReport />} />
   </Route>
 );

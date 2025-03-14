@@ -1,5 +1,5 @@
 import useFetchQuiz from "@/module/admin/hooks/quizes/useFetchQuiz";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RenderQuiz } from "../components/render-quiz";
 import { Button, Card, Descriptions, DescriptionsProps, Space } from "antd";
 import { EditOutlined } from "@ant-design/icons";
@@ -10,10 +10,13 @@ import { UpdateQuizStatus } from "./update-status";
 import { renderTag } from "@/component/globar-tag-renderer";
 import { isQuizActive } from "@/helper/is-quiz-active";
 import { RotatingClockIcon } from "@/component/rotating-clock-icon";
+import { AdminUrls } from "@/module/admin/util/urls";
 
 export const ViewQuiz: React.FC = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { data, isLoading } = useFetchQuiz(id);
+  const handleViewReport = () => navigate(AdminUrls.adminquizes.viewReport + id);
 
   const descriptionItems: DescriptionsProps["items"] = [
     { label: "Type", children: properCase(data.type) || "N/A" },
@@ -38,7 +41,13 @@ export const ViewQuiz: React.FC = () => {
         </Space>
       }
       styles={{ header: { textAlign: "left" } }}
-      extra={[<UpdateQuizStatus />, <Button type="link" children={"Edit Quiz"} disabled icon={<EditOutlined />} />]}
+      extra={
+        <Space size={0}>
+          <Button type="link" children="View Ranking Detail" onClick={handleViewReport} />
+          <UpdateQuizStatus />
+          <Button type="link" children={"Edit Quiz"} disabled icon={<EditOutlined />} />
+        </Space>
+      }
     >
       <Descriptions column={1} colon={false} size="small" style={{ marginBlockEnd: 12 }} items={descriptionItems} />
       <RenderQuiz data={data?.questions} title={data?.title} noStyle />
