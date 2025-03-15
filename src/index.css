@@ -118,6 +118,28 @@
   animation: pulse 2s infinite alternate;
 }
 
+/* active quiz text pulse effect */
+@keyframes pulseText {
+  0% {
+    color: var(--primary-color);
+    opacity: 0.8;
+  }
+
+  50% {
+    color: var(--danger-color);
+    opacity: 1;
+  }
+
+  100% {
+    color: var(--primary-color);
+    opacity: 0.5;
+  }
+}
+
+.active-quiz-text {
+  animation: pulseText 2s infinite alternate;
+}
+
 /* rotating clock */
 .clock {
   width: 20px;

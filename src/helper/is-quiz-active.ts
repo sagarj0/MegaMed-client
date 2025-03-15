@@ -16,3 +16,9 @@ export const isQuizFinished = (quiz: IsQuizActiveProp): boolean => {
   const endTime = new Date(startTime.getTime() + quiz.duration! * 60 * 1000 + quiz.bufferTime! * 60 * 1000);
   return currentTime > endTime;
 };
+
+export const isQuizStarted = (quiz: IsQuizActiveProp): boolean => {
+  const currentTime = new Date();
+  const startTime = new Date(quiz.startTime!);
+  return currentTime >= startTime;
+};

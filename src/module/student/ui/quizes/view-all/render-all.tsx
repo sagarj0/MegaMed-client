@@ -1,10 +1,12 @@
 import { SaveQuizResponse } from "@/module/admin/service/quizes/add/type";
-import { Empty, Space, Typography, Button, Row, Col, Card, Descriptions, Tag } from "antd";
+import { Space, Row, Col, Card, Descriptions, Tooltip } from "antd";
 import { useNavigate } from "react-router-dom";
 import { StudentUrls } from "@/module/student/util/urls";
 import { getQuizDescriptions } from "./helper";
-import { isQuizActive } from "@/helper/is-quiz-active";
+import { isQuizActive, isQuizFinished, isQuizStarted } from "@/helper/is-quiz-active";
 import { RotatingClockIcon } from "@/component/rotating-clock-icon";
+import { EmptyComponent } from "@/component/empty";
+import { renderTag } from "@/component/globar-tag-renderer";
 
 interface ViewAllQuizesProps {
   data: SaveQuizResponse[];
@@ -12,46 +14,49 @@ interface ViewAllQuizesProps {
 
 export const ViewAllQuizes: React.FC<ViewAllQuizesProps> = ({ data }) => {
   const navigate = useNavigate();
-  const handleOnClick = (id: string, isAttempted: boolean) =>
-    isAttempted ? navigate(StudentUrls.studentAttemptedQuizes + id) : navigate(StudentUrls.studentQuizes + id);
+  const handleOnClick = (quiz: SaveQuizResponse) => {
+    const id = quiz.id;
+    const isFinished = isQuizFinished(quiz);
+    const isStarted = isQuizStarted(quiz);
+
+    if (!isStarted) return; //if not started return
+    if (!isFinished && Boolean(quiz.score)) return navigate(StudentUrls.studentAttemptedQuizes + id); //if not finished but student attempted and has score
+
+    if (!isFinished) return navigate(StudentUrls.studentQuizes + id); // if not finished give quiz
+    else return navigate(StudentUrls.studentAttemptedQuizes + id); //else review answers
+  };
 
   return (
     <>
-      {data?.length === 0 && (
-        <Empty
-          description={
-            <Space direction="vertical" size="middle">
-              <Typography.Text>Sorry, There are no tests available for this type.</Typography.Text>
-              <Button type="primary" onClick={() => navigate(-1)}>
-                Go Back
-              </Button>
-            </Space>
-          }
-        />
-      )}
-
       <Row gutter={[8, 8]}>
         {data?.map((quiz) => (
           <Col span={24} sm={12} lg={8} xxl={6} key={quiz.id}>
-            <Card
-              title={
-                <Space>
-                  {quiz.title}
-                  {isQuizActive(quiz) && <RotatingClockIcon />}
-                </Space>
-              }
-              key={quiz.id}
-              onClick={() => handleOnClick(quiz.id, Boolean(quiz.score))}
-              style={{ cursor: "pointer", boxShadow: quiz.score ? "none" : "2px 4px 8px rgba(0, 0, 0, 0.1)" }}
-              styles={{ header: { textAlign: "left", paddingInline: 12 }, body: { padding: 12 } }}
-              extra={!quiz.score && <Tag color="red" children="NEW" />}
-              hoverable={quiz.score ? false : true}
-            >
-              <Descriptions contentStyle={{ textAlign: "left" }} colon={false} size="small" column={1} items={getQuizDescriptions(quiz)} />
-            </Card>
+            <Tooltip title={!isQuizStarted(quiz) ? "This Quiz hasn't been started yet." : null}>
+              <Card
+                title={
+                  <Space>
+                    {quiz.title}
+                    {isQuizActive(quiz) && <RotatingClockIcon />}
+                  </Space>
+                }
+                classNames={{ header: isQuizActive(quiz) ? "active-quiz-text" : "" }}
+                key={quiz.id}
+                onClick={() => handleOnClick(quiz)}
+                style={{
+                  cursor: isQuizStarted(quiz) ? "pointer" : "not-allowed",
+                  boxShadow: "2px 4px 8px rgba(0, 0, 0, 0.1)",
+                }}
+                styles={{ header: { textAlign: "left", paddingInline: 12 }, body: { padding: 12 } }}
+                extra={Boolean(quiz.score) ? renderTag("Attempted") : !isQuizFinished(quiz) && renderTag("New")}
+              >
+                <Descriptions contentStyle={{ textAlign: "left" }} colon={false} size="small" column={1} items={getQuizDescriptions(quiz)} />
+              </Card>
+            </Tooltip>
           </Col>
         ))}
       </Row>
+
+      <EmptyComponent show={!Boolean(data?.length)} description={"Sorry, There are no tests available for this type."} />
     </>
   );
 };

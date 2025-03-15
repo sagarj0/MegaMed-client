@@ -15,7 +15,7 @@ export const renderTag = (name: GlobalTags) => {
       break;
 
     case "Attempted":
-      color = "blue";
+      color = "green";
       break;
 
     case "New":
@@ -32,7 +32,7 @@ export const renderTag = (name: GlobalTags) => {
   }
 
   return (
-    <Tag color={color} key={name} style={{ fontSize: 10, paddingInline: "1em", borderRadius: "1em", margin: 0, whiteSpace: "nowrap" }}>
+    <Tag color={color} key={name} style={{ fontSize: 9, paddingInline: "0.8em", borderRadius: "1em", margin: 0, whiteSpace: "nowrap" }}>
       {name?.toUpperCase()}
     </Tag>
   );

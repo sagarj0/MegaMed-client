@@ -19,7 +19,7 @@ const useFetchAllQuiz = (props: Props) => {
   const dispatch = useAppDispatch();
 
   const { isLoading, error } = useAppSelector((root) => root.FetchAllQuiz);
-  const { data, pagination, sortOption, filterOption, isFetched } = useAppSelector((root) => root.QuizRepo);
+  const { data, pagination, sortOption, filterOption } = useAppSelector((root) => root.QuizRepo);
   const { pageSize, current, subject, sortField, sortOrder, chapter, unit, type, status } = {
     ...filter,
     ...filterOption,
@@ -28,7 +28,7 @@ const useFetchAllQuiz = (props: Props) => {
   };
 
   useEffect(() => {
-    if (fetch && !isFetched) dispatch(fetchAllQuizAciton({ pageSize, current, sortField, sortOrder, subject, chapter, unit, type, status }));
+    if (fetch) dispatch(fetchAllQuizAciton({ pageSize, current, sortField, sortOrder, subject, chapter, unit, type, status }));
   }, [dispatch, fetch, pageSize, current, subject, sortField, sortOrder, chapter, unit, type, status]);
 
   useStatusMessage({ error, resetError });

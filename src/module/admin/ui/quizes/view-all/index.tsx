@@ -15,7 +15,7 @@ export const ViewAllQuiz: React.FC = () => {
   const columns: TableProps<SaveQuizResponse>["columns"] = [
     { title: "Name", dataIndex: "title", key: "title" },
     { title: "Type", dataIndex: "type", key: "type" },
-    { title: "Count", dataIndex: "questionCount", key: "questionCount" },
+    { title: "Count", dataIndex: "questionCount", key: "questionCount", sorter: true },
     {
       title: "Status",
       dataIndex: "status",
