@@ -3,7 +3,6 @@ import { Button, Card, Col, Descriptions, DescriptionsProps, Row } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { getQuizDescriptions } from "../view-all/helper";
 import { RenderQuiz } from "@/module/admin/ui/quizes/components/render-quiz";
-import { RedoOutlined } from "@ant-design/icons";
 import { customConcatString } from "@/helper/custom-concat";
 import { StudentUrls } from "@/module/student/util/urls";
 
@@ -30,7 +29,7 @@ export const ViewAttemptedQuiz: React.FC = () => {
       styles={{ header: { textAlign: "left" } }}
       extra={[
         <Button type="link" children="View Ranking Detail" onClick={handleViewReport} />,
-        <Button type="primary" children={"Redo Test"} icon={<RedoOutlined />} disabled />,
+        // <Button type="primary" children={"Redo Test"} icon={<RedoOutlined />} disabled />,
       ]}
     >
       <Row gutter={[8, 8]}>
