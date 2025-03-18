@@ -1,13 +1,17 @@
 import { Card, Statistic } from "antd";
 import { commonCardStyle } from "../dashboard-layout";
+import { useAppSelector } from "@/store/hook";
 
 export const OverallPerformance: React.FC = () => {
-  const performance = 80;
-  const change = 0.5;
-  const isNegative = change < 0;
+  const { data, isLoading } = useAppSelector((root) => root.FetchOverallPerformance);
+  const { progress } = data;
+  const { overallPerformance, progressChangePercentage } = progress || { overallPerformance: 0, progressChangePercentage: 0 };
+  const isNegative = progressChangePercentage < 0;
+  const change = Math.abs(progressChangePercentage);
 
   return (
     <Card
+      loading={isLoading}
       style={{
         ...commonCardStyle,
         backgroundColor: isNegative ? "rgba(255, 0, 0, 0.3)" : "rgba(0, 128, 0, 0.3)", // 30% opacity
@@ -42,7 +46,7 @@ export const OverallPerformance: React.FC = () => {
 
       <Statistic
         title="Overall Performance"
-        value={performance}
+        value={overallPerformance}
         suffix={"%"}
         valueStyle={{
           textAlign: "center",

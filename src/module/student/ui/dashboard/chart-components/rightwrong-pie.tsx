@@ -1,15 +1,15 @@
 import { Card } from "antd";
 import { commonCardStyle } from "../dashboard-layout";
 import { Pie } from "@ant-design/plots";
+import { useAppSelector } from "@/store/hook";
 
 export const RightWronPie: React.FC = () => {
-  const data = [
-    { type: "Right", value: 75 },
-    { type: "Wrong", value: 25 },
-  ];
+  const { data, isLoading } = useAppSelector((root) => root.FetchOverallPerformance);
+  const { lastQuizData } = data;
 
   return (
     <Card
+      loading={isLoading}
       style={commonCardStyle}
       styles={{
         body: {
@@ -23,7 +23,7 @@ export const RightWronPie: React.FC = () => {
     >
       <Pie
         {...{
-          data,
+          data: lastQuizData,
           appendPadding: 10,
           autoFit: true,
           angleField: "value",

@@ -172,3 +172,10 @@
     transform: rotate(360deg);
   }
 }
+
+/* Subject-wise progress charts
+.subject-wise-progress-chart.ant-card [data-chart-source-type="Ant Design Charts"] {
+  width: -webkit-fill-available; 
+  width: -moz-available; 
+  width: stretch;
+} */

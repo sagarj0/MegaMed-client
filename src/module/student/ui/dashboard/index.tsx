@@ -1,3 +1,4 @@
+import useFetchStudentDashboard from "../../hooks/useFetchStudentDashboard";
 import { OverallPerformance } from "./chart-components/overallperformance";
 import { OverallPerformanceTrend } from "./chart-components/overallperformance-trend";
 import { RightWronPie } from "./chart-components/rightwrong-pie";
@@ -8,6 +9,7 @@ import { WelcomeCard } from "./chart-components/welcome";
 import { StudentDashboardLayout } from "./dashboard-layout";
 
 export const StudentDashboard: React.FC = () => {
+  useFetchStudentDashboard();
   return (
     <StudentDashboardLayout
       welcomeCard={<WelcomeCard />}

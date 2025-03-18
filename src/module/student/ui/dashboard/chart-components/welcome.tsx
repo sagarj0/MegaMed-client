@@ -17,7 +17,7 @@ export const WelcomeCard: React.FC = () => {
         body: {
           height: "100%",
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "space-evenly",
           alignItems: "center",
           padding: 16,
         },

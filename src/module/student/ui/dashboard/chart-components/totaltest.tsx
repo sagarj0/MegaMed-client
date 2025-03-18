@@ -1,13 +1,17 @@
 import { Card, Statistic } from "antd";
 import { useState } from "react";
 import { commonCardStyle } from "../dashboard-layout";
+import { useAppSelector } from "@/store/hook";
 
 export const TotalTestCount: React.FC = () => {
-  const testCount = 27;
+  const { data, isLoading } = useAppSelector((root) => root.FetchOverallPerformance);
+  const { totalQuizzes } = data;
+
   const [showActual, setShowActual] = useState(false);
 
   return (
     <Card
+      loading={isLoading}
       style={commonCardStyle}
       styles={{
         body: {
@@ -23,7 +27,7 @@ export const TotalTestCount: React.FC = () => {
     >
       <Statistic
         title="Tests Attempted"
-        value={showActual ? testCount : `${Math.floor(testCount / 10) * 10}+`}
+        value={showActual ? totalQuizzes : totalQuizzes < 10 ? totalQuizzes : `${Math.floor(totalQuizzes / 10) * 10}+`}
         valueStyle={{ textAlign: "center" }}
       />
     </Card>

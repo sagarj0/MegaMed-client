@@ -6,6 +6,7 @@ export const createFetchReducer = <T>(name: string, data: T) => {
     error: null,
     success: null,
     data: data,
+    isFetched: false,
   };
 
   const slice = createSlice({
@@ -32,6 +33,9 @@ export const createFetchReducer = <T>(name: string, data: T) => {
       },
       resetSuccess(state) {
         state.success = null;
+      },
+      setFetched(state, action) {
+        state.isFetched = action.payload;
       },
     },
   });

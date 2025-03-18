@@ -1,5 +1,8 @@
 export const StudentEndpoints = {
-  dashboard: "/student/dashboard/",
+  dashboard: {
+    subjectProgress: "/dashboard/student/subject-progress/",
+    overall: "/dashboard/student/overall/",
+  },
   quizEndpoints: {
     quiz: "/quiz/",
     create: "/quiz/create/",
