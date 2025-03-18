@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   started: false,
   timeCompleted: false,
-  isScoreChecked: false,
+  isSubmitted: false,
   score: 0,
 
   startedTime: 0,
@@ -24,8 +24,8 @@ const slice = createSlice({
       state.timeTaken = Date.now() - state.startedTime;
     },
 
-    setScoreChecked: (state, action: { payload: boolean }) => {
-      state.isScoreChecked = action.payload;
+    setSubmitted: (state, action: { payload: boolean }) => {
+      state.isSubmitted = action.payload;
     },
 
     setScoreValue: (state, action: { payload: number }) => {
@@ -40,5 +40,5 @@ const slice = createSlice({
   },
 });
 
-export const { setScoreValue, setStarted, setTimeCompleted, setScoreChecked, resetQuizReducer } = slice.actions;
+export const { setScoreValue, setStarted, setTimeCompleted, setSubmitted, resetQuizReducer } = slice.actions;
 export default slice.reducer;

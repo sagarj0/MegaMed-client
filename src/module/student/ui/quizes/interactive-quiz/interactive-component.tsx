@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Timeline, Radio, Typography, Space, Form, TimelineProps, Button, Statistic, Col, Card, Skeleton, FloatButton, Row } from "antd";
-import { CheckCircleFilled, CloseCircleFilled, FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
+import { FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
 import useFullScreen from "@/helper/hooks/useFullScreen";
 import { QuizDataTypeKeys, UpdateScoreKey, UpdateScoreProps } from "@/module/student/ui/quizes/type";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
@@ -23,9 +23,9 @@ interface InteractiveMCQProps {
 export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, time, isLoading }) => {
   const dispatch = useAppDispatch();
   const { md, sm, xs } = useResponsiveDevice();
-  const { timeCompleted, started, startedTime, isScoreChecked, score } = useAppSelector((state) => state.QuizHelper);
+  const { timeCompleted, started, startedTime, isSubmitted } = useAppSelector((state) => state.QuizHelper);
 
-  useBeforeUnload({ isActive: started && !isScoreChecked });
+  useBeforeUnload({ isActive: started && !isSubmitted });
   useEffect(() => {
     dispatch(resetQuizReducer());
   }, []);
@@ -50,20 +50,11 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
     form.submit();
   };
 
-  const renderOptions = (question: DetailedQuestion, index: number) =>
+  const renderOptions = (question: DetailedQuestion) =>
     ["a", "b", "c", "d"].map((option) => (
       <Radio key={option} value={option}>
         {option}. {question[`option${option.toUpperCase()}` as keyof DetailedQuestion]}{" "}
         {renderImage(question[`${option}Image` as keyof DetailedQuestion] as string, "Option Image")}{" "}
-        {isScoreChecked && (
-          <>
-            {questionData?.[index]?.correctAnswer === option ? (
-              <CheckCircleFilled style={{ color: "green" }} />
-            ) : (
-              questionData?.[index]?.choosedAnswer === option && <CloseCircleFilled style={{ color: "red" }} />
-            )}
-          </>
-        )}
       </Radio>
     ));
 
@@ -77,21 +68,14 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
           </Form.Item>
           <Form.Item name={[UpdateScoreKey.answers, index, QuizDataTypeKeys.correctAnswer]} initialValue={question.correctAnswer} noStyle hidden />
           <Form.Item name={[UpdateScoreKey.answers, index, QuizDataTypeKeys.choosedAnswer]}>
-            <Radio.Group disabled={isScoreChecked}>
-              <Space direction="vertical">{renderOptions(question, index)}</Space>
+            <Radio.Group disabled={isSubmitted}>
+              <Space direction="vertical">{renderOptions(question)}</Space>
             </Radio.Group>
           </Form.Item>
-          {question.explanation && isScoreChecked && <Typography.Paragraph strong>Explanation: {question.explanation}</Typography.Paragraph>}
         </Skeleton>
       </div>
     ),
-    color: !isScoreChecked
-      ? questionData?.[index]?.choosedAnswer
-        ? "blue"
-        : "gray"
-      : questionData?.[index]?.choosedAnswer === question.correctAnswer
-      ? "green"
-      : "red",
+    color: questionData?.[index]?.choosedAnswer ? "blue" : "gray",
     pending: !questionData?.[index]?.choosedAnswer,
     style: { textAlign: "left" },
   }));
@@ -110,7 +94,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
 
   const renderTimer = () => (
     <Statistic.Countdown
-      value={started && !isScoreChecked ? startedTime + time : 0}
+      value={started && !isSubmitted ? startedTime + time : 0}
       valueStyle={{ fontSize: 16 }}
       onFinish={() => dispatch(setTimeCompleted(true))}
     />
@@ -127,7 +111,6 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
                 <Typography.Title level={5} style={{ whiteSpace: "break-spaces" }}>
                   {properCase(title)}
                 </Typography.Title>
-                {isScoreChecked && <Statistic title="Score" value={score} suffix={`/ ${MCQs?.length}`} />}
                 {isFullScreen ? <FloatButton style={{ width: 80, height: 80 }} description={renderTimer()} /> : renderTimer()}
               </Space>
             </Col>
@@ -135,7 +118,7 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
           </Row>
         }
         actions={[
-          <Button type="default" disabled={!started || isScoreChecked} onClick={checkScore}>
+          <Button type="default" disabled={!started || isSubmitted} onClick={checkScore}>
             Submit and Check
           </Button>,
           timeCompleted && (

@@ -4,14 +4,12 @@ import FormDebug from "@/helper/form/form-debug";
 import useFetchQuiz from "@/module/admin/hooks/quizes/useFetchQuiz";
 import React from "react";
 import { Form, FormProps } from "antd";
-import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { setScoreChecked } from "@/store/reducers/quiz-helper/reducer";
-import useStatusMessage from "@/helper/hooks/use-message";
-import { resetError, resetSuccess } from "@/module/student/services/quizes/update-score/reducer";
+import { useAppDispatch } from "@/store/hook";
 import { updateScoreAction } from "@/module/student/services/quizes/update-score/action";
 import { UpdateScoreKey, UpdateScoreProps } from "../type";
 import { getQuizTime } from "@/helper/get-quiz-time";
 import useAuthHook from "@/module/auth/hook/useAuthHook";
+import { SubmissionModal } from "./useSubmissionModal";
 
 export const InteractiveQuizPage: React.FC = () => {
   useAuthHook({ checkIsPaid: true });
@@ -25,18 +23,16 @@ export const InteractiveQuizPage: React.FC = () => {
 
   const handleSubmit: FormProps<UpdateScoreProps>["onFinish"] = (vals) => dispatch(updateScoreAction(vals));
 
-  const { success, error } = useAppSelector((root) => root.UpdateScore);
-  const onSuccessReset = () => dispatch(setScoreChecked(true));
-  const onErrorReset = () => dispatch(setScoreChecked(true));
-  useStatusMessage({ success, error, resetSuccess, resetError, onSuccessReset, onErrorReset });
-
   return (
-    <Form form={form} onFinish={handleSubmit} colon={false} labelAlign="left">
-      <Form.Item name={UpdateScoreKey.quizId} initialValue={id} noStyle hidden />
-      <Form.Item name={UpdateScoreKey.score} noStyle hidden />
-      <Form.Item name={UpdateScoreKey.timeTaken} noStyle hidden />
-      <InteractiveMCQ MCQs={data.questions} title={data?.title!} time={time} isLoading={isLoading} />
-      <FormDebug />
-    </Form>
+    <>
+      <SubmissionModal />
+      <Form form={form} onFinish={handleSubmit} colon={false} labelAlign="left">
+        <Form.Item name={UpdateScoreKey.quizId} initialValue={id} noStyle hidden />
+        <Form.Item name={UpdateScoreKey.score} noStyle hidden />
+        <Form.Item name={UpdateScoreKey.timeTaken} noStyle hidden />
+        <InteractiveMCQ MCQs={data.questions} title={data?.title!} time={time} isLoading={isLoading} />
+        <FormDebug />
+      </Form>
+    </>
   );
 };

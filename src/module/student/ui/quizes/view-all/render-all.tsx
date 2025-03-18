@@ -20,7 +20,7 @@ export const ViewAllQuizes: React.FC<ViewAllQuizesProps> = ({ data }) => {
     const isStarted = isQuizStarted(quiz);
 
     if (!isStarted) return; //if not started return
-    if (!isFinished && Boolean(quiz.score)) return navigate(StudentUrls.studentAttemptedQuizes + id); //if not finished but student attempted and has score
+    if (!isFinished && Boolean(quiz.score)) return; //if not finished but student attempted and has score
 
     if (!isFinished) return navigate(StudentUrls.studentQuizes + id); // if not finished give quiz
     else return navigate(StudentUrls.studentAttemptedQuizes + id); //else review answers
