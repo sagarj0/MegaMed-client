@@ -26,8 +26,9 @@ export const useSubmissionModal = () => {
     dispatch(setSubmitted(true));
     Modal.error({
       title: "Submission Status",
-      content: "We are Sorry, Something went wrong while submitting the quiz. Please try again.",
+      content: "We are Sorry, Something went wrong while submitting the quiz.",
       onOk: () => {
+        navigate(StudentUrls.studentQuizes);
         dispatch(setSubmitted(false));
       },
     });
