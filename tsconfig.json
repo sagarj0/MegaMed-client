@@ -27,6 +27,6 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": [".fttemplates/**"],
+  "exclude": ["vite.config.js", ".fttemplates/**"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
