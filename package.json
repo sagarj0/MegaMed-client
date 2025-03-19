@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite --port 5175",
-    "build": "tsc -b && vite build",
+    "build": "tsc && vite build",
     "build:server": "npm run build && sudo rsync -av --delete ./dist/ /var/www/mentor",
     "lint": "eslint .",
     "preview": "vite preview"
