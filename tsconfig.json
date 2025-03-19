@@ -9,7 +9,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "typeRoots": ["node_modules/@types", "./src/remotes/remote.d.ts"],
+    "typeRoots": ["node_modules/@types"],
     "esModuleInterop": true,
 
     /* Bundler mode */
