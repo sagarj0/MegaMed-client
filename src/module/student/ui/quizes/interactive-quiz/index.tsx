@@ -9,7 +9,7 @@ import { updateScoreAction } from "@/module/student/services/quizes/update-score
 import { UpdateScoreKey, UpdateScoreProps } from "../type";
 import { getQuizTime } from "@/helper/get-quiz-time";
 import useAuthHook from "@/module/auth/hook/useAuthHook";
-import { SubmissionModal } from "./useSubmissionModal";
+import { useSubmissionModal } from "./submissionModal";
 
 export const InteractiveQuizPage: React.FC = () => {
   useAuthHook({ checkIsPaid: true });
@@ -23,16 +23,15 @@ export const InteractiveQuizPage: React.FC = () => {
 
   const handleSubmit: FormProps<UpdateScoreProps>["onFinish"] = (vals) => dispatch(updateScoreAction(vals));
 
+  useSubmissionModal();
+
   return (
-    <>
-      <SubmissionModal />
-      <Form form={form} onFinish={handleSubmit} colon={false} labelAlign="left">
-        <Form.Item name={UpdateScoreKey.quizId} initialValue={id} noStyle hidden />
-        <Form.Item name={UpdateScoreKey.score} noStyle hidden />
-        <Form.Item name={UpdateScoreKey.timeTaken} noStyle hidden />
-        <InteractiveMCQ MCQs={data.questions} title={data?.title!} time={time} isLoading={isLoading} />
-        <FormDebug />
-      </Form>
-    </>
+    <Form form={form} onFinish={handleSubmit} colon={false} labelAlign="left">
+      <Form.Item name={UpdateScoreKey.quizId} initialValue={id} noStyle hidden />
+      <Form.Item name={UpdateScoreKey.score} noStyle hidden />
+      <Form.Item name={UpdateScoreKey.timeTaken} noStyle hidden />
+      <InteractiveMCQ MCQs={data.questions} title={data?.title!} time={time} isLoading={isLoading} />
+      <FormDebug />
+    </Form>
   );
 };
