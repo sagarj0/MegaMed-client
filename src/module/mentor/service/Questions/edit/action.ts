@@ -3,7 +3,7 @@ import { patchQuestion } from "./api";
 import { AppDispatch } from "@/store";
 import { setLoading, resetLoading, setSuccess, setError } from "./reducer";
 import { parseEditRequest } from "./parse-request";
-import { AddQuestionsProps } from "@/module/admin/ui/Questions/add/type";
+import { AddQuestionsProps } from "@/module/admin/ui/questions/add/type";
 
 interface Props {
   id: string;

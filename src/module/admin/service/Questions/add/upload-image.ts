@@ -1,4 +1,4 @@
-import { AddQuestionsProps } from "@/module/admin/ui/Questions/add/type";
+import { AddQuestionsProps } from "@/module/admin/ui/questions/add/type";
 import { PostQuestionRequest } from "./type";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { firebaseStorage } from "@/util/firebase";

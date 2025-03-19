@@ -1,6 +1,6 @@
 import { getAllModifiedProperty } from "@/helper/get-modified-property";
 import { PatchStudentReq } from "./type";
-import { AddStudentKeys, AddStudentProps } from "@/module/admin/ui/Students/edit/type";
+import { AddStudentKeys, AddStudentProps } from "@/module/admin/ui/students/edit/type";
 
 interface Props {
   oldData: AddStudentProps;

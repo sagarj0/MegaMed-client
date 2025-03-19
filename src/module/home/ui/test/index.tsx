@@ -1,6 +1,6 @@
 import { Card, Col, Flex, Row, Select, Tooltip, Typography } from "antd";
 import { FieldTimeOutlined, FileUnknownOutlined, QuestionCircleOutlined, SendOutlined } from "@ant-design/icons";
-import { getChapterGroups, getSubjects, getUnitGroups } from "@/module/admin/ui/Questions/add/subjects";
+import { getChapterGroups, getSubjects, getUnitGroups } from "@/module/admin/ui/questions/add/subjects";
 import GroupedSelect from "@/component/grouped-select";
 import { useNavigate } from "react-router-dom";
 import { StudentUrls } from "@/module/student/util/urls";

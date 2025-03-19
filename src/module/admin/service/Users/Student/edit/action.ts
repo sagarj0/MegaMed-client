@@ -2,7 +2,7 @@ import { parseError } from "@/helper/parse-error";
 import { AppDispatch } from "@/store";
 import { setLoading, resetLoading, setSuccess, setError } from "./reducer";
 import { parseEditRequest } from "./parse-request";
-import { AddStudentProps } from "@/module/admin/ui/Students/edit/type";
+import { AddStudentProps } from "@/module/admin/ui/students/edit/type";
 import { patchStudent } from "./api";
 
 interface Props {

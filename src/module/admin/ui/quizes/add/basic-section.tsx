@@ -2,7 +2,7 @@ import { Col, DatePicker, Form, FormItemProps, Input, InputNumber, Row, Select }
 import { SaveQuizProps, SaveQuizKeys } from "./type";
 import { Rules } from "@/helper/form/rules";
 import { quizTypeOptions } from "./helper";
-import { getChapterGroups, getSubjects, getUnitGroups } from "../../Questions/add/subjects";
+import { getChapterGroups, getSubjects, getUnitGroups } from "../../questions/add/subjects";
 
 export const BasicSection: React.FC = () => {
   const form = Form.useFormInstance<SaveQuizProps>();

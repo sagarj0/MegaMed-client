@@ -1,5 +1,5 @@
 import { getAllModifiedProperty } from "@/helper/get-modified-property";
-import { AddQuestionKeys, AddQuestionsProps } from "@/module/admin/ui/Questions/add/type";
+import { AddQuestionKeys, AddQuestionsProps } from "@/module/admin/ui/questions/add/type";
 import { PatchQuestionRequest } from "./type";
 
 interface Props {

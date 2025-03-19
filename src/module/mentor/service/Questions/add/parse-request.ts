@@ -1,4 +1,4 @@
-import { AddQuestionsProps } from "@/module/admin/ui/Questions/add/type";
+import { AddQuestionsProps } from "@/module/admin/ui/questions/add/type";
 import { PostQuestionRequest } from "./type";
 import { uploadImages } from "./upload-image";
 

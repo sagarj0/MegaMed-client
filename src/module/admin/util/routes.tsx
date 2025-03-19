@@ -1,11 +1,11 @@
 import { Route } from "react-router-dom";
 import { AdminLayout } from "./layout";
 import { AdminUrls } from "./urls";
-import { ViewAllQuestion } from "../ui/Questions/view-all";
+import { ViewAllQuestion } from "../ui/questions/view-all";
 import { ViewAllMentors } from "../ui/mentors/view-all";
 import { ViewAllAdmins } from "../ui/admins/view-all";
-import { ViewAllStudents } from "../ui/Students/view-all";
-import { AddQuestions } from "../ui/Questions/add";
+import { ViewAllStudents } from "../ui/students/view-all";
+import { AddQuestions } from "../ui/questions/add";
 import { AddAdmin } from "../ui/admins/add";
 import { AdminDashboard } from "../ui/dashboard";
 import { ProfileComponent } from "@/module/auth/ui/profile";
@@ -14,7 +14,7 @@ import { AddQuiz } from "../ui/quizes/add";
 import { ViewQuiz } from "../ui/quizes/view";
 import { AddMentor } from "../ui/mentors/add";
 import { ViewMentor } from "../ui/mentors/view";
-import { ViewQuestion } from "../ui/Questions/view";
+import { ViewQuestion } from "../ui/questions/view";
 import { ViewMentorAddedQuestion } from "../ui/mentors/view/tabs/question-details/view";
 import ViewQuizReport from "@/module/common/view-quiz-report/ui";
 
