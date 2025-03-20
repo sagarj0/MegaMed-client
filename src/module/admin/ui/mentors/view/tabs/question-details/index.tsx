@@ -8,7 +8,7 @@ import { FetchMentorDetailsReq } from "@/module/admin/service/Users/Mentor/fetch
 
 export const QuestionAddedDetails: React.FC = () => {
   const [searchparam, setSearchParam] = useSearchParams({ timeValue: "allTime" });
-  const timeValue = searchparam.get("timeValue") as FetchMentorDetailsReq["timeValue"];
+  const timeValue = (searchparam.get("timeValue") || "allTime") as FetchMentorDetailsReq["timeValue"];
   const setTimeValue = (value: string) => setSearchParam({ timeValue: value });
 
   const { id } = useParams();
