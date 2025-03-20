@@ -7,6 +7,8 @@ interface Props {
   quiz: SaveQuizResponse | DetailedQuiz;
 }
 
+// This function is used to get the time of the quiz in minutes or milliseconds
+// It takes the props object as an argument which contains the inMinute, inString, and quiz properties
 export const getQuizTime = (props: Props) => {
   const { inMinute = false, quiz, inString = false } = props;
   const type = quiz.type;
@@ -36,4 +38,22 @@ export const getQuizTime = (props: Props) => {
     default:
       return inMinute ? 40 : 40 * 60 * 1000;
   }
+};
+
+export const getQuizRemainingTime = (props: Props): number => {
+  const { quiz } = props;
+  const { startTime, duration, bufferTime } = quiz;
+
+  if (startTime && duration && bufferTime) {
+    const durationInMilliSecond = duration * 60 * 1000;
+    const bufferTimeInMilliSecond = bufferTime * 60 * 1000;
+    const totalPeriod = durationInMilliSecond + bufferTimeInMilliSecond;
+
+    const currentTime = new Date().getTime();
+
+    const quizEndTime = new Date(startTime).getTime() + totalPeriod;
+
+    return Math.max(quizEndTime - currentTime, 0);
+  }
+  return 0;
 };

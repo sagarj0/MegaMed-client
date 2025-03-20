@@ -20,7 +20,7 @@ interface InteractiveMCQProps {
   isLoading?: boolean;
 }
 
-export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, time, isLoading }) => {
+const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, time, isLoading }) => {
   const dispatch = useAppDispatch();
   const { md, sm, xs } = useResponsiveDevice();
   const { timeCompleted, started, startedTime, isSubmitted } = useAppSelector((state) => state.QuizHelper);
@@ -103,7 +103,6 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
   return (
     <Col span={24} style={{ margin: isFullScreen ? 0 : "auto" }}>
       <Card
-        loading={isLoading}
         title={
           <Row align={"middle"} justify={"space-between"} wrap={false}>
             <Col>
@@ -144,3 +143,5 @@ export const InteractiveMCQ: React.FC<InteractiveMCQProps> = ({ MCQs, title, tim
     </Col>
   );
 };
+
+export default InteractiveMCQ;

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { InteractiveMCQ } from "./interactive-component";
+import InteractiveMCQ from "./interactive-component";
 import FormDebug from "@/helper/form/form-debug";
 import useFetchQuiz from "@/module/admin/hooks/quizes/useFetchQuiz";
 import React from "react";
@@ -7,9 +7,9 @@ import { Form, FormProps } from "antd";
 import { useAppDispatch } from "@/store/hook";
 import { updateScoreAction } from "@/module/student/services/quizes/update-score/action";
 import { UpdateScoreKey, UpdateScoreProps } from "../type";
-import { getQuizTime } from "@/helper/get-quiz-time";
+import { getQuizRemainingTime } from "@/helper/get-quiz-time";
 import useAuthHook from "@/module/auth/hook/useAuthHook";
-import { useSubmissionModal } from "./submissionModal";
+import { useSubmissionModal } from "./useSubmissionModal";
 
 export const InteractiveQuizPage: React.FC = () => {
   useAuthHook({ checkIsPaid: true });
@@ -19,7 +19,7 @@ export const InteractiveQuizPage: React.FC = () => {
   const [form] = Form.useForm<UpdateScoreProps>();
 
   const { data, isLoading } = useFetchQuiz(id);
-  const time = getQuizTime({ quiz: data }) as number;
+  const time = getQuizRemainingTime({ quiz: data });
 
   const handleSubmit: FormProps<UpdateScoreProps>["onFinish"] = (vals) => dispatch(updateScoreAction(vals));
 

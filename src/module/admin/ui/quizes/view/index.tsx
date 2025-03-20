@@ -8,9 +8,10 @@ import { customConcatString } from "@/helper/custom-concat";
 import { properCase } from "@/helper/proper-case";
 import { UpdateQuizStatus } from "./update-status";
 import { renderTag } from "@/component/globar-tag-renderer";
-import { isQuizActive } from "@/helper/is-quiz-active";
+import { isQuizActive, isQuizFinished } from "@/helper/is-quiz-active";
 import { RotatingClockIcon } from "@/component/rotating-clock-icon";
 import { AdminUrls } from "@/module/admin/util/urls";
+import { QuizStatus } from "../add/type";
 
 export const ViewQuiz: React.FC = () => {
   const navigate = useNavigate();
@@ -43,7 +44,12 @@ export const ViewQuiz: React.FC = () => {
       styles={{ header: { textAlign: "left" } }}
       extra={
         <Space size={0}>
-          <Button type="link" children="View Ranking Detail" onClick={handleViewReport} />
+          <Button
+            type="link"
+            children="View Ranking Detail"
+            onClick={handleViewReport}
+            disabled={data?.status === QuizStatus.Draft || !isQuizFinished(data)}
+          />
           <UpdateQuizStatus />
           <Button type="link" children={"Edit Quiz"} disabled icon={<EditOutlined />} />
         </Space>

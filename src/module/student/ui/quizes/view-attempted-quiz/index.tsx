@@ -1,10 +1,12 @@
 import useFetchQuiz from "@/module/admin/hooks/quizes/useFetchQuiz";
-import { Button, Card, Col, Descriptions, DescriptionsProps, Row } from "antd";
+import { Alert, Button, Card, Col, Descriptions, DescriptionsProps, Row } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { getQuizDescriptions } from "../view-all/helper";
 import { RenderQuiz } from "@/module/admin/ui/quizes/components/render-quiz";
 import { customConcatString } from "@/helper/custom-concat";
 import { StudentUrls } from "@/module/student/util/urls";
+import { RedoOutlined } from "@ant-design/icons";
+import { isQuizRedoable } from "@/helper/is-quiz-redoable";
 
 export const ViewAttemptedQuiz: React.FC = () => {
   const navigate = useNavigate();
@@ -12,6 +14,8 @@ export const ViewAttemptedQuiz: React.FC = () => {
   const { data, isLoading } = useFetchQuiz(id);
 
   const handleViewReport = () => navigate(StudentUrls.viewQuizReport + id);
+  const handleRedoTest = () => navigate(StudentUrls.studentQuizes + id);
+  const isRedoable = isQuizRedoable(data);
 
   const resultItems: DescriptionsProps["items"] = [
     { label: "Score", children: data.score },
@@ -29,7 +33,7 @@ export const ViewAttemptedQuiz: React.FC = () => {
       styles={{ header: { textAlign: "left" } }}
       extra={[
         <Button type="link" children="View Ranking Detail" onClick={handleViewReport} />,
-        // <Button type="primary" children={"Redo Test"} icon={<RedoOutlined />} disabled />,
+        <Button type="primary" children={"Redo Test"} icon={<RedoOutlined />} disabled={!isRedoable} onClick={handleRedoTest} />,
       ]}
     >
       <Row gutter={[8, 8]}>
@@ -54,6 +58,19 @@ export const ViewAttemptedQuiz: React.FC = () => {
           />
         </Col>
       </Row>
+
+      <Alert
+        showIcon
+        type="info"
+        style={{ marginTop: 24, fontSize: 13, textAlign: "left", padding: 12 }}
+        description={
+          <>
+            Except <strong> Mock Test</strong> , Other Test are for practice purpose. You can redo the test as many times as you want. Your last
+            attempt will be considered for ranking and score.
+          </>
+        }
+      />
+
       <RenderQuiz data={data?.questions} noStyle showAnswers />
     </Card>
   );

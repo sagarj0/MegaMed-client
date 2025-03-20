@@ -33,6 +33,9 @@ export const GenerateQuiz: React.FC = () => {
           <Button type="primary" disabled={isButtonDisabled} onClick={handleGenerate} loading={isLoading}>
             Generate Quiz
           </Button>
+          <Button type="default" onClick={() => dispatch(setData([]))} style={{ marginLeft: 16 }}>
+            Reset
+          </Button>
         </Row>
       </Col>
       {Boolean(data?.length) && <RenderQuiz data={data} />}

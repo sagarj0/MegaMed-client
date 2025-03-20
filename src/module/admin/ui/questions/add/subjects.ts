@@ -208,7 +208,7 @@ export const getSubjects = () => {
   const uniqueSubjects = Array.from(new Set(subjects.map((subject) => subject.split("/")[0])));
   return uniqueSubjects.map((label) => ({
     label,
-    value: label.toLowerCase().replace(/\s+/g, "-"),
+    value: label === "MAT" ? label : label.toLowerCase().replace(/\s+/g, "-"),
   }));
 };
 

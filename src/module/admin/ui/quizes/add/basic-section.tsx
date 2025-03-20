@@ -6,11 +6,12 @@ import { getChapterGroups, getSubjects, getUnitGroups } from "../../questions/ad
 
 export const BasicSection: React.FC = () => {
   const form = Form.useFormInstance<SaveQuizProps>();
-  const { subject, unit, type } = Form.useWatch<SaveQuizProps>([], form) || {};
-  const isSubjectDisabled = type === undefined || type === "mock_test" || type === "custom";
+  const { subject, unit, type, questionIds } = Form.useWatch<SaveQuizProps>([], form) || {};
+  const isQuizGenerated = Boolean(questionIds?.length);
+  const isSubjectDisabled = type === undefined || type === "mock_test" || type === "custom" || isQuizGenerated;
   const isUnitDisabled = isSubjectDisabled || type === "subject";
   const isChapterDisabled = isUnitDisabled || type === "unit";
-  const isPageSizeDisabled = type === undefined || type === "custom" || type === "mock_test";
+  const isPageSizeDisabled = type === undefined || type === "custom" || type === "mock_test" || isQuizGenerated;
 
   const onTypeChange = (value: string) => {
     const isLargePageSize = value === "mock_test" || value === "custom";
@@ -36,7 +37,7 @@ export const BasicSection: React.FC = () => {
       name: SaveQuizKeys.type,
       label: "Type",
       rules: [Rules.required],
-      children: <Select options={quizTypeOptions} placeholder="Select Type" onChange={onTypeChange} />,
+      children: <Select options={quizTypeOptions} placeholder="Select Type" onChange={onTypeChange} disabled={isQuizGenerated} />,
     },
     {
       name: SaveQuizKeys.subject,
@@ -74,7 +75,7 @@ export const BasicSection: React.FC = () => {
       rules: [Rules.quizDurationRule(qCount)],
       children: <InputNumber min={0} addonAfter={"Minute"} />,
     },
-    { name: SaveQuizKeys.bufferTime, label: "Buffer Time", children: <InputNumber min={0} max={5} addonAfter={"Minute"} /> },
+    { name: SaveQuizKeys.bufferTime, label: "Buffer Time", children: <InputNumber min={0} addonAfter={"Minute"} /> },
   ];
 
   return (

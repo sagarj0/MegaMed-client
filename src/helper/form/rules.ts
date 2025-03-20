@@ -21,7 +21,7 @@ export const Rules: RulesType = {
 
       // Calculate expected duration bounds
       const usualTime = qCount * 0.9;
-      const expectedMaxTime = usualTime * 1.5;
+      const expectedMaxTime = 720; // 12 hours
       const expectedMinTime = usualTime * 0.5;
 
       // Validate against bounds

@@ -33,6 +33,7 @@ export const AddQuiz: React.FC<Props> = ({ mode }) => {
   useStatusMessage({ success, error, resetError, resetSuccess, onSuccessReset });
 
   const questionIds = Form.useWatch(SaveQuizKeys.questionIds, form);
+  const disabled = !questionIds || questionIds?.length === 0;
 
   const handleSaveAndPublish = () => {
     form.setFieldsValue({ status: QuizStatus.Published });
@@ -46,10 +47,10 @@ export const AddQuiz: React.FC<Props> = ({ mode }) => {
       loading={false}
       action={
         <Dropdown.Button
-          menu={{ items: [{ key: "save", label: "Save and Publish", onClick: handleSaveAndPublish }] }}
+          menu={{ items: [{ key: "save", label: "Save and Publish", onClick: handleSaveAndPublish, disabled }] }}
           loading={isLoading}
           type="primary"
-          disabled={!questionIds || questionIds?.length === 0}
+          disabled={disabled}
           onClick={() => form.submit()}
         >
           Save
