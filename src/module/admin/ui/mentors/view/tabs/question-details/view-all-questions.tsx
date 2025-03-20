@@ -1,5 +1,5 @@
 import { AdminUrls } from "@/module/admin/util/urls";
-import { tablist, columns } from "../../../../questions/view-all/helper";
+import { tablist, columns } from "./helper";
 import { useNavigate, useParams } from "react-router-dom";
 import { subject } from "@/module/admin/service/Questions/fetch-all/type";
 import useFetchAllMentorAddedQuestions from "@/module/admin/hooks/questions/useFetchMentorAddedQuestion";

@@ -1,13 +1,15 @@
 import { Card, Select } from "antd";
 import { useAppSelector } from "@/store/hook";
 import useFetchMentorDetails from "@/module/admin/hooks/useFetchMentorDetails";
-import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import { QuestionChartData } from "./question-chart-data";
 import { ViewAllMentorAddedQuestions } from "./view-all-questions";
+import { FetchMentorDetailsReq } from "@/module/admin/service/Users/Mentor/fetch-details/type";
 
 export const QuestionAddedDetails: React.FC = () => {
-  const [timeValue, setTimeValue] = useState<any>("thisWeek");
+  const [searchparam, setSearchParam] = useSearchParams({ timeValue: "allTime" });
+  const timeValue = searchparam.get("timeValue") as FetchMentorDetailsReq["timeValue"];
+  const setTimeValue = (value: string) => setSearchParam({ timeValue: value });
 
   const { id } = useParams();
   const { data, isLoading } = useFetchMentorDetails(id, timeValue);
