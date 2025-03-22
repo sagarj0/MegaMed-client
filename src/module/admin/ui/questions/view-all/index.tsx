@@ -11,7 +11,7 @@ export const ViewAllQuestion: React.FC = () => {
   const navigate = useNavigate();
   const handleAddQuestion = () => navigate(AdminUrls.adminquestions.add);
   const { data, handleQueryChange, pagination, isLoading, subject } = useFetchAllQuestion({ filter: {} });
-  const onTabChange = (key: string) => handleQueryChange(undefined, { subject: key as subject }, undefined);
+  const onTabChange = (key: string) => handleQueryChange(undefined, { subject: key as subject });
 
   const memoizedColumns = useMemo(() => getColumns(subject), [subject]);
 
