@@ -1,21 +1,20 @@
 import { AdminUrls } from "@/module/admin/util/urls";
-import { tablist, columns } from "./helper";
+import { tablist, getColumns } from "./helper";
 import { useNavigate, useParams } from "react-router-dom";
 import { subject } from "@/module/admin/service/Questions/fetch-all/type";
 import useFetchAllMentorAddedQuestions from "@/module/admin/hooks/questions/useFetchMentorAddedQuestion";
-import { FetchMentorDetailsReq } from "@/module/admin/service/Users/Mentor/fetch-details/type";
 import { Card, Table } from "antd";
+import { useMemo } from "react";
+import { constants } from "@/util/constants";
 
-interface Props {
-  timeValue: FetchMentorDetailsReq["timeValue"];
-}
-
-export const ViewAllMentorAddedQuestions: React.FC<Props> = ({ timeValue }) => {
-  const { id: mentorId } = useParams();
+export const ViewAllMentorAddedQuestions: React.FC = () => {
+  const { id: userId } = useParams();
   const navigate = useNavigate();
 
-  const { data, handleQueryChange, pagination, isLoading, subject } = useFetchAllMentorAddedQuestions({ filter: { timeValue, mentorId } });
+  const { data, handleQueryChange, pagination, isLoading, subject } = useFetchAllMentorAddedQuestions({ filter: { userId } });
   const onTabChange = (key: string) => handleQueryChange(undefined, { subject: key as subject });
+
+  const memoizedColumns = useMemo(() => getColumns(subject), [subject]);
 
   return (
     <>
@@ -29,12 +28,12 @@ export const ViewAllMentorAddedQuestions: React.FC<Props> = ({ timeValue }) => {
         activeTabKey={subject}
         children={
           <Table
-            columns={columns}
+            columns={memoizedColumns}
             dataSource={data}
             onChange={handleQueryChange}
             pagination={pagination}
             loading={isLoading}
-            scroll={{ x: 500 }}
+            scroll={{ x: constants.QUES_TABLE_X_SCROLL }}
             onRow={({ id }) => ({
               style: { cursor: "pointer" },
               onClick: () => navigate(AdminUrls.adminMentor.viewAddedQuestion + id),

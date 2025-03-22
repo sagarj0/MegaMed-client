@@ -18,17 +18,21 @@ const useFetchAllMentorAddedQuestions = (props: Props) => {
 
   const { isLoading, error } = useAppSelector((root) => root.FetchAllMentorAddedQuestions);
   const { data, pagination, filterOption, isFetched } = useAppSelector((root) => root.MentorAddedQuestionRepo);
-  const { pageSize, current, subject, search, mentorId, timeValue } = { ...filter, ...filterOption, ...pagination };
+  const { pageSize, current, subject, unit, chapter, search, userId } = { ...filter, ...filterOption, ...pagination };
 
   useEffect(() => {
-    if (fetch) dispatch(fetchAllMentorAddedAction({ pageSize, current, subject, mentorId, timeValue }));
-  }, [dispatch, search, fetch, pageSize, current, subject, mentorId, timeValue, isFetched]);
+    if (fetch) dispatch(fetchAllMentorAddedAction({ pageSize, current, subject, userId, unit, chapter }));
+  }, [dispatch, search, fetch, pageSize, current, subject, userId, isFetched, unit, chapter]);
 
   useStatusMessage({ error, resetError });
 
   const handleQueryChange = (pagination?: TablePaginationConfig, filters?: Partial<FetchAllQuestionRequest>) => {
-    pagination && dispatch(updatePagination(pagination));
-    filters && dispatch(updateFilter(filters));
+    if (pagination) dispatch(updatePagination(pagination));
+    if (filters) {
+      let filterObject = { ...filterOption, ...filters };
+      if (filters.subject) filterObject = { ...filterObject, unit: undefined, chapter: undefined }; // reset unit and chapter if subject is changed
+      dispatch(updateFilter(filterObject));
+    }
   };
   const handleSearch = (searchText?: string) => dispatch(updateSearch(searchText));
 

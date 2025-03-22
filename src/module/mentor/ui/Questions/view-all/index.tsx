@@ -1,15 +1,19 @@
 import useFetchAllQuestion from "@/module/mentor/hooks/useFetchAllQuestion";
-import { Button, Card, Table } from "antd";
+import { Button, Card, Space, Switch, Table } from "antd";
 import { useNavigate } from "react-router-dom";
-import { columns, tablist } from "./helper";
+import { getColumns, tablist } from "./helper";
 import { MentorUrls } from "@/module/mentor/util/urls";
 import { subject } from "@/module/admin/service/Questions/fetch-all/type";
+import { useMemo } from "react";
+import { constants } from "@/util/constants";
 
 export const ViewAllQuestion: React.FC = () => {
   const navigate = useNavigate();
   const handleAddQuestion = () => navigate(MentorUrls.mentorquestions.add);
-  const { data, handleQueryChange, pagination, isLoading, subject } = useFetchAllQuestion({ filter: {} });
-  const onTabChange = (key: string) => handleQueryChange(undefined, { subject: key as subject }, undefined);
+  const { data, handleQueryChange, pagination, isLoading, subject, me } = useFetchAllQuestion({ filter: {} });
+  const onTabChange = (key: string) => handleQueryChange(undefined, { subject: key as subject });
+
+  const memoizedColumns = useMemo(() => getColumns(subject), [subject]);
 
   return (
     <Card
@@ -20,15 +24,26 @@ export const ViewAllQuestion: React.FC = () => {
       tabProps={{ destroyInactiveTabPane: true }}
       onTabChange={onTabChange}
       activeTabKey={subject}
-      tabBarExtraContent={<Button type="primary" onClick={handleAddQuestion} children={"Add Question"} />}
+      tabBarExtraContent={
+        <Space>
+          <Switch
+            title="Me Mode"
+            checkedChildren="Me"
+            unCheckedChildren="All"
+            value={me}
+            onChange={(val) => handleQueryChange(undefined, { me: val })}
+          />
+          <Button type="primary" onClick={handleAddQuestion} children={"Add Question"} />
+        </Space>
+      }
       children={
         <Table
-          columns={columns}
+          columns={memoizedColumns}
           dataSource={data}
           onChange={handleQueryChange}
           pagination={pagination}
           loading={isLoading}
-          scroll={{ x: 500 }}
+          scroll={{ x: constants.QUES_TABLE_X_SCROLL }}
           onRow={({ id }) => ({
             style: { cursor: "pointer" },
             onClick: () => navigate(MentorUrls.mentorquestions.view + id),

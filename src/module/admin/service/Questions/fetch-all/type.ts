@@ -1,4 +1,3 @@
-import { FetchMentorDetailsReq } from "../../Users/Mentor/fetch-details/type";
 import { DetailedQuestion } from "../fetch/type";
 
 export type subject = "physics" | "chemistry" | "zoology" | "botany" | "MAT";
@@ -12,8 +11,8 @@ export type FetchAllQuestionRequest = Partial<DetailedQuestion> & {
   sortOrder?: "ASC" | "DESC";
 
   //used in mentor added question
-  mentorId?: string;
-  timeValue?: FetchMentorDetailsReq["timeValue"];
+  userId?: string;
+  // timeValue?: FetchMentorDetailsReq["timeValue"];
 };
 
 export type GetAllQuestionRequest = { query: URLSearchParams };

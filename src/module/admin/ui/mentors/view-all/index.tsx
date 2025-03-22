@@ -1,6 +1,7 @@
 import useFetchAllUser from "@/module/admin/hooks/user/useFetchAllUser";
 import { DetailedUser } from "@/module/admin/service/Users/fetch/type";
 import { AdminUrls } from "@/module/admin/util/urls";
+import { constants } from "@/util/constants";
 import { Button, Card, Table, TableProps, Tag } from "antd";
 import { useNavigate } from "react-router-dom";
 
@@ -51,7 +52,7 @@ export const ViewAllMentors: React.FC = () => {
           onChange={handleQueryChange}
           pagination={pagination}
           loading={isLoading}
-          scroll={{ x: 500 }}
+          scroll={{ x: constants.DEFAULT_TABLE_X_SCROLL }}
           onRow={({ id }) => ({
             style: { cursor: "pointer" },
             onClick: () => navigate(AdminUrls.adminMentor.view + id),

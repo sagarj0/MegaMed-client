@@ -7,6 +7,7 @@ import { formatDateTime } from "@/helper/format-date";
 import { renderTag } from "@/component/globar-tag-renderer";
 import { customConcatString } from "@/helper/custom-concat";
 import { isQuizActive } from "@/helper/is-quiz-active";
+import { constants } from "@/util/constants";
 
 export const ViewAllQuiz: React.FC = () => {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ export const ViewAllQuiz: React.FC = () => {
             onClick: () => navigate(AdminUrls.adminquizes.view + id),
             className: isQuizActive(rest) ? "active-quiz-row" : "",
           })}
-          scroll={{ x: 500 }}
+          scroll={{ x: constants.DEFAULT_TABLE_X_SCROLL }}
           rowKey={(record) => record.id.toString()}
         />
       }

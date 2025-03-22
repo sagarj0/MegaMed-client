@@ -255,7 +255,7 @@ export const getUnitGroups = (subject?: string): GroupType[] => {
     label,
     options: groupedSubjects[label].map((option) => ({
       label: option,
-      value: option, // Option value (unit name in lowercase with spaces replaced by dashes)
+      value: option,
     })),
   }));
 };
@@ -298,4 +298,18 @@ export const buildCascaderOptions = (subjects: string[], subjectData: SubjectDat
       value: subtopic,
     })),
   }));
+};
+
+export const getUnits: (subject?: string) => string[] = (subject) => {
+  if (!subject) return [];
+
+  const unitGroups = getUnitGroups(subject);
+  return unitGroups.length ? (unitGroups[0].options.map((option) => option.value) as string[]) : [];
+};
+
+export const getAllChapters: (subject?: string) => string[] = (subject) => {
+  if (!subject) return [];
+
+  const filteredChapters = Object.entries(subjectData).filter(([key]) => key.toLowerCase().includes(subject.toLowerCase()));
+  return filteredChapters.map(([_, chapters]) => chapters).flat();
 };

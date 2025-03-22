@@ -56,13 +56,15 @@ export const createRepoReducer = <T extends { id: string }, F>(name: string, ini
         //reset isFetched on filter change
         state.isFetched = false;
 
+        const prevFilter = state.filterOption as Partial<F>;
         const filterObj = action.payload as Partial<F>;
 
         if (Object.keys(filterObj).length === 0) return;
 
-        state.filterOption = Object.fromEntries(
-          Object.entries(filterObj).map(([key, value]) => [key, Array.isArray(value) ? value.join(",") : value]),
-        ) as Draft<Partial<F>>;
+        state.filterOption = {
+          ...prevFilter,
+          ...Object.fromEntries(Object.entries(filterObj).map(([key, value]) => [key, Array.isArray(value) ? value.join(",") : value])),
+        } as Draft<Partial<F>>;
       },
 
       updateSort: (state, action) => {

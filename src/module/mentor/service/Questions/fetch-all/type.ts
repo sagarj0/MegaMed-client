@@ -9,6 +9,7 @@ export type FetchAllQuestionRequest = Partial<DetailedQuestion> & {
   pageSize?: number;
   sortField?: string;
   sortOrder?: "ASC" | "DESC";
+  me?: boolean;
 };
 
 export type GetAllQuestionRequest = { query: URLSearchParams };

@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { Button, Card, Row, Table, TableProps, Tag, Typography } from "antd";
 import { useState } from "react";
 import { resetError, resetSuccess } from "@/module/admin/service/Users/bulk-edit/reducer";
+import { constants } from "@/util/constants";
 
 export const ViewAllStudents: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -69,7 +70,7 @@ export const ViewAllStudents: React.FC = () => {
           loading={isLoading}
           rowKey={(record) => record.id}
           rowSelection={{ onChange: (selectedRowKeys) => setSelectedRowKeys(selectedRowKeys as string[]), fixed: true }}
-          scroll={{ x: 500 }}
+          scroll={{ x: constants.DEFAULT_TABLE_X_SCROLL }}
         />
       }
     />
