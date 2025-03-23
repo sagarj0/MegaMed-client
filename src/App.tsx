@@ -6,8 +6,6 @@ import { router } from "./router";
 import CommonAntdTheme from "./theme/";
 
 const App: React.FC = () => {
-  console.log(document.title);
-
   return (
     <CommonAntdTheme>
       <AntdAppContext>
